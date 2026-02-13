@@ -32,7 +32,7 @@ O jogo é estruturado para que **cada decisão importe**: posicionamento inicial
 
 ## 🧩 Fase Inicial — Posicionamento
 
-1. Ao iniciar a partida, **cada lado recebe 10 pontos**
+1. Ao iniciar a partida, **cada lado recebe x pontos** (rodada 1 = 10 pontos, as outras vai aumentando de 2 em 2 pontos até chegar a 20 pontos)
 2. O **oponente posiciona suas peças primeiro**, livremente no tabuleiro
 3. Em seguida, o **jogador posiciona suas peças**, também livremente
 4. O jogador **não vê as peças do oponente**, apenas casas bloqueadas
@@ -85,7 +85,7 @@ O jogo **não é vencido por eliminar todas as peças**.
 
 Um jogador vence ao manter:
 
-* Uma vantagem mínima de **10 pontos**
+* Uma vantagem mínima de **x pontos** (valor recebido inicialmente pela rodada dividido por 2)
 * Considerando o **valor total das peças ativas no tabuleiro**
 * Por **3 turnos consecutivos**
 
