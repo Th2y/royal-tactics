@@ -1,151 +1,160 @@
-# ♟ Royal Tactics
+# ♟️ Royal Tactics
 
-**Royal Tactics** é um protótipo tático por turnos desenvolvido na Unity, inspirado em regras de movimentação do xadrez, mas concebido como um sistema original de combate em grid.
+**Royal Tactics** é um jogo de tabuleiro tático por turnos inspirado no xadrez, mas com foco em **controle de território, economia de peças e decisões estratégicas**, em vez de regras tradicionais.
 
-O projeto tem foco em **arquitetura de gameplay, sistemas determinísticos e design orientado a regras**, priorizando clareza técnica e extensibilidade em vez de gráficos ou animações.
-
----
-
-## 🎯 Objetivos do Projeto
-
-* Projetar um **sistema tático em grid** independente do tamanho do tabuleiro
-* Implementar **movimentação baseada em regras** inspiradas em peças de xadrez
-* Construir um **sistema de turnos determinístico**, fácil de depurar
-* Explorar **combate por linha de visão** utilizando lasers direcionais
-* Demonstrar **design sistêmico** com uso de recursos criados pelo jogador (peões)
+O jogo propõe partidas curtas, alta rejogabilidade e um sistema de vitória original baseado em **Domínio**, não em xeque-mate.
 
 ---
 
-## 🕹 Visão Geral do Gameplay
+## 🎯 Conceito Central
 
-* Tabuleiro: **10×10**
-* O jogador controla uma **Dama**
-* Inimigos:
+* Tabuleiro **8x8**
+* Dois jogadores (Jogador vs IA)
+* Não existe Rei
+* Cada peça possui um **custo em pontos**
+* Pontos são usados tanto para **posicionar peças** quanto para **vencer a partida**
 
-  * **Torres**
-  * **Bispos**
-* O combate é resolvido por **lasers direcionais**
-* O jogador ganha **peões** ao derrotar inimigos e pode posicioná-los como bloqueios estratégicos
-* A vitória ocorre ao eliminar todas as peças inimigas
+O jogo é estruturado para que **cada decisão importe**: posicionamento inicial, troca de peças e controle da vantagem ao longo dos turnos.
 
 ---
 
-## 🔁 Loop Principal de Jogo
+## ♜ Peças e Custos
 
-1. O jogador executa **uma ação**:
-
-   * Mover a Dama
-     **ou**
-   * Posicionar um Peão
-2. As peças inimigas se movimentam
-3. As peças inimigas disparam seus lasers
-4. O sistema resolve colisões e danos
-5. O jogo verifica vitória ou derrota
-6. O turno avança
+| Peça   | Custo |
+| ------ | ----- |
+| Peão   | 1     |
+| Cavalo | 3     |
+| Bispo  | 3     |
+| Torre  | 5     |
+| Dama   | 9     |
 
 ---
 
-## 🧩 Sistemas Principais
+## 🧩 Fase Inicial — Posicionamento
 
-### Sistema de Grid
+1. Ao iniciar a partida, **cada lado recebe 10 pontos**
+2. O **oponente posiciona suas peças primeiro**, livremente no tabuleiro
+3. Em seguida, o **jogador posiciona suas peças**, também livremente
+4. O jogador **não vê as peças do oponente**, apenas casas bloqueadas
 
-* Implementação genérica **NxM**
-* Controle de ocupação das células
-* Consulta rápida de bloqueios
-* Conversão entre coordenadas de grid e mundo
-
----
-
-### Sistema de Turnos
-
-* Fluxo determinístico baseado em estados:
-
-  * `PlayerTurn`
-  * `EnemyMove`
-  * `EnemyAttack`
-  * `Resolve`
-* Suporte a execução passo a passo para debug
+Essa fase cria um cenário de **informação incompleta**, incentivando leitura de jogo e antecipação de movimentos.
 
 ---
 
-### Sistema de Unidades
+## 🔄 Turnos de Jogo
 
-* Classe base (`BaseUnit`)
-* Movimentação definida por **padrões reutilizáveis**
-* Comportamentos inspirados em peças de xadrez, sem seguir as regras tradicionais
+A partir do segundo turno, o jogo começa de fato.
 
----
+Em cada turno:
 
-### Sistema de Combate (Laser)
+* Apenas **uma peça** pode agir
+* A ação pode ser:
 
-* Ataques em linha reta sobre o grid
-* Lasers percorrem célula por célula
-* O laser é interrompido ao colidir com:
+  * **Atacar**, se houver uma peça inimiga ao alcance
+  * **Mover**, caso nenhum ataque seja possível
 
-  * Uma unidade
-  * Um peão
-  * O limite do tabuleiro
+### Prioridade de Ação
 
----
+O sistema sempre tenta:
 
-### Sistema de Recursos e Posicionamento
-
-* Peões são obtidos ao derrotar inimigos
-* Quantidade máxima armazenada é limitada
-* Posicionamento validado por:
-
-  * Adjacência à Dama
-  * Ocupação da célula
+1. Atacar
+2. Caso não seja possível, mover
 
 ---
 
-### IA Inimiga
+## ⚔️ Combate e Pontuação
 
-* Movimentação baseada em regras da peça
-* Seleção de direção do laser com pesos simples
-* Comportamento totalmente determinístico por turno
+* Ao atacar:
 
----
+  * A peça se move para a casa da peça inimiga
+  * A peça inimiga é removida
+* O jogador ganha:
 
-## 🧠 Foco Técnico
+  * **(Valor da peça capturada − 1) pontos**
 
-Este projeto foi desenvolvido para enfatizar:
-
-* Arquitetura de gameplay
-* Separação clara de responsabilidades
-* Design orientado a dados
-* Sistemas determinísticos
-* Performance em lógica de grid
-* Ferramentas de debug para sistemas de jogo
-
-Não utiliza física, animações complexas ou sistemas gráficos avançados.
+Esses pontos podem ser usados em **turnos futuros** para posicionar novas peças no tabuleiro.
+Posicionar uma peça **consome o turno inteiro**.
 
 ---
 
-## 🚀 Extensibilidade
+## 🏆 Condição de Vitória — Domínio
 
-A arquitetura permite facilmente:
+O jogo **não é vencido por eliminar todas as peças**.
 
-* Adição de novas peças
-* Criação de novos padrões de movimento
-* Novos tipos de ataque
-* Diferentes tamanhos de tabuleiro
-* Modos de jogo adicionais
+### Vitória por Domínio
+
+Um jogador vence ao manter:
+
+* Uma vantagem mínima de **10 pontos**
+* Considerando o **valor total das peças ativas no tabuleiro**
+* Por **3 turnos consecutivos**
+
+O valor considerado é sempre o **custo original da peça**, independentemente de como ela foi obtida.
+
+Essa condição:
+
+* Evita partidas longas
+* Incentiva trocas inteligentes
+* Gera tensão constante
+* Permite reviravoltas
+
+---
+
+## 🎨 Sistema de Cores
+
+O jogador pode escolher:
+
+* A cor das **suas peças**
+* A cor das **peças do oponente**
+
+Regras:
+
+* As cores **não podem ser iguais**
+* A escolha é puramente visual
+* As cores são persistidas entre sessões
+
+O sistema foi projetado para evitar duplicação de materiais, com aplicação de cor desacoplada da lógica de gameplay.
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+## 🧪 Estado Atual do Projeto
 
-* Unity
-* C#
-* New Input System da Unity
-* Sem frameworks externos de gameplay
+### Implementado
+
+* Menu inicial
+* Seleção de cores do jogador e do oponente
+* Validação para impedir cores iguais
+* Persistência da escolha de cores
+* Estrutura base de UI e fluxo inicial
+
+### Em Desenvolvimento
+
+* Lógica do tabuleiro
+* Sistema de turnos
+* Posicionamento inicial das peças
+* Sistema de ataque e movimento
+* Condição de vitória por Domínio
+* IA do oponente
 
 ---
 
-## 📌 Propósito do Projeto
+## 🛠️ Tecnologias
 
-**Royal Tactics** não é um jogo comercial completo.
-Ele existe como **vitrine técnica**, demonstrando como estruturar e implementar sistemas de gameplay escaláveis em Unity.
+* **Unity**
+* **C#**
+* Arquitetura focada em:
+
+  * separação de responsabilidades
+  * baixo acoplamento
+  * escalabilidade
 
 ---
+
+## 📌 Objetivo do Projeto
+
+**Royal Tactics** é um projeto autoral com foco em:
+
+* Design de sistemas
+* Lógica de gameplay
+* Arquitetura limpa
+* Tomada de decisões técnicas conscientes
