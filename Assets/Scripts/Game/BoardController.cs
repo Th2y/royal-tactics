@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardController : MonoBehaviour
@@ -18,13 +19,26 @@ public class BoardController : MonoBehaviour
 
         foreach (Tile tile in children)
         {
-            tiles[tile.x, tile.y] = tile;
+            tiles[(int)tile.pos.x, (int)tile.pos.y] = tile;
         }
     }
 
     public Tile GetTile(int x, int y)
     {
         return tiles[x, y];
+    }
+
+    public List<Tile> GetAllFreeTiles()
+    {
+        List<Tile> free = new();
+
+        foreach (Tile tile in tiles)
+        {
+            if (!tile.IsOccupied)
+                free.Add(tile);
+        }
+
+        return free;
     }
 
     public bool TryPlacePiece(Piece piecePrefab, int x, int y)

@@ -28,6 +28,6 @@ public abstract class Piece : MonoBehaviour
     public void SetTile(Tile tile)
     {
         currentTile = tile;
-        transform.position = tile.transform.position;
+        transform.position = new Vector3(tile.transform.position.x, 0.415f, tile.transform.position.z);
     }
 }

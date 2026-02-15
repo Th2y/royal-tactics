@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6787483216177278053}
   - component: {fileID: 330953670571966150}
   - component: {fileID: 4110806099934105327}
-  - component: {fileID: 3641644427659676459}
+  - component: {fileID: 3179354087940107340}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -101,9 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileRenderer: {fileID: 330953670571966150}
-  x: 0
-  y: 0
---- !u!65 &3641644427659676459
+  pos: {x: 0, y: 0}
+--- !u!65 &3179354087940107340
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,4 +122,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.25, y: 0.2, z: 0.25}
-  m_Center: {x: 0.875, y: 1, z: 0.875}
+  m_Center: {x: 0, y: 0, z: 0}

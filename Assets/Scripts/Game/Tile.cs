@@ -5,8 +5,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private Renderer tileRenderer;
 
     [Header("Board Position")]
-    public int x;
-    public int y;
+    public Vector2 pos;
 
     [Header("State")]
     public Piece piece {  get; private set; }

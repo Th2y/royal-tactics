@@ -62,6 +62,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f9669547d3e3fb4ba612a239b2342d3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3814399697422126422}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f9669547d3e3fb4ba612a239b2342d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4064410505991075695}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f9669547d3e3fb4ba612a239b2342d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1525914383141300081}
   m_SourcePrefab: {fileID: 100100000, guid: 8f9669547d3e3fb4ba612a239b2342d3, type: 3}
 --- !u!1 &836471396950900905 stripped
 GameObject:
@@ -97,9 +103,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b2339e3e739d74fa6f95aeaf04eab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
-  cost: 9
-  owner: 0
+--- !u!65 &-4064410505991075695
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836471396950900905}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9999999, y: 54.752583, z: 1.9999999}
+  m_Center: {x: 0.00000023841856, y: -11.64133, z: 0.0000001490116}
+--- !u!54 &1525914383141300081
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836471396950900905}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!23 &1196622959895585148 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8f9669547d3e3fb4ba612a239b2342d3, type: 3}

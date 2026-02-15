@@ -4,8 +4,7 @@ using System.Collections.Generic;
 public class PlacementController : MonoBehaviour
 {
     [Header("Piece Definitions")]
-    [SerializeField] private List<PieceDefinitionSO> pieces;
-    [SerializeField] private int startingPoints = 10;
+    [SerializeField] private PhaseSO phaseSO;
 
     private int currentPoints;
 
@@ -23,7 +22,7 @@ public class PlacementController : MonoBehaviour
 
     private void Start()
     {
-        currentPoints = startingPoints;
+        currentPoints = phaseSO.startingPoints;
     }
 
     public bool CanPlace(PieceDefinitionSO def)

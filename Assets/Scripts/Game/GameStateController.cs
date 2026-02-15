@@ -11,13 +11,15 @@ public enum GamePhase
 
 public class GameStateController : MonoBehaviour
 {
-    public static GameStateController Instance { get; private set; }
+    [SerializeField] private IAPlacementController iaPlacement;
 
     public GamePhase CurrentPhase { get; private set; }
 
     public bool IsPlayerTurn =>
         CurrentPhase == GamePhase.PlayerTurn ||
         CurrentPhase == GamePhase.PlayerPlacement;
+
+    public static GameStateController Instance { get; private set; }
 
     private void Awake()
     {
@@ -39,5 +41,8 @@ public class GameStateController : MonoBehaviour
     {
         CurrentPhase = newPhase;
         Debug.LogError("FASE ATUAL: " + newPhase);
+
+        if (newPhase == GamePhase.OpponentPlacement)
+            iaPlacement.StartPlacement();
     }
 }
