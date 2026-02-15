@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c7e14f85d0c6bc45a25eee68c2f93bc
+guid: 02e8d7118a3900243bd278cb62509927
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Pecas_Brancas
+      name: Borda
+    second: {fileID: 2100000, guid: 925716dcccc2cff418923938a461994c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Materiais
     second: {fileID: 2100000, guid: 7ed16448784392146abfe60a04335c19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Materiais.001
+    second: {fileID: 2100000, guid: 3c999a6babfa6e946ba7b1af88cf9573, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
