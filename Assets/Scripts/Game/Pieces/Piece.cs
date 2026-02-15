@@ -17,6 +17,7 @@ public enum PlayerOwner
 
 public abstract class Piece : MonoBehaviour
 {
+    [SerializeField] private ModelColorApplier modelColorApplier;
     public PieceDefinitionSO Definition { get; private set; }
     protected Renderer[] renderers;
     public Tile currentTile {  get; private set; }
@@ -27,6 +28,9 @@ public abstract class Piece : MonoBehaviour
         Definition = def;
         renderers = GetComponentsInChildren<Renderer>();
         this.isFromPlayer = isFromPlayer;
+
+        modelColorApplier.isPlayer = isFromPlayer;
+        modelColorApplier.Init();
     }
 
     public void SetTile(Tile tile)

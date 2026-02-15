@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279900e611074b440854a3171bfacb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelColorApplier: {fileID: -1761487870896263675}
 --- !u!65 &765512065104453533
 BoxCollider:
   m_ObjectHideFlags: 0

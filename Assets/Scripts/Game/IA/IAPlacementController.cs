@@ -6,6 +6,8 @@ public class IAPlacementController : MonoBehaviour
     [SerializeField] private BoardController board;
     [SerializeField] private PhaseSO phaseSO;
 
+    public List<Piece> placedPieces { get; private set; } = new();
+
     private int currentPoints;
 
     public void StartPlacement()
@@ -16,14 +18,15 @@ public class IAPlacementController : MonoBehaviour
 
         while (currentPoints > 0 && freeTiles.Count > 0)
         {
-            PieceDefinitionSO piece = ChoosePiece();
-            if (piece == null) break;
+            PieceDefinitionSO pieceDef = ChoosePiece();
+            if (pieceDef == null) break;
 
-            Tile tile = ChooseTile(freeTiles, piece);
+            Tile tile = ChooseTile(freeTiles, pieceDef);
             if(tile == null) break;
 
-            PlacePiece(tile, piece);
+            Piece piece = PlacePiece(tile, pieceDef);
             freeTiles.Remove(tile);
+            placedPieces.Add(piece);
         }
 
         FinishPlacement();
@@ -31,10 +34,7 @@ public class IAPlacementController : MonoBehaviour
 
     private PieceDefinitionSO ChoosePiece()
     {
-        List<PieceDefinitionSO> possible = phaseSO.availablePieces.FindAll(p =>
-            p.cost <= currentPoints &&
-            p.unlockedByDefault
-        );
+        List<PieceDefinitionSO> possible = phaseSO.availablePieces.FindAll(p => p.cost <= currentPoints);
 
         if (possible.Count == 0)
             return null;
@@ -59,7 +59,7 @@ public class IAPlacementController : MonoBehaviour
         return freeTiles[Random.Range(0, freeTiles.Count)];
     }
 
-    private void PlacePiece(Tile tile, PieceDefinitionSO def)
+    private Piece PlacePiece(Tile tile, PieceDefinitionSO def)
     {
         currentPoints -= def.cost;
 
@@ -69,6 +69,8 @@ public class IAPlacementController : MonoBehaviour
 
         piece.SetVisible(false);
         tile.SetOccupiedMarker(true);
+
+        return piece;
     }
 
     private void FinishPlacement()

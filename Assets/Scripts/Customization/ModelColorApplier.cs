@@ -5,7 +5,8 @@ public class ModelColorApplier : MonoBehaviour
     [SerializeField] private ColorsOptions colorsOptions;
     [SerializeField] private Renderer[] renderers;
     [SerializeField] private string colorProperty = "_BaseColor";
-    [SerializeField] private bool isPlayer = false;
+
+    public bool isPlayer = false;
 
     private MaterialPropertyBlock block;
 
@@ -13,7 +14,12 @@ public class ModelColorApplier : MonoBehaviour
     {
         block = new MaterialPropertyBlock();
 
-        if(isPlayer)
+        Init();
+    }
+
+    public void Init()
+    {
+        if (isPlayer)
             SetColor(PlayerColorPrefs.LoadColor(colorsOptions.colors[0], true));
         else
             SetColor(PlayerColorPrefs.LoadColor(colorsOptions.colors[1], false));

@@ -42,27 +42,32 @@ public class GameStateController : MonoBehaviour
         CurrentPhase = newPhase;
         Debug.LogError("FASE ATUAL: " + newPhase);
 
-        if (newPhase == GamePhase.OpponentPlacement)
-            iaPlacement.StartPlacement();
-        else if (newPhase == GamePhase.PlayerPlacement)
-            StartFirstPlayerTurn();
+        switch (newPhase)
+        {
+            case GamePhase.OpponentPlacement:
+                iaPlacement.StartPlacement();
+                break;
+            case GamePhase.PlayerPlacement:
+                PlacementUI.Instance.RefreshButtons();
+                break;
+            default:
+                break;
+
+        }
     }
 
-    private void StartFirstPlayerTurn()
+    public void BeforeFirstPlayerTurn()
     {
         RevealIAPieces();
-        SetPhase(GamePhase.PlayerTurn);
+        SetPhase(GamePhase.OpponentTurn);
     }
 
     private void RevealIAPieces()
     {
-        foreach (var piece in FindObjectsOfType<Piece>())
+        foreach (var piece in iaPlacement.placedPieces)
         {
-            if (piece.isFromPlayer)
-            {
-                piece.SetVisible(true);
-                piece.currentTile.SetOccupiedMarker(false);
-            }
+            piece.SetVisible(true);
+            piece.currentTile.SetOccupiedMarker(false);
         }
     }
 }

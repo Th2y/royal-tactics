@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlacementController : MonoBehaviour
 {
     [Header("Piece Definitions")]
     [SerializeField] private PhaseSO phaseSO;
+    public PieceDefinitionSO selectedPiece { get; private set; }
+
+    public event Action OnPointsChanged;
 
     private int currentPoints;
 
@@ -18,16 +22,13 @@ public class PlacementController : MonoBehaviour
             return;
         }
         Instance = this;
-    }
 
-    private void Start()
-    {
         currentPoints = phaseSO.startingPoints;
     }
 
     public bool CanPlace(PieceDefinitionSO def)
     {
-        return currentPoints >= def.cost && IsUnlocked(def);
+        return currentPoints >= def.cost;
     }
 
     public void TryPlacePiece(Tile tile, PieceDefinitionSO def)
@@ -41,6 +42,9 @@ public class PlacementController : MonoBehaviour
         if (!CanPlace(def))
             return;
 
+        if (!IsValidPlacement(tile, def))
+            return;
+
         PlacePiece(tile, def);
     }
 
@@ -52,13 +56,26 @@ public class PlacementController : MonoBehaviour
         piece.Initialize(def, true);
         tile.SetPiece(piece);
 
-        Debug.LogError($"Placed {def.type} | Points left: {currentPoints}");
+        OnPointsChanged?.Invoke();
+
+        if(currentPoints == 0)
+        {
+            GameStateController.Instance.BeforeFirstPlayerTurn();
+        }
     }
 
-    private bool IsUnlocked(PieceDefinitionSO def)
+    private bool IsValidPlacement(Tile tile, PieceDefinitionSO def)
     {
-        if (def.unlockedByDefault) return true;
+        if (def.type == PieceType.Pawn)
+        {
+            return tile.pos.y >= 1 && tile.pos.y <= 4;
+        }
 
-        return false;
+        return true;
+    }
+
+    public void SelectPiece(PieceDefinitionSO def)
+    {
+        selectedPiece = def;
     }
 }

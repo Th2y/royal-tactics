@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pawn
   m_EditorClassIdentifier: 
   type: 0
+  namePt: "Pe\xE3o"
   cost: 1
   prefab: {fileID: 6289162916602366714, guid: 32e31b54ba155c847a2d9474bf736e50, type: 3}
   unlockedByDefault: 1

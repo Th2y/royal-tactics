@@ -4,14 +4,11 @@ using UnityEngine;
 public class PieceDefinitionSO : ScriptableObject
 {
     public PieceType type;
+    public string namePt;
 
     [Header("Gameplay")]
     public int cost;
 
     [Header("Prefab")]
     public Piece prefab;
-
-    [Header("Progression")]
-    public bool unlockedByDefault = true;
-    public int winsRequiredToUnlock;
 }

@@ -17,7 +17,12 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        BoardSelectionController.Instance.SelectTile(this);
+        if (GameStateController.Instance.CurrentPhase != GamePhase.PlayerPlacement) return;
+
+        var selected = PlacementController.Instance.selectedPiece;
+        if (selected == null) return;
+
+        PlacementController.Instance.TryPlacePiece(this, selected);
     }
 
     public void Init(Color defaultColor)

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rook
   m_EditorClassIdentifier: 
   type: 3
+  namePt: Torre
   cost: 5
   prefab: {fileID: 1660852193973792313, guid: e37b5465365690b4288b00c93f189b3f, type: 3}
   unlockedByDefault: 0

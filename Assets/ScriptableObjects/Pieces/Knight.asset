@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   type: 1
+  namePt: Cavalo
   cost: 3
   prefab: {fileID: 1952302574386903565, guid: db6d30ca3b003644983d631f66a952d3, type: 3}
   unlockedByDefault: 1
