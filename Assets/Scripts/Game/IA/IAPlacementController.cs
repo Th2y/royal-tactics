@@ -19,7 +19,8 @@ public class IAPlacementController : MonoBehaviour
             PieceDefinitionSO piece = ChoosePiece();
             if (piece == null) break;
 
-            Tile tile = ChooseTile(freeTiles);
+            Tile tile = ChooseTile(freeTiles, piece);
+            if(tile == null) break;
 
             PlacePiece(tile, piece);
             freeTiles.Remove(tile);
@@ -41,8 +42,20 @@ public class IAPlacementController : MonoBehaviour
         return possible[Random.Range(0, possible.Count)];
     }
 
-    private Tile ChooseTile(List<Tile> freeTiles)
+    private Tile ChooseTile(List<Tile> freeTiles, PieceDefinitionSO piece)
     {
+        if (piece.type == PieceType.Pawn)
+        {
+            List<Tile> pawnTiles = freeTiles.FindAll(t =>
+                t.pos.x >= 3 && t.pos.y <= 6
+            );
+
+            if (pawnTiles.Count > 0)
+                return pawnTiles[Random.Range(0, pawnTiles.Count)];
+            else 
+                return null;
+        }
+
         return freeTiles[Random.Range(0, freeTiles.Count)];
     }
 
