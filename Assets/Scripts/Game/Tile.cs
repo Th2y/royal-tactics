@@ -30,6 +30,11 @@ public class Tile : MonoBehaviour
         BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, selected ? Color.yellow : defaultColor);
     }
 
+    public void SetOccupiedMarker(bool occupied)
+    {
+        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, occupied ? Color.red : defaultColor);
+    }
+
     public void SetPiece(Piece newPiece)
     {
         piece = newPiece;

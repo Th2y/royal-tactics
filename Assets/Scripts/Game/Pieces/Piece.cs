@@ -18,16 +18,26 @@ public enum PlayerOwner
 public abstract class Piece : MonoBehaviour
 {
     public PieceDefinitionSO Definition { get; private set; }
-    protected Tile currentTile;
+    protected Renderer[] renderers;
+    public Tile currentTile {  get; private set; }
+    public bool isFromPlayer {  get; private set; }
 
-    public void Initialize(PieceDefinitionSO def)
+    public void Initialize(PieceDefinitionSO def, bool isFromPlayer)
     {
         Definition = def;
+        renderers = GetComponentsInChildren<Renderer>();
+        this.isFromPlayer = isFromPlayer;
     }
 
     public void SetTile(Tile tile)
     {
         currentTile = tile;
         transform.position = new Vector3(tile.transform.position.x, 0.415f, tile.transform.position.z);
+    }
+
+    public void SetVisible(bool visible)
+    {
+        foreach (var r in renderers)
+            r.enabled = visible;
     }
 }

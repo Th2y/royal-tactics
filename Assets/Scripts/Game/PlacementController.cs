@@ -49,7 +49,7 @@ public class PlacementController : MonoBehaviour
         currentPoints -= def.cost;
 
         Piece piece = Instantiate(def.prefab);
-        piece.Initialize(def);
+        piece.Initialize(def, true);
         tile.SetPiece(piece);
 
         Debug.LogError($"Placed {def.type} | Points left: {currentPoints}");

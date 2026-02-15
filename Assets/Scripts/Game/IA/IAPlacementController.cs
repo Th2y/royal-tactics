@@ -64,8 +64,11 @@ public class IAPlacementController : MonoBehaviour
         currentPoints -= def.cost;
 
         Piece piece = Instantiate(def.prefab);
-        piece.Initialize(def);
+        piece.Initialize(def, false);
         tile.SetPiece(piece);
+
+        piece.SetVisible(false);
+        tile.SetOccupiedMarker(true);
     }
 
     private void FinishPlacement()

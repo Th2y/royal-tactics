@@ -44,5 +44,25 @@ public class GameStateController : MonoBehaviour
 
         if (newPhase == GamePhase.OpponentPlacement)
             iaPlacement.StartPlacement();
+        else if (newPhase == GamePhase.PlayerPlacement)
+            StartFirstPlayerTurn();
+    }
+
+    private void StartFirstPlayerTurn()
+    {
+        RevealIAPieces();
+        SetPhase(GamePhase.PlayerTurn);
+    }
+
+    private void RevealIAPieces()
+    {
+        foreach (var piece in FindObjectsOfType<Piece>())
+        {
+            if (piece.isFromPlayer)
+            {
+                piece.SetVisible(true);
+                piece.currentTile.SetOccupiedMarker(false);
+            }
+        }
     }
 }
