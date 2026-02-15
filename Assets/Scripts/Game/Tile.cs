@@ -14,7 +14,6 @@ public class Tile : MonoBehaviour
     public bool IsOccupied => piece != null;
 
     //Color
-    private BoardColorApplier boardColorApplier;
     private Color defaultColor;
 
     private void OnMouseDown()
@@ -22,9 +21,8 @@ public class Tile : MonoBehaviour
         BoardSelectionController.Instance.SelectTile(this);
     }
 
-    public void Init(BoardColorApplier boardColorApplier, Color defaultColor)
+    public void Init(Color defaultColor)
     {
-        this.boardColorApplier = boardColorApplier;
         this.defaultColor = defaultColor;
     }
 

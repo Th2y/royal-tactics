@@ -21,6 +21,9 @@ public class BoardSelectionController : MonoBehaviour
 
     public void SelectTile(Tile tile)
     {
+        if (!GameStateController.Instance.IsPlayerTurn)
+            return;
+
         ClearSelection();
 
         if (currentSelectedTile == tile)

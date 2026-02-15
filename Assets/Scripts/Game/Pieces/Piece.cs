@@ -17,11 +17,13 @@ public enum PlayerOwner
 
 public abstract class Piece : MonoBehaviour
 {
-    public PieceType type;
-    public int cost;
-    [HideInInspector] public PlayerOwner owner;
+    public PieceDefinitionSO Definition { get; private set; }
+    protected Tile currentTile;
 
-    public Tile currentTile {  get; protected set; }
+    public void Initialize(PieceDefinitionSO def)
+    {
+        Definition = def;
+    }
 
     public void SetTile(Tile tile)
     {
@@ -29,4 +31,3 @@ public abstract class Piece : MonoBehaviour
         transform.position = tile.transform.position;
     }
 }
-

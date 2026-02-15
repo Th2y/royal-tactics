@@ -42,7 +42,7 @@ public class BoardColorApplier : MonoBehaviour
             block.SetColor(colorProperty, color);
             r.SetPropertyBlock(block);
 
-            r.GetComponent<Tile>().Init(this, color);
+            r.GetComponent<Tile>().Init(color);
         }
     }
 
