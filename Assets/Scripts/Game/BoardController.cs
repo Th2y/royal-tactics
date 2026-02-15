@@ -26,4 +26,17 @@ public class BoardController : MonoBehaviour
     {
         return tiles[x, y];
     }
+
+    public bool TryPlacePiece(Piece piecePrefab, int x, int y)
+    {
+        Tile tile = GetTile(x, y);
+
+        if (tile == null || tile.IsOccupied)
+            return false;
+
+        Piece piece = Instantiate(piecePrefab);
+        tile.SetPiece(piece);
+
+        return true;
+    }
 }

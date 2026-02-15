@@ -9,8 +9,18 @@ public class BoardColorApplier : MonoBehaviour
 
     private MaterialPropertyBlock block;
 
+    public static BoardColorApplier Instance { get; private set; }
+
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         block = new MaterialPropertyBlock();
         ApplySavedColors();
     }
@@ -31,6 +41,15 @@ public class BoardColorApplier : MonoBehaviour
             r.GetPropertyBlock(block);
             block.SetColor(colorProperty, color);
             r.SetPropertyBlock(block);
+
+            r.GetComponent<Tile>().Init(this, color);
         }
+    }
+
+    public void ApplyColorToSlot(Renderer renderer, Color color)
+    {
+        renderer.GetPropertyBlock(block);
+        block.SetColor(colorProperty, color);
+        renderer.SetPropertyBlock(block);
     }
 }
