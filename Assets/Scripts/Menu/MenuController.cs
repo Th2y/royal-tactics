@@ -4,7 +4,8 @@ using UnityEngine;
 public enum MenuScreen
 {
     Init,
-    Options
+    Options,
+    Tutorial
 }
 
 public class MenuController : MonoBehaviour
