@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5123203694188966944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6082291
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.37282535
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8746849
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_Name
+      value: Knight
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4744469250683445060}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1952302574386903565}
+  m_SourcePrefab: {fileID: 100100000, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+--- !u!1 &5465170152688912753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+  m_PrefabInstance: {fileID: 5123203694188966944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4744469250683445060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5465170152688912753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b4f851104fbbd46a55216af49722d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorsOptions: {fileID: 11400000, guid: 14b115af19748a1418482065682e1dac, type: 2}
+  renderers:
+  - {fileID: 5825638374311504036}
+  colorProperty: _BaseColor
+  isPlayer: 0
+--- !u!114 &1952302574386903565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5465170152688912753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e214b195e36c44b9648fb6327f1729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  cost: 3
+  owner: 0
+--- !u!23 &5825638374311504036 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+  m_PrefabInstance: {fileID: 5123203694188966944}
+  m_PrefabAsset: {fileID: 0}

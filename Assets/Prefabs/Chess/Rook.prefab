@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd973a31794729e40877d4804ea7e379, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6179683994050535172}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd973a31794729e40877d4804ea7e379, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1660852193973792313}
   m_SourcePrefab: {fileID: 100100000, guid: fd973a31794729e40877d4804ea7e379, type: 3}
 --- !u!23 &3155959016838820705 stripped
 MeshRenderer:
@@ -87,3 +90,18 @@ MonoBehaviour:
   - {fileID: 3155959016838820705}
   colorProperty: _BaseColor
   isPlayer: 0
+--- !u!114 &1660852193973792313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3516401398863483572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dfc1de887843c4c93324719a697509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  cost: 5
+  owner: 0
