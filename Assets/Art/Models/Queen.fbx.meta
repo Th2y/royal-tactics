@@ -3,7 +3,12 @@ guid: 8f9669547d3e3fb4ba612a239b2342d3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pecas_Brancas
+    second: {fileID: 2100000, guid: 7ed16448784392146abfe60a04335c19, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
