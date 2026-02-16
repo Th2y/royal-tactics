@@ -47,7 +47,7 @@ public class IAPlacementController : MonoBehaviour
         if (piece.type == PieceType.Pawn)
         {
             List<Tile> pawnTiles = freeTiles.FindAll(t =>
-                t.pos.x >= 3 && t.pos.y <= 6
+                t.pos.y >= 3 && t.pos.y <= 6
             );
 
             if (pawnTiles.Count > 0)
