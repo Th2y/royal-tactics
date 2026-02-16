@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum PieceType
@@ -22,8 +23,9 @@ public abstract class Piece : MonoBehaviour
     protected Renderer[] renderers;
     public Tile currentTile {  get; private set; }
     public bool isFromPlayer {  get; private set; }
+    public virtual bool CanPromote => false;
 
-    public void Initialize(PieceDefinitionSO def, bool isFromPlayer)
+    public virtual void Initialize(PieceDefinitionSO def, bool isFromPlayer)
     {
         Definition = def;
         renderers = GetComponentsInChildren<Renderer>();
@@ -44,4 +46,7 @@ public abstract class Piece : MonoBehaviour
         foreach (var r in renderers)
             r.enabled = visible;
     }
+
+    public abstract List<Tile> GetValidMoves(BoardController board);
+    public abstract List<Tile> GetValidCaptures(BoardController board);
 }

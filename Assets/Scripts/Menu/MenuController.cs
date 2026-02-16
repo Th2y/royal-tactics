@@ -5,7 +5,8 @@ public enum MenuScreen
 {
     Init,
     Options,
-    Tutorial
+    Tutorial,
+    Game
 }
 
 public class MenuController : MonoBehaviour
