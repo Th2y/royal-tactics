@@ -2767,7 +2767,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1525914383141300081, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
+    - {fileID: -4064410505991075695, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
+    - {fileID: 3814399697422126422, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4418,7 +4421,10 @@ PrefabInstance:
       propertyPath: isPlayer
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1525914383141300081, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
+    - {fileID: -4064410505991075695, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
+    - {fileID: 3814399697422126422, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4468,19 +4474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b6ce16f7867e74a992e5c0176af7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 747893636}
-  chooseColor: {fileID: 1972620642}
-  modelColorAppliers:
-  - {fileID: 1275333530}
-  - {fileID: 2098823407}
-  uiGameController: {fileID: 0}
-  boardColorApplier: {fileID: 0}
-  boardController: {fileID: 0}
-  boardSelectionController: {fileID: 0}
-  gameStateController: {fileID: 0}
-  promotionController: {fileID: 0}
-  placementController: {fileID: 0}
-  placementUI: {fileID: 0}
 --- !u!4 &2124338575
 Transform:
   m_ObjectHideFlags: 0
