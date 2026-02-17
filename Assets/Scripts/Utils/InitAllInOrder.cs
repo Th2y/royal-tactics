@@ -30,17 +30,21 @@ public class InitAllInOrder : MonoBehaviour
 
     private void Awake()
     {
-        systems = FindObjectsByType<UnityMethods>(FindObjectsSortMode.None)
+        systems = FindObjectsByType<UnityMethods>(FindObjectsInactive.Include, FindObjectsSortMode.None)
             .OrderBy(s => s.priority)
             .ToArray();
 
         foreach (var system in systems)
-            system.InitAwake();
+        {
+            if (system != null) system.InitAwake();
+        }
     }
 
     private void Start()
     {
         foreach (var system in systems)
-            system.InitStart();
+        {
+            if (system != null) system.InitStart();
+        }
     }
 }
