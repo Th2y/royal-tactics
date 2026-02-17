@@ -8,8 +8,8 @@ public class AIController : UnityMethods
 
     public List<Piece> PlacedPieces { get; private set; } = new();
 
-    private int currentPoints;
-    public int TotalPoints { get; private set; }
+    private int currentCoins;
+    public int TotalCoins { get; private set; }
 
     public static AIController Instance;
 
@@ -59,7 +59,7 @@ public class AIController : UnityMethods
 
         if (TryPromote(aiPieces)) return;
 
-        if (currentPoints > 0 && TryPlacementDuringTurn()) return;
+        if (currentCoins > 0 && TryPlacementDuringTurn()) return;
 
         DoRandomMove(aiPieces);
     }
@@ -224,12 +224,12 @@ public class AIController : UnityMethods
     #region Placement
     public void StartPlacement()
     {
-        currentPoints = GameStateController.Instance.PhaseSO.startingPoints;
-        TotalPoints = currentPoints;
+        currentCoins = GameStateController.Instance.PhaseSO.startingPoints;
+        TotalCoins = currentCoins;
 
         List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
 
-        while (currentPoints > 0 && freeTiles.Count > 0)
+        while (currentCoins > 0 && freeTiles.Count > 0)
         {
             PieceDefinitionSO pieceDef = ChoosePiece();
             if (pieceDef == null) break;
@@ -247,7 +247,7 @@ public class AIController : UnityMethods
 
     private PieceDefinitionSO ChoosePiece()
     {
-        List<PieceDefinitionSO> possible = GameStateController.Instance.PhaseSO.availablePieces.FindAll(p => p.cost <= currentPoints);
+        List<PieceDefinitionSO> possible = GameStateController.Instance.PhaseSO.availablePieces.FindAll(p => p.cost <= currentCoins);
 
         if (possible.Count == 0)
             return null;
@@ -274,7 +274,7 @@ public class AIController : UnityMethods
 
     private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool show)
     {
-        currentPoints -= def.cost;
+        currentCoins -= def.cost;
 
         Piece piece = Instantiate(def.prefab);
         piece.Initialize(def, false);
@@ -329,7 +329,7 @@ public class AIController : UnityMethods
     private void EarnPointsForCapturing(PieceDefinitionSO def)
     {
         int value = def.cost - 1;
-        currentPoints += value;
-        TotalPoints += value;
+        currentCoins += value;
+        TotalCoins += value;
     }
 }

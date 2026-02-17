@@ -101,7 +101,7 @@ public class GameStateController : UnityMethods
 
     private bool CheckPlayerWin()
     {
-        if (PlayerController.Instance.TotalPoints >= AIController.Instance.TotalPoints + phaseSO.pointsAdvantageToWin)
+        if (PlayerController.Instance.TotalCoins >= AIController.Instance.TotalCoins + phaseSO.pointsAdvantageToWin)
         {
             return true;
         }
@@ -115,7 +115,7 @@ public class GameStateController : UnityMethods
 
     private bool CheckAIWin()
     {
-        if (AIController.Instance.TotalPoints >= PlayerController.Instance.TotalPoints + phaseSO.pointsAdvantageToWin)
+        if (AIController.Instance.TotalCoins >= PlayerController.Instance.TotalCoins + phaseSO.pointsAdvantageToWin)
         {
             return true;
         }

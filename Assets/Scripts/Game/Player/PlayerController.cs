@@ -8,8 +8,8 @@ public class PlayerController : UnityMethods
     public event Action ShowPlacementButtons;
     private List<Piece> placedPieces = new();
 
-    private int currentPoints;
-    public int TotalPoints {  get; private set; }
+    private int currentCoins;
+    public int TotalCoins {  get; private set; }
 
     public static PlayerController Instance { get; private set; }
 
@@ -25,8 +25,8 @@ public class PlayerController : UnityMethods
 
         Instance = this;
 
-        currentPoints = GameStateController.Instance.PhaseSO.startingPoints;
-        TotalPoints = currentPoints;
+        currentCoins = GameStateController.Instance.PhaseSO.startingPoints;
+        TotalCoins = currentCoins;
     }
 
     public override void InitStart()
@@ -36,7 +36,7 @@ public class PlayerController : UnityMethods
 
     public bool CanPlace(PieceDefinitionSO def)
     {
-        return currentPoints >= def.cost;
+        return currentCoins >= def.cost;
     }
 
     public void TryPlacePiece(Tile tile, PieceDefinitionSO def)
@@ -58,7 +58,7 @@ public class PlayerController : UnityMethods
 
     private void PlacePiece(Tile tile, PieceDefinitionSO def)
     {
-        currentPoints -= def.cost;
+        currentCoins -= def.cost;
 
         Piece piece = Instantiate(def.prefab);
         piece.Initialize(def, true);
@@ -88,7 +88,7 @@ public class PlayerController : UnityMethods
     public void EarnPointsForCapturing(PieceDefinitionSO def)
     {
         int value = def.cost - 1;
-        currentPoints += value;
-        TotalPoints += value;
+        currentCoins += value;
+        TotalCoins += value;
     }
 }
