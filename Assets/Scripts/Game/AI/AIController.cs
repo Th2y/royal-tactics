@@ -202,7 +202,7 @@ public class AIController : UnityMethods
     {
         Tile origin = piece.currentTile;
 
-        if (target.IsOccupied) Destroy(target.Piece.gameObject);
+        if (target.IsOccupied) target.Piece.OnCaptured();
 
         origin.Clear();
         target.SetPiece(piece);
@@ -325,6 +325,11 @@ public class AIController : UnityMethods
         return true;
     }
     #endregion
+
+    public void RemovePiece(Piece piece)
+    {
+        PlacedPieces.Remove(piece);
+    }
 
     private void EarnPointsForCapturing(PieceDefinitionSO def)
     {

@@ -65,6 +65,20 @@ public abstract class Piece : MonoBehaviour
             });
     }
 
+    public void OnCaptured()
+    {
+        if (isFromPlayer)
+        {
+            PlayerController.Instance.RemovePiece(this);
+        }
+        else
+        {
+            AIController.Instance.RemovePiece(this);
+        }
+
+        Destroy(gameObject);
+    }
+
     public abstract List<Tile> GetValidMoves(BoardController board);
     public abstract List<Tile> GetValidCaptures(BoardController board);
 }

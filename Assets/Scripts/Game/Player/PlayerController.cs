@@ -85,6 +85,11 @@ public class PlayerController : UnityMethods
         SelectedPiece = def;
     }
 
+    public void RemovePiece(Piece piece)
+    {
+        placedPieces.Remove(piece);
+    }
+
     public void EarnPointsForCapturing(PieceDefinitionSO def)
     {
         int value = def.cost - 1;
