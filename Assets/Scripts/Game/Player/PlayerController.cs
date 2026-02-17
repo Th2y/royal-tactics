@@ -34,6 +34,70 @@ public class PlayerController : UnityMethods
 
     }
 
+    public bool CheckCanDoAnything()
+    {
+        if (CanCapture()) return true;
+
+        if (CanPromote()) return true;
+
+        if (CanPlaceAnyPiece()) return true;
+
+        if (CanMove()) return true;
+
+        return false;
+    }
+
+    #region Capture
+    private bool CanCapture()
+    {
+        foreach (Piece piece in placedPieces)
+        {
+            if (piece == null) continue;
+
+            if (piece.GetValidCaptures(BoardController.Instance).Count > 0)
+                return true;
+        }
+
+        return false;
+    }
+    #endregion
+
+    #region Promotion
+    private bool CanPromote()
+    {
+        foreach (Piece piece in placedPieces)
+        {
+            if (piece is Pawn pawn && pawn.CanPromote)
+                return true;
+        }
+
+        return false;
+    }
+    #endregion
+
+    #region Placement
+    private bool CanPlaceAnyPiece()
+    {
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        if (freeTiles.Count == 0)
+            return false;
+
+        foreach (PieceDefinitionSO def in GameStateController.Instance.PhaseSO.availablePieces)
+        {
+            if (!CanPlace(def))
+                continue;
+
+            foreach (Tile tile in freeTiles)
+            {
+                if (IsValidPlacement(tile, def))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     public bool CanPlace(PieceDefinitionSO def)
     {
         return currentCoins >= def.cost;
@@ -79,6 +143,22 @@ public class PlayerController : UnityMethods
 
         return true;
     }
+    #endregion
+
+    #region Move
+    private bool CanMove()
+    {
+        foreach (Piece piece in placedPieces)
+        {
+            if (piece == null) continue;
+
+            if (piece.GetValidMoves(BoardController.Instance).Count > 0)
+                return true;
+        }
+
+        return false;
+    }
+    #endregion
 
     public void SelectPiece(PieceDefinitionSO def)
     {

@@ -119,8 +119,10 @@ public class GameStateController : UnityMethods
         {
             return true;
         }
-
-        //TO DO: check if player can do anything
+        else if (!PlayerController.Instance.CheckCanDoAnything())
+        {
+            return true;
+        }
 
         return false;
     }
