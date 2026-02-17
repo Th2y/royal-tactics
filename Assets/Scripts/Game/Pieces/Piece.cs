@@ -23,7 +23,6 @@ public abstract class Piece : MonoBehaviour
     protected Renderer[] renderers;
     public Tile currentTile {  get; private set; }
     public bool isFromPlayer {  get; private set; }
-    public virtual bool CanPromote => false;
 
     public virtual void Initialize(PieceDefinitionSO def, bool isFromPlayer)
     {

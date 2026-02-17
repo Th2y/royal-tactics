@@ -104,10 +104,14 @@ public class AIController : MonoBehaviour
     {
         Tile origin = piece.currentTile;
 
-        if (target.IsOccupied)
-            Destroy(target.piece.gameObject);
+        if (target.IsOccupied) Destroy(target.piece.gameObject);
 
         origin.Clear();
         target.SetPiece(piece);
+
+        if (piece is Pawn pawn && pawn.CanPromote)
+        {
+            PromotionController.Instance.RequestPromotion(pawn);
+        }
     }
 }

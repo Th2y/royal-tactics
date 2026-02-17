@@ -5,7 +5,7 @@ public class Pawn : Piece
 {
     private int forwardDirection => isFromPlayer ? 1 : -1;
 
-    public override bool CanPromote
+    public bool CanPromote
     {
         get
         {
