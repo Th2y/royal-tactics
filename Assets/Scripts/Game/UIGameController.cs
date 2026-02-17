@@ -12,8 +12,6 @@ public enum GameScreen
 
 public class UIGameController : UnityMethods
 {
-    [SerializeField] private Button finishRoundBtn;
-
     public static UIGameController Instance;
 
     public override InitPriority Priority => InitPriority.UIController;
@@ -99,9 +97,5 @@ public class UIGameController : UnityMethods
                 break;
         }
     }
-    #endregion
-
-    #region Finish Round
-
     #endregion
 }

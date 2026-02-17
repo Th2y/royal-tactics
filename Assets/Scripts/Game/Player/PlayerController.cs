@@ -67,6 +67,7 @@ public class PlayerController : UnityMethods
 
         ShowPlacementButtons?.Invoke();
         SelectPiece(null);
+        PlayerUI.Instance.PlayerDoAnything?.Invoke();
     }
 
     private bool IsValidPlacement(Tile tile, PieceDefinitionSO def)

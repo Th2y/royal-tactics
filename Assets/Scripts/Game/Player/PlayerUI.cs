@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class PlayerUI : UnityMethods
 {
@@ -11,6 +12,8 @@ public class PlayerUI : UnityMethods
     [SerializeField] private Button finishRoundBtn;
 
     private readonly List<PieceButtonUI> buttons = new();
+
+    public Action PlayerDoAnything;
 
     public static PlayerUI Instance { get; private set; }
 
@@ -28,6 +31,7 @@ public class PlayerUI : UnityMethods
 
         BuildUI();
 
+        PlayerDoAnything += RefreshFinishBtnTrue;
         PlayerController.Instance.ShowPlacementButtons += RefreshButtons;
         finishRoundBtn.onClick.AddListener(() => GameStateController.Instance.PlayerFinishedMoves());
     }
@@ -64,6 +68,13 @@ public class PlayerUI : UnityMethods
             bool canPlace = isPlayerTurn && PlayerController.Instance.CanPlace(btn.Definition);
             btn.SetInteractable(canPlace);
         }
+
+        if (!isPlayerTurn) finishRoundBtn.interactable = false;
+    }
+
+    private void RefreshFinishBtnTrue()
+    {
+        finishRoundBtn.interactable = true;
     }
 
     public void ChangePointsLeftText(int points)
