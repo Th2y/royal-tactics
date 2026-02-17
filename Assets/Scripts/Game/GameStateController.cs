@@ -11,7 +11,8 @@ public enum GamePhase
 
 public class GameStateController : MonoBehaviour
 {
-    [SerializeField] private IAPlacementController iaPlacement;
+    [SerializeField] private AIPlacementController aiPlacement;
+    [SerializeField] private AIController aiController;
 
     public GamePhase CurrentPhase { get; private set; }
 
@@ -45,14 +46,19 @@ public class GameStateController : MonoBehaviour
         switch (newPhase)
         {
             case GamePhase.OpponentPlacement:
-                iaPlacement.StartPlacement();
+                aiPlacement.StartPlacement();
                 break;
             case GamePhase.PlayerPlacement:
                 PlacementUI.Instance.RefreshButtons();
                 break;
+            case GamePhase.OpponentTurn:
+                Invoke(nameof(AIWaitAndPlay), 5f);
+                break;
+            case GamePhase.PlayerTurn:
+                PlacementUI.Instance.RefreshButtons();
+                break;
             default:
                 break;
-
         }
     }
 
@@ -62,9 +68,15 @@ public class GameStateController : MonoBehaviour
         SetPhase(GamePhase.OpponentTurn);
     }
 
+    private void AIWaitAndPlay()
+    {
+        aiController.PlayTurn();
+        SetPhase(GamePhase.PlayerTurn);
+    }
+
     private void RevealIAPieces()
     {
-        foreach (var piece in iaPlacement.placedPieces)
+        foreach (var piece in aiPlacement.placedPieces)
         {
             piece.SetVisible(true);
             piece.currentTile.SetOccupiedMarker(false);

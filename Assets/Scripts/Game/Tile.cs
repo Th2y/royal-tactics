@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     public Vector2 pos;
 
     [Header("State")]
-    public Piece piece {  get; private set; }
+    public Piece piece { get; private set; }
 
     public bool IsOccupied => piece != null;
 

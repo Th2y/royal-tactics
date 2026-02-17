@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class IAPlacementController : MonoBehaviour
+public class AIPlacementController : MonoBehaviour
 {
     [SerializeField] private BoardController board;
     [SerializeField] private PhaseSO phaseSO;

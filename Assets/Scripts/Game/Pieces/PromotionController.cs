@@ -71,8 +71,22 @@ public class PromotionController : MonoBehaviour
     #region IA
     private PieceDefinitionSO ChooseAIPromotion()
     {
-        PieceDefinitionSO best = phaseSO.availablePieces[Random.Range(0, phaseSO.availablePieces.Count - 1)];
-        return best;
+        PieceType[] priority =
+        {
+            PieceType.Queen,
+            PieceType.Rook,
+            PieceType.Bishop,
+            PieceType.Knight
+        };
+
+        foreach (PieceType type in priority)
+        {
+            PieceDefinitionSO def = phaseSO.availablePieces.Find(p => p.type == type);
+
+            if (def != null) return def;
+        }
+
+        return phaseSO.availablePieces[0].type != PieceType.Pawn ? phaseSO.availablePieces[0] : phaseSO.availablePieces[1];
     }
     #endregion
 }

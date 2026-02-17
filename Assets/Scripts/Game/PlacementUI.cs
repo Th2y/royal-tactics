@@ -14,12 +14,12 @@ public class PlacementUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        BuildUI();
     }
 
     private void Start()
     {
-        BuildUI();
-
         PlacementController.Instance.OnPointsChanged += RefreshButtons;
     }
 

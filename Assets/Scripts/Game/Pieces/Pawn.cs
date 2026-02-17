@@ -55,8 +55,7 @@ public class Pawn : Piece
     {
         Tile tile = board.GetTile(x, y);
 
-        if (tile == null) return;
-        if (!tile.IsOccupied) return;
+        if (tile == null || !tile.IsOccupied) return;
 
         if (tile.piece.isFromPlayer != isFromPlayer)
         {

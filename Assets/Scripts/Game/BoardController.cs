@@ -25,6 +25,12 @@ public class BoardController : MonoBehaviour
 
     public Tile GetTile(int x, int y)
     {
+        if (x < 0 || y < 0 || x >= tiles.GetLength(0) || y >= tiles.GetLength(1))
+        {
+            Debug.LogWarning($"GetTile fora do limite: x={x}, y={y}");
+            return null;
+        }
+
         return tiles[x, y];
     }
 
