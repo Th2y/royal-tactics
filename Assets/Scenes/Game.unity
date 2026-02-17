@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 5
+  menuScreen: 0
   gameScreen: 1
 --- !u!225 &185486731
 CanvasGroup:
@@ -655,30 +655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b6ce16f7867e74a992e5c0176af7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingsList:
-  - {fileID: 1882948164}
-  - {fileID: 8048509}
-  - {fileID: 677538202}
-  - {fileID: 185486730}
-  - {fileID: 451182985}
-  - {fileID: 570847562}
-  - {fileID: 1043078761}
-  - {fileID: 1791863307}
-  - {fileID: 1607052330}
-  - {fileID: 597663408}
-  - {fileID: 330101483}
-  - {fileID: 1748574840}
-  chooseColor: {fileID: 0}
-  modelColorAppliers: []
-  menuController: {fileID: 0}
-  uiGameController: {fileID: 177727382}
-  boardColorApplier: {fileID: 240773893}
-  boardController: {fileID: 427464283}
-  boardSelectionController: {fileID: 240773892}
-  gameStateController: {fileID: 476419774}
-  promotionController: {fileID: 758731488}
-  placementController: {fileID: 760642560}
-  placementUI: {fileID: 535414934}
 --- !u!4 &228855142
 Transform:
   m_ObjectHideFlags: 0
@@ -755,28 +731,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a1f8f0c8092634982ac905e9506e90, type: 3}
---- !u!114 &240773892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7037206792357760590, guid: a5a1f8f0c8092634982ac905e9506e90, type: 3}
-  m_PrefabInstance: {fileID: 240773891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d0aefb66ca8774c9fc61ce8e52b673, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &240773893 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7188437844732088683, guid: a5a1f8f0c8092634982ac905e9506e90, type: 3}
-  m_PrefabInstance: {fileID: 240773891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2008095d2e5316140a2387e8f5565dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &330101481
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 3
+  menuScreen: 0
   gameScreen: 0
 --- !u!225 &330101484
 CanvasGroup:
@@ -987,7 +941,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 369096062}
-  - component: {fileID: 369096061}
   - component: {fileID: 369096063}
   m_Layer: 0
   m_Name: AIController
@@ -996,20 +949,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &369096061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369096060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550eb65a56ccc7d4883b76569bdc7ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  board: {fileID: 427464283}
-  phaseSO: {fileID: 11400000, guid: 7d08740dbc54ea04d829dceca98b83ac, type: 2}
 --- !u!4 &369096062
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,6 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ab280e943e49140b45deba279bc871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phaseSO: {fileID: 11400000, guid: 7d08740dbc54ea04d829dceca98b83ac, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,17 +1234,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411703950}
   m_CullTransparentMesh: 1
---- !u!114 &427464283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7584361031800064015, guid: a5a1f8f0c8092634982ac905e9506e90, type: 3}
-  m_PrefabInstance: {fileID: 240773891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432153cdd8692de4c841f4cc6496d155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &451182983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,7 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 3
+  menuScreen: 0
   gameScreen: 0
 --- !u!225 &451182986
 CanvasGroup:
@@ -1439,7 +1368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiGameController: {fileID: 177727382}
-  aiPlacement: {fileID: 369096061}
   aiController: {fileID: 369096063}
   IsBusy: 0
 --- !u!4 &476419775
@@ -3217,7 +3145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 5
+  menuScreen: 0
   gameScreen: 2
 --- !u!225 &1607052331
 CanvasGroup:
@@ -3375,7 +3303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 3
+  menuScreen: 0
   gameScreen: 0
 --- !u!1 &1754120007
 GameObject:

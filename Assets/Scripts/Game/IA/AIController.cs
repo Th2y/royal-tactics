@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
+    [SerializeField] private PhaseSO phaseSO;
+
     private Tile[] tiles;
+
+    public List<Piece> placedPieces { get; private set; } = new();
+
+    private int currentPoints;
 
     public void Play()
     {
@@ -19,6 +25,9 @@ public class AIController : MonoBehaviour
             return;
 
         if (TryPromote(aiPieces))
+            return;
+
+        if (currentPoints > 0 && TryPlacementDuringTurn())
             return;
 
         DoRandomMove(aiPieces);
@@ -69,6 +78,8 @@ public class AIController : MonoBehaviour
         var chosen = bestCaptures[Random.Range(0, bestCaptures.Count)];
 
         ExecuteMove(chosen.piece, chosen.target);
+
+        EarnPointsForCapturing(chosen.piece.Definition);
         return true;
     }
 
@@ -129,4 +140,95 @@ public class AIController : MonoBehaviour
             }
         });
     }
+
+    private void EarnPointsForCapturing(PieceDefinitionSO def)
+    {
+        currentPoints += def.cost - 1;
+    }
+
+    #region Placement
+    public void StartPlacement()
+    {
+        currentPoints = phaseSO.startingPoints;
+
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        while (currentPoints > 0 && freeTiles.Count > 0)
+        {
+            PieceDefinitionSO pieceDef = ChoosePiece();
+            if (pieceDef == null) break;
+
+            Tile tile = ChooseTile(freeTiles, pieceDef);
+            if (tile == null) break;
+
+            Piece piece = PlacePiece(tile, pieceDef, false);
+            freeTiles.Remove(tile);
+            placedPieces.Add(piece);
+        }
+
+        GameStateController.Instance.SetPhase(GamePhase.PlayerPlacement);
+    }
+
+    private PieceDefinitionSO ChoosePiece()
+    {
+        List<PieceDefinitionSO> possible = phaseSO.availablePieces.FindAll(p => p.cost <= currentPoints);
+
+        if (possible.Count == 0)
+            return null;
+
+        return possible[Random.Range(0, possible.Count)];
+    }
+
+    private Tile ChooseTile(List<Tile> freeTiles, PieceDefinitionSO piece)
+    {
+        if (piece.type == PieceType.Pawn)
+        {
+            List<Tile> pawnTiles = freeTiles.FindAll(t =>
+                t.pos.y >= 3 && t.pos.y <= 6
+            );
+
+            if (pawnTiles.Count > 0)
+                return pawnTiles[Random.Range(0, pawnTiles.Count)];
+            else
+                return null;
+        }
+
+        return freeTiles[Random.Range(0, freeTiles.Count)];
+    }
+
+    private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool show)
+    {
+        currentPoints -= def.cost;
+
+        Piece piece = Instantiate(def.prefab);
+        piece.Initialize(def, false);
+        tile.SetPiece(piece);
+
+        piece.SetVisible(show);
+        tile.SetOccupiedMarker(!show);
+
+        return piece;
+    }
+
+    private bool TryPlacementDuringTurn()
+    {
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        if (freeTiles.Count == 0)
+            return false;
+
+        PieceDefinitionSO pieceDef = ChoosePiece();
+        if (pieceDef == null)
+            return false;
+
+        Tile tile = ChooseTile(freeTiles, pieceDef);
+        if (tile == null)
+            return false;
+
+        PlacePiece(tile, pieceDef, true);
+
+        GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+        return true;
+    }
+    #endregion
 }

@@ -13,7 +13,6 @@ public enum GamePhase
 public class GameStateController : UnityMethods
 {
     [SerializeField] private UIGameController uiGameController;
-    [SerializeField] private AIPlacementController aiPlacement;
     [SerializeField] private AIController aiController;
 
     public bool IsBusy;
@@ -51,7 +50,7 @@ public class GameStateController : UnityMethods
         switch (newPhase)
         {
             case GamePhase.OpponentPlacement:
-                aiPlacement.StartPlacement();
+                aiController.StartPlacement();
                 break;
             case GamePhase.PlayerPlacement:
                 PlacementUI.Instance.RefreshButtons();
@@ -75,7 +74,7 @@ public class GameStateController : UnityMethods
 
     private void RevealIAPieces()
     {
-        foreach (var piece in aiPlacement.placedPieces)
+        foreach (var piece in aiController.placedPieces)
         {
             piece.SetVisible(true);
             piece.currentTile.SetOccupiedMarker(false);
