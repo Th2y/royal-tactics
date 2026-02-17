@@ -17,7 +17,7 @@ public class MenuController : UnityMethods
 
     public static MenuController Instance;
 
-    public override InitPriority priority => InitPriority.UIController;
+    public override InitPriority Priority => InitPriority.UIController;
 
     public override void InitAwake()
     {

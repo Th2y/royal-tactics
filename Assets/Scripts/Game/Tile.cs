@@ -3,36 +3,26 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Renderer tileRenderer;
-
-    [Header("Board Position")]
     public Vector2 pos;
 
-    [Header("State")]
-    public Piece piece { get; private set; }
+    public Piece Piece { get; private set; }
+    public bool IsOccupied => Piece != null;
 
-    public bool IsOccupied => piece != null;
-
-    //Color
     private Color defaultColor;
 
     private void OnMouseDown()
     {
         if (GameStateController.Instance.CurrentPhase != GamePhase.PlayerPlacement) return;
 
-        var selected = PlacementController.Instance.selectedPiece;
+        var selected = PlayerController.Instance.SelectedPiece;
         if (selected == null) return;
 
-        PlacementController.Instance.TryPlacePiece(this, selected);
+        PlayerController.Instance.TryPlacePiece(this, selected);
     }
 
     public void Init(Color defaultColor)
     {
         this.defaultColor = defaultColor;
-    }
-
-    public void SetSelected(bool selected)
-    {
-        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, selected ? Color.yellow : defaultColor);
     }
 
     public void SetOccupiedMarker(bool occupied)
@@ -42,12 +32,12 @@ public class Tile : MonoBehaviour
 
     public void SetPiece(Piece newPiece)
     {
-        piece = newPiece;
+        Piece = newPiece;
         newPiece.SetTile(this);
     }
 
     public void Clear()
     {
-        piece = null;
+        Piece = null;
     }
 }

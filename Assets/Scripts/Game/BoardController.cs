@@ -7,7 +7,7 @@ public class BoardController : UnityMethods
 
     public static BoardController Instance;
 
-    public override InitPriority priority => InitPriority.BoardController;
+    public override InitPriority Priority => InitPriority.BoardController;
 
     public override void InitAwake()
     {

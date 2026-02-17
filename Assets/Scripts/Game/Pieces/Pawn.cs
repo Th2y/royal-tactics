@@ -57,7 +57,7 @@ public class Pawn : Piece
 
         if (tile == null || !tile.IsOccupied) return;
 
-        if (tile.piece.isFromPlayer != isFromPlayer)
+        if (tile.Piece.isFromPlayer != isFromPlayer)
         {
             captures.Add(tile);
         }

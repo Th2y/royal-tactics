@@ -8,13 +8,13 @@ public class PieceButtonUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI costText;
 
-    public PieceDefinitionSO definition {  get; private set; }
+    public PieceDefinitionSO Definition { get; private set; }
 
     public void Setup(PieceDefinitionSO def)
     {
-        definition = def;
+        Definition = def;
         nameText.text = def.namePt;
-        costText.text = def.cost.ToString();
+        costText.text = def.cost + " moedas";
         button.interactable = false;
 
         button.onClick.AddListener(OnClick);
@@ -22,7 +22,7 @@ public class PieceButtonUI : MonoBehaviour
 
     private void OnClick()
     {
-        PlacementController.Instance.SelectPiece(definition);
+        PlayerController.Instance.SelectPiece(Definition);
     }
 
     public void SetInteractable(bool interactable)

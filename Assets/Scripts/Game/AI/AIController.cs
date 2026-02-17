@@ -2,33 +2,64 @@
 using System.Linq;
 using UnityEngine;
 
-public class AIController : MonoBehaviour
+public class AIController : UnityMethods
 {
-    [SerializeField] private PhaseSO phaseSO;
-
     private Tile[] tiles;
 
-    public List<Piece> placedPieces { get; private set; } = new();
+    public List<Piece> PlacedPieces { get; private set; } = new();
 
     private int currentPoints;
+    public int TotalPoints { get; private set; }
+
+    public static AIController Instance;
+
+    public override InitPriority Priority => InitPriority.AIController;
+
+    public override void InitAwake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
+    public override void InitStart()
+    {
+        
+    }
 
     public void Play()
     {
         Invoke(nameof(PlayTurn), 5f);
     }
 
+    public bool CheckCanDoAnything()
+    {
+        List<Piece> aiPieces = GetAIPieces();
+
+        if (CanCapture(aiPieces)) return true;
+
+        if (CanPromote(aiPieces)) return true;
+
+        if (CanPlacePiece()) return true;
+
+        if (CanMove(aiPieces)) return true;
+
+        return false;
+    }
+
     private void PlayTurn()
     {
         List<Piece> aiPieces = GetAIPieces();
 
-        if (TryCapture(aiPieces))
-            return;
+        if (TryCapture(aiPieces)) return;
 
-        if (TryPromote(aiPieces))
-            return;
+        if (TryPromote(aiPieces)) return;
 
-        if (currentPoints > 0 && TryPlacementDuringTurn())
-            return;
+        if (currentPoints > 0 && TryPlacementDuringTurn()) return;
 
         DoRandomMove(aiPieces);
     }
@@ -44,11 +75,30 @@ public class AIController : MonoBehaviour
 
         foreach (Tile tile in tiles)
         {
-            if (tile.IsOccupied && !tile.piece.isFromPlayer)
-                pieces.Add(tile.piece);
+            if (tile.IsOccupied && !tile.Piece.isFromPlayer)
+                pieces.Add(tile.Piece);
         }
 
         return pieces;
+    }
+
+    #region Capture
+    private bool CanCapture(List<Piece> pieces)
+    {
+        List<(Piece piece, Tile target, int value)> captures = new();
+
+        foreach (Piece piece in pieces)
+        {
+            foreach (Tile tile in piece.GetValidCaptures(BoardController.Instance))
+            {
+                Piece targetPiece = tile.Piece;
+                int value = targetPiece.Definition.cost;
+
+                captures.Add((piece, tile, value));
+            }
+        }
+
+        return captures.Count > 0;
     }
 
     private bool TryCapture(List<Piece> pieces)
@@ -59,7 +109,7 @@ public class AIController : MonoBehaviour
         {
             foreach (Tile tile in piece.GetValidCaptures(BoardController.Instance))
             {
-                Piece targetPiece = tile.piece;
+                Piece targetPiece = tile.Piece;
                 int value = targetPiece.Definition.cost;
 
                 captures.Add((piece, tile, value));
@@ -82,6 +132,21 @@ public class AIController : MonoBehaviour
         EarnPointsForCapturing(chosen.piece.Definition);
         return true;
     }
+    #endregion
+
+    #region Promote
+    private bool CanPromote(List<Piece> pieces)
+    {
+        foreach (Piece piece in pieces)
+        {
+            if (piece is Pawn pawn && pawn.CanPromote)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private bool TryPromote(List<Piece> pieces)
     {
@@ -95,6 +160,23 @@ public class AIController : MonoBehaviour
         }
 
         return false;
+    }
+    #endregion
+
+    #region Move
+    private bool CanMove(List<Piece> pieces)
+    {
+        List<(Piece piece, Tile tile)> moves = new();
+
+        foreach (Piece piece in pieces)
+        {
+            foreach (Tile tile in piece.GetValidMoves(BoardController.Instance))
+            {
+                moves.Add((piece, tile));
+            }
+        }
+
+        return moves.Count > 0;
     }
 
     private void DoRandomMove(List<Piece> pieces)
@@ -118,11 +200,9 @@ public class AIController : MonoBehaviour
 
     private void ExecuteMove(Piece piece, Tile target)
     {
-        GameStateController.Instance.IsBusy = true;
-
         Tile origin = piece.currentTile;
 
-        if (target.IsOccupied) Destroy(target.piece.gameObject);
+        if (target.IsOccupied) Destroy(target.Piece.gameObject);
 
         origin.Clear();
         target.SetPiece(piece);
@@ -135,21 +215,17 @@ public class AIController : MonoBehaviour
             }
             else
             {
-                GameStateController.Instance.IsBusy = false;
                 GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
             }
         });
     }
-
-    private void EarnPointsForCapturing(PieceDefinitionSO def)
-    {
-        currentPoints += def.cost - 1;
-    }
+    #endregion
 
     #region Placement
     public void StartPlacement()
     {
-        currentPoints = phaseSO.startingPoints;
+        currentPoints = GameStateController.Instance.PhaseSO.startingPoints;
+        TotalPoints = currentPoints;
 
         List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
 
@@ -163,7 +239,7 @@ public class AIController : MonoBehaviour
 
             Piece piece = PlacePiece(tile, pieceDef, false);
             freeTiles.Remove(tile);
-            placedPieces.Add(piece);
+            PlacedPieces.Add(piece);
         }
 
         GameStateController.Instance.SetPhase(GamePhase.PlayerPlacement);
@@ -171,7 +247,7 @@ public class AIController : MonoBehaviour
 
     private PieceDefinitionSO ChoosePiece()
     {
-        List<PieceDefinitionSO> possible = phaseSO.availablePieces.FindAll(p => p.cost <= currentPoints);
+        List<PieceDefinitionSO> possible = GameStateController.Instance.PhaseSO.availablePieces.FindAll(p => p.cost <= currentPoints);
 
         if (possible.Count == 0)
             return null;
@@ -210,6 +286,24 @@ public class AIController : MonoBehaviour
         return piece;
     }
 
+    private bool CanPlacePiece()
+    {
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        if (freeTiles.Count == 0)
+            return false;
+
+        PieceDefinitionSO pieceDef = ChoosePiece();
+        if (pieceDef == null)
+            return false;
+
+        Tile tile = ChooseTile(freeTiles, pieceDef);
+        if (tile == null)
+            return false;
+
+        return true;
+    }
+
     private bool TryPlacementDuringTurn()
     {
         List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
@@ -231,4 +325,11 @@ public class AIController : MonoBehaviour
         return true;
     }
     #endregion
+
+    private void EarnPointsForCapturing(PieceDefinitionSO def)
+    {
+        int value = def.cost - 1;
+        currentPoints += value;
+        TotalPoints += value;
+    }
 }

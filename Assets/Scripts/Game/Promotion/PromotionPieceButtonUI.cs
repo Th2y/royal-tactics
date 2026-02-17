@@ -7,11 +7,11 @@ public class PromotionPieceButtonUI : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI nameText;
 
-    public PieceDefinitionSO definition { get; private set; }
+    public PieceDefinitionSO Definition { get; private set; }
 
     public void Setup(PieceDefinitionSO def)
     {
-        definition = def;
+        Definition = def;
         nameText.text = def.namePt;
         button.interactable = false;
 
@@ -20,6 +20,6 @@ public class PromotionPieceButtonUI : MonoBehaviour
 
     private void OnClick()
     {
-        PromotionController.Instance.OnPlayerSelected(definition);
+        PromotionController.Instance.OnPlayerSelected(Definition);
     }
 }

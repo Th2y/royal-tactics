@@ -6,7 +6,7 @@ public class ExitButton : UnityMethods
 {
     private Button button;
 
-    public override InitPriority priority => InitPriority.ButtonChangeSceneOrExit;
+    public override InitPriority Priority => InitPriority.ButtonChangeSceneOrExit;
 
     public override void InitAwake()
     {

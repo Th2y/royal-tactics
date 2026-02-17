@@ -11,7 +11,7 @@ public class BoardColorApplier : UnityMethods
 
     public static BoardColorApplier Instance { get; private set; }
 
-    public override InitPriority priority => InitPriority.ModelColorApplier;
+    public override InitPriority Priority => InitPriority.ModelColorApplier;
 
     public override void InitAwake()
     {

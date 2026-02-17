@@ -74,7 +74,7 @@ public class Queen : Piece
                     continue;
                 }
 
-                if (tile.piece.isFromPlayer != isFromPlayer)
+                if (tile.Piece.isFromPlayer != isFromPlayer)
                 {
                     captures.Add(tile);
                 }

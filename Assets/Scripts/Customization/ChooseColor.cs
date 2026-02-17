@@ -18,7 +18,7 @@ public class ChooseColor : UnityMethods
     private readonly List<ColorButton> playerButtons = new();
     private readonly List<ColorButton> oponentButtons = new();
 
-    public override InitPriority priority => InitPriority.ChooseColor;
+    public override InitPriority Priority => InitPriority.ChooseColor;
 
     public override void InitAwake()
     {

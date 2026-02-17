@@ -1,20 +1,19 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
-public class PlacementController : UnityMethods
+public class PlayerController : UnityMethods
 {
-    [Header("Piece Definitions")]
-    [SerializeField] private PhaseSO phaseSO;
-    public PieceDefinitionSO selectedPiece { get; private set; }
+    public PieceDefinitionSO SelectedPiece { get; private set; }
 
-    public event Action OnPointsChanged;
+    public event Action ShowPlacementButtons;
+    private List<Piece> placedPieces = new();
 
     private int currentPoints;
+    public int TotalPoints {  get; private set; }
 
-    public static PlacementController Instance { get; private set; }
+    public static PlayerController Instance { get; private set; }
 
-    public override InitPriority priority => InitPriority.PlacementController;
+    public override InitPriority Priority => InitPriority.PlayerController;
 
     public override void InitAwake()
     {
@@ -26,7 +25,8 @@ public class PlacementController : UnityMethods
 
         Instance = this;
 
-        currentPoints = phaseSO.startingPoints;
+        currentPoints = GameStateController.Instance.PhaseSO.startingPoints;
+        TotalPoints = currentPoints;
     }
 
     public override void InitStart()
@@ -63,13 +63,10 @@ public class PlacementController : UnityMethods
         Piece piece = Instantiate(def.prefab);
         piece.Initialize(def, true);
         tile.SetPiece(piece);
+        placedPieces.Add(piece);
 
-        OnPointsChanged?.Invoke();
-
-        if(currentPoints == 0)
-        {
-            GameStateController.Instance.BeforeFirstPlayerTurn();
-        }
+        ShowPlacementButtons?.Invoke();
+        SelectPiece(null);
     }
 
     private bool IsValidPlacement(Tile tile, PieceDefinitionSO def)
@@ -84,6 +81,13 @@ public class PlacementController : UnityMethods
 
     public void SelectPiece(PieceDefinitionSO def)
     {
-        selectedPiece = def;
+        SelectedPiece = def;
+    }
+
+    public void EarnPointsForCapturing(PieceDefinitionSO def)
+    {
+        int value = def.cost - 1;
+        currentPoints += value;
+        TotalPoints += value;
     }
 }

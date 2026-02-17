@@ -15,13 +15,12 @@ public enum InitPriority
     BoardController = 11,
     BoardSelectionController = 12,
     PromotionController = 13,
-    PlacementController = 14,
-    PlacementUI = 15,
 
     // ========= INIT GAME =========
-    // GameStateController MUST be initialized last.
-    // It is responsible for starting the game flow (SetPhase / AI / Turns).
     GameStateController = 20,
+    PlayerController = 21,
+    PlayerUI = 22,
+    AIController = 23,
 }
 
 public class InitAllInOrder : MonoBehaviour
@@ -31,7 +30,7 @@ public class InitAllInOrder : MonoBehaviour
     private void Awake()
     {
         systems = FindObjectsByType<UnityMethods>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-            .OrderBy(s => s.priority)
+            .OrderBy(s => s.Priority)
             .ToArray();
 
         foreach (var system in systems)

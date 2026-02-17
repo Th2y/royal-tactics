@@ -1,17 +1,15 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class PromotionController : UnityMethods
 {
     [Header("Promotion Options")]
-    [SerializeField] private PhaseSO phaseSO;
     [SerializeField] private PromotionUI promotionUI;
 
     private Pawn pendingPawn;
 
     public static PromotionController Instance { get; private set; }
 
-    public override InitPriority priority => InitPriority.PromotionController;
+    public override InitPriority Priority => InitPriority.PromotionController;
 
     public override void InitAwake()
     {
@@ -58,7 +56,6 @@ public class PromotionController : UnityMethods
         newPiece.Initialize(newDefinition, isFromPlayer);
         tile.SetPiece(newPiece);
 
-        GameStateController.Instance.IsBusy = false;
         GameStateController.Instance.SetPhase(isFromPlayer ? GamePhase.OpponentTurn : GamePhase.PlayerTurn);
 
         pendingPawn = null;
@@ -68,7 +65,7 @@ public class PromotionController : UnityMethods
     #region PLAYER
     private void OpenPromotionUI()
     {
-        promotionUI.ShowAvailableList(phaseSO.availablePieces);
+        promotionUI.ShowAvailableList(GameStateController.Instance.PhaseSO.availablePieces);
     }
 
     public void OnPlayerSelected(PieceDefinitionSO def)
@@ -91,12 +88,14 @@ public class PromotionController : UnityMethods
 
         foreach (PieceType type in priority)
         {
-            PieceDefinitionSO def = phaseSO.availablePieces.Find(p => p.type == type);
+            PieceDefinitionSO def = GameStateController.Instance.PhaseSO.availablePieces.Find(p => p.type == type);
 
             if (def != null) return def;
         }
 
-        return phaseSO.availablePieces[0].type != PieceType.Pawn ? phaseSO.availablePieces[0] : phaseSO.availablePieces[1];
+        return GameStateController.Instance.PhaseSO.availablePieces[0].type != PieceType.Pawn ? 
+            GameStateController.Instance.PhaseSO.availablePieces[0] : 
+            GameStateController.Instance.PhaseSO.availablePieces[1];
     }
     #endregion
 }

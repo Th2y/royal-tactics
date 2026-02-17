@@ -55,7 +55,7 @@ public class Knight : Piece
             if (!target.IsOccupied)
                 continue;
 
-            if (target.piece.isFromPlayer != isFromPlayer)
+            if (target.Piece.isFromPlayer != isFromPlayer)
             {
                 captures.Add(target);
             }

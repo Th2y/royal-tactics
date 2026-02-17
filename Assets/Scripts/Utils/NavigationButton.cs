@@ -10,7 +10,7 @@ public class NavigationButton : UnityMethods
 
     private Button button;
 
-    public override InitPriority priority => InitPriority.ButtonNavigation;
+    public override InitPriority Priority => InitPriority.ButtonNavigation;
 
     public override void InitAwake()
     {

@@ -6,7 +6,7 @@ public class CanvasGroupController : UnityMethods
     [SerializeField] private MenuScreen menuScreen;
     [SerializeField] private GameScreen gameScreen;
 
-    public override InitPriority priority => InitPriority.CanvasGroup;
+    public override InitPriority Priority => InitPriority.CanvasGroup;
 
     public MenuScreen MenuScreen => menuScreen;
     public GameScreen GameScreen => gameScreen;

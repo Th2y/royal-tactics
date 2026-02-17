@@ -10,7 +10,7 @@ public class ModelColorApplier : UnityMethods
 
     private MaterialPropertyBlock block;
 
-    public override InitPriority priority => InitPriority.ModelColorApplier;
+    public override InitPriority Priority => InitPriority.ModelColorApplier;
 
     public override void InitAwake()
     {
