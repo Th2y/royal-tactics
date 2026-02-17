@@ -11,12 +11,10 @@ public class CanvasGroupController : MonoBehaviour
 
     private CanvasGroup cg;
 
-#if UNITY_EDITOR
-    private void OnValidate()
+    private void Awake()
     {
         if (cg == null) cg = GetComponent<CanvasGroup>();
     }
-#endif
 
     public void SetActive(bool active)
     {
