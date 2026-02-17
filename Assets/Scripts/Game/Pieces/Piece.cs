@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum PieceType
 {
@@ -44,6 +45,24 @@ public abstract class Piece : MonoBehaviour
     {
         foreach (var r in renderers)
             r.enabled = visible;
+    }
+
+    public void MoveToTile(Tile tile, float duration, System.Action onComplete = null)
+    {
+        currentTile = tile;
+
+        Vector3 targetPos = new Vector3(
+            tile.transform.position.x,
+            0.415f,
+            tile.transform.position.z
+        );
+
+        transform.DOMove(targetPos, duration)
+            .SetEase(Ease.InOutQuad)
+            .OnComplete(() =>
+            {
+                onComplete?.Invoke();
+            });
     }
 
     public abstract List<Tile> GetValidMoves(BoardController board);

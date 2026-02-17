@@ -14,6 +14,7 @@ public class GameStateController : MonoBehaviour
     [SerializeField] private AIPlacementController aiPlacement;
     [SerializeField] private AIController aiController;
 
+    public bool IsBusy;
     public GamePhase CurrentPhase { get; private set; }
 
     public bool IsPlayerTurn =>
@@ -52,7 +53,7 @@ public class GameStateController : MonoBehaviour
                 PlacementUI.Instance.RefreshButtons();
                 break;
             case GamePhase.OpponentTurn:
-                Invoke(nameof(AIWaitAndPlay), 5f);
+                aiController.Play();
                 break;
             case GamePhase.PlayerTurn:
                 PlacementUI.Instance.RefreshButtons();
@@ -66,12 +67,6 @@ public class GameStateController : MonoBehaviour
     {
         RevealIAPieces();
         SetPhase(GamePhase.OpponentTurn);
-    }
-
-    private void AIWaitAndPlay()
-    {
-        aiController.PlayTurn();
-        SetPhase(GamePhase.PlayerTurn);
     }
 
     private void RevealIAPieces()

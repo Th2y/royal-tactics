@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
+    [SerializeField] private CanvasGroupController thinkingPanel;
+
     private Tile[] tiles;
 
-    public void PlayTurn()
+    public void Play()
+    {
+        thinkingPanel.SetActive(true);
+        Invoke(nameof(PlayTurn), 5f);
+    }
+
+    private void PlayTurn()
     {
         List<Piece> aiPieces = GetAIPieces();
 
@@ -102,6 +110,9 @@ public class AIController : MonoBehaviour
 
     private void ExecuteMove(Piece piece, Tile target)
     {
+        GameStateController.Instance.IsBusy = true;
+        thinkingPanel.SetActive(false);
+
         Tile origin = piece.currentTile;
 
         if (target.IsOccupied) Destroy(target.piece.gameObject);
@@ -109,9 +120,18 @@ public class AIController : MonoBehaviour
         origin.Clear();
         target.SetPiece(piece);
 
-        if (piece is Pawn pawn && pawn.CanPromote)
+        piece.MoveToTile(target, 0.35f, () =>
         {
-            PromotionController.Instance.RequestPromotion(pawn);
-        }
+            if (piece is Pawn pawn && pawn.CanPromote)
+            {
+                PromotionController.Instance.RequestPromotion(pawn);
+            }
+            else
+            {
+                GameStateController.Instance.IsBusy = false;
+                GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+            }
+        });
     }
+
 }

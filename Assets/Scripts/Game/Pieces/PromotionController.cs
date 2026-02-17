@@ -51,6 +51,9 @@ public class PromotionController : MonoBehaviour
         newPiece.Initialize(newDefinition, isFromPlayer);
         tile.SetPiece(newPiece);
 
+        GameStateController.Instance.IsBusy = false;
+        GameStateController.Instance.SetPhase(isFromPlayer ? GamePhase.OpponentTurn : GamePhase.PlayerTurn);
+
         pendingPawn = null;
     }
     #endregion
