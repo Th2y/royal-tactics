@@ -25,6 +25,14 @@ public abstract class Piece : MonoBehaviour
     public Tile currentTile {  get; private set; }
     public bool isFromPlayer {  get; private set; }
 
+    private void OnMouseDown()
+    {
+        if (isFromPlayer)
+        {
+            PlayerController.Instance.OnPieceClicked(this);
+        }
+    }
+
     public virtual void Initialize(PieceDefinitionSO def, bool isFromPlayer)
     {
         Definition = def;
@@ -45,6 +53,11 @@ public abstract class Piece : MonoBehaviour
     {
         foreach (var r in renderers)
             r.enabled = visible;
+    }
+
+    public void SetSelected(bool selected)
+    {
+        modelColorApplier.SetColor(selected ? Color.green : modelColorApplier.DefaultColor);
     }
 
     public void MoveToTile(Tile tile, float duration, System.Action onComplete = null)

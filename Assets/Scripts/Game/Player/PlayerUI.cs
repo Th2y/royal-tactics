@@ -33,6 +33,7 @@ public class PlayerUI : UnityMethods
 
         PlayerDoAnything += RefreshFinishBtnTrue;
         PlayerController.Instance.ShowPlacementButtons += RefreshButtons;
+        PlayerController.Instance.OnCoinsChanged += ChangeCoinsLeftText;
         finishRoundBtn.onClick.AddListener(() => GameStateController.Instance.PlayerFinishedMoves());
     }
 
@@ -43,8 +44,13 @@ public class PlayerUI : UnityMethods
 
     private void OnDestroy()
     {
+        PlayerDoAnything -= RefreshFinishBtnTrue;
+
         if (PlayerController.Instance != null)
+        {
             PlayerController.Instance.ShowPlacementButtons -= RefreshButtons;
+            PlayerController.Instance.OnCoinsChanged -= ChangeCoinsLeftText;
+        }
     }
 
     private void BuildUI()
@@ -61,11 +67,11 @@ public class PlayerUI : UnityMethods
     {
         bool isPlayerTurn = 
             GameStateController.Instance.CurrentPhase == GamePhase.PlayerPlacement || 
-            GameStateController.Instance.CurrentPhase == GamePhase.PlayerTurn;
+            (GameStateController.Instance.CurrentPhase == GamePhase.PlayerTurn && PlayerController.Instance.CanMove);
 
         foreach (var btn in buttons)
         {
-            bool canPlace = isPlayerTurn && PlayerController.Instance.CanPlace(btn.Definition);
+            bool canPlace = isPlayerTurn && PlayerController.Instance.HaveEnoughCoinsToPlace(btn.Definition);
             btn.SetInteractable(canPlace);
         }
 
@@ -77,8 +83,8 @@ public class PlayerUI : UnityMethods
         finishRoundBtn.interactable = true;
     }
 
-    public void ChangePointsLeftText(int points)
+    private void ChangeCoinsLeftText(int coins)
     {
-        coinsLeftText.text = points + " moedas";
+        coinsLeftText.text = coins + " moedas";
     }
 }

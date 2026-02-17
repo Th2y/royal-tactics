@@ -129,7 +129,6 @@ public class AIController : UnityMethods
 
         ExecuteMove(chosen.piece, chosen.target);
 
-        EarnPointsForCapturing(chosen.piece.Definition);
         return true;
     }
     #endregion
@@ -202,7 +201,11 @@ public class AIController : UnityMethods
     {
         Tile origin = piece.currentTile;
 
-        if (target.IsOccupied) target.Piece.OnCaptured();
+        if (target.IsOccupied)
+        {
+            EarnPointsForCapturing(target.Piece.Definition);
+            target.Piece.OnCaptured();
+        }
 
         origin.Clear();
         target.SetPiece(piece);

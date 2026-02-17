@@ -56,7 +56,14 @@ public class PromotionController : UnityMethods
         newPiece.Initialize(newDefinition, isFromPlayer);
         tile.SetPiece(newPiece);
 
-        GameStateController.Instance.SetPhase(isFromPlayer ? GamePhase.OpponentTurn : GamePhase.PlayerTurn);
+        if (isFromPlayer)
+        {
+            PlayerUI.Instance.PlayerDoAnything?.Invoke();
+        }
+        else
+        {
+            GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+        }
 
         pendingPawn = null;
     }

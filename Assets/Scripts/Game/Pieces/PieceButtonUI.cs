@@ -22,7 +22,7 @@ public class PieceButtonUI : MonoBehaviour
 
     private void OnClick()
     {
-        PlayerController.Instance.SelectPiece(Definition);
+        PlayerController.Instance.SelectPiecePlacement(Definition);
     }
 
     public void SetInteractable(bool interactable)

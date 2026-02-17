@@ -10,6 +10,8 @@ public class ModelColorApplier : UnityMethods
 
     private MaterialPropertyBlock block;
 
+    public Color DefaultColor { get; private set; }
+
     public override InitPriority Priority => InitPriority.ModelColorApplier;
 
     public override void InitAwake()
@@ -17,9 +19,11 @@ public class ModelColorApplier : UnityMethods
         block = new MaterialPropertyBlock();
 
         if (isPlayer)
-            SetColor(PlayerColorPrefs.LoadColor(colorsOptions.colors[0], true));
+            DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.colors[0], true);
         else
-            SetColor(PlayerColorPrefs.LoadColor(colorsOptions.colors[1], false));
+            DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.colors[1], false);
+
+        SetColor(DefaultColor);
     }
 
     public override void InitStart()

@@ -63,19 +63,23 @@ public class GameStateController : UnityMethods
         CurrentPhase = newPhase;
 
         UIGameController.Instance.SetGamePhaseText(newPhase);
-        PlayerUI.Instance.RefreshButtons();
 
         switch (newPhase)
         {
             case GamePhase.OpponentPlacement:
+                PlayerUI.Instance.RefreshButtons();
                 AIController.Instance.StartPlacement();
                 break;
             case GamePhase.OpponentTurn:
+                PlayerUI.Instance.RefreshButtons();
                 AIController.Instance.Play();
                 break;
             case GamePhase.PlayerTurn:
+                PlayerController.Instance.CanMove = true;
+                PlayerUI.Instance.RefreshButtons();
                 break;
             default:
+                PlayerUI.Instance.RefreshButtons();
                 break;
         }
     }

@@ -1,15 +1,35 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerController : UnityMethods
 {
-    public PieceDefinitionSO SelectedPiece { get; private set; }
+    public PieceDefinitionSO SelectedPiecePlacement { get; private set; }
 
     public event Action ShowPlacementButtons;
     private List<Piece> placedPieces = new();
 
+    public event Action<int> OnCoinsChanged;
+
     private int currentCoins;
+    public int CurrentCoins
+    {
+        get => currentCoins;
+        set
+        {
+            if (currentCoins == value)
+                return;
+
+            currentCoins = value;
+            OnCoinsChanged?.Invoke(currentCoins);
+        }
+    }
     public int TotalCoins {  get; private set; }
+
+    private Piece selectedPiece;
+    private List<Tile> highlightedTiles = new();
+
+    [HideInInspector] public bool CanMove = false;
 
     public static PlayerController Instance { get; private set; }
 
@@ -25,13 +45,23 @@ public class PlayerController : UnityMethods
 
         Instance = this;
 
-        currentCoins = GameStateController.Instance.PhaseSO.startingPoints;
-        TotalCoins = currentCoins;
+        CurrentCoins = GameStateController.Instance.PhaseSO.startingPoints;
+        TotalCoins = CurrentCoins;
     }
 
     public override void InitStart()
     {
+        PlayerUI.Instance.PlayerDoAnything += DisableMovement;
+    }
 
+    private void OnDestroy()
+    {
+        PlayerUI.Instance.PlayerDoAnything -= DisableMovement;
+    }
+
+    private void DisableMovement()
+    {
+        CanMove = false;
     }
 
     public bool CheckCanDoAnything()
@@ -42,9 +72,94 @@ public class PlayerController : UnityMethods
 
         if (CanPlaceAnyPiece()) return true;
 
-        if (CanMove()) return true;
+        if (CheckCanMove()) return true;
 
         return false;
+    }
+
+    public void OnPieceClicked(Piece piece)
+    {
+        if (!GameStateController.Instance.IsPlayerTurn) return;
+
+        if (!piece.isFromPlayer) return;
+
+        if(!CanMove) return;
+
+        ClearSelection();
+
+        selectedPiece = piece;
+        selectedPiece.SetSelected(true);
+
+        HighlightValidTiles(piece);
+    }
+
+    private void ClearSelection()
+    {
+        if (selectedPiece != null)
+            selectedPiece.SetSelected(false);
+
+        foreach (Tile tile in highlightedTiles)
+            tile.SetHighlight(false);
+
+        highlightedTiles.Clear();
+        selectedPiece = null;
+    }
+
+    public void OnTileClicked(Tile tile)
+    {
+        if (selectedPiece == null)
+            return;
+
+        if (!highlightedTiles.Contains(tile))
+            return;
+
+        ExecuteMove(tile);
+    }
+
+    private void HighlightValidTiles(Piece piece)
+    {
+        foreach (Tile tile in piece.GetValidMoves(BoardController.Instance))
+        {
+            tile.SetHighlight(true);
+            highlightedTiles.Add(tile);
+        }
+
+        foreach (Tile tile in piece.GetValidCaptures(BoardController.Instance))
+        {
+            if (!highlightedTiles.Contains(tile))
+            {
+                tile.SetHighlight(true);
+                highlightedTiles.Add(tile);
+            }
+        }
+    }
+
+    private void ExecuteMove(Tile target)
+    {
+        Tile origin = selectedPiece.currentTile;
+
+        if (target.IsOccupied)
+        {
+            EarnPointsForCapturing(target.Piece.Definition);
+            target.Piece.OnCaptured();
+        }
+
+        origin.Clear();
+        target.SetPiece(selectedPiece);
+
+        selectedPiece.MoveToTile(target, 0.35f, () =>
+        {
+            if (selectedPiece is Pawn pawn && pawn.CanPromote)
+            {
+                PromotionController.Instance.RequestPromotion(pawn);
+            }
+            else
+            {
+                PlayerUI.Instance.PlayerDoAnything?.Invoke();
+            }
+        });
+
+        ClearSelection();
     }
 
     #region Capture
@@ -85,7 +200,7 @@ public class PlayerController : UnityMethods
 
         foreach (PieceDefinitionSO def in GameStateController.Instance.PhaseSO.availablePieces)
         {
-            if (!CanPlace(def))
+            if (!HaveEnoughCoinsToPlace(def))
                 continue;
 
             foreach (Tile tile in freeTiles)
@@ -98,9 +213,14 @@ public class PlayerController : UnityMethods
         return false;
     }
 
-    public bool CanPlace(PieceDefinitionSO def)
+    public bool HaveEnoughCoinsToPlace(PieceDefinitionSO def)
     {
-        return currentCoins >= def.cost;
+        return CurrentCoins >= def.cost;
+    }
+
+    public void SelectPiecePlacement(PieceDefinitionSO def)
+    {
+        SelectedPiecePlacement = def;
     }
 
     public void TryPlacePiece(Tile tile, PieceDefinitionSO def)
@@ -111,7 +231,7 @@ public class PlayerController : UnityMethods
         if (tile.IsOccupied)
             return;
 
-        if (!CanPlace(def))
+        if (!HaveEnoughCoinsToPlace(def))
             return;
 
         if (!IsValidPlacement(tile, def))
@@ -122,7 +242,8 @@ public class PlayerController : UnityMethods
 
     private void PlacePiece(Tile tile, PieceDefinitionSO def)
     {
-        currentCoins -= def.cost;
+        CurrentCoins -= def.cost;
+        DisableMovement();
 
         Piece piece = Instantiate(def.prefab);
         piece.Initialize(def, true);
@@ -130,7 +251,7 @@ public class PlayerController : UnityMethods
         placedPieces.Add(piece);
 
         ShowPlacementButtons?.Invoke();
-        SelectPiece(null);
+        SelectPiecePlacement(null);
         PlayerUI.Instance.PlayerDoAnything?.Invoke();
     }
 
@@ -146,7 +267,7 @@ public class PlayerController : UnityMethods
     #endregion
 
     #region Move
-    private bool CanMove()
+    private bool CheckCanMove()
     {
         foreach (Piece piece in placedPieces)
         {
@@ -160,20 +281,15 @@ public class PlayerController : UnityMethods
     }
     #endregion
 
-    public void SelectPiece(PieceDefinitionSO def)
-    {
-        SelectedPiece = def;
-    }
-
     public void RemovePiece(Piece piece)
     {
         placedPieces.Remove(piece);
     }
 
-    public void EarnPointsForCapturing(PieceDefinitionSO def)
+    private void EarnPointsForCapturing(PieceDefinitionSO def)
     {
         int value = def.cost - 1;
-        currentCoins += value;
+        CurrentCoins += value;
         TotalCoins += value;
     }
 }
