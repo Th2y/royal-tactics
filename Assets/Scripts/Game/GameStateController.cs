@@ -6,11 +6,13 @@ public enum GamePhase
     PlayerPlacement,
     OpponentTurn,
     PlayerTurn,
-    GameOver
+    GameOverWin,
+    GameOverLost
 }
 
 public class GameStateController : MonoBehaviour
 {
+    [SerializeField] private UIGameController uiGameController;
     [SerializeField] private AIPlacementController aiPlacement;
     [SerializeField] private AIController aiController;
 
@@ -42,7 +44,7 @@ public class GameStateController : MonoBehaviour
     public void SetPhase(GamePhase newPhase)
     {
         CurrentPhase = newPhase;
-        Debug.LogError("FASE ATUAL: " + newPhase);
+        uiGameController.SetGamePhaseText(newPhase);
 
         switch (newPhase)
         {

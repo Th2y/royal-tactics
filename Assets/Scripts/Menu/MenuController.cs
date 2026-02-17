@@ -5,8 +5,7 @@ public enum MenuScreen
 {
     Init,
     Options,
-    Tutorial,
-    Game
+    Tutorial
 }
 
 public class MenuController : MonoBehaviour
@@ -16,8 +15,11 @@ public class MenuController : MonoBehaviour
 
     private Dictionary<MenuScreen, CanvasGroupController> _screenMap;
 
+    public static MenuController Instance;
+
     private void Awake()
     {
+        Instance = this;
         SetScreens();
     }
 

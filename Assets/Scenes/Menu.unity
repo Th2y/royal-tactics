@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 747893636}
-  targetScreen: 0
+  menuTargetScreen: 0
+  gameTargetScreen: 0
 --- !u!114 &140837512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,8 +921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 747893636}
-  targetScreen: 1
+  menuTargetScreen: 1
+  gameTargetScreen: 0
 --- !u!1 &576643426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 866.5001, y: -3459.61}
+  m_AnchoredPosition: {x: 866.27185, y: -3459.61}
   m_SizeDelta: {x: 1500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649121686
@@ -2421,8 +2421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 747893636}
-  targetScreen: 0
+  menuTargetScreen: 0
+  gameTargetScreen: 0
 --- !u!1 &1063611115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,8 +3193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuController: {fileID: 747893636}
-  targetScreen: 2
+  menuTargetScreen: 2
+  gameTargetScreen: 0
 --- !u!114 &1668207050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3385,6 +3385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenType: 0
+  gameScreen: 0
 --- !u!1 &1717643126
 GameObject:
   m_ObjectHideFlags: 0
@@ -4199,6 +4200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenType: 1
+  gameScreen: 0
 --- !u!1 &2031240276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,6 +4291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenType: 2
+  gameScreen: 0
 --- !u!225 &2049556848
 CanvasGroup:
   m_ObjectHideFlags: 0

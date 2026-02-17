@@ -1,25 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
 public class MenuNavigationButton : MonoBehaviour
 {
-    [SerializeField] private MenuController menuController;
-    [SerializeField] private MenuScreen targetScreen;
+    [SerializeField] private MenuScreen menuTargetScreen;
+    [SerializeField] private GameScreen gameTargetScreen;
 
     private Button button;
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if (button == null) button = GetComponent<Button>();
-    }
-#endif
 
     private void Awake()
     {
         if (button == null) button = GetComponent<Button>();
 
-        button.onClick.AddListener(() => menuController.ShowScreen(targetScreen));
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Menu")
+        {
+            button.onClick.AddListener(() => MenuController.Instance.ShowScreen(menuTargetScreen));
+        }
+        else
+        {
+            button.onClick.AddListener(() => UIGameController.Instance.ShowScreen(gameTargetScreen));
+        }
     }
 }

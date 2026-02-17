@@ -4,8 +4,11 @@ using UnityEngine;
 public class CanvasGroupController : MonoBehaviour
 {
     [SerializeField] private MenuScreen screenType;
+    [SerializeField] private GameScreen gameScreen;
 
     public MenuScreen ScreenType => screenType;
+    public GameScreen GameScreen => gameScreen;
+
     private CanvasGroup cg;
 
 #if UNITY_EDITOR

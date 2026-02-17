@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [SerializeField] private CanvasGroupController thinkingPanel;
-
     private Tile[] tiles;
 
     public void Play()
     {
-        thinkingPanel.SetActive(true);
         Invoke(nameof(PlayTurn), 5f);
     }
 
@@ -111,7 +108,6 @@ public class AIController : MonoBehaviour
     private void ExecuteMove(Piece piece, Tile target)
     {
         GameStateController.Instance.IsBusy = true;
-        thinkingPanel.SetActive(false);
 
         Tile origin = piece.currentTile;
 
@@ -133,5 +129,4 @@ public class AIController : MonoBehaviour
             }
         });
     }
-
 }
