@@ -509,7 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5457bf030ab4245b6d667f6a2e13b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishRoundBtn: {fileID: 0}
   screens:
   - {fileID: 330101483}
   - {fileID: 1607052330}
@@ -1007,7 +1006,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1051,7 +1050,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 5000
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -1069,13 +1068,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.12708378, y: -0.86436117, z: 0.4030582, w: 0.27253205}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -145, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2266,6 +2265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd87dbb09bdab9439052d546b37d4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanMove: 0
 --- !u!114 &760642563
 MonoBehaviour:
   m_ObjectHideFlags: 0
