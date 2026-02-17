@@ -2,15 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class ExitButton : MonoBehaviour
+public class ExitButton : UnityMethods
 {
     private Button button;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.ButtonChangeSceneOrExit;
+
+    public override void InitAwake()
     {
         if (button == null) button = GetComponent<Button>();
         button.onClick.AddListener(ExitGame);
     }
+
+    public override void InitStart(){}
 
     public void ExitGame()
     {

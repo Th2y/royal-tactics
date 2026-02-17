@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class PlacementController : MonoBehaviour
+public class PlacementController : UnityMethods
 {
     [Header("Piece Definitions")]
     [SerializeField] private PhaseSO phaseSO;
@@ -14,16 +14,24 @@ public class PlacementController : MonoBehaviour
 
     public static PlacementController Instance { get; private set; }
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.PlacementController;
+
+    public override void InitAwake()
     {
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
         currentPoints = phaseSO.startingPoints;
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     public bool CanPlace(PieceDefinitionSO def)

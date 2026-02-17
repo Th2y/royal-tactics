@@ -3,14 +3,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class MenuNavigationButton : MonoBehaviour
+public class NavigationButton : UnityMethods
 {
     [SerializeField] private MenuScreen menuTargetScreen;
     [SerializeField] private GameScreen gameTargetScreen;
 
     private Button button;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.ButtonNavigation;
+
+    public override void InitAwake()
     {
         if (button == null) button = GetComponent<Button>();
 
@@ -24,4 +26,6 @@ public class MenuNavigationButton : MonoBehaviour
             button.onClick.AddListener(() => UIGameController.Instance.ShowScreen(gameTargetScreen));
         }
     }
+
+    public override void InitStart() { }
 }

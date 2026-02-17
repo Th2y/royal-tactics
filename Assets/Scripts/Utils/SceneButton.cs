@@ -3,17 +3,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class SceneButton : MonoBehaviour
+public class SceneButton : UnityMethods
 {
     [SerializeField] private string sceneName;
 
     private Button button;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.ButtonChangeSceneOrExit;
+
+    public override void InitAwake()
     {
         if (button == null) button = GetComponent<Button>();
         button.onClick.AddListener(ChangeScene);
     }
+
+    public override void InitStart() { }
 
     public void ChangeScene()
     {

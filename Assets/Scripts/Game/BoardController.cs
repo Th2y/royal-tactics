@@ -1,16 +1,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardController : MonoBehaviour
+public class BoardController : UnityMethods
 {
     private Tile[,] tiles = new Tile[8, 8];
 
     public static BoardController Instance;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.BoardController;
+
+    public override void InitAwake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+
         CacheTiles();
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     private void CacheTiles()

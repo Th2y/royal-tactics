@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlacementUI : MonoBehaviour
+public class PlacementUI : UnityMethods
 {
     [SerializeField] private PieceButtonUI buttonPrefab;
     [SerializeField] private Transform buttonsParent;
@@ -11,16 +11,26 @@ public class PlacementUI : MonoBehaviour
 
     public static PlacementUI Instance { get; private set; }
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.PlacementUI;
+
+    public override void InitAwake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
 
         BuildUI();
+
+        PlacementController.Instance.OnPointsChanged += RefreshButtons;
     }
 
-    private void Start()
+    public override void InitStart()
     {
-        PlacementController.Instance.OnPointsChanged += RefreshButtons;
+        
     }
 
     private void OnDestroy()

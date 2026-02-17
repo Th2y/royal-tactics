@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoardSelectionController : MonoBehaviour
+public class BoardSelectionController : UnityMethods
 {
     [SerializeField] private Camera mainCamera;
 
@@ -8,7 +8,9 @@ public class BoardSelectionController : MonoBehaviour
 
     public static BoardSelectionController Instance { get; private set; }
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.BoardSelectionController;
+
+    public override void InitAwake()
     {
         if (Instance != null)
         {
@@ -17,6 +19,11 @@ public class BoardSelectionController : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     public void SelectTile(Tile tile)

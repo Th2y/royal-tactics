@@ -3384,7 +3384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 0
+  menuScreen: 0
   gameScreen: 0
 --- !u!1 &1717643126
 GameObject:
@@ -4199,7 +4199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 1
+  menuScreen: 1
   gameScreen: 0
 --- !u!1 &2031240276
 GameObject:
@@ -4290,7 +4290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenType: 2
+  menuScreen: 2
   gameScreen: 0
 --- !u!225 &2049556848
 CanvasGroup:
@@ -4439,6 +4439,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b4f851104fbbd46a55216af49722d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2124338573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2124338575}
+  - component: {fileID: 2124338574}
+  m_Layer: 0
+  m_Name: InitAllInOrder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2124338574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124338573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b6ce16f7867e74a992e5c0176af7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuController: {fileID: 747893636}
+  chooseColor: {fileID: 1972620642}
+  modelColorAppliers:
+  - {fileID: 1275333530}
+  - {fileID: 2098823407}
+  uiGameController: {fileID: 0}
+  boardColorApplier: {fileID: 0}
+  boardController: {fileID: 0}
+  boardSelectionController: {fileID: 0}
+  gameStateController: {fileID: 0}
+  promotionController: {fileID: 0}
+  placementController: {fileID: 0}
+  placementUI: {fileID: 0}
+--- !u!4 &2124338575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124338573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &264339131126781371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4545,3 +4602,4 @@ SceneRoots:
   - {fileID: 2031240277}
   - {fileID: 998484153}
   - {fileID: 341393831}
+  - {fileID: 2124338575}

@@ -1,20 +1,24 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class CanvasGroupController : MonoBehaviour
+public class CanvasGroupController : UnityMethods
 {
-    [SerializeField] private MenuScreen screenType;
+    [SerializeField] private MenuScreen menuScreen;
     [SerializeField] private GameScreen gameScreen;
 
-    public MenuScreen ScreenType => screenType;
+    public override InitPriority priority => InitPriority.CanvasGroup;
+
+    public MenuScreen MenuScreen => menuScreen;
     public GameScreen GameScreen => gameScreen;
 
     private CanvasGroup cg;
 
-    private void Awake()
+    public override void InitAwake()
     {
         if (cg == null) cg = GetComponent<CanvasGroup>();
     }
+
+    public override void InitStart() { }
 
     public void SetActive(bool active)
     {

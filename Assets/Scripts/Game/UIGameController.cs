@@ -9,15 +9,28 @@ public enum GameScreen
     Pause
 }
 
-public class UIGameController : MonoBehaviour
+public class UIGameController : UnityMethods
 {
     public static UIGameController Instance;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.UIController;
+
+    public override void InitAwake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
 
         SetScreens();
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     #region Game Screen

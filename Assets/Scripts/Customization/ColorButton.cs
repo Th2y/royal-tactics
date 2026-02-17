@@ -14,13 +14,11 @@ public class ColorButton : MonoBehaviour
     private Color selectedBorderColor;
 
     public event Action<Color> OnClicked;
-    private void Awake()
-    {
-        if (button == null) button = GetComponent<Button>();
-    }
 
     public void SetColor(Color color, Color borderSelected)
     {
+        if (button == null) button = GetComponent<Button>();
+
         this.color = color;
         image.color = color;
         selectedBorderColor = borderSelected;

@@ -32,7 +32,7 @@ public abstract class Piece : MonoBehaviour
         this.isFromPlayer = isFromPlayer;
 
         modelColorApplier.isPlayer = isFromPlayer;
-        modelColorApplier.Init();
+        modelColorApplier.InitAwake();
     }
 
     public void SetTile(Tile tile)

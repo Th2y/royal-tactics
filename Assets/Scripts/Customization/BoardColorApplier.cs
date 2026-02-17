@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoardColorApplier : MonoBehaviour
+public class BoardColorApplier : UnityMethods
 {
     [SerializeField] private ColorsOptions colorsOptions;
     [SerializeField] private Renderer[] renderersColor1;
@@ -11,7 +11,9 @@ public class BoardColorApplier : MonoBehaviour
 
     public static BoardColorApplier Instance { get; private set; }
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.ModelColorApplier;
+
+    public override void InitAwake()
     {
         if (Instance != null)
         {
@@ -23,6 +25,11 @@ public class BoardColorApplier : MonoBehaviour
 
         block = new MaterialPropertyBlock();
         ApplySavedColors();
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     private void ApplySavedColors()

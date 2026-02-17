@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PromotionController : MonoBehaviour
+public class PromotionController : UnityMethods
 {
     [Header("Promotion Options")]
     [SerializeField] private PhaseSO phaseSO;
@@ -11,7 +11,9 @@ public class PromotionController : MonoBehaviour
 
     public static PromotionController Instance { get; private set; }
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.PromotionController;
+
+    public override void InitAwake()
     {
         if (Instance != null)
         {
@@ -20,6 +22,11 @@ public class PromotionController : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     #region CORE LOGIC

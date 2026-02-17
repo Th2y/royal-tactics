@@ -10,7 +10,7 @@ public enum GamePhase
     GameOverLost
 }
 
-public class GameStateController : MonoBehaviour
+public class GameStateController : UnityMethods
 {
     [SerializeField] private UIGameController uiGameController;
     [SerializeField] private AIPlacementController aiPlacement;
@@ -25,7 +25,9 @@ public class GameStateController : MonoBehaviour
 
     public static GameStateController Instance { get; private set; }
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.GameStateController;
+
+    public override void InitAwake()
     {
         if (Instance != null)
         {
@@ -36,7 +38,7 @@ public class GameStateController : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public override void InitStart()
     {
         SetPhase(GamePhase.OpponentPlacement);
     }

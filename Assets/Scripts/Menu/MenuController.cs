@@ -8,7 +8,7 @@ public enum MenuScreen
     Tutorial
 }
 
-public class MenuController : MonoBehaviour
+public class MenuController : UnityMethods
 {
     [Header("Change Screen")]
     [SerializeField] private List<CanvasGroupController> screens;
@@ -17,10 +17,24 @@ public class MenuController : MonoBehaviour
 
     public static MenuController Instance;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.UIController;
+
+    public override void InitAwake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+
         SetScreens();
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     private void SetScreens()
@@ -29,8 +43,8 @@ public class MenuController : MonoBehaviour
 
         foreach (var screen in screens)
         {
-            _screenMap.Add(screen.ScreenType, screen);
-            screen.SetActive(screen.ScreenType == MenuScreen.Init);
+            _screenMap.Add(screen.MenuScreen, screen);
+            screen.SetActive(screen.MenuScreen == MenuScreen.Init);
         }
     }
 
@@ -38,7 +52,7 @@ public class MenuController : MonoBehaviour
     {
         foreach (var view in _screenMap.Values)
         {
-            view.SetActive(view.ScreenType == screen);
+            view.SetActive(view.MenuScreen == screen);
         }
     }
 }

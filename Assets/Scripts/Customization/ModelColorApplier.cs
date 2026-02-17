@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ModelColorApplier : MonoBehaviour
+public class ModelColorApplier : UnityMethods
 {
     [SerializeField] private ColorsOptions colorsOptions;
     [SerializeField] private Renderer[] renderers;
@@ -10,19 +10,21 @@ public class ModelColorApplier : MonoBehaviour
 
     private MaterialPropertyBlock block;
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.ModelColorApplier;
+
+    public override void InitAwake()
     {
         block = new MaterialPropertyBlock();
 
-        Init();
-    }
-
-    public void Init()
-    {
         if (isPlayer)
             SetColor(PlayerColorPrefs.LoadColor(colorsOptions.colors[0], true));
         else
             SetColor(PlayerColorPrefs.LoadColor(colorsOptions.colors[1], false));
+    }
+
+    public override void InitStart()
+    {
+        
     }
 
     public void SetColor(Color color)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ChooseColor : MonoBehaviour
+public class ChooseColor : UnityMethods
 {
     [SerializeField] private ColorsOptions colorsOptions;
     [SerializeField] private ColorButton colorButtonPrefab;
@@ -18,10 +18,17 @@ public class ChooseColor : MonoBehaviour
     private readonly List<ColorButton> playerButtons = new();
     private readonly List<ColorButton> oponentButtons = new();
 
-    private void Awake()
+    public override InitPriority priority => InitPriority.ChooseColor;
+
+    public override void InitAwake()
     {
         InstantiateOptions();
         RefreshButtons();
+    }
+
+    public override void InitStart()
+    {
+
     }
 
     private void InstantiateOptions()
