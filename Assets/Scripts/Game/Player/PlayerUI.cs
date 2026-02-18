@@ -79,6 +79,7 @@ public class PlayerUI : UnityMethods
         }
 
         finishRoundBtn.interactable = 
+            !player.IsInPromotion &&
             (currentPhase == GamePhase.PlayerTurn && !player.CanMove) ||
             (currentPhase == GamePhase.PlayerPlacement && player.CurrentCoins <= 1);
     }

@@ -13,7 +13,7 @@ public class PromotionPieceButtonUI : MonoBehaviour
     {
         Definition = def;
         nameText.text = def.namePt;
-        button.interactable = false;
+        button.interactable = true;
 
         button.onClick.AddListener(OnClick);
     }

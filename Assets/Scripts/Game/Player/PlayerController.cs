@@ -44,6 +44,7 @@ public class PlayerController : UnityMethods
     private List<Tile> highlightedTiles = new();
 
     [HideInInspector] public bool CanMove = false;
+    [HideInInspector] public bool IsInPromotion = false;
 
     public static PlayerController Instance { get; private set; }
 
@@ -293,10 +294,13 @@ public class PlayerController : UnityMethods
             if (SelectedPiece is Pawn pawn && pawn.CanPromote)
             {
                 PromotionController.Instance.RequestPromotion(pawn);
+                ClearSelection();
+            }
+            else
+            {
+                ClearSelection();
             }
         });
-
-        ClearSelection();
     }
     #endregion
 

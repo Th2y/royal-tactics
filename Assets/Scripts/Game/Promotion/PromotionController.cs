@@ -72,11 +72,17 @@ public class PromotionController : UnityMethods
     #region PLAYER
     private void OpenPromotionUI()
     {
+        PlayerController.Instance.IsInPromotion = true;
+        PlayerUI.Instance.RefreshButtons();
+
         promotionUI.ShowAvailableList(PhaseController.Instance.CurrentPhase.availablePieces);
     }
 
     public void OnPlayerSelected(PieceDefinitionSO def)
     {
+        PlayerController.Instance.IsInPromotion = false;
+        PlayerUI.Instance.RefreshButtons();
+
         promotionUI.HideAvailableList();
         Promote(pendingPawn, def);
     }

@@ -17,9 +17,12 @@ public class PromotionUI : MonoBehaviour
 
         foreach (var def in availablePieces)
         {
-            var btn = Instantiate(buttonPrefab, buttonsParent);
-            btn.Setup(def);
-            buttons.Add(btn);
+            if(def.type != PieceType.Pawn)
+            {
+                var btn = Instantiate(buttonPrefab, buttonsParent);
+                btn.Setup(def);
+                buttons.Add(btn);
+            }
         }
     }
 
