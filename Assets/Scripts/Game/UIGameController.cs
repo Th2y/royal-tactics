@@ -30,10 +30,6 @@ public class UIGameController : UnityMethods
 
     public override void InitStart()
     {
-        SetAdvantagePoints(PhaseController.Instance.CurrentPhase.pointsAdvantageToWin);
-        SetPlayerTotalPoints(PlayerController.Instance.TotalCoins);
-        SetAITotalPoints(AIController.Instance.TotalCoins);
-
         PlayerController.Instance.OnTotalCoinsChanged += SetPlayerTotalPoints;
         AIController.Instance.OnTotalCoinsChanged += SetAITotalPoints;
     }
@@ -42,6 +38,13 @@ public class UIGameController : UnityMethods
     {
         PlayerController.Instance.OnTotalCoinsChanged -= SetPlayerTotalPoints;
         AIController.Instance.OnTotalCoinsChanged -= SetAITotalPoints;
+    }
+
+    public void SetInitialValues()
+    {
+        SetAdvantagePoints(PhaseController.Instance.CurrentPhase.pointsAdvantageToWin);
+        SetPlayerTotalPoints(PlayerController.Instance.TotalCoins);
+        SetAITotalPoints(AIController.Instance.TotalCoins);
     }
 
     #region Game Screen
@@ -118,7 +121,7 @@ public class UIGameController : UnityMethods
     [HideInInspector]
     private void SetAdvantagePoints(int points)
     {
-        aiTotalPointsText.text = "Vantagem necessária: " + points;
+        advantagePointsText.text = "Vantagem necessária: " + points;
     }
 
     [HideInInspector]

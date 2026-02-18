@@ -104,6 +104,7 @@ public class PhaseController : UnityMethods
 
     private void ApplyPhase()
     {
+        UIGameController.Instance.SetInitialValues();
         BoardController.Instance.ClearBoard();
         PlayerController.Instance.InitCoins();
         AIController.Instance.InitCoins();
