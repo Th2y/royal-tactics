@@ -240,6 +240,7 @@ public class PlayerController : UnityMethods
     public void SelectPiecePlacement(PieceDefinitionSO def)
     {
         SelectedPiecePlacement = def;
+        ClearSelection();
     }
 
     public void TryPlacePiece(Tile tile, PieceDefinitionSO def)
