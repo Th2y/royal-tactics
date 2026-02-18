@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoardColorApplier : UnityMethods
+public class BoardColorApplier : UnityMethodsSingleton<BoardColorApplier>
 {
     [SerializeField] private ColorsOptions colorsOptions;
     [SerializeField] private Renderer[] renderersColor1;
@@ -9,25 +9,15 @@ public class BoardColorApplier : UnityMethods
 
     private MaterialPropertyBlock block;
 
-    public static BoardColorApplier Instance { get; private set; }
-
     public override InitPriority Priority => InitPriority.ModelColorApplier;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         block = new MaterialPropertyBlock();
         ApplySavedColors();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
 
     }

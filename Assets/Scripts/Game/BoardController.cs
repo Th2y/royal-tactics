@@ -1,29 +1,18 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
-public class BoardController : UnityMethods
+public class BoardController : UnityMethodsSingleton<BoardController>
 {
     private Tile[,] tiles = new Tile[8, 8];
 
-    public static BoardController Instance;
-
     public override InitPriority Priority => InitPriority.BoardController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         CacheTiles();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
 
     }

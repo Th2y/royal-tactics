@@ -15,7 +15,7 @@ public class ModelColorApplier : UnityMethods
 
     public override InitPriority Priority => InitPriority.ModelColorApplier;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
         block = new MaterialPropertyBlock();
 
@@ -27,7 +27,7 @@ public class ModelColorApplier : UnityMethods
         SetColor(DefaultColor);
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
         
     }

@@ -20,13 +20,13 @@ public class ChooseColor : UnityMethods
 
     public override InitPriority Priority => InitPriority.ChooseColor;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
         InstantiateOptions();
         RefreshButtons();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
 
     }

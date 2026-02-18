@@ -10,7 +10,7 @@ public enum GamePhase
     GameOverLost
 }
 
-public class GameStateController : UnityMethods
+public class GameStateController : UnityMethodsSingleton<GameStateController>
 {
     public GamePhase CurrentPhase { get; private set; }
 
@@ -18,22 +18,14 @@ public class GameStateController : UnityMethods
         CurrentPhase == GamePhase.PlayerTurn ||
         CurrentPhase == GamePhase.PlayerPlacement;
 
-    public static GameStateController Instance { get; private set; }
-
     public override InitPriority Priority => InitPriority.GameStateController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        Instance = this;
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
         SetPhase(GamePhase.OpponentPlacement);
     }
@@ -67,19 +59,19 @@ public class GameStateController : UnityMethods
         {
             case GamePhase.OpponentPlacement:
                 UIGameController.Instance.ShowScreen(GameScreen.Play);
-                PlayerUI.Instance.RefreshButtons();
+                HumanPlayerUI.Instance.RefreshButtons();
                 AIController.Instance.StartPlacement();
                 break;
             case GamePhase.OpponentTurn:
-                PlayerUI.Instance.RefreshButtons();
+                HumanPlayerUI.Instance.RefreshButtons();
                 AIController.Instance.Play();
                 break;
             case GamePhase.PlayerTurn:
-                PlayerController.Instance.CanMove = true;
-                PlayerUI.Instance.RefreshButtons();
+                HumanPlayerController.Instance.CanMove = true;
+                HumanPlayerUI.Instance.RefreshButtons();
                 break;
             default:
-                PlayerUI.Instance.RefreshButtons();
+                HumanPlayerUI.Instance.RefreshButtons();
                 break;
         }
     }
@@ -105,7 +97,7 @@ public class GameStateController : UnityMethods
 
     private bool CheckPlayerWin()
     {
-        if (PlayerController.Instance.TotalCoins >= AIController.Instance.TotalCoins + PhaseController.Instance.CurrentPhase.pointsAdvantageToWin)
+        if (HumanPlayerController.Instance.TotalCoins >= AIController.Instance.TotalCoins + PhaseController.Instance.CurrentPhase.pointsAdvantageToWin)
         {
             return true;
         }
@@ -119,11 +111,11 @@ public class GameStateController : UnityMethods
 
     private bool CheckAIWin()
     {
-        if (AIController.Instance.TotalCoins >= PlayerController.Instance.TotalCoins + PhaseController.Instance.CurrentPhase.pointsAdvantageToWin)
+        if (AIController.Instance.TotalCoins >= HumanPlayerController.Instance.TotalCoins + PhaseController.Instance.CurrentPhase.pointsAdvantageToWin)
         {
             return true;
         }
-        else if (!PlayerController.Instance.CheckCanDoAnything())
+        else if (!HumanPlayerController.Instance.CheckCanDoAnything())
         {
             return true;
         }

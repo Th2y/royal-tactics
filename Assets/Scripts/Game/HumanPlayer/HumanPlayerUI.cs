@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
-public class PlayerUI : UnityMethods
+public class HumanPlayerUI : UnityMethodsSingleton<HumanPlayerUI>
 {
     [SerializeField] private TextMeshProUGUI coinsLeftText;
     [SerializeField] private PieceButtonUI buttonPlacementPrefab;
@@ -15,41 +15,31 @@ public class PlayerUI : UnityMethods
 
     public Action PlayerDoAnything;
 
-    public static PlayerUI Instance { get; private set; }
-
     public override InitPriority Priority => InitPriority.PlayerUI;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         BuildUI();
 
         PlayerDoAnything += RefreshFinishBtnTrue;
-        PlayerController.Instance.ShowPlacementButtons += RefreshButtons;
-        PlayerController.Instance.OnCoinsChanged += ChangeCoinsLeftText;
+        HumanPlayerController.Instance.ShowPlacementButtons += RefreshButtons;
+        HumanPlayerController.Instance.OnCoinsChanged += ChangeCoinsLeftText;
         finishRoundBtn.onClick.AddListener(() => GameStateController.Instance.PlayerFinishedMoves());
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
-        ChangeCoinsLeftText(PlayerController.Instance.CurrentCoins);
+        ChangeCoinsLeftText(HumanPlayerController.Instance.CurrentCoins);
     }
 
     private void OnDestroy()
     {
         PlayerDoAnything -= RefreshFinishBtnTrue;
 
-        if (PlayerController.Instance != null)
+        if (HumanPlayerController.Instance != null)
         {
-            PlayerController.Instance.ShowPlacementButtons -= RefreshButtons;
-            PlayerController.Instance.OnCoinsChanged -= ChangeCoinsLeftText;
+            HumanPlayerController.Instance.ShowPlacementButtons -= RefreshButtons;
+            HumanPlayerController.Instance.OnCoinsChanged -= ChangeCoinsLeftText;
         }
     }
 
@@ -66,7 +56,7 @@ public class PlayerUI : UnityMethods
     public void RefreshButtons()
     {
         var currentPhase = GameStateController.Instance.CurrentPhase;
-        var player = PlayerController.Instance;
+        var player = HumanPlayerController.Instance;
 
         bool isPlayerTurn = 
             currentPhase == GamePhase.PlayerPlacement || 

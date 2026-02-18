@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : UnityMethods
+public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController>
 {
     public PieceDefinitionSO SelectedPiecePlacement { get; private set; }
 
@@ -46,31 +46,21 @@ public class PlayerController : UnityMethods
     [HideInInspector] public bool CanMove = false;
     [HideInInspector] public bool IsInPromotion = false;
 
-    public static PlayerController Instance { get; private set; }
-
     public override InitPriority Priority => InitPriority.PlayerController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         InitCoins();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
-        PlayerUI.Instance.PlayerDoAnything += DisableMovement;
+        HumanPlayerUI.Instance.PlayerDoAnything += DisableMovement;
     }
 
     private void OnDestroy()
     {
-        PlayerUI.Instance.PlayerDoAnything -= DisableMovement;
+        HumanPlayerUI.Instance.PlayerDoAnything -= DisableMovement;
     }
 
     public void InitCoins()
@@ -82,7 +72,7 @@ public class PlayerController : UnityMethods
     private void DisableMovement()
     {
         CanMove = false;
-        PlayerUI.Instance.RefreshButtons();
+        HumanPlayerUI.Instance.RefreshButtons();
     }
 
     public bool CheckCanDoAnything()
@@ -254,7 +244,7 @@ public class PlayerController : UnityMethods
 
         ShowPlacementButtons?.Invoke();
         SelectPiecePlacement(null);
-        PlayerUI.Instance.PlayerDoAnything?.Invoke();
+        HumanPlayerUI.Instance.PlayerDoAnything?.Invoke();
     }
 
     private bool IsValidPlacement(Tile tile, PieceDefinitionSO def)
@@ -295,7 +285,7 @@ public class PlayerController : UnityMethods
         origin.Clear();
         target.SetPiece(SelectedPiece);
 
-        PlayerUI.Instance.PlayerDoAnything?.Invoke();
+        HumanPlayerUI.Instance.PlayerDoAnything?.Invoke();
 
         SelectedPiece.MoveToTile(target, 0.35f, () =>
         {

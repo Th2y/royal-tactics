@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhaseController : UnityMethods
+public class PhaseController : UnityMethodsSingleton<PhaseController>
 {
     [SerializeField] private Button playAgainFinishBtn;
     [SerializeField] private Button nextPhaseFinishBtn;
@@ -14,20 +14,10 @@ public class PhaseController : UnityMethods
 
     public PhaseSO CurrentPhase => phasesById[currentPhaseId];
 
-    public static PhaseController Instance;
-
     public override InitPriority Priority => InitPriority.PhaseController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         BuildDictionary();
 
         currentPhaseId = 1;
@@ -35,7 +25,7 @@ public class PhaseController : UnityMethods
         nextPhaseFinishBtn.onClick.AddListener(() => NextPhase());
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
         StartPhase(currentPhaseId);
     }
@@ -106,7 +96,7 @@ public class PhaseController : UnityMethods
     {
         UIGameController.Instance.SetInitialValues();
         BoardController.Instance.ClearBoard();
-        PlayerController.Instance.InitCoins();
+        HumanPlayerController.Instance.InitCoins();
         AIController.Instance.InitCoins();
         GameStateController.Instance.SetPhase(GamePhase.OpponentPlacement);
     }

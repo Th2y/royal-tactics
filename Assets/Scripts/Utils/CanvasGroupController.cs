@@ -13,15 +13,17 @@ public class CanvasGroupController : UnityMethods
 
     private CanvasGroup cg;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
         if (cg == null) cg = GetComponent<CanvasGroup>();
     }
 
-    public override void InitStart() { }
+    public override void OnInitStart() { }
 
     public void SetActive(bool active)
     {
+        if (cg == null) cg = GetComponent<CanvasGroup>();
+
         cg.alpha = active ? 1 : 0;
         cg.interactable = active;
         cg.blocksRaycasts = active;

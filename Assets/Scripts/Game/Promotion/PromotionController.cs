@@ -1,28 +1,20 @@
 using UnityEngine;
 
-public class PromotionController : UnityMethods
+public class PromotionController : UnityMethodsSingleton<PromotionController>
 {
     [Header("Promotion Options")]
     [SerializeField] private PromotionUI promotionUI;
 
     private Pawn pendingPawn;
 
-    public static PromotionController Instance { get; private set; }
-
     public override InitPriority Priority => InitPriority.PromotionController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        Instance = this;
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
 
     }
@@ -58,8 +50,8 @@ public class PromotionController : UnityMethods
 
         if (isFromPlayer)
         {
-            PlayerController.Instance.OnPromote(pawn, newPiece);
-            PlayerUI.Instance.PlayerDoAnything?.Invoke();
+            HumanPlayerController.Instance.OnPromote(pawn, newPiece);
+            HumanPlayerUI.Instance.PlayerDoAnything?.Invoke();
         }
         else
         {
@@ -74,16 +66,16 @@ public class PromotionController : UnityMethods
     #region PLAYER
     private void OpenPromotionUI()
     {
-        PlayerController.Instance.IsInPromotion = true;
-        PlayerUI.Instance.RefreshButtons();
+        HumanPlayerController.Instance.IsInPromotion = true;
+        HumanPlayerUI.Instance.RefreshButtons();
 
         promotionUI.ShowAvailableList(PhaseController.Instance.CurrentPhase.availablePieces);
     }
 
     public void OnPlayerSelected(PieceDefinitionSO def)
     {
-        PlayerController.Instance.IsInPromotion = false;
-        PlayerUI.Instance.RefreshButtons();
+        HumanPlayerController.Instance.IsInPromotion = false;
+        HumanPlayerUI.Instance.RefreshButtons();
 
         promotionUI.HideAvailableList();
         Promote(pendingPawn, def);

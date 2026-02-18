@@ -9,41 +9,31 @@ public enum GameScreen
     Pause
 }
 
-public class UIGameController : UnityMethods
+public class UIGameController : UnityMethodsSingleton<UIGameController>
 {
-    public static UIGameController Instance;
-
     public override InitPriority Priority => InitPriority.UIController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         SetScreens();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
-        PlayerController.Instance.OnTotalCoinsChanged += SetPlayerTotalPoints;
+        HumanPlayerController.Instance.OnTotalCoinsChanged += SetPlayerTotalPoints;
         AIController.Instance.OnTotalCoinsChanged += SetAITotalPoints;
     }
 
     private void OnDestroy()
     {
-        PlayerController.Instance.OnTotalCoinsChanged -= SetPlayerTotalPoints;
+        HumanPlayerController.Instance.OnTotalCoinsChanged -= SetPlayerTotalPoints;
         AIController.Instance.OnTotalCoinsChanged -= SetAITotalPoints;
     }
 
     public void SetInitialValues()
     {
         SetAdvantagePoints(PhaseController.Instance.CurrentPhase.pointsAdvantageToWin);
-        SetPlayerTotalPoints(PlayerController.Instance.TotalCoins);
+        SetPlayerTotalPoints(HumanPlayerController.Instance.TotalCoins);
         SetAITotalPoints(AIController.Instance.TotalCoins);
     }
 

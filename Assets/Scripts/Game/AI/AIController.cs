@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIController : UnityMethods
+public class AIController : UnityMethodsSingleton<AIController>
 {
     private Tile[] tiles;
 
@@ -26,24 +26,14 @@ public class AIController : UnityMethods
         }
     }
 
-    public static AIController Instance;
-
     public override InitPriority Priority => InitPriority.AIController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         InitCoins();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
         
     }

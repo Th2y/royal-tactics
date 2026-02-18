@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour
     {
         if (!canInteract) return;
 
-        var player = PlayerController.Instance;
+        var player = HumanPlayerController.Instance;
 
         if (player.SelectedPiecePlacement != null)
         {
@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
     private void OnMouseEnter()
     {
         var gameState = GameStateController.Instance.CurrentPhase;
-        var player = PlayerController.Instance;
+        var player = HumanPlayerController.Instance;
 
         bool hasPlacementSelected = player.SelectedPiecePlacement != null;
         bool hasPieceSelected = player.SelectedPiece != null;

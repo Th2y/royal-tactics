@@ -11,13 +11,13 @@ public class SceneButton : UnityMethods
 
     public override InitPriority Priority => InitPriority.ButtonChangeSceneOrExit;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
         if (button == null) button = GetComponent<Button>();
         button.onClick.AddListener(ChangeScene);
     }
 
-    public override void InitStart() { }
+    public override void OnInitStart() { }
 
     public void ChangeScene()
     {

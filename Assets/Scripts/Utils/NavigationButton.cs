@@ -12,7 +12,7 @@ public class NavigationButton : UnityMethods
 
     public override InitPriority Priority => InitPriority.ButtonNavigation;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
         if (button == null) button = GetComponent<Button>();
 
@@ -27,5 +27,5 @@ public class NavigationButton : UnityMethods
         }
     }
 
-    public override void InitStart() { }
+    public override void OnInitStart() { }
 }

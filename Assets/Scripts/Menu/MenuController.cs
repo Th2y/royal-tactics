@@ -8,31 +8,21 @@ public enum MenuScreen
     Tutorial
 }
 
-public class MenuController : UnityMethods
+public class MenuController : UnityMethodsSingleton<MenuController>
 {
     [Header("Change Screen")]
     [SerializeField] private List<CanvasGroupController> screens;
 
     private Dictionary<MenuScreen, CanvasGroupController> _screenMap;
 
-    public static MenuController Instance;
-
     public override InitPriority Priority => InitPriority.UIController;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         SetScreens();
     }
 
-    public override void InitStart()
+    public override void OnInitStart()
     {
 
     }

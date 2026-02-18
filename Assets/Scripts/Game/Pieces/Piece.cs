@@ -33,11 +33,11 @@ public abstract class Piece : MonoBehaviour
         {
             if (isFromPlayer)
             {
-                PlayerController.Instance.OnPieceClicked(this);
+                HumanPlayerController.Instance.OnPieceClicked(this);
             }
             else
             {
-                PlayerController.Instance.OnTileClicked(currentTile);
+                HumanPlayerController.Instance.OnTileClicked(currentTile);
             }
         }
     }
@@ -53,7 +53,7 @@ public abstract class Piece : MonoBehaviour
 
         if (isFromPlayer)
         {
-            var player = PlayerController.Instance;
+            var player = HumanPlayerController.Instance;
 
             CanReceiveClicks =
                 player.CanMove &&
@@ -85,7 +85,7 @@ public abstract class Piece : MonoBehaviour
         this.isFromPlayer = isFromPlayer;
 
         modelColorApplier.isPlayer = isFromPlayer;
-        modelColorApplier.InitAwake();
+        modelColorApplier.OnInitAwake();
     }
 
     public void SetTile(Tile tile)
@@ -139,7 +139,7 @@ public abstract class Piece : MonoBehaviour
     {
         if (isFromPlayer)
         {
-            PlayerController.Instance.RemovePiece(this);
+            HumanPlayerController.Instance.RemovePiece(this);
         }
         else
         {

@@ -8,13 +8,13 @@ public class ExitButton : UnityMethods
 
     public override InitPriority Priority => InitPriority.ButtonChangeSceneOrExit;
 
-    public override void InitAwake()
+    public override void OnInitAwake()
     {
         if (button == null) button = GetComponent<Button>();
         button.onClick.AddListener(ExitGame);
     }
 
-    public override void InitStart(){}
+    public override void OnInitStart(){}
 
     public void ExitGame()
     {
