@@ -183,6 +183,14 @@ public class AIController : UnityMethods
 
         return false;
     }
+
+    public void OnPromote(Piece old, Piece newPiece)
+    {
+        PlacedPieces.Add(newPiece);
+        PlacedPieces.Remove(old);
+
+        CalculateTotalCoins();
+    }
     #endregion
 
     #region Move
@@ -349,16 +357,26 @@ public class AIController : UnityMethods
     }
     #endregion
 
+    private void CalculateTotalCoins()
+    {
+        TotalCoins = 0;
+
+        foreach (var p in PlacedPieces)
+        {
+            TotalCoins += p.Definition.cost;
+        }
+        TotalCoins += currentCoins;
+    }
+
     public void RemovePiece(Piece piece)
     {
         PlacedPieces.Remove(piece);
-        TotalCoins -= piece.Definition.cost;
+        CalculateTotalCoins();
     }
 
     private void EarnPointsForCapturing(PieceDefinitionSO def)
     {
-        int value = def.cost;
-        currentCoins += value;
-        TotalCoins += value;
+        currentCoins += def.cost;
+        CalculateTotalCoins();
     }
 }

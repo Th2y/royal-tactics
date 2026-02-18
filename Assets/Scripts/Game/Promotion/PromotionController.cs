@@ -58,10 +58,12 @@ public class PromotionController : UnityMethods
 
         if (isFromPlayer)
         {
+            PlayerController.Instance.OnPromote(pawn, newPiece);
             PlayerUI.Instance.PlayerDoAnything?.Invoke();
         }
         else
         {
+            AIController.Instance.OnPromote(pawn, newPiece);
             GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
         }
 
