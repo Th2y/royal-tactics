@@ -11,6 +11,7 @@ public class ModelColorApplier : UnityMethods
     private MaterialPropertyBlock block;
 
     public Color DefaultColor { get; private set; }
+    public Color LastColor { get; private set; }
 
     public override InitPriority Priority => InitPriority.ModelColorApplier;
 
@@ -31,8 +32,10 @@ public class ModelColorApplier : UnityMethods
         
     }
 
-    public void SetColor(Color color)
+    public void SetColor(Color color, bool changeLastColor = true)
     {
+        if (changeLastColor) LastColor = color;
+
         foreach (var r in renderers)
         {
             r.GetPropertyBlock(block);

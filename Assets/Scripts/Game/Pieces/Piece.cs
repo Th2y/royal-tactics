@@ -25,12 +25,57 @@ public abstract class Piece : MonoBehaviour
     public Tile currentTile {  get; private set; }
     public bool isFromPlayer {  get; private set; }
 
+    public bool CanReceiveClicks = true;
+
     private void OnMouseDown()
     {
+        if (CanReceiveClicks)
+        {
+            if (isFromPlayer)
+            {
+                PlayerController.Instance.OnPieceClicked(this);
+            }
+            else
+            {
+                PlayerController.Instance.OnTileClicked(currentTile);
+            }
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        CanReceiveClicks = false;
+
+        var gameState = GameStateController.Instance.CurrentPhase;
+
+        if (gameState != GamePhase.PlayerPlacement && gameState != GamePhase.PlayerTurn)
+            return;
+
         if (isFromPlayer)
         {
-            PlayerController.Instance.OnPieceClicked(this);
+            var player = PlayerController.Instance;
+
+            CanReceiveClicks =
+                player.CanMove &&
+                player.SelectedPiece == null &&
+                player.SelectedPiecePlacement == null;
         }
+        else
+        {
+            CanReceiveClicks = currentTile.IsValid;
+        }
+
+        if (CanReceiveClicks)
+        {
+            SetPressed(true);
+            if (currentTile  != null) currentTile.SetPressed(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        SetPressed(false);
+        if (currentTile != null) currentTile.SetPressed(false);
     }
 
     public virtual void Initialize(PieceDefinitionSO def, bool isFromPlayer)
@@ -58,6 +103,18 @@ public abstract class Piece : MonoBehaviour
     public void SetSelected(bool selected)
     {
         modelColorApplier.SetColor(selected ? Color.green : modelColorApplier.DefaultColor);
+    }
+
+    public void SetPressed(bool pressed)
+    {
+        if (pressed)
+        {
+            modelColorApplier.SetColor(Color.yellow, false);
+        }
+        else
+        {
+            modelColorApplier.SetColor(modelColorApplier.LastColor);
+        }
     }
 
     public void MoveToTile(Tile tile, float duration, System.Action onComplete = null)

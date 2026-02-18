@@ -66,19 +66,21 @@ public class PlayerUI : UnityMethods
     public void RefreshButtons()
     {
         var currentPhase = GameStateController.Instance.CurrentPhase;
+        var player = PlayerController.Instance;
 
         bool isPlayerTurn = 
             currentPhase == GamePhase.PlayerPlacement || 
-            (currentPhase == GamePhase.PlayerTurn && PlayerController.Instance.CanMove);
+            (currentPhase == GamePhase.PlayerTurn && player.CanMove);
 
         foreach (var btn in buttons)
         {
-            bool canPlace = isPlayerTurn && PlayerController.Instance.HaveEnoughCoinsToPlace(btn.Definition);
+            bool canPlace = isPlayerTurn && player.HaveEnoughCoinsToPlace(btn.Definition);
             btn.SetInteractable(canPlace);
         }
 
-        finishRoundBtn.interactable = !PlayerController.Instance.CanMove && 
-           currentPhase == GamePhase.PlayerPlacement || currentPhase == GamePhase.PlayerTurn;
+        finishRoundBtn.interactable = 
+            (currentPhase == GamePhase.PlayerTurn && !player.CanMove) ||
+            (currentPhase == GamePhase.PlayerPlacement && player.CurrentCoins <= 1);
     }
 
     private void RefreshFinishBtnTrue()

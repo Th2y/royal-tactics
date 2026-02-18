@@ -9,45 +9,87 @@ public class Tile : MonoBehaviour
     public bool IsOccupied => Piece != null;
 
     private Color defaultColor;
+    private Color lastColor;
+    public bool IsValid { get; private set; } = false;
+    private bool canInteract = false;
 
     private void OnMouseDown()
     {
-        if (GameStateController.Instance.CurrentPhase == GamePhase.PlayerPlacement)
-        {
-            var selected = PlayerController.Instance.SelectedPiecePlacement;
-            if (selected == null) return;
+        if (!canInteract) return;
 
-            PlayerController.Instance.TryPlacePiece(this, selected);
+        var player = PlayerController.Instance;
+
+        if (player.SelectedPiecePlacement != null)
+        {
+            player.TryPlacePiece(this);
         }
-        else if(GameStateController.Instance.CurrentPhase == GamePhase.PlayerTurn)
+        else
         {
-            if(PlayerController.Instance.SelectedPiecePlacement == null)
-            {
-                PlayerController.Instance.OnTileClicked(this);
-            }
-            else
-            {
-                var selected = PlayerController.Instance.SelectedPiecePlacement;
-                if (selected == null) return;
-
-                PlayerController.Instance.TryPlacePiece(this, selected);
-            }
+            player.OnTileClicked(this);
         }
     }
 
-    public void Init(Color defaultColor)
+    private void OnMouseEnter()
     {
-        this.defaultColor = defaultColor;
+        var gameState = GameStateController.Instance.CurrentPhase;
+        var player = PlayerController.Instance;
+
+        bool hasPlacementSelected = player.SelectedPiecePlacement != null;
+        bool hasPieceSelected = player.SelectedPiece != null;
+
+        canInteract =
+            (gameState == GamePhase.PlayerTurn &&
+                (
+                    (hasPieceSelected && IsValid) ||
+                    hasPlacementSelected
+                )
+            )
+            ||
+            (gameState == GamePhase.PlayerPlacement &&
+                !IsOccupied &&
+                hasPlacementSelected);
+
+        if (canInteract)
+        {
+            if (player.SelectedPiecePlacement != null && player.SelectedPiecePlacement.type == PieceType.Pawn)
+            {
+                canInteract = pos.y >= 1 && pos.y <= 4;
+            }
+        }
+
+        if (canInteract)
+        {
+            SetPressed(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        SetPressed(false);
+    }
+
+    public void Init(Color color)
+    {
+        defaultColor = color;
+        lastColor = color;
+    }
+
+    public void SetPressed(bool pressed)
+    {
+        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, pressed ? Color.yellow : lastColor);
     }
 
     public void SetOccupiedMarker(bool occupied)
     {
-        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, occupied ? Color.red : defaultColor);
+        lastColor = occupied ? Color.red : defaultColor;
+        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, lastColor);
     }
 
-    public void SetHighlight(bool active)
+    public void SetIsValid(bool valid)
     {
-        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, active ? Color.green : defaultColor);
+        IsValid = valid;
+        lastColor = valid ? Color.green : defaultColor;
+        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, lastColor);
     }
 
     public void SetPiece(Piece newPiece)
@@ -69,6 +111,6 @@ public class Tile : MonoBehaviour
             Piece = null;
         }
 
-        SetHighlight(false);
+        SetIsValid(false);
     }
 }

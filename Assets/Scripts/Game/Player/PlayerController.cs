@@ -40,7 +40,7 @@ public class PlayerController : UnityMethods
         }
     }
 
-    private Piece selectedPiece;
+    public Piece SelectedPiece { get; private set; }
     private List<Tile> highlightedTiles = new();
 
     [HideInInspector] public bool CanMove = false;
@@ -107,27 +107,27 @@ public class PlayerController : UnityMethods
 
         ClearSelection();
 
-        selectedPiece = piece;
-        selectedPiece.SetSelected(true);
+        SelectedPiece = piece;
+        SelectedPiece.SetSelected(true);
 
         HighlightValidTiles(piece);
     }
 
     private void ClearSelection()
     {
-        if (selectedPiece != null)
-            selectedPiece.SetSelected(false);
+        if (SelectedPiece != null)
+            SelectedPiece.SetSelected(false);
 
         foreach (Tile tile in highlightedTiles)
-            tile.SetHighlight(false);
+            tile.SetIsValid(false);
 
         highlightedTiles.Clear();
-        selectedPiece = null;
+        SelectedPiece = null;
     }
 
     public void OnTileClicked(Tile tile)
     {
-        if (selectedPiece == null)
+        if (SelectedPiece == null)
             return;
 
         if (!highlightedTiles.Contains(tile))
@@ -138,9 +138,11 @@ public class PlayerController : UnityMethods
 
     private void HighlightValidTiles(Piece piece)
     {
+        highlightedTiles.Clear();
+
         foreach (Tile tile in piece.GetValidMoves(BoardController.Instance))
         {
-            tile.SetHighlight(true);
+            tile.SetIsValid(true);
             highlightedTiles.Add(tile);
         }
 
@@ -148,36 +150,10 @@ public class PlayerController : UnityMethods
         {
             if (!highlightedTiles.Contains(tile))
             {
-                tile.SetHighlight(true);
+                tile.SetIsValid(true);
                 highlightedTiles.Add(tile);
             }
         }
-    }
-
-    private void ExecuteMove(Tile target)
-    {
-        Tile origin = selectedPiece.currentTile;
-
-        if (target.IsOccupied)
-        {
-            EarnPointsForCapturing(target.Piece.Definition);
-            target.Piece.OnCaptured();
-        }
-
-        origin.Clear();
-        target.SetPiece(selectedPiece);
-
-        PlayerUI.Instance.PlayerDoAnything?.Invoke();
-
-        selectedPiece.MoveToTile(target, 0.35f, () =>
-        {
-            if (selectedPiece is Pawn pawn && pawn.CanPromote)
-            {
-                PromotionController.Instance.RequestPromotion(pawn);
-            }
-        });
-
-        ClearSelection();
     }
 
     #region Capture
@@ -242,21 +218,19 @@ public class PlayerController : UnityMethods
         ClearSelection();
     }
 
-    public void TryPlacePiece(Tile tile, PieceDefinitionSO def)
+    public void TryPlacePiece(Tile tile)
     {
-        if (!GameStateController.Instance.IsPlayerTurn)
-            return;
+        if (tile == null || SelectedPiecePlacement == null) return;
 
-        if (tile.IsOccupied)
-            return;
+        if (!GameStateController.Instance.IsPlayerTurn) return;
 
-        if (!HaveEnoughCoinsToPlace(def))
-            return;
+        if (tile.IsOccupied) return;
 
-        if (!IsValidPlacement(tile, def))
-            return;
+        if (!HaveEnoughCoinsToPlace(SelectedPiecePlacement)) return;
 
-        PlacePiece(tile, def);
+        if (!IsValidPlacement(tile, SelectedPiecePlacement)) return;
+
+        PlacePiece(tile, SelectedPiecePlacement);
     }
 
     private void PlacePiece(Tile tile, PieceDefinitionSO def)
@@ -297,6 +271,32 @@ public class PlayerController : UnityMethods
         }
 
         return false;
+    }
+
+    private void ExecuteMove(Tile target)
+    {
+        Tile origin = SelectedPiece.currentTile;
+
+        if (target.IsOccupied)
+        {
+            EarnPointsForCapturing(target.Piece.Definition);
+            target.Piece.OnCaptured();
+        }
+
+        origin.Clear();
+        target.SetPiece(SelectedPiece);
+
+        PlayerUI.Instance.PlayerDoAnything?.Invoke();
+
+        SelectedPiece.MoveToTile(target, 0.35f, () =>
+        {
+            if (SelectedPiece is Pawn pawn && pawn.CanPromote)
+            {
+                PromotionController.Instance.RequestPromotion(pawn);
+            }
+        });
+
+        ClearSelection();
     }
     #endregion
 
