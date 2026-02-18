@@ -60,4 +60,15 @@ public class Tile : MonoBehaviour
     {
         Piece = null;
     }
+
+    public void ClearAndDestroyPiece()
+    {
+        if (Piece != null)
+        {
+            Destroy(Piece.gameObject);
+            Piece = null;
+        }
+
+        SetHighlight(false);
+    }
 }

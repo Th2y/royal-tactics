@@ -72,7 +72,7 @@ public class PromotionController : UnityMethods
     #region PLAYER
     private void OpenPromotionUI()
     {
-        promotionUI.ShowAvailableList(GameStateController.Instance.PhaseSO.availablePieces);
+        promotionUI.ShowAvailableList(PhaseController.Instance.CurrentPhase.availablePieces);
     }
 
     public void OnPlayerSelected(PieceDefinitionSO def)
@@ -95,14 +95,14 @@ public class PromotionController : UnityMethods
 
         foreach (PieceType type in priority)
         {
-            PieceDefinitionSO def = GameStateController.Instance.PhaseSO.availablePieces.Find(p => p.type == type);
+            PieceDefinitionSO def = PhaseController.Instance.CurrentPhase.availablePieces.Find(p => p.type == type);
 
             if (def != null) return def;
         }
 
-        return GameStateController.Instance.PhaseSO.availablePieces[0].type != PieceType.Pawn ? 
-            GameStateController.Instance.PhaseSO.availablePieces[0] : 
-            GameStateController.Instance.PhaseSO.availablePieces[1];
+        return PhaseController.Instance.CurrentPhase.availablePieces[0].type != PieceType.Pawn ? 
+            PhaseController.Instance.CurrentPhase.availablePieces[0] : 
+            PhaseController.Instance.CurrentPhase.availablePieces[1];
     }
     #endregion
 }

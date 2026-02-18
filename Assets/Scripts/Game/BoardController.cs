@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class BoardController : UnityMethods
@@ -72,5 +73,13 @@ public class BoardController : UnityMethods
         tile.SetPiece(piece);
 
         return true;
+    }
+
+    public void ClearBoard()
+    {
+        foreach (Tile tile in tiles)
+        {
+            tile.ClearAndDestroyPiece();
+        }
     }
 }

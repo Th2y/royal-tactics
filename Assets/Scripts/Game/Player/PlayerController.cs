@@ -59,8 +59,7 @@ public class PlayerController : UnityMethods
 
         Instance = this;
 
-        CurrentCoins = GameStateController.Instance.PhaseSO.startingPoints;
-        TotalCoins = CurrentCoins;
+        InitCoins();
     }
 
     public override void InitStart()
@@ -71,6 +70,12 @@ public class PlayerController : UnityMethods
     private void OnDestroy()
     {
         PlayerUI.Instance.PlayerDoAnything -= DisableMovement;
+    }
+
+    public void InitCoins()
+    {
+        CurrentCoins = PhaseController.Instance.CurrentPhase.startingPoints;
+        TotalCoins = CurrentCoins;
     }
 
     private void DisableMovement()
@@ -212,7 +217,7 @@ public class PlayerController : UnityMethods
         if (freeTiles.Count == 0)
             return false;
 
-        foreach (PieceDefinitionSO def in GameStateController.Instance.PhaseSO.availablePieces)
+        foreach (PieceDefinitionSO def in PhaseController.Instance.CurrentPhase.availablePieces)
         {
             if (!HaveEnoughCoinsToPlace(def))
                 continue;

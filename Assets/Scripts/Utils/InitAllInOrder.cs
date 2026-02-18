@@ -12,9 +12,10 @@ public enum InitPriority
     UIController = 6,
 
     // ========= CORE GAME INFRA =========
-    BoardController = 11,
-    BoardSelectionController = 12,
-    PromotionController = 13,
+    PhaseController = 11,
+    BoardController = 12,
+    BoardSelectionController = 13,
+    PromotionController = 14,
 
     // ========= INIT GAME =========
     GameStateController = 20,

@@ -38,7 +38,7 @@ public class UIGameController : UnityMethods
     {
         PlayerController.Instance.OnTotalCoinsChanged -= SetPlayerTotalPoints;
         AIController.Instance.OnTotalCoinsChanged -= SetAITotalPoints;
-        SetAdvantagePoints(GameStateController.Instance.PhaseSO.pointsAdvantageToWin);
+        SetAdvantagePoints(PhaseController.Instance.CurrentPhase.pointsAdvantageToWin);
     }
 
     #region Game Screen

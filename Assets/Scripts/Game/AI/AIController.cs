@@ -39,11 +39,19 @@ public class AIController : UnityMethods
         }
 
         Instance = this;
+
+        InitCoins();
     }
 
     public override void InitStart()
     {
         
+    }
+
+    public void InitCoins()
+    {
+        currentCoins = PhaseController.Instance.CurrentPhase.startingPoints;
+        TotalCoins = currentCoins;
     }
 
     public void Play()
@@ -242,9 +250,6 @@ public class AIController : UnityMethods
     #region Placement
     public void StartPlacement()
     {
-        currentCoins = GameStateController.Instance.PhaseSO.startingPoints;
-        TotalCoins = currentCoins;
-
         List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
 
         while (currentCoins > 0 && freeTiles.Count > 0)
@@ -265,7 +270,7 @@ public class AIController : UnityMethods
 
     private PieceDefinitionSO ChoosePiece()
     {
-        List<PieceDefinitionSO> possible = GameStateController.Instance.PhaseSO.availablePieces.FindAll(p => p.cost <= currentCoins);
+        List<PieceDefinitionSO> possible = PhaseController.Instance.CurrentPhase.availablePieces.FindAll(p => p.cost <= currentCoins);
 
         if (possible.Count == 0)
             return null;

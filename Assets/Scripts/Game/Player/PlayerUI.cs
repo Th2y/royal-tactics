@@ -55,7 +55,7 @@ public class PlayerUI : UnityMethods
 
     private void BuildUI()
     {
-        foreach (var def in GameStateController.Instance.PhaseSO.availablePieces)
+        foreach (var def in PhaseController.Instance.CurrentPhase.availablePieces)
         {
             var btn = Instantiate(buttonPlacementPrefab, buttonsPlacementParent);
             btn.Setup(def);

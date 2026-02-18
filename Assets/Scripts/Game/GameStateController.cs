@@ -12,9 +12,6 @@ public enum GamePhase
 
 public class GameStateController : UnityMethods
 {
-    [SerializeField] private PhaseSO phaseSO;
-    public PhaseSO PhaseSO => phaseSO;
-
     public GamePhase CurrentPhase { get; private set; }
 
     public bool IsPlayerTurn =>
@@ -48,6 +45,7 @@ public class GameStateController : UnityMethods
             bool playerWin = CheckPlayerWin();
             if (playerWin)
             {
+                PhaseController.Instance.ShowNextPhaseButton(true);
                 SetPhase(GamePhase.GameOverWin);
                 return;
             }
@@ -55,6 +53,7 @@ public class GameStateController : UnityMethods
             bool aiWin = CheckAIWin();
             if (aiWin)
             {
+                PhaseController.Instance.ShowNextPhaseButton(false);
                 SetPhase(GamePhase.GameOverLost);
                 return;
             }
@@ -67,6 +66,7 @@ public class GameStateController : UnityMethods
         switch (newPhase)
         {
             case GamePhase.OpponentPlacement:
+                UIGameController.Instance.ShowScreen(GameScreen.Play);
                 PlayerUI.Instance.RefreshButtons();
                 AIController.Instance.StartPlacement();
                 break;
@@ -105,7 +105,7 @@ public class GameStateController : UnityMethods
 
     private bool CheckPlayerWin()
     {
-        if (PlayerController.Instance.TotalCoins >= AIController.Instance.TotalCoins + phaseSO.pointsAdvantageToWin)
+        if (PlayerController.Instance.TotalCoins >= AIController.Instance.TotalCoins + PhaseController.Instance.CurrentPhase.pointsAdvantageToWin)
         {
             return true;
         }
@@ -119,7 +119,7 @@ public class GameStateController : UnityMethods
 
     private bool CheckAIWin()
     {
-        if (AIController.Instance.TotalCoins >= PlayerController.Instance.TotalCoins + phaseSO.pointsAdvantageToWin)
+        if (AIController.Instance.TotalCoins >= PlayerController.Instance.TotalCoins + PhaseController.Instance.CurrentPhase.pointsAdvantageToWin)
         {
             return true;
         }
