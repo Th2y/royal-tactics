@@ -81,6 +81,7 @@ public class PlayerController : UnityMethods
     private void DisableMovement()
     {
         CanMove = false;
+        PlayerUI.Instance.RefreshButtons();
     }
 
     public bool CheckCanDoAnything()
@@ -166,15 +167,13 @@ public class PlayerController : UnityMethods
         origin.Clear();
         target.SetPiece(selectedPiece);
 
+        PlayerUI.Instance.PlayerDoAnything?.Invoke();
+
         selectedPiece.MoveToTile(target, 0.35f, () =>
         {
             if (selectedPiece is Pawn pawn && pawn.CanPromote)
             {
                 PromotionController.Instance.RequestPromotion(pawn);
-            }
-            else
-            {
-                PlayerUI.Instance.PlayerDoAnything?.Invoke();
             }
         });
 

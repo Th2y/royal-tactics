@@ -65,9 +65,11 @@ public class PlayerUI : UnityMethods
 
     public void RefreshButtons()
     {
+        var currentPhase = GameStateController.Instance.CurrentPhase;
+
         bool isPlayerTurn = 
-            GameStateController.Instance.CurrentPhase == GamePhase.PlayerPlacement || 
-            (GameStateController.Instance.CurrentPhase == GamePhase.PlayerTurn && PlayerController.Instance.CanMove);
+            currentPhase == GamePhase.PlayerPlacement || 
+            (currentPhase == GamePhase.PlayerTurn && PlayerController.Instance.CanMove);
 
         foreach (var btn in buttons)
         {
@@ -75,7 +77,8 @@ public class PlayerUI : UnityMethods
             btn.SetInteractable(canPlace);
         }
 
-        if (!isPlayerTurn) finishRoundBtn.interactable = false;
+        finishRoundBtn.interactable = !PlayerController.Instance.CanMove && 
+           currentPhase == GamePhase.PlayerPlacement || currentPhase == GamePhase.PlayerTurn;
     }
 
     private void RefreshFinishBtnTrue()
