@@ -24,7 +24,21 @@ public class PlayerController : UnityMethods
             OnCoinsChanged?.Invoke(currentCoins);
         }
     }
-    public int TotalCoins {  get; private set; }
+    public event Action<int> OnTotalCoinsChanged;
+
+    private int totalCoins;
+    public int TotalCoins
+    {
+        get => totalCoins;
+        set
+        {
+            if (totalCoins == value)
+                return;
+
+            totalCoins = value;
+            OnTotalCoinsChanged?.Invoke(totalCoins);
+        }
+    }
 
     private Piece selectedPiece;
     private List<Tile> highlightedTiles = new();
@@ -284,11 +298,12 @@ public class PlayerController : UnityMethods
     public void RemovePiece(Piece piece)
     {
         placedPieces.Remove(piece);
+        TotalCoins -= piece.Definition.cost;
     }
 
     private void EarnPointsForCapturing(PieceDefinitionSO def)
     {
-        int value = def.cost - 1;
+        int value = def.cost;
         CurrentCoins += value;
         TotalCoins += value;
     }

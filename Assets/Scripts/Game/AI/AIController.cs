@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,21 @@ public class AIController : UnityMethods
     public List<Piece> PlacedPieces { get; private set; } = new();
 
     private int currentCoins;
-    public int TotalCoins { get; private set; }
+    public event Action<int> OnTotalCoinsChanged;
+
+    private int totalCoins;
+    public int TotalCoins
+    {
+        get => totalCoins;
+        set
+        {
+            if (totalCoins == value)
+                return;
+
+            totalCoins = value;
+            OnTotalCoinsChanged?.Invoke(totalCoins);
+        }
+    }
 
     public static AIController Instance;
 
@@ -125,7 +140,7 @@ public class AIController : UnityMethods
             .Where(c => c.value == bestValue)
             .ToList();
 
-        var chosen = bestCaptures[Random.Range(0, bestCaptures.Count)];
+        var chosen = bestCaptures[UnityEngine.Random.Range(0, bestCaptures.Count)];
 
         ExecuteMove(chosen.piece, chosen.target);
 
@@ -193,7 +208,7 @@ public class AIController : UnityMethods
         if (moves.Count == 0)
             return;
 
-        var chosen = moves[Random.Range(0, moves.Count)];
+        var chosen = moves[UnityEngine.Random.Range(0, moves.Count)];
         ExecuteMove(chosen.piece, chosen.tile);
     }
 
@@ -255,7 +270,7 @@ public class AIController : UnityMethods
         if (possible.Count == 0)
             return null;
 
-        return possible[Random.Range(0, possible.Count)];
+        return possible[UnityEngine.Random.Range(0, possible.Count)];
     }
 
     private Tile ChooseTile(List<Tile> freeTiles, PieceDefinitionSO piece)
@@ -267,12 +282,12 @@ public class AIController : UnityMethods
             );
 
             if (pawnTiles.Count > 0)
-                return pawnTiles[Random.Range(0, pawnTiles.Count)];
+                return pawnTiles[UnityEngine.Random.Range(0, pawnTiles.Count)];
             else
                 return null;
         }
 
-        return freeTiles[Random.Range(0, freeTiles.Count)];
+        return freeTiles[UnityEngine.Random.Range(0, freeTiles.Count)];
     }
 
     private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool show)
@@ -332,11 +347,12 @@ public class AIController : UnityMethods
     public void RemovePiece(Piece piece)
     {
         PlacedPieces.Remove(piece);
+        TotalCoins -= piece.Definition.cost;
     }
 
     private void EarnPointsForCapturing(PieceDefinitionSO def)
     {
-        int value = def.cost - 1;
+        int value = def.cost;
         currentCoins += value;
         TotalCoins += value;
     }

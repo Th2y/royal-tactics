@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum GameScreen
 {
@@ -31,7 +30,15 @@ public class UIGameController : UnityMethods
 
     public override void InitStart()
     {
+        PlayerController.Instance.OnTotalCoinsChanged += SetPlayerTotalPoints;
+        AIController.Instance.OnTotalCoinsChanged += SetAITotalPoints;
+    }
 
+    private void OnDestroy()
+    {
+        PlayerController.Instance.OnTotalCoinsChanged -= SetPlayerTotalPoints;
+        AIController.Instance.OnTotalCoinsChanged -= SetAITotalPoints;
+        SetAdvantagePoints(GameStateController.Instance.PhaseSO.pointsAdvantageToWin);
     }
 
     #region Game Screen
@@ -96,6 +103,31 @@ public class UIGameController : UnityMethods
                 ShowScreen(GameScreen.Finish);
                 break;
         }
+    }
+    #endregion
+
+    #region Total Points
+    [Header("Total Points")]
+    [SerializeField] private TextMeshProUGUI advantagePointsText;
+    [SerializeField] private TextMeshProUGUI playerTotalPointsText;
+    [SerializeField] private TextMeshProUGUI aiTotalPointsText;
+
+    [HideInInspector]
+    private void SetAdvantagePoints(int points)
+    {
+        aiTotalPointsText.text = "Vantagem necessária: " + points;
+    }
+
+    [HideInInspector]
+    public void SetPlayerTotalPoints(int totalPoints)
+    {
+        playerTotalPointsText.text = "Você: " + totalPoints;
+    }
+
+    [HideInInspector]
+    public void SetAITotalPoints(int totalPoints)
+    {
+        aiTotalPointsText.text = "Oponente: " + totalPoints;
     }
     #endregion
 }
