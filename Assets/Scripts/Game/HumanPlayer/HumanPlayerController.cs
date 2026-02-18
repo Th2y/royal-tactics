@@ -2,16 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController>
+public class HumanPlayerController : BasePlayerController<HumanPlayerController>
 {
     public PieceDefinitionSO SelectedPiecePlacement { get; private set; }
 
     public event Action ShowPlacementButtons;
-    private List<Piece> placedPieces = new();
 
     public event Action<int> OnCoinsChanged;
 
-    private int currentCoins;
     public int CurrentCoins
     {
         get => currentCoins;
@@ -24,21 +22,6 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
             OnCoinsChanged?.Invoke(currentCoins);
         }
     }
-    public event Action<int> OnTotalCoinsChanged;
-
-    private int totalCoins;
-    public int TotalCoins
-    {
-        get => totalCoins;
-        set
-        {
-            if (totalCoins == value)
-                return;
-
-            totalCoins = value;
-            OnTotalCoinsChanged?.Invoke(totalCoins);
-        }
-    }
 
     public Piece SelectedPiece { get; private set; }
     private List<Tile> highlightedTiles = new();
@@ -46,15 +29,15 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
     [HideInInspector] public bool CanMove = false;
     [HideInInspector] public bool IsInPromotion = false;
 
-    public override InitPriority Priority => InitPriority.PlayerController;
-
+    #region Unity Default Methods
     public override void OnInitAwake()
     {
-        InitCoins();
+        base.OnInitAwake();
     }
 
     public override void OnInitStart()
     {
+        base.OnInitStart();
         HumanPlayerUI.Instance.PlayerDoAnything += DisableMovement;
     }
 
@@ -62,32 +45,83 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
     {
         HumanPlayerUI.Instance.PlayerDoAnything -= DisableMovement;
     }
+    #endregion
 
-    public void InitCoins()
+    #region Check If Can Do
+    public override bool CheckCanDoAnything()
     {
-        CurrentCoins = PhaseController.Instance.CurrentPhase.startingPoints;
-        TotalCoins = CurrentCoins;
-    }
+        if (CheckCanCapture(null)) return true;
 
-    private void DisableMovement()
-    {
-        CanMove = false;
-        HumanPlayerUI.Instance.RefreshButtons();
-    }
+        if (CheckCanPromote(null)) return true;
 
-    public bool CheckCanDoAnything()
-    {
-        if (CanCapture()) return true;
+        if (CheckCanPlaceAnyPiece()) return true;
 
-        if (CanPromote()) return true;
-
-        if (CanPlaceAnyPiece()) return true;
-
-        if (CheckCanMove()) return true;
+        if (CheckCanMove(null)) return true;
 
         return false;
     }
 
+    protected override bool CheckCanCapture(List<Piece> pieces)
+    {
+        foreach (Piece piece in PlacedPieces)
+        {
+            if (piece == null) continue;
+
+            if (piece.GetValidCaptures(BoardController.Instance).Count > 0)
+                return true;
+        }
+
+        return false;
+    }
+
+    protected override bool CheckCanPromote(List<Piece> pieces)
+    {
+        foreach (Piece piece in PlacedPieces)
+        {
+            if (piece is Pawn pawn && pawn.CanPromote)
+                return true;
+        }
+
+        return false;
+    }
+
+    protected override bool CheckCanPlaceAnyPiece()
+    {
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        if (freeTiles.Count == 0)
+            return false;
+
+        foreach (PieceDefinitionSO def in PhaseController.Instance.CurrentPhase.availablePieces)
+        {
+            if (!HaveEnoughCoinsToPlace(def))
+                continue;
+
+            foreach (Tile tile in freeTiles)
+            {
+                if (IsValidPlacement(tile, def))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected override bool CheckCanMove(List<Piece> pieces)
+    {
+        foreach (Piece piece in PlacedPieces)
+        {
+            if (piece == null) continue;
+
+            if (piece.GetValidMoves(BoardController.Instance).Count > 0)
+                return true;
+        }
+
+        return false;
+    }
+    #endregion
+
+    #region Selection
     public void OnPieceClicked(Piece piece)
     {
         if (!GameStateController.Instance.IsPlayerTurn) return;
@@ -147,74 +181,23 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
         }
     }
 
-    #region Capture
-    private bool CanCapture()
+    public void SelectPiecePlacement(PieceDefinitionSO def)
     {
-        foreach (Piece piece in placedPieces)
-        {
-            if (piece == null) continue;
-
-            if (piece.GetValidCaptures(BoardController.Instance).Count > 0)
-                return true;
-        }
-
-        return false;
+        SelectedPiecePlacement = def;
+        ClearSelection();
     }
     #endregion
 
-    #region Promotion
-    private bool CanPromote()
+    #region Actions
+    private void DisableMovement()
     {
-        foreach (Piece piece in placedPieces)
-        {
-            if (piece is Pawn pawn && pawn.CanPromote)
-                return true;
-        }
-
-        return false;
-    }
-
-    public void OnPromote(Piece old, Piece newPiece)
-    {
-        placedPieces.Add(newPiece);
-        placedPieces.Remove(old);
-
-        CalculateTotalCoins();
-    }
-    #endregion
-
-    #region Placement
-    private bool CanPlaceAnyPiece()
-    {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
-        foreach (PieceDefinitionSO def in PhaseController.Instance.CurrentPhase.availablePieces)
-        {
-            if (!HaveEnoughCoinsToPlace(def))
-                continue;
-
-            foreach (Tile tile in freeTiles)
-            {
-                if (IsValidPlacement(tile, def))
-                    return true;
-            }
-        }
-
-        return false;
+        CanMove = false;
+        HumanPlayerUI.Instance.RefreshButtons();
     }
 
     public bool HaveEnoughCoinsToPlace(PieceDefinitionSO def)
     {
         return CurrentCoins >= def.cost;
-    }
-
-    public void SelectPiecePlacement(PieceDefinitionSO def)
-    {
-        SelectedPiecePlacement = def;
-        ClearSelection();
     }
 
     public void TryPlacePiece(Tile tile)
@@ -234,13 +217,13 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
 
     private void PlacePiece(Tile tile, PieceDefinitionSO def)
     {
-        CurrentCoins -= def.cost;
+        currentCoins -= def.cost;
         DisableMovement();
 
         Piece piece = Instantiate(def.prefab);
         piece.Initialize(def, true);
         tile.SetPiece(piece);
-        placedPieces.Add(piece);
+        PlacedPieces.Add(piece);
 
         ShowPlacementButtons?.Invoke();
         SelectPiecePlacement(null);
@@ -255,21 +238,6 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
         }
 
         return true;
-    }
-    #endregion
-
-    #region Move
-    private bool CheckCanMove()
-    {
-        foreach (Piece piece in placedPieces)
-        {
-            if (piece == null) continue;
-
-            if (piece.GetValidMoves(BoardController.Instance).Count > 0)
-                return true;
-        }
-
-        return false;
     }
 
     private void ExecuteMove(Tile target)
@@ -301,27 +269,4 @@ public class HumanPlayerController : UnityMethodsSingleton<HumanPlayerController
         });
     }
     #endregion
-
-    private void CalculateTotalCoins()
-    {
-        TotalCoins = 0;
-
-        foreach (var p in placedPieces)
-        {
-            TotalCoins += p.Definition.cost;
-        }
-        TotalCoins += currentCoins;
-    }
-
-    public void RemovePiece(Piece piece)
-    {
-        placedPieces.Remove(piece);
-        CalculateTotalCoins();
-    }
-
-    private void EarnPointsForCapturing(PieceDefinitionSO def)
-    {
-        CurrentCoins += def.cost;
-        CalculateTotalCoins();
-    }
 }

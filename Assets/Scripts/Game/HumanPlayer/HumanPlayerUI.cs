@@ -15,7 +15,7 @@ public class HumanPlayerUI : UnityMethodsSingleton<HumanPlayerUI>
 
     public Action PlayerDoAnything;
 
-    public override InitPriority Priority => InitPriority.PlayerUI;
+    public override InitPriority Priority => InitPriority.HumanPlayerUI;
 
     public override void OnInitAwake()
     {

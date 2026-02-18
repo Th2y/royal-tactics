@@ -3,65 +3,107 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIController : UnityMethodsSingleton<AIController>
+public class AIController : BasePlayerController<AIController>
 {
     private Tile[] tiles;
 
-    public List<Piece> PlacedPieces { get; private set; } = new();
-
-    private int currentCoins;
-    public event Action<int> OnTotalCoinsChanged;
-
-    private int totalCoins;
-    public int TotalCoins
-    {
-        get => totalCoins;
-        set
-        {
-            if (totalCoins == value)
-                return;
-
-            totalCoins = value;
-            OnTotalCoinsChanged?.Invoke(totalCoins);
-        }
-    }
-
-    public override InitPriority Priority => InitPriority.AIController;
-
+    #region Unity Default Methods
     public override void OnInitAwake()
     {
-        InitCoins();
+        base.OnInitAwake();
     }
 
     public override void OnInitStart()
     {
-        
+        base.OnInitStart();
     }
+    #endregion
 
-    public void InitCoins()
-    {
-        currentCoins = PhaseController.Instance.CurrentPhase.startingPoints;
-        TotalCoins = currentCoins;
-    }
-
-    public void Play()
-    {
-        Invoke(nameof(PlayTurn), 5f);
-    }
-
-    public bool CheckCanDoAnything()
+    #region Check If Can Do
+    public override bool CheckCanDoAnything()
     {
         List<Piece> aiPieces = GetAIPieces();
 
-        if (CanCapture(aiPieces)) return true;
+        if (CheckCanCapture(aiPieces)) return true;
 
-        if (CanPromote(aiPieces)) return true;
+        if (CheckCanPromote(aiPieces)) return true;
 
-        if (CanPlacePiece()) return true;
+        if (CheckCanPlaceAnyPiece()) return true;
 
-        if (CanMove(aiPieces)) return true;
+        if (CheckCanMove(aiPieces)) return true;
 
         return false;
+    }
+
+    protected override bool CheckCanCapture(List<Piece> pieces)
+    {
+        List<(Piece piece, Tile target, int value)> captures = new();
+
+        foreach (Piece piece in pieces)
+        {
+            foreach (Tile tile in piece.GetValidCaptures(BoardController.Instance))
+            {
+                Piece targetPiece = tile.Piece;
+                int value = targetPiece.Definition.cost;
+
+                captures.Add((piece, tile, value));
+            }
+        }
+
+        return captures.Count > 0;
+    }
+
+    protected override bool CheckCanPromote(List<Piece> pieces)
+    {
+        foreach (Piece piece in pieces)
+        {
+            if (piece is Pawn pawn && pawn.CanPromote)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected override bool CheckCanPlaceAnyPiece()
+    {
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        if (freeTiles.Count == 0)
+            return false;
+
+        PieceDefinitionSO pieceDef = ChoosePiece();
+        if (pieceDef == null)
+            return false;
+
+        Tile tile = ChooseTile(freeTiles, pieceDef);
+        if (tile == null)
+            return false;
+
+        return true;
+    }
+
+    protected override bool CheckCanMove(List<Piece> pieces)
+    {
+        List<(Piece piece, Tile tile)> moves = new();
+
+        foreach (Piece piece in pieces)
+        {
+            foreach (Tile tile in piece.GetValidMoves(BoardController.Instance))
+            {
+                moves.Add((piece, tile));
+            }
+        }
+
+        return moves.Count > 0;
+    }
+    #endregion
+
+    #region Actions
+    public void Play()
+    {
+        Invoke(nameof(PlayTurn), 5f);
     }
 
     private void PlayTurn()
@@ -81,7 +123,7 @@ public class AIController : UnityMethodsSingleton<AIController>
     {
         List<Piece> pieces = new();
 
-        if(tiles == null || tiles.Length <= 0)
+        if (tiles == null || tiles.Length <= 0)
         {
             tiles = FindObjectsByType<Tile>(FindObjectsSortMode.None);
         }
@@ -93,25 +135,6 @@ public class AIController : UnityMethodsSingleton<AIController>
         }
 
         return pieces;
-    }
-
-    #region Capture
-    private bool CanCapture(List<Piece> pieces)
-    {
-        List<(Piece piece, Tile target, int value)> captures = new();
-
-        foreach (Piece piece in pieces)
-        {
-            foreach (Tile tile in piece.GetValidCaptures(BoardController.Instance))
-            {
-                Piece targetPiece = tile.Piece;
-                int value = targetPiece.Definition.cost;
-
-                captures.Add((piece, tile, value));
-            }
-        }
-
-        return captures.Count > 0;
     }
 
     private bool TryCapture(List<Piece> pieces)
@@ -144,21 +167,6 @@ public class AIController : UnityMethodsSingleton<AIController>
 
         return true;
     }
-    #endregion
-
-    #region Promote
-    private bool CanPromote(List<Piece> pieces)
-    {
-        foreach (Piece piece in pieces)
-        {
-            if (piece is Pawn pawn && pawn.CanPromote)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     private bool TryPromote(List<Piece> pieces)
     {
@@ -174,29 +182,25 @@ public class AIController : UnityMethodsSingleton<AIController>
         return false;
     }
 
-    public void OnPromote(Piece old, Piece newPiece)
+    private bool TryPlacementDuringTurn()
     {
-        PlacedPieces.Add(newPiece);
-        PlacedPieces.Remove(old);
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
 
-        CalculateTotalCoins();
-    }
-    #endregion
+        if (freeTiles.Count == 0)
+            return false;
 
-    #region Move
-    private bool CanMove(List<Piece> pieces)
-    {
-        List<(Piece piece, Tile tile)> moves = new();
+        PieceDefinitionSO pieceDef = ChoosePiece();
+        if (pieceDef == null)
+            return false;
 
-        foreach (Piece piece in pieces)
-        {
-            foreach (Tile tile in piece.GetValidMoves(BoardController.Instance))
-            {
-                moves.Add((piece, tile));
-            }
-        }
+        Tile tile = ChooseTile(freeTiles, pieceDef);
+        if (tile == null)
+            return false;
 
-        return moves.Count > 0;
+        PlacePiece(tile, pieceDef, true);
+
+        GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+        return true;
     }
 
     private void DoRandomMove(List<Piece> pieces)
@@ -243,9 +247,7 @@ public class AIController : UnityMethodsSingleton<AIController>
             }
         });
     }
-    #endregion
 
-    #region Placement
     public void StartPlacement()
     {
         List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
@@ -306,67 +308,5 @@ public class AIController : UnityMethodsSingleton<AIController>
 
         return piece;
     }
-
-    private bool CanPlacePiece()
-    {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
-        PieceDefinitionSO pieceDef = ChoosePiece();
-        if (pieceDef == null)
-            return false;
-
-        Tile tile = ChooseTile(freeTiles, pieceDef);
-        if (tile == null)
-            return false;
-
-        return true;
-    }
-
-    private bool TryPlacementDuringTurn()
-    {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
-        PieceDefinitionSO pieceDef = ChoosePiece();
-        if (pieceDef == null)
-            return false;
-
-        Tile tile = ChooseTile(freeTiles, pieceDef);
-        if (tile == null)
-            return false;
-
-        PlacePiece(tile, pieceDef, true);
-
-        GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
-        return true;
-    }
     #endregion
-
-    private void CalculateTotalCoins()
-    {
-        TotalCoins = 0;
-
-        foreach (var p in PlacedPieces)
-        {
-            TotalCoins += p.Definition.cost;
-        }
-        TotalCoins += currentCoins;
-    }
-
-    public void RemovePiece(Piece piece)
-    {
-        PlacedPieces.Remove(piece);
-        CalculateTotalCoins();
-    }
-
-    private void EarnPointsForCapturing(PieceDefinitionSO def)
-    {
-        currentCoins += def.cost;
-        CalculateTotalCoins();
-    }
 }

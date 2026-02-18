@@ -20,8 +20,7 @@ public enum InitPriority
     // ========= INIT GAME =========
     GameStateController = 20,
     PlayerController = 21,
-    PlayerUI = 22,
-    AIController = 23,
+    HumanPlayerUI = 22,
 }
 
 public class InitAllInOrder : MonoBehaviour
