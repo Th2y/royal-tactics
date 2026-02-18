@@ -39,7 +39,7 @@ public class PlayerUI : UnityMethods
 
     public override void InitStart()
     {
-        
+        ChangeCoinsLeftText(PlayerController.Instance.CurrentCoins);
     }
 
     private void OnDestroy()
