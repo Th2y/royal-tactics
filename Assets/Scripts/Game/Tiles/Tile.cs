@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
     public TileName TileName { get; private set; }
     public Vector2Int Position;
 
-    public Piece Piece { get; private set; }
+    public Piece Piece;
     public bool IsOccupied => Piece != null;
 
     private Color defaultColor;

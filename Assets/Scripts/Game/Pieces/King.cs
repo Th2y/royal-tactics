@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class King : Piece
@@ -16,6 +16,7 @@ public class King : Piece
         new(-1, 1)
     };
 
+    #region Movement
     public override List<Tile> GetValidMoves(BoardController board)
     {
         List<Tile> moves = new();
@@ -54,6 +55,60 @@ public class King : Piece
 
         return captures;
     }
+    #endregion
+
+    #region King State
+    public bool IsInCheck(BoardController board)
+    {
+        return IsTileUnderAttack(board, CurrentTile);
+    }
+
+    public bool IsCheckmate(BoardController board)
+    {
+        if (!IsInCheck(board))
+            return false;
+
+        if (GetValidMoves(board).Count > 0)
+            return false;
+
+        if (GetValidCaptures(board).Count > 0)
+            return false;
+
+        foreach (var piece in board.GetAllPieces())
+        {
+            if (piece.IsFromPlayer != IsFromPlayer)
+                continue;
+
+            if (piece == this)
+                continue;
+
+            if (CanPieceSaveKing(board, piece))
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool IsStalemate(BoardController board)
+    {
+        if (IsInCheck(board))
+            return false;
+
+        foreach (var piece in board.GetAllPieces())
+        {
+            if (piece.IsFromPlayer != IsFromPlayer)
+                continue;
+
+            if (piece.GetValidMoves(board).Count > 0)
+                return false;
+
+            if (piece.GetValidCaptures(board).Count > 0)
+                return false;
+        }
+
+        return true;
+    }
+    #endregion
 
     #region Helpers
     private IEnumerable<Tile> GetAdjacentTiles(BoardController board)
@@ -63,10 +118,7 @@ public class King : Piece
 
         foreach (var dir in directions)
         {
-            int x = startX + dir.x;
-            int y = startY + dir.y;
-
-            Tile tile = board.GetTile(x, y);
+            Tile tile = board.GetTile(startX + dir.x, startY + dir.y);
 
             if (tile != null)
                 yield return tile;
@@ -102,7 +154,47 @@ public class King : Piece
         int dx = Mathf.Abs(from.Position.x - to.Position.x);
         int dy = Mathf.Abs(from.Position.y - to.Position.y);
 
-        return dx <= 1 && dy <= 1;
+        return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
+    }
+
+    private bool CanPieceSaveKing(BoardController board, Piece piece)
+    {
+        var moves = piece.GetValidMoves(board);
+        var captures = piece.GetValidCaptures(board);
+
+        foreach (var tile in moves)
+        {
+            if (SimulateMoveAndCheck(board, piece, tile))
+                return true;
+        }
+
+        foreach (var tile in captures)
+        {
+            if (SimulateMoveAndCheck(board, piece, tile))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool SimulateMoveAndCheck(BoardController board, Piece piece, Tile targetTile)
+    {
+        Tile originalTile = piece.CurrentTile;
+        Piece capturedPiece = targetTile.Piece;
+
+        // simulate
+        originalTile.Piece = null;
+        targetTile.Piece = piece;
+        piece.CurrentTile = targetTile;
+
+        bool stillInCheck = IsInCheck(board);
+
+        // rollback
+        piece.CurrentTile = originalTile;
+        originalTile.Piece = piece;
+        targetTile.Piece = capturedPiece;
+
+        return !stillInCheck;
     }
     #endregion
 }

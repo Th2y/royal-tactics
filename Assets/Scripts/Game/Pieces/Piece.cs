@@ -7,7 +7,7 @@ public abstract class Piece : MonoBehaviour
     [SerializeField] private ModelColorApplier modelColorApplier;
     public PieceDefinitionSO Definition { get; private set; }
     protected Renderer[] renderers;
-    public Tile CurrentTile {  get; private set; }
+    public Tile CurrentTile;
     public bool IsFromPlayer {  get; private set; }
 
     public virtual bool CanPromote
