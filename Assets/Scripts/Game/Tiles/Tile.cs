@@ -4,7 +4,7 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private Renderer tileRenderer;
     [SerializeField] private Collider colider;
-    public string TileName;
+    public TileName TileName { get; private set; }
     public Vector2Int Position;
 
     public Piece Piece { get; private set; }
@@ -18,6 +18,8 @@ public class Tile : MonoBehaviour
 
     private void Awake()
     {
+        TileName = (TileName)(Position.x * 8 + Position.y);
+
         HandleCollider(false);
     }
 

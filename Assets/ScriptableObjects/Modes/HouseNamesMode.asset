@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
+  m_Name: HouseNamesMode
+  m_EditorClassIdentifier: 
+  modeId: 2
+  modeName: 2
+  modeNamePt: Nome das casas
+  modePrefab: {fileID: -8350704903619273580, guid: 76b5fa0d80abccf4ea95431f9bc907ff, type: 3}
+  modeUIBase: {fileID: 5142653862927733373, guid: 927dd4b5848ab7d4582255adfc848aca, type: 3}
+  phases:
+  - {fileID: 11400000, guid: 0134bb53bf48cd941b092a379f7b9f65, type: 2}
+  - {fileID: 11400000, guid: 31d8b2f5ab9e13c4fa144422b7b04a0a, type: 2}
+  - {fileID: 11400000, guid: 274aac6d38364c94593bf374eee993df, type: 2}

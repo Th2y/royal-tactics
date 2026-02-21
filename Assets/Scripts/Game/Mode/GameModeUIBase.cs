@@ -24,14 +24,14 @@ public abstract class GameModeUIBase : MonoBehaviour
 
     #region Phrase by Game Turn
     [Header("Game Turn")]
-    [SerializeField] private TextMeshProUGUI gameTurnText;
-    [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private string timeToPlayerPlay = "É a sua vez de jogar";
     [SerializeField] private string timeToAIPlay = "É a vez do oponente jogar";
     [SerializeField] private string timeToPlayerPlacement = "É a sua vez de colocar as peças";
     [SerializeField] private string timeToAIPlacement = "É a vez do oponente colocar as peças";
     [SerializeField] private string playerWin = "Você venceu!";
     [SerializeField] private string playerLost = "Você perdeu!";
+    private TextMeshProUGUI gameTurnText;
+    private TextMeshProUGUI gameOverText;
 
     public void SetGameTurnText(GameTurn newTurn)
     {
@@ -62,17 +62,32 @@ public abstract class GameModeUIBase : MonoBehaviour
     #endregion  
 
     [Header("Play Parts")]
-    [SerializeField] protected CanvasGroupController gameTurnParent;
-    [SerializeField] protected CanvasGroupController advantageParent;
-    [SerializeField] protected CanvasGroupController placementParent;
-    [SerializeField] protected CanvasGroupController pieceParent;
-    [SerializeField] protected CanvasGroupController promotionParent;
-    [SerializeField] protected Button finishBtn;
-    [SerializeField] private TextMeshProUGUI finishBtnTxt;
     [SerializeField] private string finishBtnMessage = "Finalizar";
+    protected CanvasGroupController gameTurnParent;
+    protected CanvasGroupController advantageParent;
+    protected CanvasGroupController placementParent;
+    protected CanvasGroupController pieceParent;
+    protected CanvasGroupController tileParent;
+    protected CanvasGroupController promotionParent;
+    protected Button finishBtn;
+    private TextMeshProUGUI finishBtnTxt;
 
     protected virtual void SetPlayParts()
     {
+        var choose = ChooseGameModeUI.Instance;
+
+        gameTurnText = choose.GameTurnText;
+        gameOverText = choose.GameOverText;
+
+        gameTurnParent = choose.GameTurnParent;
+        advantageParent = choose.AdvantageParent;
+        placementParent = choose.PlacementParent;
+        pieceParent = choose.PieceParent;
+        tileParent = choose.TileParent;
+        promotionParent = choose.PromotionParent;
+        finishBtn = choose.FinishBtn;
+        finishBtnTxt = choose.FinishBtnTxt;
+
         finishBtnTxt.text = finishBtnMessage;
     }
 
@@ -80,4 +95,6 @@ public abstract class GameModeUIBase : MonoBehaviour
     public abstract void RefreshButtons();
 
     public abstract void SetOptions(List<PieceDefinitionSO> options);
+
+    public abstract void SetOptions(List<TileName> options);
 }

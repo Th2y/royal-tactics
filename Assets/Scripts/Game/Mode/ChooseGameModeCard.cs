@@ -11,7 +11,7 @@ public class ChooseGameModeCard : MonoBehaviour
 
     public void Init(GameModeSO modeSO)
     {
-        modeId = modeSO.modeId;
+        modeId = (int)modeSO.modeName;
         modeNameTxt.text = modeSO.modeNamePt;
         button.onClick.AddListener(OnClick);
     }

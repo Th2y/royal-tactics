@@ -46,6 +46,19 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         return tiles[x, y];
     }
 
+    public Tile GetTile(TileName tileName)
+    {
+        string name = tileName.ToString();
+
+        char fileChar = name[0];
+        char rankChar = name[1];
+
+        int x = fileChar - 'A';
+        int y = rankChar - '1';
+
+        return GetTile(x, y);
+    }
+
     public List<Tile> GetAllFreeTiles()
     {
         List<Tile> free = new();

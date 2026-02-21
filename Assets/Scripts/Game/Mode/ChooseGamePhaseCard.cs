@@ -23,7 +23,7 @@ public class ChooseGamePhaseCard : MonoBehaviour
 
     public void CheckUnlocked()
     {
-        button.interactable = phaseSO.phase == 1 || GameServices.Progress.IsPhaseCompleted(modeSO.modeId, phaseSO.phase - 1);
+        button.interactable = phaseSO.phase == 1 || GameServices.Progress.IsPhaseCompleted((int)modeSO.modeName, phaseSO.phase - 1);
     }
 
     private void OnClick()

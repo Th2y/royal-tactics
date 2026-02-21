@@ -38,6 +38,7 @@ public class PointAdvantageModeUI : GameModeUIBase
         advantageParent.SetActive(true);
         placementParent.SetActive(true);
         pieceParent.SetActive(false);
+        tileParent.SetActive(false);
         promotionParent.SetActive(false);
         finishBtn.gameObject.SetActive(true);
     }
@@ -92,6 +93,11 @@ public class PointAdvantageModeUI : GameModeUIBase
             btn.Setup(def, true, false, () => HumanPlayerController.Instance.SelectPiecePlacement(def));
             buttons.Add(btn);
         }
+    }
+
+    public override void SetOptions(List<TileName> options)
+    {
+
     }
 
     public override void RefreshButtons()

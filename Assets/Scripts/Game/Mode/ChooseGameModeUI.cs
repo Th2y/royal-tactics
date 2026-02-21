@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
 {
@@ -14,6 +16,18 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     [SerializeField] private Transform phaseModeParent;
     [SerializeField] private CanvasGroupController phaseModePrefab;
     [SerializeField] private ChooseGamePhaseCard phasePrefab;
+
+    [Header("References for Game Mode UI")]
+    public TextMeshProUGUI GameTurnText;
+    public TextMeshProUGUI GameOverText;
+    public CanvasGroupController GameTurnParent;
+    public CanvasGroupController AdvantageParent;
+    public CanvasGroupController PlacementParent;
+    public CanvasGroupController PieceParent;
+    public CanvasGroupController TileParent;
+    public CanvasGroupController PromotionParent;
+    public Button FinishBtn;
+    public TextMeshProUGUI FinishBtnTxt;
 
     public Dictionary<int, CanvasGroupController> PhasesModesParent { get; private set; } = new();
     private List<ChooseGamePhaseCard> phases = new();
@@ -32,7 +46,7 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
         {
             var modeCard = Instantiate(modeCardPrefab, modeCardParent);
             var phaseMode = Instantiate(phaseModePrefab, phaseModeParent);
-            PhasesModesParent.Add(mode.modeId, phaseMode);
+            PhasesModesParent.Add((int)mode.modeName, phaseMode);
 
             modeCard.Init(mode);
 

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MysteryPieceModeUI : GameModeUIBase
+public class HouseNamesModeUI : GameModeUIBase
 {
-    [SerializeField] private PieceButtonUI buttonPiecePrefab;
-    [SerializeField] private Transform buttonsPiecesParent;
+    [SerializeField] private TileButtonUI buttonTilePrefab;
+    [SerializeField] private Transform buttonsTilesParent;
 
-    private readonly List<PieceButtonUI> buttons = new();
+    private readonly List<TileButtonUI> buttons = new();
 
     private bool playerGuessed = false;
 
@@ -28,22 +28,27 @@ public class MysteryPieceModeUI : GameModeUIBase
         advantageParent.SetActive(false);
         placementParent.SetActive(false);
         promotionParent.SetActive(false);
-        pieceParent.SetActive(true);
-        tileParent.SetActive(false);
+        pieceParent.SetActive(false);
+        tileParent.SetActive(true);
         finishBtn.gameObject.SetActive(false);
     }
 
     public override void BuildUI()
     {
-
+        
     }
 
     public override void RefreshButtons()
     {
-
+        
     }
 
     public override void SetOptions(List<PieceDefinitionSO> options)
+    {
+        
+    }
+
+    public override void SetOptions(List<TileName> options)
     {
         playerGuessed = false;
 
@@ -53,26 +58,21 @@ public class MysteryPieceModeUI : GameModeUIBase
         }
         buttons.Clear();
 
-        foreach (PieceDefinitionSO piece in options)
+        foreach (TileName tile in options)
         {
-            var btn = Instantiate(buttonPiecePrefab, buttonsPiecesParent);
-            btn.Setup(piece, false, true, () => OnPlayerGuess(piece.type));
+            var btn = Instantiate(buttonTilePrefab, buttonsTilesParent);
+            btn.Setup(tile, true, () => OnPlayerGuess(tile));
             buttons.Add(btn);
         }
     }
 
-    public override void SetOptions(List<TileName> options)
-    {
-
-    }
-
-    private void OnPlayerGuess(PieceType guessedType)
+    private void OnPlayerGuess(TileName guessedType)
     {
         if (playerGuessed) return;
 
         playerGuessed = true;
 
-        if (ChooseGameMode.Instance.CurrentGameMode is MysteryPieceMode gameMode)
+        if (ChooseGameMode.Instance.CurrentGameMode is HouseNamesMode gameMode)
         {
             gameMode.OnPlayerGuess(guessedType);
         }
