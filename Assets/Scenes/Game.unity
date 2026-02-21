@@ -12916,7 +12916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTargetScreen: 0
-  gameTargetScreen: 0
+  gameTargetScreen: 1
 --- !u!43 &1354033981
 Mesh:
   m_ObjectHideFlags: 0
