@@ -1,19 +1,44 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Pawn : Piece
 {
-    private int forwardDirection => isFromPlayer ? 1 : -1;
+    private int forwardDirection => IsFromPlayer ? 1 : -1;
 
-    public bool CanPromote
+    public override bool CanPromote
     {
         get
         {
-            int y = (int)currentTile.pos.y;
+            int y = (int)CurrentTile.Position.y;
 
-            return isFromPlayer
+            return IsFromPlayer
                 ? y == 7
                 : y == 0;
+        }
+    }
+
+    public override List<Tile> FilterValidSpawnTiles(List<Tile> freeTiles, bool isHuman)
+    {
+        if (isHuman)
+        {
+            return freeTiles.FindAll(t => t.Position.y >= 1 && t.Position.y <= 4);
+        }
+        else
+        {
+            return freeTiles.FindAll(t => t.Position.y >= 3 && t.Position.y <= 6);
+        }
+    }
+
+    public override bool IsValidPlacement(Tile tile, bool isHuman)
+    {
+        int y = (int)tile.Position.y;
+
+        if (isHuman)
+        {
+            return y >= 1 && y <= 4;
+        }
+        else
+        {
+            return y >= 3 && y <= 6;
         }
     }
 
@@ -21,8 +46,8 @@ public class Pawn : Piece
     {
         List<Tile> moves = new();
 
-        int x = (int)currentTile.pos.x;
-        int y = (int)currentTile.pos.y;
+        int x = (int)CurrentTile.Position.x;
+        int y = (int)CurrentTile.Position.y;
 
         int forwardY = y + forwardDirection;
 
@@ -40,8 +65,8 @@ public class Pawn : Piece
     {
         List<Tile> captures = new();
 
-        int x = (int)currentTile.pos.x;
-        int y = (int)currentTile.pos.y;
+        int x = (int)CurrentTile.Position.x;
+        int y = (int)CurrentTile.Position.y;
 
         int targetY = y + forwardDirection;
 
@@ -57,7 +82,7 @@ public class Pawn : Piece
 
         if (tile == null || !tile.IsOccupied) return;
 
-        if (tile.Piece.isFromPlayer != isFromPlayer)
+        if (tile.Piece.IsFromPlayer != IsFromPlayer)
         {
             captures.Add(tile);
         }

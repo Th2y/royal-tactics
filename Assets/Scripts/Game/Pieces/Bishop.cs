@@ -15,8 +15,8 @@ public class Bishop : Piece
     {
         List<Tile> moves = new();
 
-        int startX = (int)currentTile.pos.x;
-        int startY = (int)currentTile.pos.y;
+        int startX = (int)CurrentTile.Position.x;
+        int startY = (int)CurrentTile.Position.y;
 
         foreach (var dir in directions)
         {
@@ -47,8 +47,8 @@ public class Bishop : Piece
     {
         List<Tile> captures = new();
 
-        int startX = (int)currentTile.pos.x;
-        int startY = (int)currentTile.pos.y;
+        int startX = (int)CurrentTile.Position.x;
+        int startY = (int)CurrentTile.Position.y;
 
         foreach (var dir in directions)
         {
@@ -69,7 +69,7 @@ public class Bishop : Piece
                     continue;
                 }
 
-                if (tile.Piece.isFromPlayer != isFromPlayer)
+                if (tile.Piece.IsFromPlayer != IsFromPlayer)
                 {
                     captures.Add(tile);
                 }

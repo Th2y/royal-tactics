@@ -9,7 +9,7 @@ public class PromotionUI : MonoBehaviour
 
     private readonly List<PromotionPieceButtonUI> buttons = new();
 
-    public void ShowAvailableList(List<PieceDefinitionSO> availablePieces)
+    public void ShowAvailableList(PieceType currentType, List<PieceDefinitionSO> availablePieces)
     {
         cg.SetActive(true);
 
@@ -17,7 +17,7 @@ public class PromotionUI : MonoBehaviour
 
         foreach (var def in availablePieces)
         {
-            if(def.type != PieceType.Pawn)
+            if(def.type != currentType)
             {
                 var btn = Instantiate(buttonPrefab, buttonsParent);
                 btn.Setup(def);

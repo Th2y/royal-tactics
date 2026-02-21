@@ -1,28 +1,6 @@
 using System.Linq;
 using UnityEngine;
 
-public enum InitPriority
-{
-    // ========= MENU / BASE UI =========
-    ButtonChangeSceneOrExit = 1,
-    CanvasGroup = 2,
-    ButtonNavigation = 3,
-    ChooseColor = 4,
-    ModelColorApplier = 5,
-    UIController = 6,
-
-    // ========= CORE GAME INFRA =========
-    PhaseController = 11,
-    BoardController = 12,
-    BoardSelectionController = 13,
-    PromotionController = 14,
-
-    // ========= INIT GAME =========
-    GameStateController = 20,
-    PlayerController = 21,
-    HumanPlayerUI = 22,
-}
-
 public class InitAllInOrder : MonoBehaviour
 {
     private UnityMethods[] systems;

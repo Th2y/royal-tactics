@@ -7,7 +7,7 @@ public abstract class BasePlayerController<T> : UnityMethodsSingleton<T> where T
 
     public List<Piece> PlacedPieces { get; protected set; } = new();
 
-    protected int currentCoins;
+    public virtual int CurrentCoins { get; protected set; }
 
     public event Action<int> OnTotalCoinsChanged;
     protected int totalCoins;
@@ -27,22 +27,23 @@ public abstract class BasePlayerController<T> : UnityMethodsSingleton<T> where T
     #region Unity Default Methods
     public override void OnInitAwake()
     {
-        InitCoins();
+
     }
 
     public override void OnInitStart()
     {
-
+        
     }
     #endregion
 
-    #region Coins and Points
-    public void InitCoins()
+    public void ResetGame()
     {
-        currentCoins = PhaseController.Instance.CurrentPhase.startingPoints;
-        TotalCoins = currentCoins;
+        PlacedPieces.Clear();
+        CurrentCoins = PhaseController.Instance.CurrentPhase.startingPoints;
+        TotalCoins = CurrentCoins;
     }
 
+    #region Coins and Points
     protected void CalculateTotalCoins()
     {
         TotalCoins = 0;
@@ -51,12 +52,12 @@ public abstract class BasePlayerController<T> : UnityMethodsSingleton<T> where T
         {
             TotalCoins += p.Definition.cost;
         }
-        TotalCoins += currentCoins;
+        TotalCoins += CurrentCoins;
     }
 
     protected void EarnPointsForCapturing(PieceDefinitionSO def)
     {
-        currentCoins += def.cost;
+        CurrentCoins += def.cost;
         CalculateTotalCoins();
     }
     #endregion

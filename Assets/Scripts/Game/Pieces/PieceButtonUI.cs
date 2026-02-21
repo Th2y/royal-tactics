@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PieceButtonUI : MonoBehaviour
@@ -10,19 +12,23 @@ public class PieceButtonUI : MonoBehaviour
 
     public PieceDefinitionSO Definition { get; private set; }
 
-    public void Setup(PieceDefinitionSO def)
+    public void Setup(PieceDefinitionSO def, bool showCost, bool interactable, UnityAction onClick)
     {
         Definition = def;
         nameText.text = def.namePt;
-        costText.text = def.cost + " moedas";
-        button.interactable = false;
 
-        button.onClick.AddListener(OnClick);
-    }
+        if (showCost)
+        {
+            costText.gameObject.SetActive(true);
+            costText.text = def.cost + " moedas";
+        }
+        else
+        {
+            costText.gameObject.SetActive(false);
+        }
 
-    private void OnClick()
-    {
-        HumanPlayerController.Instance.SelectPiecePlacement(Definition);
+        SetInteractable(interactable);
+        button.onClick.AddListener(onClick);
     }
 
     public void SetInteractable(bool interactable)

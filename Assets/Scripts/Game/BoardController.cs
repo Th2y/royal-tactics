@@ -23,7 +23,15 @@ public class BoardController : UnityMethodsSingleton<BoardController>
 
         foreach (Tile tile in children)
         {
-            tiles[(int)tile.pos.x, (int)tile.pos.y] = tile;
+            tiles[(int)tile.Position.x, (int)tile.Position.y] = tile;
+        }
+    }
+
+    public void HandleColliderAllTiles(bool enabled)
+    {
+        foreach (Tile tile in tiles)
+        {
+            tile.HandleCollider(enabled);
         }
     }
 
@@ -70,5 +78,14 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         {
             tile.ClearAndDestroyPiece();
         }
+    }
+
+    public Tile ChooseTileToInstantiateNewPiece(List<Tile> freeTiles, PieceDefinitionSO piece, bool isHuman)
+    {
+        var validTiles = piece.prefab.FilterValidSpawnTiles(freeTiles, isHuman);
+
+        if (validTiles == null || validTiles.Count == 0) return null;
+
+        return validTiles[Random.Range(0, validTiles.Count)];
     }
 }

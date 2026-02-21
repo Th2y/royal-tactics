@@ -5,7 +5,7 @@ public class PromotionController : UnityMethodsSingleton<PromotionController>
     [Header("Promotion Options")]
     [SerializeField] private PromotionUI promotionUI;
 
-    private Pawn pendingPawn;
+    private Piece pendingPiece;
 
     public override InitPriority Priority => InitPriority.PromotionController;
 
@@ -20,29 +20,29 @@ public class PromotionController : UnityMethodsSingleton<PromotionController>
     }
 
     #region CORE LOGIC
-    public void RequestPromotion(Pawn pawn)
+    public void RequestPromotion(Piece piece)
     {
-        if (pawn == null || !pawn.CanPromote) return;
+        if (piece == null || !piece.CanPromote) return;
 
-        pendingPawn = pawn;
+        pendingPiece = piece;
 
-        if (pawn.isFromPlayer)
+        if (piece.IsFromPlayer)
         {
             OpenPromotionUI();
         }
         else
         {
-            Promote(pawn, ChooseAIPromotion());
+            Promote(piece, ChooseAIPromotion());
         }
     }
 
-    private void Promote(Pawn pawn, PieceDefinitionSO newDefinition)
+    private void Promote(Piece piece, PieceDefinitionSO newDefinition)
     {
-        Tile tile = pawn.currentTile;
-        bool isFromPlayer = pawn.isFromPlayer;
+        Tile tile = piece.CurrentTile;
+        bool isFromPlayer = piece.IsFromPlayer;
 
         tile.Clear();
-        Destroy(pawn.gameObject);
+        Destroy(piece.gameObject);
 
         Piece newPiece = Instantiate(newDefinition.prefab);
         newPiece.Initialize(newDefinition, isFromPlayer);
@@ -50,16 +50,16 @@ public class PromotionController : UnityMethodsSingleton<PromotionController>
 
         if (isFromPlayer)
         {
-            HumanPlayerController.Instance.OnPromote(pawn, newPiece);
+            HumanPlayerController.Instance.OnPromote(piece, newPiece);
             HumanPlayerUI.Instance.PlayerDoAnything?.Invoke();
         }
         else
         {
-            AIController.Instance.OnPromote(pawn, newPiece);
-            GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+            AIController.Instance.OnPromote(piece, newPiece);
+            ChooseGameMode.Instance.CurrentGameMode.SetGameTurn(GameTurn.PlayerTurn);
         }
 
-        pendingPawn = null;
+        pendingPiece = null;
     }
     #endregion
 
@@ -67,42 +67,37 @@ public class PromotionController : UnityMethodsSingleton<PromotionController>
     private void OpenPromotionUI()
     {
         HumanPlayerController.Instance.IsInPromotion = true;
-        HumanPlayerUI.Instance.RefreshButtons();
+        ChooseGameModeUI.Instance.CurrentGameMode.RefreshButtons();
 
-        promotionUI.ShowAvailableList(PhaseController.Instance.CurrentPhase.availablePieces);
+        promotionUI.ShowAvailableList(pendingPiece.Definition.type, PhaseController.Instance.CurrentPhase.availablePiecesPromotion);
     }
 
     public void OnPlayerSelected(PieceDefinitionSO def)
     {
         HumanPlayerController.Instance.IsInPromotion = false;
-        HumanPlayerUI.Instance.RefreshButtons();
+        ChooseGameModeUI.Instance.CurrentGameMode.RefreshButtons();
 
         promotionUI.HideAvailableList();
-        Promote(pendingPawn, def);
+        Promote(pendingPiece, def);
     }
     #endregion
 
     #region IA
     private PieceDefinitionSO ChooseAIPromotion()
     {
-        PieceType[] priority =
-        {
-            PieceType.Queen,
-            PieceType.Rook,
-            PieceType.Bishop,
-            PieceType.Knight
-        };
+        PieceType currentType = pendingPiece.Definition.type;
 
-        foreach (PieceType type in priority)
-        {
-            PieceDefinitionSO def = PhaseController.Instance.CurrentPhase.availablePieces.Find(p => p.type == type);
+        var available = PhaseController.Instance.CurrentPhase.availablePiecesPromotion;
 
-            if (def != null) return def;
+        var validOptions = available.FindAll(p => p.type != currentType);
+
+        if (validOptions.Count == 0)
+        {
+            Debug.LogError("Without available promotion pieces");
+            return null;
         }
 
-        return PhaseController.Instance.CurrentPhase.availablePieces[0].type != PieceType.Pawn ? 
-            PhaseController.Instance.CurrentPhase.availablePieces[0] : 
-            PhaseController.Instance.CurrentPhase.availablePieces[1];
+        return validOptions[Random.Range(0, validOptions.Count)];
     }
     #endregion
 }

@@ -19,8 +19,8 @@ public class Knight : Piece
     {
         List<Tile> moves = new();
 
-        int x = (int)currentTile.pos.x;
-        int y = (int)currentTile.pos.y;
+        int x = (int)CurrentTile.Position.x;
+        int y = (int)CurrentTile.Position.y;
 
         foreach (var dir in directions)
         {
@@ -42,8 +42,8 @@ public class Knight : Piece
     {
         List<Tile> captures = new();
 
-        int x = (int)currentTile.pos.x;
-        int y = (int)currentTile.pos.y;
+        int x = (int)CurrentTile.Position.x;
+        int y = (int)CurrentTile.Position.y;
 
         foreach (var dir in directions)
         {
@@ -55,7 +55,7 @@ public class Knight : Piece
             if (!target.IsOccupied)
                 continue;
 
-            if (target.Piece.isFromPlayer != isFromPlayer)
+            if (target.Piece.IsFromPlayer != IsFromPlayer)
             {
                 captures.Add(target);
             }

@@ -3,69 +3,22 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Renderer tileRenderer;
-    public Vector2 pos;
+    [SerializeField] private Collider colider;
+    public string TileName;
+    public Vector2Int Position;
 
     public Piece Piece { get; private set; }
     public bool IsOccupied => Piece != null;
 
     private Color defaultColor;
     private Color lastColor;
-    public bool IsValid { get; private set; } = false;
-    private bool canInteract = false;
 
-    private void OnMouseDown()
+    public bool IsValid { get; private set; }
+    private bool canInteract;
+
+    private void Awake()
     {
-        if (!canInteract) return;
-
-        var player = HumanPlayerController.Instance;
-
-        if (player.SelectedPiecePlacement != null)
-        {
-            player.TryPlacePiece(this);
-        }
-        else
-        {
-            player.OnTileClicked(this);
-        }
-    }
-
-    private void OnMouseEnter()
-    {
-        var gameState = GameStateController.Instance.CurrentPhase;
-        var player = HumanPlayerController.Instance;
-
-        bool hasPlacementSelected = player.SelectedPiecePlacement != null;
-        bool hasPieceSelected = player.SelectedPiece != null;
-
-        canInteract =
-            (gameState == GamePhase.PlayerTurn &&
-                (
-                    (hasPieceSelected && IsValid) ||
-                    hasPlacementSelected
-                )
-            )
-            ||
-            (gameState == GamePhase.PlayerPlacement &&
-                !IsOccupied &&
-                hasPlacementSelected);
-
-        if (canInteract)
-        {
-            if (player.SelectedPiecePlacement != null && player.SelectedPiecePlacement.type == PieceType.Pawn)
-            {
-                canInteract = pos.y >= 1 && pos.y <= 4;
-            }
-        }
-
-        if (canInteract)
-        {
-            SetPressed(true);
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        SetPressed(false);
+        HandleCollider(false);
     }
 
     public void Init(Color color)
@@ -74,9 +27,70 @@ public class Tile : MonoBehaviour
         lastColor = color;
     }
 
+    public void HandleCollider(bool enabled)
+    {
+        colider.enabled = enabled;
+    }
+
+    #region Input
+    public void OnHoverEnter()
+    {
+        EvaluateInteraction();
+
+        if (canInteract)
+            SetPressed(true);
+    }
+
+    public void OnHoverExit()
+    {
+        SetPressed(false);
+    }
+
+    public void OnClick()
+    {
+        if (!canInteract) return;
+
+        var player = HumanPlayerController.Instance;
+
+        if (player.SelectedPiecePlacement != null)
+            player.TryPlacePiece(this);
+        else if (player.SelectedPiece != null)
+            player.OnTileClicked(this);
+        else
+            player.OnPieceClicked(Piece);
+    }
+    #endregion
+
+    #region Logic
+    private void EvaluateInteraction()
+    {
+        var gameState = ChooseGameMode.Instance.CurrentGameMode.CurrentPhase;
+        var player = HumanPlayerController.Instance;
+
+        bool hasPlacementSelected = player.SelectedPiecePlacement != null;
+        bool withPieceSelected = player.SelectedPiece != null && IsValid;
+        bool withoutPieceSelected = player.SelectedPiece == null && Piece != null && Piece.IsFromPlayer;
+
+        canInteract =
+            (gameState == GameTurn.PlayerTurn && player.CanMove &&
+                (withPieceSelected || hasPlacementSelected || withoutPieceSelected))
+            ||
+            (gameState == GameTurn.PlayerPlacement &&
+                !IsOccupied && hasPlacementSelected);
+
+        if (canInteract && hasPlacementSelected && player.SelectedPiecePlacement.type == PieceType.Pawn)
+        {
+            canInteract = Position.y >= 1 && Position.y <= 4;
+        }
+    }
+    #endregion
+
+    #region Feedback
     public void SetPressed(bool pressed)
     {
         BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, pressed ? Color.yellow : lastColor);
+
+        if (Piece != null) Piece.SetPressed(pressed);
     }
 
     public void SetOccupiedMarker(bool occupied)
@@ -91,7 +105,9 @@ public class Tile : MonoBehaviour
         lastColor = valid ? Color.green : defaultColor;
         BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, lastColor);
     }
+    #endregion
 
+    #region Piece
     public void SetPiece(Piece newPiece)
     {
         Piece = newPiece;
@@ -106,11 +122,10 @@ public class Tile : MonoBehaviour
     public void ClearAndDestroyPiece()
     {
         if (Piece != null)
-        {
             Destroy(Piece.gameObject);
-            Piece = null;
-        }
 
+        Piece = null;
         SetIsValid(false);
     }
+    #endregion
 }

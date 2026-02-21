@@ -23,7 +23,7 @@ public class NavigationButton : UnityMethods
         }
         else
         {
-            button.onClick.AddListener(() => UIGameController.Instance.ShowScreen(gameTargetScreen));
+            button.onClick.AddListener(() => ChooseGameModeUI.Instance.ShowScreen(gameTargetScreen));
         }
     }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
+  m_Name: MysteryPieceMode
+  m_EditorClassIdentifier: 
+  modeId: 1
+  modeName: 1
+  modeNamePt: "Pe\xE7a misteriosa"
+  modePrefab: {fileID: 8512713445020459092, guid: e53fff233bbdb124f8d3a3cbfaa800c2, type: 3}
+  phases:
+  - {fileID: 11400000, guid: e950344f2d67ff545b60ba065c22f144, type: 2}
+  - {fileID: 11400000, guid: f37b0788ba63421438ccc57ad650eb98, type: 2}
+  - {fileID: 11400000, guid: aaa2fd5da48dd564aa454945b28aa9e0, type: 2}

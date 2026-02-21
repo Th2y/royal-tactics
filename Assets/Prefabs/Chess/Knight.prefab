@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 70f4e3110569f704badfdca8e28923c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelColorApplier: {fileID: 4744469250683445060}
+  CanReceiveClicks: 1
 --- !u!65 &356986918411518795
 BoxCollider:
   m_ObjectHideFlags: 0

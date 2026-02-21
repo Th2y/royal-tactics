@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileRenderer: {fileID: 330953670571966150}
-  pos: {x: 0, y: 0}
+  colider: {fileID: 3179354087940107340}
+  TileName: 
+  Position: {x: 0, y: 0}
 --- !u!65 &3179354087940107340
 BoxCollider:
   m_ObjectHideFlags: 0

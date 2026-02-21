@@ -10,16 +10,16 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
 
     public event Action<int> OnCoinsChanged;
 
-    public int CurrentCoins
+    public override int CurrentCoins
     {
-        get => currentCoins;
-        set
+        get => base.CurrentCoins;
+        protected set
         {
-            if (currentCoins == value)
+            if (base.CurrentCoins == value)
                 return;
 
-            currentCoins = value;
-            OnCoinsChanged?.Invoke(currentCoins);
+            base.CurrentCoins = value;
+            OnCoinsChanged?.Invoke(value);
         }
     }
 
@@ -78,8 +78,7 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
     {
         foreach (Piece piece in PlacedPieces)
         {
-            if (piece is Pawn pawn && pawn.CanPromote)
-                return true;
+            if (piece.CanPromote) return true;
         }
 
         return false;
@@ -92,15 +91,14 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
         if (freeTiles.Count == 0)
             return false;
 
-        foreach (PieceDefinitionSO def in PhaseController.Instance.CurrentPhase.availablePieces)
+        foreach (PieceDefinitionSO def in PhaseController.Instance.CurrentPhase.availablePiecesHuman)
         {
             if (!HaveEnoughCoinsToPlace(def))
                 continue;
 
             foreach (Tile tile in freeTiles)
             {
-                if (IsValidPlacement(tile, def))
-                    return true;
+                if (def.prefab.IsValidPlacement(tile, true)) return true;
             }
         }
 
@@ -124,9 +122,9 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
     #region Selection
     public void OnPieceClicked(Piece piece)
     {
-        if (!GameStateController.Instance.IsPlayerTurn) return;
+        if (!ChooseGameMode.Instance.CurrentGameMode.IsPlayerTurn) return;
 
-        if (!piece.isFromPlayer) return;
+        if (!piece.IsFromPlayer) return;
 
         if(!CanMove) return;
 
@@ -161,7 +159,7 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
         ExecuteMove(tile);
     }
 
-    private void HighlightValidTiles(Piece piece)
+    public void HighlightValidTiles(Piece piece)
     {
         highlightedTiles.Clear();
 
@@ -192,7 +190,7 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
     private void DisableMovement()
     {
         CanMove = false;
-        HumanPlayerUI.Instance.RefreshButtons();
+        ChooseGameModeUI.Instance.CurrentGameMode.RefreshButtons();
     }
 
     public bool HaveEnoughCoinsToPlace(PieceDefinitionSO def)
@@ -204,20 +202,20 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
     {
         if (tile == null || SelectedPiecePlacement == null) return;
 
-        if (!GameStateController.Instance.IsPlayerTurn) return;
+        if (!ChooseGameMode.Instance.CurrentGameMode.IsPlayerTurn) return;
 
         if (tile.IsOccupied) return;
 
         if (!HaveEnoughCoinsToPlace(SelectedPiecePlacement)) return;
 
-        if (!IsValidPlacement(tile, SelectedPiecePlacement)) return;
+        if (!SelectedPiecePlacement.prefab.IsValidPlacement(tile, true)) return;
 
         PlacePiece(tile, SelectedPiecePlacement);
     }
 
     private void PlacePiece(Tile tile, PieceDefinitionSO def)
     {
-        currentCoins -= def.cost;
+        CurrentCoins -= def.cost;
         DisableMovement();
 
         Piece piece = Instantiate(def.prefab);
@@ -230,19 +228,9 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
         HumanPlayerUI.Instance.PlayerDoAnything?.Invoke();
     }
 
-    private bool IsValidPlacement(Tile tile, PieceDefinitionSO def)
-    {
-        if (def.type == PieceType.Pawn)
-        {
-            return tile.pos.y >= 1 && tile.pos.y <= 4;
-        }
-
-        return true;
-    }
-
     private void ExecuteMove(Tile target)
     {
-        Tile origin = SelectedPiece.currentTile;
+        Tile origin = SelectedPiece.CurrentTile;
 
         if (target.IsOccupied)
         {
@@ -257,9 +245,9 @@ public class HumanPlayerController : BasePlayerController<HumanPlayerController>
 
         SelectedPiece.MoveToTile(target, 0.35f, () =>
         {
-            if (SelectedPiece is Pawn pawn && pawn.CanPromote)
+            if (SelectedPiece.CanPromote)
             {
-                PromotionController.Instance.RequestPromotion(pawn);
+                PromotionController.Instance.RequestPromotion(SelectedPiece);
                 ClearSelection();
             }
             else

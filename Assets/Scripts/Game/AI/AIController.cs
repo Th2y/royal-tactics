@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -57,7 +56,7 @@ public class AIController : BasePlayerController<AIController>
     {
         foreach (Piece piece in pieces)
         {
-            if (piece is Pawn pawn && pawn.CanPromote)
+            if (piece.CanPromote)
             {
                 return true;
             }
@@ -77,7 +76,7 @@ public class AIController : BasePlayerController<AIController>
         if (pieceDef == null)
             return false;
 
-        Tile tile = ChooseTile(freeTiles, pieceDef);
+        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
         if (tile == null)
             return false;
 
@@ -114,7 +113,7 @@ public class AIController : BasePlayerController<AIController>
 
         if (TryPromote(aiPieces)) return;
 
-        if (currentCoins > 0 && TryPlacementDuringTurn()) return;
+        if (CurrentCoins > 0 && TryPlacementDuringTurn()) return;
 
         DoRandomMove(aiPieces);
     }
@@ -130,7 +129,7 @@ public class AIController : BasePlayerController<AIController>
 
         foreach (Tile tile in tiles)
         {
-            if (tile.IsOccupied && !tile.Piece.isFromPlayer)
+            if (tile.IsOccupied && !tile.Piece.IsFromPlayer)
                 pieces.Add(tile.Piece);
         }
 
@@ -172,9 +171,9 @@ public class AIController : BasePlayerController<AIController>
     {
         foreach (Piece piece in pieces)
         {
-            if (piece is Pawn pawn && pawn.CanPromote)
+            if (piece.CanPromote)
             {
-                PromotionController.Instance.RequestPromotion(pawn);
+                PromotionController.Instance.RequestPromotion(piece);
                 return true;
             }
         }
@@ -193,13 +192,13 @@ public class AIController : BasePlayerController<AIController>
         if (pieceDef == null)
             return false;
 
-        Tile tile = ChooseTile(freeTiles, pieceDef);
+        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
         if (tile == null)
             return false;
 
         PlacePiece(tile, pieceDef, true);
 
-        GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+        ChooseGameMode.Instance.CurrentGameMode.SetGameTurn(GameTurn.PlayerTurn);
         return true;
     }
 
@@ -218,13 +217,13 @@ public class AIController : BasePlayerController<AIController>
         if (moves.Count == 0)
             return;
 
-        var chosen = moves[UnityEngine.Random.Range(0, moves.Count)];
+        var chosen = moves[Random.Range(0, moves.Count)];
         ExecuteMove(chosen.piece, chosen.tile);
     }
 
     private void ExecuteMove(Piece piece, Tile target)
     {
-        Tile origin = piece.currentTile;
+        Tile origin = piece.CurrentTile;
 
         if (target.IsOccupied)
         {
@@ -237,13 +236,13 @@ public class AIController : BasePlayerController<AIController>
 
         piece.MoveToTile(target, 0.35f, () =>
         {
-            if (piece is Pawn pawn && pawn.CanPromote)
+            if (piece.CanPromote)
             {
-                PromotionController.Instance.RequestPromotion(pawn);
+                PromotionController.Instance.RequestPromotion(piece);
             }
             else
             {
-                GameStateController.Instance.SetPhase(GamePhase.PlayerTurn);
+                ChooseGameMode.Instance.CurrentGameMode.SetGameTurn(GameTurn.PlayerTurn);
             }
         });
     }
@@ -252,12 +251,12 @@ public class AIController : BasePlayerController<AIController>
     {
         List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
 
-        while (currentCoins > 0 && freeTiles.Count > 0)
+        while (CurrentCoins > 0 && freeTiles.Count > 0)
         {
             PieceDefinitionSO pieceDef = ChoosePiece();
             if (pieceDef == null) break;
 
-            Tile tile = ChooseTile(freeTiles, pieceDef);
+            Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
             if (tile == null) break;
 
             Piece piece = PlacePiece(tile, pieceDef, false);
@@ -265,39 +264,22 @@ public class AIController : BasePlayerController<AIController>
             PlacedPieces.Add(piece);
         }
 
-        GameStateController.Instance.SetPhase(GamePhase.PlayerPlacement);
+        ChooseGameMode.Instance.CurrentGameMode.SetGameTurn(GameTurn.PlayerPlacement);
     }
 
     private PieceDefinitionSO ChoosePiece()
     {
-        List<PieceDefinitionSO> possible = PhaseController.Instance.CurrentPhase.availablePieces.FindAll(p => p.cost <= currentCoins);
+        List<PieceDefinitionSO> possible = PhaseController.Instance.CurrentPhase.availablePiecesAI.FindAll(p => p.cost <= CurrentCoins);
 
         if (possible.Count == 0)
             return null;
 
-        return possible[UnityEngine.Random.Range(0, possible.Count)];
-    }
-
-    private Tile ChooseTile(List<Tile> freeTiles, PieceDefinitionSO piece)
-    {
-        if (piece.type == PieceType.Pawn)
-        {
-            List<Tile> pawnTiles = freeTiles.FindAll(t =>
-                t.pos.y >= 3 && t.pos.y <= 6
-            );
-
-            if (pawnTiles.Count > 0)
-                return pawnTiles[UnityEngine.Random.Range(0, pawnTiles.Count)];
-            else
-                return null;
-        }
-
-        return freeTiles[UnityEngine.Random.Range(0, freeTiles.Count)];
+        return possible[Random.Range(0, possible.Count)];
     }
 
     private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool show)
     {
-        currentCoins -= def.cost;
+        CurrentCoins -= def.cost;
 
         Piece piece = Instantiate(def.prefab);
         piece.Initialize(def, false);

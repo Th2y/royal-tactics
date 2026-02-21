@@ -2,87 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public enum PieceType
-{
-    Pawn,
-    Knight,
-    Bishop,
-    Rook,
-    Queen
-}
-
-public enum PlayerOwner
-{
-    Player,
-    Opponent
-}
-
 public abstract class Piece : MonoBehaviour
 {
     [SerializeField] private ModelColorApplier modelColorApplier;
     public PieceDefinitionSO Definition { get; private set; }
     protected Renderer[] renderers;
-    public Tile currentTile {  get; private set; }
-    public bool isFromPlayer {  get; private set; }
+    public Tile CurrentTile {  get; private set; }
+    public bool IsFromPlayer {  get; private set; }
 
-    public bool CanReceiveClicks = true;
-
-    private void OnMouseDown()
+    public virtual bool CanPromote
     {
-        if (CanReceiveClicks)
-        {
-            if (isFromPlayer)
-            {
-                HumanPlayerController.Instance.OnPieceClicked(this);
-            }
-            else
-            {
-                HumanPlayerController.Instance.OnTileClicked(currentTile);
-            }
-        }
-    }
-
-    private void OnMouseEnter()
-    {
-        CanReceiveClicks = false;
-
-        var gameState = GameStateController.Instance.CurrentPhase;
-
-        if (gameState != GamePhase.PlayerPlacement && gameState != GamePhase.PlayerTurn)
-            return;
-
-        if (isFromPlayer)
-        {
-            var player = HumanPlayerController.Instance;
-
-            CanReceiveClicks =
-                player.CanMove &&
-                player.SelectedPiece == null &&
-                player.SelectedPiecePlacement == null;
-        }
-        else
-        {
-            CanReceiveClicks = currentTile.IsValid;
-        }
-
-        if (CanReceiveClicks)
-        {
-            SetPressed(true);
-            if (currentTile  != null) currentTile.SetPressed(true);
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        SetPressed(false);
-        if (currentTile != null) currentTile.SetPressed(false);
+        get { return false; }
     }
 
     public virtual void Initialize(PieceDefinitionSO def, bool isFromPlayer)
     {
         Definition = def;
         renderers = GetComponentsInChildren<Renderer>();
-        this.isFromPlayer = isFromPlayer;
+        this.IsFromPlayer = isFromPlayer;
 
         modelColorApplier.isPlayer = isFromPlayer;
         modelColorApplier.OnInitAwake();
@@ -90,7 +27,7 @@ public abstract class Piece : MonoBehaviour
 
     public void SetTile(Tile tile)
     {
-        currentTile = tile;
+        CurrentTile = tile;
         transform.position = new Vector3(tile.transform.position.x, 0.415f, tile.transform.position.z);
     }
 
@@ -119,7 +56,7 @@ public abstract class Piece : MonoBehaviour
 
     public void MoveToTile(Tile tile, float duration, System.Action onComplete = null)
     {
-        currentTile = tile;
+        CurrentTile = tile;
 
         Vector3 targetPos = new Vector3(
             tile.transform.position.x,
@@ -137,7 +74,7 @@ public abstract class Piece : MonoBehaviour
 
     public void OnCaptured()
     {
-        if (isFromPlayer)
+        if (IsFromPlayer)
         {
             HumanPlayerController.Instance.RemovePiece(this);
         }
@@ -148,6 +85,17 @@ public abstract class Piece : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public virtual List<Tile> FilterValidSpawnTiles(List<Tile> freeTiles, bool isHuman)
+    {
+        return freeTiles;
+    }
+
+    public virtual bool IsValidPlacement(Tile tile, bool isHuman)
+    {
+        return true;
+    }
+
 
     public abstract List<Tile> GetValidMoves(BoardController board);
     public abstract List<Tile> GetValidCaptures(BoardController board);

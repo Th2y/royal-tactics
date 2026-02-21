@@ -1,13 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MenuScreen
-{
-    Init,
-    Options,
-    Tutorial
-}
-
 public class MenuController : UnityMethodsSingleton<MenuController>
 {
     [Header("Change Screen")]
@@ -15,7 +8,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
 
     private Dictionary<MenuScreen, CanvasGroupController> _screenMap;
 
-    public override InitPriority Priority => InitPriority.UIController;
+    public override InitPriority Priority => InitPriority.GameModeUI;
 
     public override void OnInitAwake()
     {
