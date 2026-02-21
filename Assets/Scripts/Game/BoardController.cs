@@ -72,6 +72,19 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         return free;
     }
 
+    public List<Piece> GetAllPieces()
+    {
+        List<Piece> pieces = new();
+
+        foreach(Tile tile in tiles)
+        {
+            if(tile.IsOccupied)
+                pieces.Add(tile.Piece);
+        }
+
+        return pieces;
+    }
+
     public bool TryPlacePiece(Piece piecePrefab, int x, int y)
     {
         Tile tile = GetTile(x, y);

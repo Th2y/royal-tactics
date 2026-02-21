@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dea9dd7347fd8dd439c46a2cb2fa390c, type: 3}
-  m_Name: Pawn
+  m_Name: King
   m_EditorClassIdentifier: 
-  type: 0
-  namePt: "Pe\xE3o"
-  humanInitialTiles: 0100000009000000110000001900000021000000290000003100000039000000
-  iaInitialTiles: 060000000e000000160000001e000000260000002e000000360000003e000000
-  cost: 1
-  prefab: {fileID: 6289162916602366714, guid: 32e31b54ba155c847a2d9474bf736e50, type: 3}
+  type: 5
+  namePt: Rei
+  humanInitialTiles: 20000000
+  iaInitialTiles: 27000000
+  cost: 0
+  prefab: {fileID: 1888405833250821873, guid: bfe9fedf811980348991e83be035a05d, type: 3}

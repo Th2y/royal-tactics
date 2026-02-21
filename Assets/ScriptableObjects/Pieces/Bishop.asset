@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   namePt: Bispo
+  humanInitialTiles: 1000000028000000
+  iaInitialTiles: 170000002f000000
   cost: 3
   prefab: {fileID: 3049317918011779178, guid: fdf20d76d37051c4c9e9e8d2d0d85137, type: 3}
-  unlockedByDefault: 1
-  winsRequiredToUnlock: 0
