@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuTargetScreen: 0
+  menuTargetScreen: 1
   gameTargetScreen: 0
 --- !u!114 &140837512
 MonoBehaviour:
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuTargetScreen: 1
+  menuTargetScreen: 2
   gameTargetScreen: 0
 --- !u!1 &576643426
 GameObject:
@@ -1094,7 +1094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 866.5, y: -3459.61}
+  m_AnchoredPosition: {x: 952.63574, y: -3459.61}
   m_SizeDelta: {x: 1500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649121686
@@ -2421,7 +2421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuTargetScreen: 0
+  menuTargetScreen: 1
   gameTargetScreen: 0
 --- !u!1 &1063611115
 GameObject:
@@ -3196,7 +3196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d21ab3682746459d6bdfc9d862ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuTargetScreen: 2
+  menuTargetScreen: 3
   gameTargetScreen: 0
 --- !u!114 &1668207050
 MonoBehaviour:
@@ -3387,7 +3387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuScreen: 0
+  menuScreen: 1
   gameScreen: 0
 --- !u!1 &1717643126
 GameObject:
@@ -3694,9 +3694,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RenderShadows: 0
+  m_RequiresDepthTextureOption: 0
+  m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -3743,7 +3743,7 @@ Camera:
   m_GameObject: {fileID: 1772349246}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3770,7 +3770,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 128
@@ -3969,7 +3969,7 @@ Camera:
   m_GameObject: {fileID: 1928441627}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3996,7 +3996,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 64
@@ -4023,9 +4023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RenderShadows: 0
+  m_RequiresDepthTextureOption: 0
+  m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -4202,7 +4202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuScreen: 1
+  menuScreen: 2
   gameScreen: 0
 --- !u!1 &2031240276
 GameObject:
@@ -4293,7 +4293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuScreen: 2
+  menuScreen: 3
   gameScreen: 0
 --- !u!225 &2049556848
 CanvasGroup:
