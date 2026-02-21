@@ -69,12 +69,13 @@ public class PhaseController : UnityMethodsSingleton<PhaseController>
             ChooseGameModeUI.Instance.ReloadPhases();
         }
 
-        if (CurrentPhaseIndex >= CurrentGameMode.phases.Count)
+        if (CurrentPhaseIndex >= CurrentGameMode.phases.Count - 1)
         {
-            nextPhaseFinishBtn.interactable = false;
+            nextPhaseFinishBtn.gameObject.SetActive(false);
         }
         else
         {
+            nextPhaseFinishBtn.gameObject.SetActive(true);
             nextPhaseFinishBtn.interactable = show;
         }
     }
