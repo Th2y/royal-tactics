@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2991454336041636469}
-  - component: {fileID: 5142653862927733373}
+  - component: {fileID: 2669599771555031701}
   m_Layer: 0
-  m_Name: HouseNamesUI
+  m_Name: CorrectPositioning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5142653862927733373
+--- !u!114 &2669599771555031701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,16 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733175263722512321}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eacd372c9b0495a4ca8df6c7b2232224, type: 3}
+  m_Script: {fileID: 11500000, guid: eec2b1edc3459a94684899626149201e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameModeSO: {fileID: 11400000, guid: e4e57abed9c1a234088566993d4c0836, type: 2}
-  timeToPlayerPlay: "\xC9 a sua vez de jogar"
-  timeToAIPlay: "\xC9 a vez do oponente jogar"
-  timeToPlayerPlacement: "\xC9 a sua vez de colocar as pe\xE7as"
-  timeToAIPlacement: "\xC9 a vez do oponente colocar as pe\xE7as"
-  playerWin: "Voc\xEA acertou!"
-  playerLost: "Voc\xEA errou!"
-  finishBtnMessage: Finalizar
-  buttonTilePrefab: {fileID: -2965587269589445736, guid: b5722c4638c62cf4d9509870f78987ea, type: 3}
-  buttonsTilesParent: {fileID: 0}
+  GameModeSO: {fileID: 11400000, guid: ea15e55bab319b24f983665bc441793f, type: 2}

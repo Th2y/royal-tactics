@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 5
   namePt: Rei
   humanInitialTiles: 20000000
-  iaInitialTiles: 27000000
+  aiInitialTiles: 27000000
   cost: 0
   prefab: {fileID: 1888405833250821873, guid: bfe9fedf811980348991e83be035a05d, type: 3}

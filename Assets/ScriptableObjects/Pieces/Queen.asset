@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 4
   namePt: Dama
   humanInitialTiles: 18000000
-  iaInitialTiles: 1f000000
+  aiInitialTiles: 1f000000
   cost: 9
   prefab: {fileID: 3814399697422126422, guid: 1a98240f70210d64e912f10c6af799af, type: 3}

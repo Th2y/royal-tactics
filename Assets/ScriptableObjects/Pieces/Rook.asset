@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 3
   namePt: Torre
   humanInitialTiles: 0000000038000000
-  iaInitialTiles: 070000003f000000
+  aiInitialTiles: 070000003f000000
   cost: 5
   prefab: {fileID: 1660852193973792313, guid: e37b5465365690b4288b00c93f189b3f, type: 3}

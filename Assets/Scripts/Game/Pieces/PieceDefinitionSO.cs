@@ -8,7 +8,7 @@ public class PieceDefinitionSO : ScriptableObject
     public string namePt;
 
     public List<TileName> humanInitialTiles;
-    public List<TileName> iaInitialTiles;
+    public List<TileName> aiInitialTiles;
 
     [Header("Gameplay")]
     public int cost;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,14 @@ public class TileButtonUI : MonoBehaviour
     public void Setup(TileName tileName, bool interactable, UnityAction onClick)
     {
         nameText.text = tileName.ToString();
+
+        SetInteractable(interactable);
+        button.onClick.AddListener(onClick);
+    }
+
+    public void Setup(List<TileName> tileNames, bool interactable, UnityAction onClick)
+    {
+        nameText.text = string.Join(", ", tileNames);
 
         SetInteractable(interactable);
         button.onClick.AddListener(onClick);

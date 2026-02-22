@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
+  m_Name: CorrectPositioningMode
+  m_EditorClassIdentifier: 
+  modeName: 3
+  modeNamePt: Posicionamento correto
+  modePrefab: {fileID: 2669599771555031701, guid: 8d2622f6f61d03549be767c3b7bc18a1, type: 3}
+  modeUIBase: {fileID: -8464584846909720439, guid: 7de9c2c79be040c439804ad0ff2c491f, type: 3}
+  phases:
+  - {fileID: 11400000, guid: 1a2f8a6cb995bbb4887157425521da1a, type: 2}
+  - {fileID: 11400000, guid: 3aa8151747195ef4e9932ac0673ebdce, type: 2}
+  - {fileID: 11400000, guid: 42a874b1a2d358f4da79bfd14c3cda40, type: 2}

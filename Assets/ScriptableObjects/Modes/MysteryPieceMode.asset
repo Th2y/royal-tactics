@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
   m_Name: MysteryPieceMode
   m_EditorClassIdentifier: 
-  modeId: 1
   modeName: 1
   modeNamePt: "Pe\xE7a misteriosa"
   modePrefab: {fileID: 8512713445020459092, guid: e53fff233bbdb124f8d3a3cbfaa800c2, type: 3}
+  modeUIBase: {fileID: -4672048307551693291, guid: 6871ea7e4f6f2f6408a356954f10af67, type: 3}
   phases:
   - {fileID: 11400000, guid: e950344f2d67ff545b60ba065c22f144, type: 2}
   - {fileID: 11400000, guid: f37b0788ba63421438ccc57ad650eb98, type: 2}

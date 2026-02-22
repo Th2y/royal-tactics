@@ -45,15 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameModeSO: {fileID: 11400000, guid: 21d14182a84ea8f49b9d08f014fbadd1, type: 2}
-  screens: []
-  gamePhaseText: {fileID: 0}
-  gameOverText: {fileID: 0}
   timeToPlayerPlay: "\xC9 a sua vez de jogar"
   timeToAIPlay: "\xC9 a vez do oponente jogar"
   timeToPlayerPlacement: "\xC9 a sua vez de colocar as pe\xE7as"
   timeToAIPlacement: "\xC9 a vez do oponente colocar as pe\xE7as"
   playerWin: "Voc\xEA venceu!"
   playerLost: "Voc\xEA perdeu!"
+  finishBtnMessage: Finalizar jogada
   advantagePointsText: {fileID: 0}
   playerTotalPointsText: {fileID: 0}
   aiTotalPointsText: {fileID: 0}
+  coinsLeftText: {fileID: 0}
+  buttonPlacementPrefab: {fileID: 216090937457477724, guid: 199eec62a457b2043b845f8308f84024, type: 3}
+  buttonsPlacementParent: {fileID: 0}

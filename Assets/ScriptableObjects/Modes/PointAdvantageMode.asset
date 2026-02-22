@@ -15,6 +15,7 @@ MonoBehaviour:
   modeName: 0
   modeNamePt: Vantagem de Pontos
   modePrefab: {fileID: -4166542156304033033, guid: 6d7f421c28b2bbe4a9d223fef70e5bc2, type: 3}
+  modeUIBase: {fileID: 7404029122153514504, guid: 65b4d4c88bbd7bb41ab2e5a0faed911b, type: 3}
   phases:
   - {fileID: 11400000, guid: 7d08740dbc54ea04d829dceca98b83ac, type: 2}
   - {fileID: 11400000, guid: a394f47fae0638648aa6b52eb3213648, type: 2}

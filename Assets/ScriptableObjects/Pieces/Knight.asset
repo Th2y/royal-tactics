@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 1
   namePt: Cavalo
   humanInitialTiles: 0800000028000000
-  iaInitialTiles: 0f0000002f000000
+  aiInitialTiles: 0f0000002f000000
   cost: 3
   prefab: {fileID: 1952302574386903565, guid: db6d30ca3b003644983d631f66a952d3, type: 3}
