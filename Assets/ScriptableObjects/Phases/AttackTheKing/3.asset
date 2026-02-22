@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594d630c663d2684a847989a1fbdac16, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  phase: 3
+  availablePiecesHuman:
+  - {fileID: 11400000, guid: 32b86aaac32ab344196ad72c5e6d7b85, type: 2}
+  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+  - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
+  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
+  - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
+  availablePiecesAI:
+  - {fileID: 11400000, guid: 32b86aaac32ab344196ad72c5e6d7b85, type: 2}
+  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+  - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
+  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
+  - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
+  availablePiecesPromotion:
+  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+  - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
+  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
+  - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
+  startingPoints: 15
+  pointsAdvantageToWin: 12

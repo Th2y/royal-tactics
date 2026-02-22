@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
+  m_Name: SaveTheKingMode
+  m_EditorClassIdentifier: 
+  modeName: 4
+  modeNamePt: Salve o Rei
+  modePrefab: {fileID: -4470590554236911389, guid: e5c0bdd69b1c0214895061ad55cf0bdf, type: 3}
+  modeUIBase: {fileID: 8180213386772283667, guid: d104a01ade872bc4996375f5641c5885, type: 3}
+  phases:
+  - {fileID: 11400000, guid: 28af9f21ea1460a4e8f9730ec54035cd, type: 2}
+  - {fileID: 11400000, guid: b4430ce44ded7bd4e9c576a68ba6a4db, type: 2}
+  - {fileID: 11400000, guid: d4c723fe01241654cb141157c8151389, type: 2}

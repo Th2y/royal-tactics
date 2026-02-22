@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
+  m_Name: AttackTheKingMode
+  m_EditorClassIdentifier: 
+  modeName: 5
+  modeNamePt: Ataque o Rei
+  modePrefab: {fileID: 6378013906306730775, guid: a2e0da0015443b1468cabd01df1d68da, type: 3}
+  modeUIBase: {fileID: 1793861062551637128, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
+  phases:
+  - {fileID: 11400000, guid: 3612e2232f5d2bf4594fe37dace14825, type: 2}
+  - {fileID: 11400000, guid: 6cfde693a1c14f547b69c04dd846b734, type: 2}
+  - {fileID: 11400000, guid: dbd5b3d349c1c5a46887a4890b2030b1, type: 2}
