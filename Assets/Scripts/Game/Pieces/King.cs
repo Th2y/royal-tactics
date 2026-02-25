@@ -58,6 +58,20 @@ public class King : Piece
     #endregion
 
     #region King State
+    public KingState EvaluateKingState()
+    {
+        if (IsCheckmate(BoardController.Instance))
+            return KingState.Checkmate;
+
+        if (IsStalemate(BoardController.Instance))
+            return KingState.Stalemate;
+
+        if (IsInCheck(BoardController.Instance))
+            return KingState.Check;
+
+        return KingState.Safe;
+    }
+
     public bool IsInCheck(BoardController board)
     {
         return IsTileUnderAttack(board, CurrentTile);
