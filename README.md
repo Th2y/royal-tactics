@@ -1,119 +1,160 @@
 # ♟️ Royal Tactics
 
-**Royal Tactics** é um jogo de tabuleiro tático por turnos inspirado no xadrez, mas com foco em **controle de território, economia de peças e decisões estratégicas**, em vez de regras tradicionais.
+**Royal Tactics** é um jogo inspirado no xadrez, focado em **desafios táticos rápidos**, aprendizado progressivo e alta rejogabilidade.
 
-O jogo propõe partidas curtas, alta rejogabilidade e um sistema de vitória original baseado em **Domínio**, não em xeque-mate.
+O projeto foi desenvolvido com uma **arquitetura modular e escalável**, permitindo a criação de múltiplos modos de jogo e fases reutilizando os mesmos sistemas centrais.
+
+Cada partida é curta, objetiva e baseada em **análise de posição**, não em partidas completas de xadrez tradicional.
 
 ---
 
-## 🎯 Conceito Central
+## 🎯 Objetivo do Projeto
+
+Royal Tactics é um projeto autoral com foco em:
+
+* Design de sistemas de jogo
+* Arquitetura escalável
+* Separação clara entre lógica, dados e UI
+* Geração dinâmica de conteúdo
+* Criação de experiências educativas e táticas
+
+O jogo foi pensado tanto para **aprendizado de xadrez** quanto como **exercício de engenharia de software aplicada a games**.
+
+---
+
+## 🧩 Estrutura Geral do Jogo
 
 * Tabuleiro **8x8**
-* Dois jogadores (Jogador vs IA)
-* Não existe Rei
-* Cada peça possui um **custo em pontos**
-* Pontos são usados tanto para **posicionar peças** quanto para **vencer a partida**
+* Jogador vs IA
+* Partidas baseadas em **puzzles táticos**
+* Progressão por **modos → fases**
+* Nenhuma fase é fixa: posições são **geradas dinamicamente**
 
-O jogo é estruturado para que **cada decisão importe**: posicionamento inicial, troca de peças e controle da vantagem ao longo dos turnos.
+Cada modo possui:
 
----
-
-## ♜ Peças e Custos
-
-| Peça   | Custo |
-| ------ | ----- |
-| Peão   | 1     |
-| Cavalo | 3     |
-| Bispo  | 3     |
-| Torre  | 5     |
-| Dama   | 9     |
+* Regras próprias
+* Conjunto específico de peças
+* Critérios de validação independentes
+* Fases progressivas
 
 ---
 
-## 🧩 Fase Inicial — Posicionamento
+## 🎮 Modos de Jogo
 
-1. Ao iniciar a partida, **cada lado recebe x pontos** (rodada 1 = 10 pontos, as outras vai aumentando de 2 em 2 pontos até chegar a 20 pontos)
-2. O **oponente posiciona suas peças primeiro**, livremente no tabuleiro
-3. Em seguida, o **jogador posiciona suas peças**, também livremente
-4. O jogador **não vê as peças do oponente**, apenas casas bloqueadas
+### ♜ Vantagem de Pontos
 
-Essa fase cria um cenário de **informação incompleta**, incentivando leitura de jogo e antecipação de movimentos.
+Capture peças mais valiosas antes do oponente.
 
----
-
-## 🔄 Turnos de Jogo
-
-A partir do segundo turno, o jogo começa de fato.
-
-Em cada turno:
-
-* Apenas **uma peça** pode agir
-* A ação pode ser:
-
-  * **Atacar**, se houver uma peça inimiga ao alcance
-  * **Mover**, caso nenhum ataque seja possível
-
-### Prioridade de Ação
-
-O sistema sempre tenta:
-
-1. Atacar
-2. Caso não seja possível, mover
+* Cada peça possui um valor
+* O jogador deve escolher a melhor captura disponível
+* Foco em avaliação material e priorização de jogadas
 
 ---
 
-## ⚔️ Combate e Pontuação
+### ❓ Peça Misteriosa
 
-* Ao atacar:
+Identifique qual peça está sendo representada apenas pela sua movimentação.
 
-  * A peça se move para a casa da peça inimiga
-  * A peça inimiga é removida
-* O jogador ganha:
-
-  * **(Valor da peça capturada − 1) pontos**
-
-Esses pontos podem ser usados em **turnos futuros** para posicionar novas peças no tabuleiro.
-Posicionar uma peça **consome o turno inteiro**.
+* O jogador observa as casas alcançáveis
+* Deve escolher qual peça corresponde àquele padrão
+* Foco em reconhecimento de padrões e movimentação
 
 ---
 
-## 🏆 Condição de Vitória — Domínio
+### 🔤 Nome das Casas
 
-O jogo **não é vencido por eliminar todas as peças**.
+Treino da nomenclatura tradicional do tabuleiro de xadrez.
 
-### Vitória por Domínio
-
-Um jogador vence ao manter:
-
-* Uma vantagem mínima de **x pontos** (valor recebido inicialmente pela rodada dividido por 2)
-* Considerando o **valor total das peças ativas no tabuleiro**
-* Por **3 turnos consecutivos**
-
-O valor considerado é sempre o **custo original da peça**, independentemente de como ela foi obtida.
-
-Essa condição:
-
-* Evita partidas longas
-* Incentiva trocas inteligentes
-* Gera tensão constante
-* Permite reviravoltas
+* O jogador deve identificar corretamente as casas (ex: A1, E4, H8)
+* Progressão de dificuldade por fase
+* Foco em coordenação espacial e notação algébrica
 
 ---
 
-## 🎨 Sistema de Cores
+### 📍 Posicionamento Correto
 
-O jogador pode escolher:
+Aprenda e treine a posição inicial das peças no tabuleiro.
 
-* A cor das **suas peças**
-* A cor das **peças do oponente**
+* O jogador deve posicionar corretamente cada peça
+* Foco em memorização e compreensão do setup inicial
+
+---
+
+> 🚧 **Novos modos em desenvolvimento**
+> Dois novos modos já estão em estágio avançado e serão lançados em breve.
+
+---
+
+## 🔄 Progressão e Fases
+
+* Cada modo possui várias fases
+* A **fase 1 de cada modo inicia desbloqueada**
+* As fases seguintes:
+
+  * começam bloqueadas
+  * são desbloqueadas ao vencer a fase anterior
+* O progresso é salvo utilizando **PlayerPrefs**
+
+O sistema foi projetado para permitir futura migração para banco de dados sem refatorações complexas.
+
+---
+
+## 🎲 Geração Dinâmica de Posições
+
+* As posições do tabuleiro são geradas dinamicamente
+* Baseadas em regras específicas de cada modo
+* Evitam padrões fixos e repetição de fases
+* Garantem alta rejogabilidade
+
+Nenhuma fase é exatamente igual à outra.
+
+---
+
+## 🧠 IA
+
+* A IA posiciona peças e gera cenários de acordo com o modo
+* Atualmente utiliza regras determinísticas
+* Próxima etapa:
+
+  * análise de posição
+  * tomada de decisão baseada em contexto
+
+---
+
+## 🎨 Customização Visual
+
+O jogador pode personalizar:
+
+* Cor das próprias peças
+* Cor das peças do oponente
+* Cor do tabuleiro
 
 Regras:
 
-* As cores **não podem ser iguais**
-* A escolha é puramente visual
-* As cores são persistidas entre sessões
+* As cores não podem ser iguais
+* Customização puramente visual
+* Preferências persistidas entre sessões
 
-O sistema foi projetado para evitar duplicação de materiais, com aplicação de cor desacoplada da lógica de gameplay.
+O sistema evita duplicação de materiais e mantém a lógica de gameplay desacoplada da renderização.
+
+---
+
+## 🛠️ Tecnologias e Arquitetura
+
+* **Unity**
+* **C#**
+* Uso extensivo de **ScriptableObjects** para:
+
+  * definição de modos
+  * fases
+  * regras
+* Arquitetura baseada em:
+
+  * baixo acoplamento
+  * alta reutilização
+  * fácil expansão de conteúdo
+
+O projeto foi estruturado desde o início pensando em **crescimento contínuo**.
 
 ---
 
@@ -121,40 +162,30 @@ O sistema foi projetado para evitar duplicação de materiais, com aplicação d
 
 ### Implementado
 
-* Menu inicial
-* Seleção de cores do jogador e do oponente
-* Validação para impedir cores iguais
-* Persistência da escolha de cores
-* Estrutura base de UI e fluxo inicial
+* Sistema de modos de jogo
+* Sistema de fases
+* Geração dinâmica de posições
+* Progressão e desbloqueio
+* Persistência de progresso
+* Suporte a PC e mobile
+* Base sólida de UI e fluxo de navegação
 
 ### Em Desenvolvimento
 
-* Lógica do tabuleiro
-* Sistema de turnos
-* Posicionamento inicial das peças
-* Sistema de ataque e movimento
-* Condição de vitória por Domínio
-* IA do oponente
+* Novos modos de jogo
+* Expansão de fases existentes
+* Melhoria visual da UI
+* Evolução da IA
 
 ---
 
-## 🛠️ Tecnologias
+## 📌 Considerações Finais
 
-* **Unity**
-* **C#**
-* Arquitetura focada em:
+**Royal Tactics** é um projeto em constante evolução, desenvolvido como iniciativa pessoal, cobrindo desde o design até a implementação técnica.
 
-  * separação de responsabilidades
-  * baixo acoplamento
-  * escalabilidade
+Ele serve tanto como:
 
----
+* Ferramenta de aprendizado de xadrez
+* Demonstração prática de arquitetura e design de sistemas em jogos
 
-## 📌 Objetivo do Projeto
-
-**Royal Tactics** é um projeto autoral com foco em:
-
-* Design de sistemas
-* Lógica de gameplay
-* Arquitetura limpa
-* Tomada de decisões técnicas conscientes
+É só dizer.
