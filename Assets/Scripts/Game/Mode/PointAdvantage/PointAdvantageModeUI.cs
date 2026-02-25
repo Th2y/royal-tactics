@@ -81,9 +81,9 @@ public class PointAdvantageModeUI : GameModeUIBase
 
     public override void SetOptions(List<PieceDefinitionSO> options)
     {
-        foreach (var button in buttons)
+        foreach (Transform child in buttonsPlacementParent)
         {
-            Destroy(button.gameObject);
+            Destroy(child.gameObject);
         }
         buttons.Clear();
 

@@ -12,6 +12,10 @@ public class ExitButton : UnityMethods
     {
         if (button == null) button = GetComponent<Button>();
         button.onClick.AddListener(ExitGame);
+
+#if UNITY_WEBGL
+        button.gameObject.SetActive(false);
+#endif
     }
 
     public override void OnInitStart(){}

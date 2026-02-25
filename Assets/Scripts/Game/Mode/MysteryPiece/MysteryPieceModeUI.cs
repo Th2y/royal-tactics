@@ -47,9 +47,9 @@ public class MysteryPieceModeUI : GameModeUIBase
     {
         playerGuessed = false;
 
-        foreach (var button in buttons)
+        foreach (Transform child in buttonsPiecesParent)
         {
-            Destroy(button.gameObject);
+            Destroy(child.gameObject);
         }
         buttons.Clear();
 

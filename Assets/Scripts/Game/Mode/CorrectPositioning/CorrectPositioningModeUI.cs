@@ -47,9 +47,9 @@ public class CorrectPositioningModeUI : GameModeUIBase
     {
         playerGuessed = false;
 
-        foreach (var button in buttons)
+        foreach (Transform child in buttonsTilesParent)
         {
-            Destroy(button.gameObject);
+            Destroy(child.gameObject);
         }
         buttons.Clear();
 
