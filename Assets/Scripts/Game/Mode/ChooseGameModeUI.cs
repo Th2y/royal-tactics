@@ -25,6 +25,7 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     public CanvasGroupController PlacementParent;
     public CanvasGroupController PieceParent;
     public CanvasGroupController TileParent;
+    public CanvasGroupController KingStateParent;
     public CanvasGroupController PromotionParent;
     public Button FinishBtn;
     public TextMeshProUGUI FinishBtnTxt;

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
-  m_Name: SaveTheKingMode
+  m_Name: KingStateMode
   m_EditorClassIdentifier: 
   modeName: 4
-  modeNamePt: Salve o Rei
+  modeNamePt: Estado do Rei
   modePrefab: {fileID: -4470590554236911389, guid: e5c0bdd69b1c0214895061ad55cf0bdf, type: 3}
   modeUIBase: {fileID: 8180213386772283667, guid: d104a01ade872bc4996375f5641c5885, type: 3}
   phases:

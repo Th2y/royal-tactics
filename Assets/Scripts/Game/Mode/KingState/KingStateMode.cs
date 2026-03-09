@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackTheKing : GameModeBase
+public class KingStateMode : GameModeBase
 {
     private King playerKing;
     private KingState kingState;
+
+    public List<KingStateDefinitionSO> KingStateDefinitions;
 
     public override void StartMode()
     {
@@ -19,7 +21,6 @@ public class AttackTheKing : GameModeBase
             case GameTurn.OpponentPlacement:
                 ChooseGameModeUI.Instance.ShowScreen(GameScreen.Play);
                 kingState = GeneratePhase(PhaseController.Instance.CurrentPhase);
-                Debug.LogError(kingState);
                 break;
             case GameTurn.GameOverWin:
                 PhaseController.Instance.ShowNextPhaseButton(true);
@@ -29,6 +30,7 @@ public class AttackTheKing : GameModeBase
                 break;
         }
 
+        ChooseGameModeUI.Instance.CurrentGameMode.SetOptions(KingStateDefinitions);
         ChooseGameModeUI.Instance.CurrentGameMode.SetGameTurnText(newPhase);
     }
 

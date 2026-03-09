@@ -68,6 +68,7 @@ public abstract class GameModeUIBase : MonoBehaviour
     protected CanvasGroupController placementParent;
     protected CanvasGroupController pieceParent;
     protected CanvasGroupController tileParent;
+    protected CanvasGroupController kingStateParent;
     protected CanvasGroupController promotionParent;
     protected Button finishBtn;
     private TextMeshProUGUI finishBtnTxt;
@@ -84,6 +85,7 @@ public abstract class GameModeUIBase : MonoBehaviour
         placementParent = choose.PlacementParent;
         pieceParent = choose.PieceParent;
         tileParent = choose.TileParent;
+        kingStateParent = choose.KingStateParent;
         promotionParent = choose.PromotionParent;
         finishBtn = choose.FinishBtn;
         finishBtnTxt = choose.FinishBtnTxt;
@@ -94,7 +96,5 @@ public abstract class GameModeUIBase : MonoBehaviour
     public abstract void BuildUI();
     public abstract void RefreshButtons();
 
-    public abstract void SetOptions(List<PieceDefinitionSO> options);
-
-    public abstract void SetOptions(List<TileName> options);
+    public abstract void SetOptions<T>(List<T> options);
 }

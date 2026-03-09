@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CorrectPositioningModeUI : GameModeUIBase
@@ -30,6 +31,7 @@ public class CorrectPositioningModeUI : GameModeUIBase
         promotionParent.SetActive(false);
         pieceParent.SetActive(false);
         tileParent.SetActive(true);
+        kingStateParent.SetActive(false);
         finishBtn.gameObject.SetActive(false);
     }
 
@@ -43,8 +45,9 @@ public class CorrectPositioningModeUI : GameModeUIBase
         
     }
 
-    public override void SetOptions(List<PieceDefinitionSO> options)
+    public override void SetOptions<T>(List<T> optionsT)
     {
+        var options = optionsT.Cast<PieceDefinitionSO>().ToList();
         playerGuessed = false;
 
         foreach (Transform child in buttonsTilesParent)
@@ -61,11 +64,6 @@ public class CorrectPositioningModeUI : GameModeUIBase
             btn.Setup(tileNames, true, () => OnPlayerGuess(piece.type));
             buttons.Add(btn);
         }
-    }
-
-    public override void SetOptions(List<TileName> options)
-    {
-        
     }
 
     private void OnPlayerGuess(PieceType guessedType)

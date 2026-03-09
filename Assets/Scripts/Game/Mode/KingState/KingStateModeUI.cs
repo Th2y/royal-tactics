@@ -2,24 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MysteryPieceModeUI : GameModeUIBase
+public class KingStateModeUI : GameModeUIBase
 {
-    [SerializeField] private PieceButtonUI buttonPiecePrefab;
-    [SerializeField] private Transform buttonsPiecesParent;
+    [SerializeField] private KingStateButtonUI buttonKingStatePrefab;
+    [SerializeField] private Transform buttonsKingStateParent;
 
-    private readonly List<PieceButtonUI> buttons = new();
+    private readonly List<KingStateButtonUI> buttons = new();
 
     private bool playerGuessed = false;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
 
     protected override void SetPlayParts()
     {
@@ -29,49 +19,48 @@ public class MysteryPieceModeUI : GameModeUIBase
         advantageParent.SetActive(false);
         placementParent.SetActive(false);
         promotionParent.SetActive(false);
-        pieceParent.SetActive(true);
+        pieceParent.SetActive(false);
         tileParent.SetActive(false);
-        kingStateParent.SetActive(false);
+        kingStateParent.SetActive(true);
         finishBtn.gameObject.SetActive(false);
     }
 
     public override void BuildUI()
     {
-
+        
     }
 
     public override void RefreshButtons()
     {
-
+        
     }
 
     public override void SetOptions<T>(List<T> optionsT)
     {
-        var options = optionsT.Cast<PieceDefinitionSO>().ToList();
-
+        var options = optionsT.Cast<KingStateDefinitionSO>().ToList();
         playerGuessed = false;
 
-        foreach (Transform child in buttonsPiecesParent)
+        foreach (Transform child in buttonsKingStateParent)
         {
             Destroy(child.gameObject);
         }
         buttons.Clear();
 
-        foreach (PieceDefinitionSO piece in options)
+        foreach (KingStateDefinitionSO state in options)
         {
-            var btn = Instantiate(buttonPiecePrefab, buttonsPiecesParent);
-            btn.Setup(piece, false, true, () => OnPlayerGuess(piece.type));
+            var btn = Instantiate(buttonKingStatePrefab, buttonsKingStateParent);
+            btn.Setup(state, true, () => OnPlayerGuess(state.type));
             buttons.Add(btn);
         }
     }
 
-    private void OnPlayerGuess(PieceType guessedType)
+    private void OnPlayerGuess(KingState guessedType)
     {
         if (playerGuessed) return;
 
         playerGuessed = true;
 
-        if (ChooseGameMode.Instance.CurrentGameMode is MysteryPieceMode gameMode)
+        if (ChooseGameMode.Instance.CurrentGameMode is KingStateMode gameMode)
         {
             gameMode.OnPlayerGuess(guessedType);
         }

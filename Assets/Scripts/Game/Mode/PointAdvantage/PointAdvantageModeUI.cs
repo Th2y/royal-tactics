@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -39,6 +40,7 @@ public class PointAdvantageModeUI : GameModeUIBase
         placementParent.SetActive(true);
         pieceParent.SetActive(false);
         tileParent.SetActive(false);
+        kingStateParent.SetActive(false);
         promotionParent.SetActive(false);
         finishBtn.gameObject.SetActive(true);
     }
@@ -79,8 +81,10 @@ public class PointAdvantageModeUI : GameModeUIBase
         SetOptions(PhaseController.Instance.CurrentPhase.availablePiecesHuman);
     }
 
-    public override void SetOptions(List<PieceDefinitionSO> options)
+    public override void SetOptions<T>(List<T> optionsT)
     {
+        var options = optionsT.Cast<PieceDefinitionSO>().ToList();
+
         foreach (Transform child in buttonsPlacementParent)
         {
             Destroy(child.gameObject);
@@ -93,11 +97,6 @@ public class PointAdvantageModeUI : GameModeUIBase
             btn.Setup(def, true, false, () => HumanPlayerController.Instance.SelectPiecePlacement(def));
             buttons.Add(btn);
         }
-    }
-
-    public override void SetOptions(List<TileName> options)
-    {
-
     }
 
     public override void RefreshButtons()

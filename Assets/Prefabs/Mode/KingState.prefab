@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2991454336041636469}
-  - component: {fileID: 8180213386772283667}
+  - component: {fileID: -4470590554236911389}
   m_Layer: 0
-  m_Name: SaveTheKingUI
+  m_Name: KingState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8180213386772283667
+--- !u!114 &-4470590554236911389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733175263722512321}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de0e074f04b4d3f40b71c2c9a1eba0a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c85070432d23e641816dd79dade7154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameModeSO: {fileID: 11400000, guid: 93046cc0c7d15a6499186d93a8a565be, type: 2}
-  timeToPlayerPlay: "\xC9 a sua vez de jogar"
-  timeToAIPlay: "\xC9 a vez do oponente jogar"
-  timeToPlayerPlacement: "\xC9 a sua vez de colocar as pe\xE7as"
-  timeToAIPlacement: "\xC9 a vez do oponente colocar as pe\xE7as"
-  playerWin: "Voc\xEA venceu!"
-  playerLost: "Voc\xEA perdeu!"
-  finishBtnMessage: Finalizar
+  KingStateDefinitions:
+  - {fileID: 11400000, guid: 0c246c0406be49740911cc034dc28c39, type: 2}
+  - {fileID: 11400000, guid: 54c68eabdecfc2b47b68148d6982b274, type: 2}
+  - {fileID: 11400000, guid: fb3d839e90602214b9438c39296500fc, type: 2}
+  - {fileID: 11400000, guid: 2be038d74833a1140832fb7fe2c10ef5, type: 2}

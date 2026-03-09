@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AttackTheKingModeUI : GameModeUIBase
@@ -13,13 +14,9 @@ public class AttackTheKingModeUI : GameModeUIBase
         throw new System.NotImplementedException();
     }
 
-    public override void SetOptions(List<PieceDefinitionSO> options)
+    public override void SetOptions<T>(List<T> optionsT)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void SetOptions(List<TileName> options)
-    {
+        var options = optionsT.Cast<KingStateDefinitionSO>().ToList();
         throw new System.NotImplementedException();
     }
 }

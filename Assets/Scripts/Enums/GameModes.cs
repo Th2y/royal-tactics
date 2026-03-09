@@ -4,6 +4,6 @@ public enum GameModes
     MysteryPiece = 1,
     HouseNames = 2,
     CorrectPositioning = 3,
-    SaveTheKing = 4,
+    KingState = 4,
     AttackTheKing = 5,
 }

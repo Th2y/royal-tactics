@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HouseNamesModeUI : GameModeUIBase
@@ -30,6 +31,7 @@ public class HouseNamesModeUI : GameModeUIBase
         promotionParent.SetActive(false);
         pieceParent.SetActive(false);
         tileParent.SetActive(true);
+        kingStateParent.SetActive(false);
         finishBtn.gameObject.SetActive(false);
     }
 
@@ -43,13 +45,9 @@ public class HouseNamesModeUI : GameModeUIBase
         
     }
 
-    public override void SetOptions(List<PieceDefinitionSO> options)
+    public override void SetOptions<T>(List<T> optionsT)
     {
-        
-    }
-
-    public override void SetOptions(List<TileName> options)
-    {
+        var options = optionsT.Cast<TileName>().ToList();
         playerGuessed = false;
 
         foreach (Transform child in buttonsTilesParent)
