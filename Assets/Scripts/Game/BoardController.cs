@@ -119,6 +119,14 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         }
     }
 
+    public void ClearBoardPlayer(bool isFromPlayer)
+    {
+        foreach (Tile tile in tiles)
+        {
+            if (tile.IsOccupied && tile.Piece.IsFromPlayer == isFromPlayer) tile.ClearAndDestroyPiece();
+        }
+    }
+
     public Tile ChooseTileToInstantiateNewPiece(List<Tile> freeTiles, PieceDefinitionSO piece, bool isHuman)
     {
         var validTiles = piece.prefab.FilterValidSpawnTiles(freeTiles, isHuman);
@@ -126,5 +134,57 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         if (validTiles == null || validTiles.Count == 0) return null;
 
         return validTiles[Random.Range(0, validTiles.Count)];
+    }
+
+    public List<Tile> GetTilesAttackingTile(Tile targetTile, PieceDefinitionSO pieceDef, bool isFromPlayer)
+    {
+        List<Tile> result = new();
+
+        List<Tile> freeTiles = GetAllFreeTiles();
+
+        foreach (Tile tile in freeTiles)
+        {
+            if (WouldPieceAttackTile(tile, targetTile, pieceDef, isFromPlayer))
+                result.Add(tile);
+        }
+
+        return result;
+    }
+
+    private bool WouldPieceAttackTile(Tile originTile, Tile targetTile, PieceDefinitionSO pieceDef, bool isFromPlayer)
+    {
+        Piece piece = Instantiate(pieceDef.prefab);
+        piece.Initialize(pieceDef, isFromPlayer);
+
+        originTile.SetPiece(piece);
+
+        List<Tile> captures = piece.GetValidCaptures(Instance);
+
+        bool attacks = captures.Contains(targetTile);
+
+        originTile.ClearAndDestroyPiece();
+
+        return attacks;
+    }
+
+    public List<Tile> GetAdjacentTiles(Tile tile)
+    {
+        List<Tile> result = new();
+
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                if (dx == 0 && dy == 0)
+                    continue;
+
+                Tile t = GetTile((int)tile.Position.x + dx, (int)tile.Position.y + dy);
+
+                if (t != null)
+                    result.Add(t);
+            }
+        }
+
+        return result;
     }
 }

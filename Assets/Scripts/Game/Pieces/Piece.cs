@@ -5,10 +5,16 @@ using DG.Tweening;
 public abstract class Piece : MonoBehaviour
 {
     [SerializeField] private ModelColorApplier modelColorApplier;
-    public PieceDefinitionSO Definition { get; private set; }
     protected Renderer[] renderers;
     public Tile CurrentTile;
+
+#if UNITY_EDITOR
+    public bool IsFromPlayer;
+    public PieceDefinitionSO Definition;
+#else
     public bool IsFromPlayer {  get; private set; }
+    public PieceDefinitionSO Definition { get; private set; }
+#endif
 
     public virtual bool CanPromote
     {

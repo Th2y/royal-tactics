@@ -60,6 +60,8 @@ public class King : Piece
     #region King State
     public KingState EvaluateKingState()
     {
+        Debug.LogError("Evaluating state...");
+
         if (IsCheckmate(BoardController.Instance))
             return KingState.Checkmate;
 

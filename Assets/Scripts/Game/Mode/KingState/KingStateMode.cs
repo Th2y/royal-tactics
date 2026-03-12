@@ -63,22 +63,21 @@ public class KingStateMode : GameModeBase
 
     public KingState GeneratePhase(PhaseSO phase)
     {
+        BoardController.Instance.ClearBoardPlayer(false);
+
         KingState desired = PickDesiredState(phase);
 
-        const int MAX_ATTEMPTS = 10;
-        for (int i = 0; i < MAX_ATTEMPTS; i++)
+        PuzzleTemplateSO template = PickTemplate(phase, desired);
+
+        if (template == null)
         {
-            BoardController.Instance.ClearBoard();
-
-            PlacePiecesRandomly(phase.availablePiecesHuman, true);
-            PlacePiecesRandomly(phase.availablePiecesAI, false);
-
-            KingState actual = playerKing.EvaluateKingState();
-
-            if (actual == desired) return actual;
+            Debug.LogError($"No template for state {desired} in phase {phase.phase}");
+            return KingState.Safe;
         }
 
-        return playerKing.EvaluateKingState();
+        SpawnTemplate(template);
+
+        return desired;
     }
 
     private KingState PickDesiredState(PhaseSO phase)
@@ -101,21 +100,111 @@ public class KingStateMode : GameModeBase
         return KingState.Stalemate;
     }
 
-    private void PlacePiecesRandomly(List<PieceDefinitionSO> pieces, bool isFromPlayer)
+    private PuzzleTemplateSO PickTemplate(PhaseSO phase, KingState state)
     {
-        foreach (var pieceDef in pieces)
+        List<PuzzleTemplateSO> list = state switch
         {
-            List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-            Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, isFromPlayer);
+            KingState.Safe => phase.templatesSafe,
+            KingState.Check => phase.templatesCheck,
+            KingState.Checkmate => phase.templatesMate,
+            KingState.Stalemate => phase.templatesStale,
+            _ => null
+        };
 
-            PlacePiece(tile, pieceDef, isFromPlayer);
+        if (list == null || list.Count == 0)
+            return null;
+
+        return list[Random.Range(0, list.Count)];
+    }
+
+    private void SpawnTemplate(PuzzleTemplateSO template)
+    {
+        int transform = Random.Range(0, 8);
+
+        foreach (var p in template.pieces)
+        {
+            if (Random.Range(0, 100) > p.spawnChance)
+                continue;
+
+            PieceDefinitionSO piece =
+                p.pieceOptions[Random.Range(0, p.pieceOptions.Count)];
+
+            Tile tile = null;
+
+            if (p.constraint == PositionConstraint.Fixed)
+            {
+                Vector2Int pos = Transform(p.position, transform);
+                tile = BoardController.Instance.GetTile(pos.x, pos.y);
+            }
+            else
+            {
+                tile = FindTileForConstraint(p.constraint);
+            }
+
+            if (tile == null || tile.IsOccupied)
+                continue;
+
+            PlacePiece(tile, piece, p.isPlayer);
         }
+    }
+
+    private Tile FindTileForConstraint(PositionConstraint constraint)
+    {
+        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
+
+        List<Tile> candidates = new();
+
+        foreach (Tile tile in freeTiles)
+        {
+            Vector2Int pos = tile.Position;
+
+            switch (constraint)
+            {
+                case PositionConstraint.Any:
+                    candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.Center:
+                    if (pos.x >= 2 && pos.x <= 5 && pos.y >= 2 && pos.y <= 5)
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.Edge:
+                    if (pos.x == 0 || pos.x == 7 || pos.y == 0 || pos.y == 7)
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.Corner:
+                    if ((pos.x == 0 || pos.x == 7) && (pos.y == 0 || pos.y == 7))
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.NearPlayerKing:
+                    if (playerKing != null &&
+                        Vector2Int.Distance(pos, playerKing.CurrentTile.Position) <= 2)
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.FarFromPlayerKing:
+                    if (playerKing != null &&
+                        Vector2Int.Distance(pos, playerKing.CurrentTile.Position) >= 4)
+                        candidates.Add(tile);
+                    break;
+            }
+        }
+
+        if (candidates.Count == 0)
+            return null;
+
+        return candidates[Random.Range(0, candidates.Count)];
     }
 
     private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool isFromPlayer)
     {
         Piece piece = Instantiate(def.prefab);
+
         piece.Initialize(def, isFromPlayer);
+
         tile.SetPiece(piece);
 
         if (isFromPlayer && piece is King king)
@@ -125,5 +214,24 @@ public class KingStateMode : GameModeBase
         }
 
         return piece;
+    }
+
+    public static Vector2Int Transform(Vector2Int pos, int type)
+    {
+        int x = pos.x;
+        int y = pos.y;
+
+        return type switch
+        {
+            0 => new Vector2Int(x, y),
+            1 => new Vector2Int(7 - x, y),
+            2 => new Vector2Int(x, 7 - y),
+            3 => new Vector2Int(7 - x, 7 - y),
+            4 => new Vector2Int(y, x),
+            5 => new Vector2Int(7 - y, x),
+            6 => new Vector2Int(y, 7 - x),
+            7 => new Vector2Int(7 - y, 7 - x),
+            _ => pos,
+        };
     }
 }

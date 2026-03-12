@@ -9,6 +9,10 @@ public class PhaseSO : ScriptableObject
     public List<PieceDefinitionSO> availablePiecesAI;
     public List<PieceDefinitionSO> availablePiecesPromotion;
     public List<TileName> tilesNames;
+    public List<PuzzleTemplateSO> templatesSafe;
+    public List<PuzzleTemplateSO> templatesCheck;
+    public List<PuzzleTemplateSO> templatesMate;
+    public List<PuzzleTemplateSO> templatesStale;
     public int startingPoints = 10;
     public int pointsAdvantageToWin = 5;
 
