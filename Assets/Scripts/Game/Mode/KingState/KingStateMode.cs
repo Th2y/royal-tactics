@@ -121,6 +121,8 @@ public class KingStateMode : GameModeBase
     {
         int transform = Random.Range(0, 8);
 
+        bool spawnInversedColors = Random.Range(0, 2) == 1;
+
         foreach (var p in template.pieces)
         {
             if (Random.Range(0, 100) > p.spawnChance)
@@ -144,7 +146,7 @@ public class KingStateMode : GameModeBase
             if (tile == null || tile.IsOccupied)
                 continue;
 
-            PlacePiece(tile, piece, p.isPlayer);
+            PlacePiece(tile, piece, p.isPlayer, spawnInversedColors);
         }
     }
 
@@ -199,15 +201,15 @@ public class KingStateMode : GameModeBase
         return candidates[Random.Range(0, candidates.Count)];
     }
 
-    private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool isFromPlayer)
+    private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool isFromPlayer, bool isInversed)
     {
         Piece piece = Instantiate(def.prefab);
 
-        piece.Initialize(def, isFromPlayer);
+        piece.Initialize(def, isFromPlayer ^ isInversed);
 
         tile.SetPiece(piece);
 
-        if (isFromPlayer && piece is King king)
+        if (piece.IsFromPlayer ^ isInversed && piece is King king)
         {
             playerKing = king;
             king.CurrentTile.SetOccupiedMarker(true);
