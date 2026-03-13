@@ -19,5 +19,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
   availablePiecesPromotion: []
   tilesNames: 0000000038000000070000003f000000
-  startingPoints: 3
-  pointsAdvantageToWin: 1
+  templatesSafe: []
+  templatesCheck: []
+  templatesMate: []
+  templatesStale: []
+  startingPoints: 0
+  pointsAdvantageToWin: 0
+  safeChance: 0
+  checkChance: 0
+  checkmateChance: 0
+  stalemateChance: 0

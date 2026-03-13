@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
   m_Name: HouseNamesMode
   m_EditorClassIdentifier: 
-  modeId: 2
   modeName: 2
   modeNamePt: Nome das casas
   modePrefab: {fileID: -8350704903619273580, guid: 76b5fa0d80abccf4ea95431f9bc907ff, type: 3}
@@ -21,3 +20,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0134bb53bf48cd941b092a379f7b9f65, type: 2}
   - {fileID: 11400000, guid: 31d8b2f5ab9e13c4fa144422b7b04a0a, type: 2}
   - {fileID: 11400000, guid: 274aac6d38364c94593bf374eee993df, type: 2}
+  - {fileID: 11400000, guid: 0a21ab41db4c1514db6ad86a5ec5c5df, type: 2}
+  - {fileID: 11400000, guid: 9a08a64314a305d4893d2ec28e0eff77, type: 2}
+  - {fileID: 11400000, guid: d96178cb357680d48ad1a35ede87a27d, type: 2}
+  - {fileID: 11400000, guid: 8c1281a37f369344ebba4479a5262e04, type: 2}
+  - {fileID: 11400000, guid: d24810936388ea14983b625dbc9c0fef, type: 2}
+  - {fileID: 11400000, guid: 39c0e460f0efffa409f8250a342c81a2, type: 2}
+  - {fileID: 11400000, guid: 8ce245e83fd85b54091abfe9928fd2c7, type: 2}
+  - {fileID: 11400000, guid: dddc0d4922824b1478874f38ade39e60, type: 2}
+  - {fileID: 11400000, guid: 1fa6de02dfbc5b5499cf26c594e91d74, type: 2}
+  - {fileID: 11400000, guid: c09de5f20eb30a54c869606f3248278e, type: 2}
+  - {fileID: 11400000, guid: 452ddd8bfd37ec74f916a2ae4fa075cd, type: 2}
+  - {fileID: 11400000, guid: e0a218d907d3ba34aab26c8b872e2e00, type: 2}
+  - {fileID: 11400000, guid: 20682807263ba2e4686a6660c3f9531a, type: 2}

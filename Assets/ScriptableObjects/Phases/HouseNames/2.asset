@@ -17,5 +17,13 @@ MonoBehaviour:
   availablePiecesAI: []
   availablePiecesPromotion: []
   tilesNames: 1b0000001c0000002300000024000000
-  startingPoints: 5
-  pointsAdvantageToWin: 1
+  templatesSafe: []
+  templatesCheck: []
+  templatesMate: []
+  templatesStale: []
+  startingPoints: 0
+  pointsAdvantageToWin: 0
+  safeChance: 0
+  checkChance: 0
+  checkmateChance: 0
+  stalemateChance: 0
