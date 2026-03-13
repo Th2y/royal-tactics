@@ -14,19 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phase: 2
   availablePiecesHuman:
-  - {fileID: 11400000, guid: 32b86aaac32ab344196ad72c5e6d7b85, type: 2}
-  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
   - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
-  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
-  availablePiecesAI:
-  - {fileID: 11400000, guid: 32b86aaac32ab344196ad72c5e6d7b85, type: 2}
   - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
-  - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
-  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
-  availablePiecesPromotion:
-  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
-  - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
   - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
   - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
-  startingPoints: 12
-  pointsAdvantageToWin: 10
+  availablePiecesAI: []
+  availablePiecesPromotion: []
+  tilesNames: 
+  templates:
+  - {fileID: 11400000, guid: 3ebe69ad753ba02428a00d6bd02217b7, type: 2}
+  startingPoints: 1000
+  pointsAdvantageToWin: 0
+  safeChance: 10
+  checkChance: 60
+  checkmateChance: 20
+  stalemateChance: 10

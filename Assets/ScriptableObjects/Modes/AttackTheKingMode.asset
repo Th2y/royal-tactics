@@ -17,6 +17,13 @@ MonoBehaviour:
   modePrefab: {fileID: 6378013906306730775, guid: a2e0da0015443b1468cabd01df1d68da, type: 3}
   modeUIBase: {fileID: 1793861062551637128, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
   phases:
-  - {fileID: 11400000, guid: 3612e2232f5d2bf4594fe37dace14825, type: 2}
-  - {fileID: 11400000, guid: 6cfde693a1c14f547b69c04dd846b734, type: 2}
-  - {fileID: 11400000, guid: dbd5b3d349c1c5a46887a4890b2030b1, type: 2}
+  - {fileID: 11400000, guid: 53148b12d475abc449801fb00b3db443, type: 2}
+  - {fileID: 11400000, guid: 9750bbab19547a349b32af98f726fa06, type: 2}
+  - {fileID: 11400000, guid: 6ace1c604b27ec948920f35f8166bcb1, type: 2}
+  - {fileID: 11400000, guid: ec9cfeab2d49df547b8b8fe88b0c8292, type: 2}
+  - {fileID: 11400000, guid: 7fc7f41e359a42e42aca766a40c4f84b, type: 2}
+  - {fileID: 11400000, guid: bd9dc241db037ae4aa845648cbbd8ce3, type: 2}
+  - {fileID: 11400000, guid: d27bbebade476484581c23fab7c229ef, type: 2}
+  - {fileID: 11400000, guid: 313789b9927cd884680c83856e040e6b, type: 2}
+  - {fileID: 11400000, guid: 2f490eee88709554f8801408bace4e3f, type: 2}
+  - {fileID: 11400000, guid: f48f8ef1003d47644aac1a60001fe76f, type: 2}

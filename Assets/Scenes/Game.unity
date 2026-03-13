@@ -14619,6 +14619,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackTheKingUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1793861062551637128, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
+      propertyPath: buttonPiecePrefab
+      value: 
+      objectReference: {fileID: 216090937457477724, guid: 199eec62a457b2043b845f8308f84024, type: 3}
+    - target: {fileID: 1793861062551637128, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
+      propertyPath: buttonsPiecesParent
+      value: 
+      objectReference: {fileID: 501164463}
     - target: {fileID: 2991454336041636469, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

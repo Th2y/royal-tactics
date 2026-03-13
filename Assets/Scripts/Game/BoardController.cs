@@ -271,11 +271,11 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         };
     }
 
-    public PuzzleTemplateSO GeneratePhase(PhaseSO phase)
+    public PuzzleTemplateSO GeneratePhase(PhaseSO phase, KingState desired = KingState.None)
     {
         ClearBoard();
 
-        KingState desired = PickDesiredState(phase);
+        if (desired == KingState.None) desired = PickDesiredState(phase);
 
         PuzzleTemplateSO template = phase.GetRandomTemplate(desired);
 
