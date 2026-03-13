@@ -151,7 +151,7 @@ public class King : Piece
                 continue;
             }
 
-            var attacks = piece.GetValidCaptures(board);
+            var attacks = piece.GetAttackTiles(board);
 
             if (attacks.Contains(targetTile))
                 return true;

@@ -105,4 +105,14 @@ public abstract class Piece : MonoBehaviour
 
     public abstract List<Tile> GetValidMoves(BoardController board);
     public abstract List<Tile> GetValidCaptures(BoardController board);
+
+    public virtual List<Tile> GetAttackTiles(BoardController board)
+    {
+        List<Tile> attacks = new();
+
+        attacks.AddRange(GetValidMoves(board));
+        attacks.AddRange(GetValidCaptures(board));
+
+        return attacks;
+    }
 }
