@@ -15,21 +15,7 @@ MonoBehaviour:
   state: 0
   pieces:
   - pieceOptions:
-    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
-    isPlayer: 0
-    constraint: 0
-    positions:
-    - {x: 3, y: 2}
-    spawnChance: 100
-  - pieceOptions:
-    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
-    isPlayer: 1
-    constraint: 0
-    positions:
-    - {x: 0, y: 0}
-    spawnChance: 100
-  - pieceOptions:
-    - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+    - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
     isPlayer: 0
     constraint: 0
     positions:
@@ -47,41 +33,20 @@ MonoBehaviour:
     - {x: 6, y: 3}
     - {x: 5, y: 3}
     - {x: 4, y: 3}
-    - {x: 2, y: 3}
-    - {x: 1, y: 3}
-    - {x: 0, y: 3}
-    - {x: 7, y: 4}
-    - {x: 6, y: 4}
-    - {x: 5, y: 4}
-    - {x: 3, y: 4}
-    - {x: 2, y: 4}
+    - {x: 3, y: 3}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
+    isPlayer: 1
+    constraint: 0
+    positions:
+    - {x: 1, y: 0}
+    - {x: 0, y: 0}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
+    isPlayer: 0
+    constraint: 6
+    positions:
     - {x: 1, y: 4}
-    - {x: 0, y: 4}
-    - {x: 7, y: 0}
-    - {x: 6, y: 0}
-    - {x: 5, y: 0}
-    - {x: 4, y: 0}
-    - {x: 3, y: 0}
-    - {x: 2, y: 0}
-    - {x: 7, y: 5}
-    - {x: 6, y: 5}
-    - {x: 4, y: 5}
-    - {x: 3, y: 5}
-    - {x: 2, y: 5}
-    - {x: 1, y: 5}
-    - {x: 0, y: 5}
-    - {x: 7, y: 6}
-    - {x: 5, y: 6}
-    - {x: 4, y: 6}
-    - {x: 3, y: 6}
-    - {x: 2, y: 6}
-    - {x: 1, y: 6}
-    - {x: 0, y: 6}
-    - {x: 6, y: 7}
-    - {x: 5, y: 7}
-    - {x: 4, y: 7}
-    - {x: 3, y: 7}
-    - {x: 2, y: 7}
-    - {x: 1, y: 7}
-    - {x: 0, y: 7}
     spawnChance: 100

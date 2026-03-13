@@ -9,10 +9,7 @@ public class PhaseSO : ScriptableObject
     public List<PieceDefinitionSO> availablePiecesAI;
     public List<PieceDefinitionSO> availablePiecesPromotion;
     public List<TileName> tilesNames;
-    public List<PuzzleTemplateSO> templatesSafe;
-    public List<PuzzleTemplateSO> templatesCheck;
-    public List<PuzzleTemplateSO> templatesMate;
-    public List<PuzzleTemplateSO> templatesStale;
+    public List<PuzzleTemplateSO> templates;
     public int startingPoints = 10;
     public int pointsAdvantageToWin = 5;
 
@@ -21,4 +18,14 @@ public class PhaseSO : ScriptableObject
     public int checkChance = 30;
     public int checkmateChance = 50;
     public int stalemateChance = 15;
+
+    public PuzzleTemplateSO GetRandomTemplate(KingState state)
+    {
+        var candidates = templates.FindAll(t => t.state == state);
+
+        if (candidates.Count == 0)
+            return null;
+
+        return candidates[Random.Range(0, candidates.Count)];
+    }
 }

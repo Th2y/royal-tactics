@@ -200,4 +200,111 @@ public class BoardController : UnityMethodsSingleton<BoardController>
 
         return result;
     }
+
+    public Tile FindTileForConstraint(PositionConstraint constraint, King playerKing)
+    {
+        List<Tile> freeTiles = GetAllFreeTiles();
+
+        List<Tile> candidates = new();
+
+        foreach (Tile tile in freeTiles)
+        {
+            Vector2Int pos = tile.Position;
+
+            switch (constraint)
+            {
+                case PositionConstraint.Any:
+                    candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.Center:
+                    if (pos.x >= 2 && pos.x <= 5 && pos.y >= 2 && pos.y <= 5)
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.Edge:
+                    if (pos.x == 0 || pos.x == 7 || pos.y == 0 || pos.y == 7)
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.Corner:
+                    if ((pos.x == 0 || pos.x == 7) && (pos.y == 0 || pos.y == 7))
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.NearPlayerKing:
+                    if (playerKing != null &&
+                        Vector2Int.Distance(pos, playerKing.CurrentTile.Position) <= 2)
+                        candidates.Add(tile);
+                    break;
+
+                case PositionConstraint.FarFromPlayerKing:
+                    if (playerKing != null &&
+                        Vector2Int.Distance(pos, playerKing.CurrentTile.Position) >= 4)
+                        candidates.Add(tile);
+                    break;
+            }
+        }
+
+        if (candidates.Count == 0)
+            return null;
+
+        return candidates[Random.Range(0, candidates.Count)];
+    }
+
+    public Vector2Int Transform(Vector2Int pos, int type)
+    {
+        int x = pos.x;
+        int y = pos.y;
+
+        return type switch
+        {
+            0 => new Vector2Int(x, y),
+            1 => new Vector2Int(7 - x, y),
+            2 => new Vector2Int(x, 7 - y),
+            3 => new Vector2Int(7 - x, 7 - y),
+            4 => new Vector2Int(y, x),
+            5 => new Vector2Int(7 - y, x),
+            6 => new Vector2Int(y, 7 - x),
+            7 => new Vector2Int(7 - y, 7 - x),
+            _ => pos,
+        };
+    }
+
+    public PuzzleTemplateSO GeneratePhase(PhaseSO phase)
+    {
+        ClearBoard();
+
+        KingState desired = PickDesiredState(phase);
+
+        PuzzleTemplateSO template = phase.GetRandomTemplate(desired);
+
+        if (template == null)
+        {
+            Debug.LogError($"No template for state {desired} in phase {phase.phase}");
+            return null;
+        }
+
+        return template;
+    }
+
+    private KingState PickDesiredState(PhaseSO phase)
+    {
+        int roll = Random.Range(0, 100);
+
+        if (roll < phase.safeChance)
+            return KingState.Safe;
+
+        roll -= phase.safeChance;
+
+        if (roll < phase.checkChance)
+            return KingState.Check;
+
+        roll -= phase.checkChance;
+
+        if (roll < phase.checkmateChance)
+            return KingState.Checkmate;
+
+        return KingState.Stalemate;
+    }
 }

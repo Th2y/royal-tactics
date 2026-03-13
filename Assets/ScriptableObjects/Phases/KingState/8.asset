@@ -17,13 +17,10 @@ MonoBehaviour:
   availablePiecesAI: []
   availablePiecesPromotion: []
   tilesNames: 
-  templatesSafe:
-  - {fileID: 11400000, guid: a34aca028fc2d344db76cf8d43cfb9de, type: 2}
-  templatesCheck:
+  templates:
   - {fileID: 11400000, guid: 475a0b7406f298a408478a1be7bca83f, type: 2}
-  templatesMate:
   - {fileID: 11400000, guid: 78321d86b99941845b504f1539209f77, type: 2}
-  templatesStale:
+  - {fileID: 11400000, guid: a34aca028fc2d344db76cf8d43cfb9de, type: 2}
   - {fileID: 11400000, guid: ef8a4c1ab092a4147bca8f74689eb82d, type: 2}
   startingPoints: 0
   pointsAdvantageToWin: 0

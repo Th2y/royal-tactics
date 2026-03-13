@@ -21,7 +21,9 @@ public class KingStateMode : GameModeBase
         {
             case GameTurn.OpponentPlacement:
                 ChooseGameModeUI.Instance.ShowScreen(GameScreen.Play);
-                kingState = GeneratePhase(PhaseController.Instance.CurrentPhase);
+                PuzzleTemplateSO template = BoardController.Instance.GeneratePhase(PhaseController.Instance.CurrentPhase);
+                SpawnTemplate(template);
+                kingState = playerKing.EvaluateKingState();
                 break;
             case GameTurn.GameOverWin:
                 PhaseController.Instance.ShowNextPhaseButton(true);
@@ -62,62 +64,6 @@ public class KingStateMode : GameModeBase
         }
     }
 
-    public KingState GeneratePhase(PhaseSO phase)
-    {
-        BoardController.Instance.ClearBoardPlayer(false);
-
-        KingState desired = PickDesiredState(phase);
-
-        PuzzleTemplateSO template = PickTemplate(phase, desired);
-
-        if (template == null)
-        {
-            Debug.LogError($"No template for state {desired} in phase {phase.phase}");
-            return KingState.Safe;
-        }
-
-        SpawnTemplate(template);
-
-        return playerKing.EvaluateKingState();
-    }
-
-    private KingState PickDesiredState(PhaseSO phase)
-    {
-        int roll = Random.Range(0, 100);
-
-        if (roll < phase.safeChance)
-            return KingState.Safe;
-
-        roll -= phase.safeChance;
-
-        if (roll < phase.checkChance)
-            return KingState.Check;
-
-        roll -= phase.checkChance;
-
-        if (roll < phase.checkmateChance)
-            return KingState.Checkmate;
-
-        return KingState.Stalemate;
-    }
-
-    private PuzzleTemplateSO PickTemplate(PhaseSO phase, KingState state)
-    {
-        List<PuzzleTemplateSO> list = state switch
-        {
-            KingState.Safe => phase.templatesSafe,
-            KingState.Check => phase.templatesCheck,
-            KingState.Checkmate => phase.templatesMate,
-            KingState.Stalemate => phase.templatesStale,
-            _ => null
-        };
-
-        if (list == null || list.Count == 0)
-            return null;
-
-        return list[Random.Range(0, list.Count)];
-    }
-
     private void SpawnTemplate(PuzzleTemplateSO template)
     {
         bool hasPawn = template.pieces.Any(p => p.pieceOptions.Any(def => def.type == PieceType.Pawn));
@@ -137,69 +83,18 @@ public class KingStateMode : GameModeBase
             if (p.constraint == PositionConstraint.Fixed)
             {
                 int index = Random.Range(0, p.positions.Count);
-                Vector2Int pos = Transform(p.positions[index], transform);
+                Vector2Int pos = BoardController.Instance.Transform(p.positions[index], transform);
                 tile = BoardController.Instance.GetTile(pos.x, pos.y);
             }
             else
             {
-                tile = FindTileForConstraint(p.constraint);
+                tile = BoardController.Instance.FindTileForConstraint(p.constraint, playerKing);
             }
 
             if (tile == null || tile.IsOccupied) continue;
 
             PlacePiece(tile, piece, p.isPlayer, spawnInversedColors);
         }
-    }
-
-    private Tile FindTileForConstraint(PositionConstraint constraint)
-    {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        List<Tile> candidates = new();
-
-        foreach (Tile tile in freeTiles)
-        {
-            Vector2Int pos = tile.Position;
-
-            switch (constraint)
-            {
-                case PositionConstraint.Any:
-                    candidates.Add(tile);
-                    break;
-
-                case PositionConstraint.Center:
-                    if (pos.x >= 2 && pos.x <= 5 && pos.y >= 2 && pos.y <= 5)
-                        candidates.Add(tile);
-                    break;
-
-                case PositionConstraint.Edge:
-                    if (pos.x == 0 || pos.x == 7 || pos.y == 0 || pos.y == 7)
-                        candidates.Add(tile);
-                    break;
-
-                case PositionConstraint.Corner:
-                    if ((pos.x == 0 || pos.x == 7) && (pos.y == 0 || pos.y == 7))
-                        candidates.Add(tile);
-                    break;
-
-                case PositionConstraint.NearPlayerKing:
-                    if (playerKing != null &&
-                        Vector2Int.Distance(pos, playerKing.CurrentTile.Position) <= 2)
-                        candidates.Add(tile);
-                    break;
-
-                case PositionConstraint.FarFromPlayerKing:
-                    if (playerKing != null &&
-                        Vector2Int.Distance(pos, playerKing.CurrentTile.Position) >= 4)
-                        candidates.Add(tile);
-                    break;
-            }
-        }
-
-        if (candidates.Count == 0)
-            return null;
-
-        return candidates[Random.Range(0, candidates.Count)];
     }
 
     private Piece PlacePiece(Tile tile, PieceDefinitionSO def, bool isFromPlayer, bool isInversed)
@@ -217,24 +112,5 @@ public class KingStateMode : GameModeBase
         }
 
         return piece;
-    }
-
-    public static Vector2Int Transform(Vector2Int pos, int type)
-    {
-        int x = pos.x;
-        int y = pos.y;
-
-        return type switch
-        {
-            0 => new Vector2Int(x, y),
-            1 => new Vector2Int(7 - x, y),
-            2 => new Vector2Int(x, 7 - y),
-            3 => new Vector2Int(7 - x, 7 - y),
-            4 => new Vector2Int(y, x),
-            5 => new Vector2Int(7 - y, x),
-            6 => new Vector2Int(y, 7 - x),
-            7 => new Vector2Int(7 - y, 7 - x),
-            _ => pos,
-        };
     }
 }
