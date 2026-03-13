@@ -10,7 +10,8 @@ public class PuzzlePiece
 
     [Header("Placement")]
     public PositionConstraint constraint = PositionConstraint.Fixed;
-    public Vector2Int position;
+    [Tooltip("Only the first will be used if is not Fixed")]
+    public List<Vector2Int> positions;
 
     [Header("Spawn")]
     [Range(0, 100)]

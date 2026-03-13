@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cccaf37ed1b55a4891c3beb089c0473, type: 3}
+  m_Name: template_check_medium_6
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleTemplateSO
+  state: 1
+  pieces:
+  - pieceOptions:
+    - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
+    isPlayer: 1
+    constraint: 0
+    positions:
+    - {x: 3, y: 1}
+    - {x: 4, y: 1}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+    isPlayer: 0
+    constraint: 0
+    positions:
+    - {x: 2, y: 2}
+    - {x: 3, y: 3}
+    - {x: 4, y: 4}
+    - {x: 5, y: 5}
+    - {x: 6, y: 6}
+    - {x: 7, y: 7}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
+    isPlayer: 0
+    constraint: 0
+    positions:
+    - {x: 2, y: 3}
+    - {x: 1, y: 3}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
+    isPlayer: 1
+    constraint: 0
+    positions:
+    - {x: 2, y: 1}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
+    - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
+    isPlayer: 0
+    constraint: 0
+    positions:
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    spawnChance: 100

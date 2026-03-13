@@ -8,7 +8,7 @@ public static class PuzzleTemplateEditor
     const string SAVE_FOLDER = "Assets/ScriptableObjects/PuzzleTemplates";
 
     static KingState selectedState = KingState.Checkmate;
-    static Difficulty selectedDifficulty = Difficulty.Easy;
+    static PuzzleDifficulty selectedDifficulty = PuzzleDifficulty.Easy;
 
     [MenuItem("Tools/Royal Tactics/Save Puzzle Template From Board")]
     public static void SaveTemplate()
@@ -16,7 +16,7 @@ public static class PuzzleTemplateEditor
         PuzzleTemplateWindow.ShowWindow();
     }
 
-    static void CreateTemplate(KingState state, Difficulty difficulty, string extraName)
+    static void CreateTemplate(KingState state, PuzzleDifficulty difficulty, string extraName)
     {
         Piece[] pieces = Object.FindObjectsOfType<Piece>();
 
@@ -29,25 +29,28 @@ public static class PuzzleTemplateEditor
         if (!Directory.Exists(SAVE_FOLDER))
             Directory.CreateDirectory(SAVE_FOLDER);
 
-        PuzzleTemplateSO template =
-            ScriptableObject.CreateInstance<PuzzleTemplateSO>();
+        PuzzleTemplateSO template = ScriptableObject.CreateInstance<PuzzleTemplateSO>();
 
         template.state = state;
         template.pieces = new List<PuzzlePiece>();
 
         foreach (var piece in pieces)
         {
-            PuzzlePiece p = new PuzzlePiece();
-
-            p.pieceOptions = new List<PieceDefinitionSO>
+            PuzzlePiece p = new()
             {
-                piece.Definition
-            };
+                pieceOptions = new List<PieceDefinitionSO>
+                {
+                    piece.Definition
+                },
 
-            p.isPlayer = piece.IsFromPlayer;
-            p.constraint = PositionConstraint.Fixed;
-            p.position = piece.CurrentTile.Position;
-            p.spawnChance = 100;
+                isPlayer = piece.IsFromPlayer,
+                constraint = PositionConstraint.Fixed,
+                positions = new()
+                {
+                    piece.CurrentTile.Position
+                },
+                spawnChance = 100
+            };
 
             template.pieces.Add(p);
         }
@@ -68,17 +71,10 @@ public static class PuzzleTemplateEditor
         Debug.Log($"Puzzle template saved at: {path}");
     }
 
-    enum Difficulty
-    {
-        Easy,
-        Medium,
-        Hard
-    }
-
     class PuzzleTemplateWindow : EditorWindow
     {
         KingState state = KingState.Checkmate;
-        Difficulty difficulty = Difficulty.Easy;
+        PuzzleDifficulty difficulty = PuzzleDifficulty.Easy;
         string extraName = "";
 
         public static void ShowWindow()
@@ -91,7 +87,7 @@ public static class PuzzleTemplateEditor
             GUILayout.Label("Puzzle Settings", EditorStyles.boldLabel);
 
             state = (KingState)EditorGUILayout.EnumPopup("Puzzle Type", state);
-            difficulty = (Difficulty)EditorGUILayout.EnumPopup("Difficulty", difficulty);
+            difficulty = (PuzzleDifficulty)EditorGUILayout.EnumPopup("Difficulty", difficulty);
 
             extraName = EditorGUILayout.TextField("Extra Name (optional)", extraName);
 

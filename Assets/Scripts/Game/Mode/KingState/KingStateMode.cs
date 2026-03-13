@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class KingStateMode : GameModeBase
@@ -77,7 +78,7 @@ public class KingStateMode : GameModeBase
 
         SpawnTemplate(template);
 
-        return desired;
+        return playerKing.EvaluateKingState();
     }
 
     private KingState PickDesiredState(PhaseSO phase)
@@ -119,7 +120,8 @@ public class KingStateMode : GameModeBase
 
     private void SpawnTemplate(PuzzleTemplateSO template)
     {
-        int transform = Random.Range(0, 8);
+        bool hasPawn = template.pieces.Any(p => p.pieceOptions.Any(def => def.type == PieceType.Pawn));
+        int transform = hasPawn ? Random.Range(0, 2) : Random.Range(0, 8);
 
         bool spawnInversedColors = Random.Range(0, 2) == 1;
 
@@ -128,14 +130,14 @@ public class KingStateMode : GameModeBase
             if (Random.Range(0, 100) > p.spawnChance)
                 continue;
 
-            PieceDefinitionSO piece =
-                p.pieceOptions[Random.Range(0, p.pieceOptions.Count)];
+            PieceDefinitionSO piece = p.pieceOptions[Random.Range(0, p.pieceOptions.Count)];
 
-            Tile tile = null;
+            Tile tile;
 
             if (p.constraint == PositionConstraint.Fixed)
             {
-                Vector2Int pos = Transform(p.position, transform);
+                int index = Random.Range(0, p.positions.Count);
+                Vector2Int pos = Transform(p.positions[index], transform);
                 tile = BoardController.Instance.GetTile(pos.x, pos.y);
             }
             else
@@ -143,8 +145,7 @@ public class KingStateMode : GameModeBase
                 tile = FindTileForConstraint(p.constraint);
             }
 
-            if (tile == null || tile.IsOccupied)
-                continue;
+            if (tile == null || tile.IsOccupied) continue;
 
             PlacePiece(tile, piece, p.isPlayer, spawnInversedColors);
         }

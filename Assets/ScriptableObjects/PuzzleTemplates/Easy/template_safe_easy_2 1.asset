@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cccaf37ed1b55a4891c3beb089c0473, type: 3}
+  m_Name: template_safe_easy_2 1
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleTemplateSO
+  state: 0
+  pieces:
+  - pieceOptions:
+    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
+    isPlayer: 0
+    constraint: 0
+    positions:
+    - {x: 3, y: 2}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
+    isPlayer: 1
+    constraint: 0
+    positions:
+    - {x: 0, y: 0}
+    spawnChance: 100
+  - pieceOptions:
+    - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
+    isPlayer: 0
+    constraint: 0
+    positions:
+    - {x: 7, y: 1}
+    - {x: 6, y: 1}
+    - {x: 5, y: 1}
+    - {x: 4, y: 1}
+    - {x: 3, y: 1}
+    - {x: 7, y: 2}
+    - {x: 6, y: 2}
+    - {x: 5, y: 2}
+    - {x: 4, y: 2}
+    - {x: 3, y: 2}
+    - {x: 7, y: 3}
+    - {x: 6, y: 3}
+    - {x: 5, y: 3}
+    - {x: 4, y: 3}
+    - {x: 2, y: 3}
+    - {x: 1, y: 3}
+    - {x: 0, y: 3}
+    - {x: 7, y: 4}
+    - {x: 6, y: 4}
+    - {x: 5, y: 4}
+    - {x: 3, y: 4}
+    - {x: 2, y: 4}
+    - {x: 1, y: 4}
+    - {x: 0, y: 4}
+    - {x: 7, y: 0}
+    - {x: 6, y: 0}
+    - {x: 5, y: 0}
+    - {x: 4, y: 0}
+    - {x: 3, y: 0}
+    - {x: 2, y: 0}
+    - {x: 7, y: 5}
+    - {x: 6, y: 5}
+    - {x: 4, y: 5}
+    - {x: 3, y: 5}
+    - {x: 2, y: 5}
+    - {x: 1, y: 5}
+    - {x: 0, y: 5}
+    - {x: 7, y: 6}
+    - {x: 5, y: 6}
+    - {x: 4, y: 6}
+    - {x: 3, y: 6}
+    - {x: 2, y: 6}
+    - {x: 1, y: 6}
+    - {x: 0, y: 6}
+    - {x: 6, y: 7}
+    - {x: 5, y: 7}
+    - {x: 4, y: 7}
+    - {x: 3, y: 7}
+    - {x: 2, y: 7}
+    - {x: 1, y: 7}
+    - {x: 0, y: 7}
+    spawnChance: 100

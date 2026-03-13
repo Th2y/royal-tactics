@@ -60,16 +60,11 @@ public class King : Piece
     #region King State
     public KingState EvaluateKingState()
     {
-        Debug.LogError("Evaluating state...");
+        if (IsCheckmate(BoardController.Instance)) return KingState.Checkmate;
 
-        if (IsCheckmate(BoardController.Instance))
-            return KingState.Checkmate;
+        if (IsStalemate(BoardController.Instance)) return KingState.Stalemate;
 
-        if (IsStalemate(BoardController.Instance))
-            return KingState.Stalemate;
-
-        if (IsInCheck(BoardController.Instance))
-            return KingState.Check;
+        if (IsInCheck(BoardController.Instance)) return KingState.Check;
 
         return KingState.Safe;
     }

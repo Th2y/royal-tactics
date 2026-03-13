@@ -37,6 +37,8 @@ public class BoardController : UnityMethodsSingleton<BoardController>
 
     public Tile GetTile(int x, int y)
     {
+        if (tiles[x, y] == null) CacheTiles();
+
         if (x < 0 || y < 0 || x >= tiles.GetLength(0) || y >= tiles.GetLength(1))
         {
             Debug.LogWarning($"GetTile fora do limite: x={x}, y={y}");

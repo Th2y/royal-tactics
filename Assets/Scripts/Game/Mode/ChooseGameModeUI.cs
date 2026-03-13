@@ -51,9 +51,11 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
 
             modeCard.Init(mode);
 
+            Transform modePhases = phaseMode.GetComponentInChildren<GridLayoutGroup>().transform;
+
             foreach (var phase in mode.phases)
             {
-                var phaseO = Instantiate(phasePrefab, phaseMode.transform);
+                var phaseO = Instantiate(phasePrefab, modePhases);
                 phaseO.Init(mode, phase);
                 phases.Add(phaseO);
             }

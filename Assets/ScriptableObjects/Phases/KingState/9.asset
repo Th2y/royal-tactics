@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594d630c663d2684a847989a1fbdac16, type: 3}
+  m_Name: 9
+  m_EditorClassIdentifier: 
+  phase: 9
+  availablePiecesHuman: []
+  availablePiecesAI: []
+  availablePiecesPromotion: []
+  tilesNames: 
+  templatesSafe:
+  - {fileID: 11400000, guid: 2ab77a09f9d016f47a1c12ccc04ef188, type: 2}
+  templatesCheck:
+  - {fileID: 11400000, guid: 7c5e39f01ce659c45b19faa068f24596, type: 2}
+  templatesMate:
+  - {fileID: 11400000, guid: 2c2db53f74b088f4c81e99ae05fca442, type: 2}
+  templatesStale:
+  - {fileID: 11400000, guid: 503db63d2182a79419d9eaf671aa129a, type: 2}
+  startingPoints: 0
+  pointsAdvantageToWin: 0
+  safeChance: 20
+  checkChance: 30
+  checkmateChance: 30
+  stalemateChance: 20

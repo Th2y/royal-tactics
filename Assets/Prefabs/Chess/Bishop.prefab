@@ -108,7 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelColorApplier: {fileID: -1761487870896263675}
-  CanReceiveClicks: 1
+  CurrentTile: {fileID: 0}
+  IsFromPlayer: 0
+  Definition: {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
 --- !u!65 &765512065104453533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,10 +139,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7945001546205010805}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

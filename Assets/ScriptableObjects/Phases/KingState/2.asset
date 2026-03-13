@@ -18,16 +18,16 @@ MonoBehaviour:
   availablePiecesPromotion: []
   tilesNames: 
   templatesSafe:
-  - {fileID: 11400000, guid: 298b09c1dd6e7da49aac488f8bb6b14f, type: 2}
+  - {fileID: 11400000, guid: 1da62fe0fd0fbe14e9705c65094a1e10, type: 2}
   templatesCheck:
-  - {fileID: 11400000, guid: b5058d7edf54e3e42b12dbedb6445a37, type: 2}
+  - {fileID: 11400000, guid: af38049bac3860943a45ad47a89da597, type: 2}
   templatesMate:
-  - {fileID: 11400000, guid: 7a1b2747d05211c45ba00c21b2006b6e, type: 2}
+  - {fileID: 11400000, guid: e873de90fd4c8114ab8e756afa302250, type: 2}
   templatesStale:
-  - {fileID: 11400000, guid: 12251a84f1a151b4b9101664a7398373, type: 2}
-  startingPoints: 12
-  pointsAdvantageToWin: 10
-  safeChance: 5
-  checkChance: 30
-  checkmateChance: 50
-  stalemateChance: 15
+  - {fileID: 11400000, guid: 3ebe69ad753ba02428a00d6bd02217b7, type: 2}
+  startingPoints: 0
+  pointsAdvantageToWin: 0
+  safeChance: 10
+  checkChance: 60
+  checkmateChance: 20
+  stalemateChance: 10
