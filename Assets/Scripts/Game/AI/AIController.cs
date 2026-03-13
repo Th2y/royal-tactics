@@ -67,16 +67,11 @@ public class AIController : BasePlayerController<AIController>
 
     protected override bool CheckCanPlaceAnyPiece()
     {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
         PieceDefinitionSO pieceDef = ChoosePiece();
         if (pieceDef == null)
             return false;
 
-        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
+        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(pieceDef, false);
         if (tile == null)
             return false;
 
@@ -183,16 +178,11 @@ public class AIController : BasePlayerController<AIController>
 
     private bool TryPlacementDuringTurn()
     {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
         PieceDefinitionSO pieceDef = ChoosePiece();
         if (pieceDef == null)
             return false;
 
-        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
+        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(pieceDef, false);
         if (tile == null)
             return false;
 
@@ -256,7 +246,7 @@ public class AIController : BasePlayerController<AIController>
             PieceDefinitionSO pieceDef = ChoosePiece();
             if (pieceDef == null) break;
 
-            Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
+            Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(pieceDef, false, freeTiles);
             if (tile == null) break;
 
             Piece piece = PlacePiece(tile, pieceDef, false);

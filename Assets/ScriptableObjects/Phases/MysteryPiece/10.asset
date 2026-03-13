@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 594d630c663d2684a847989a1fbdac16, type: 3}
-  m_Name: 8
+  m_Name: 10
   m_EditorClassIdentifier: 
-  phase: 8
-  availablePiecesHuman: []
-  availablePiecesAI:
-  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+  phase: 10
+  availablePiecesHuman:
   - {fileID: 11400000, guid: 35e083d14901dae4c8920dd36397020b, type: 2}
-  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
+  - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}
+  availablePiecesAI:
+  - {fileID: 11400000, guid: 9b5bd967ff754244bae01af1bce21deb, type: 2}
   - {fileID: 11400000, guid: e522444c17ce12542b28b9efb049c591, type: 2}
+  - {fileID: 11400000, guid: 3952e2bb5ce95ad49820b7f97d1ba897, type: 2}
   availablePiecesPromotion: []
-  tilesNames: 1100000029000000160000002e000000
+  tilesNames: 
   templatesSafe: []
   templatesCheck: []
   templatesMate: []

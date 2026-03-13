@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d630c663d2684a847989a1fbdac16, type: 3}
   m_Name: 14
   m_EditorClassIdentifier: 
-  phase: 3
+  phase: 14
   availablePiecesHuman: []
   availablePiecesAI:
   - {fileID: 11400000, guid: bd3110b5cd5a3a44ea51e4e6d9578422, type: 2}

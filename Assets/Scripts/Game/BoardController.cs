@@ -37,12 +37,15 @@ public class BoardController : UnityMethodsSingleton<BoardController>
 
     public Tile GetTile(int x, int y)
     {
-        if (tiles[x, y] == null) CacheTiles();
-
         if (x < 0 || y < 0 || x >= tiles.GetLength(0) || y >= tiles.GetLength(1))
         {
             Debug.LogWarning($"GetTile fora do limite: x={x}, y={y}");
             return null;
+        }
+
+        if (tiles[x, y] == null)
+        {
+            CacheTiles();
         }
 
         return tiles[x, y];
@@ -129,8 +132,16 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         }
     }
 
-    public Tile ChooseTileToInstantiateNewPiece(List<Tile> freeTiles, PieceDefinitionSO piece, bool isHuman)
+    public Tile ChooseTileToInstantiateNewPiece(PieceDefinitionSO piece, bool isHuman, List<Tile> freeTiles = null)
     {
+        if (freeTiles == null || freeTiles.Count == 0) freeTiles = GetAllFreeTiles();
+
+        if (freeTiles.Count == 0)
+        {
+            Debug.LogWarning("Não existem casas disponíveis");
+            return null;
+        }
+
         var validTiles = piece.prefab.FilterValidSpawnTiles(freeTiles, isHuman);
 
         if (validTiles == null || validTiles.Count == 0) return null;
