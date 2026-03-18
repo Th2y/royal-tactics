@@ -264,6 +264,44 @@ public class AIController : BasePlayerController<AIController>
         if (possible.Count == 0)
             return null;
 
+        bool hasQueen = PlacedPieces.Any(p => p.Definition.type == PieceType.Queen);
+        bool hasRook = PlacedPieces.Any(p => p.Definition.type == PieceType.Rook);
+        bool hasBishop = PlacedPieces.Any(p => p.Definition.type == PieceType.Bishop);
+        bool hasKnight = PlacedPieces.Any(p => p.Definition.type == PieceType.Knight);
+        bool hasPawn = PlacedPieces.Any(p => p.Definition.type == PieceType.Pawn);
+
+        foreach (PieceDefinitionSO piece in possible)
+        {
+            if (!hasQueen)
+            {
+                var pool = possible.FindAll(p => p.type == PieceType.Queen);
+                if (pool.Count > 0)
+                    return pool[Random.Range(0, pool.Count)];
+            }
+
+            if (!hasRook)
+            {
+                var pool = possible.FindAll(p =>
+                    p.type == PieceType.Queen ||
+                    p.type == PieceType.Rook);
+
+                if (pool.Count > 0)
+                    return pool[Random.Range(0, pool.Count)];
+            }
+
+            if (!hasBishop || !hasKnight)
+            {
+                var pool = possible.FindAll(p =>
+                    p.type == PieceType.Queen ||
+                    p.type == PieceType.Rook ||
+                    p.type == PieceType.Bishop ||
+                    p.type == PieceType.Knight);
+
+                if (pool.Count > 0)
+                    return pool[Random.Range(0, pool.Count)];
+            }
+        }
+
         return possible[Random.Range(0, possible.Count)];
     }
 
