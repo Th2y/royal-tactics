@@ -264,11 +264,36 @@ public class AIController : BasePlayerController<AIController>
         if (possible.Count == 0)
             return null;
 
-        bool hasQueen = PlacedPieces.Any(p => p.Definition.type == PieceType.Queen);
-        bool hasRook = PlacedPieces.Any(p => p.Definition.type == PieceType.Rook);
-        bool hasBishop = PlacedPieces.Any(p => p.Definition.type == PieceType.Bishop);
-        bool hasKnight = PlacedPieces.Any(p => p.Definition.type == PieceType.Knight);
-        bool hasPawn = PlacedPieces.Any(p => p.Definition.type == PieceType.Pawn);
+        bool hasQueen = false;
+        bool hasRook = false;
+        bool hasBishop = false;
+        bool hasKnight = false;
+        bool hasPawn = false;
+
+        foreach (var piece in PlacedPieces)
+        {
+            switch (piece.Definition.type)
+            {
+                case PieceType.Queen: 
+                    hasQueen = true; 
+                    break;
+                case PieceType.Rook: 
+                    hasRook = true; 
+                    break;
+                case PieceType.Bishop: 
+                    hasBishop = true; 
+                    break;
+                case PieceType.Knight: 
+                    hasKnight = true; 
+                    break;
+                case PieceType.Pawn: 
+                    hasPawn = true; 
+                    break;
+            }
+
+            if (hasQueen && hasRook && hasBishop && hasKnight && hasPawn)
+                break;
+        }
 
         foreach (PieceDefinitionSO piece in possible)
         {
