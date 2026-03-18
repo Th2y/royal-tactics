@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 5
   modeNamePt: Ataque o Rei
+  modeTranslated:
+    modeName: Ataque o Rei
+    modeInfo: "Escolha e posicione uma pe\xE7a de modo a dar xeque-mate no rei destacado"
+    modeTutorial: []
   modePrefab: {fileID: 6378013906306730775, guid: a2e0da0015443b1468cabd01df1d68da, type: 3}
   modeUIBase: {fileID: 1793861062551637128, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
   phases:

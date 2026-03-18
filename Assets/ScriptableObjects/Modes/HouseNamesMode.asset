@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 2
   modeNamePt: Nome das casas
+  modeTranslated:
+    modeName: Nome das casas
+    modeInfo: Escolha o nome correto da casa destacada
+    modeTutorial: []
   modePrefab: {fileID: -8350704903619273580, guid: 76b5fa0d80abccf4ea95431f9bc907ff, type: 3}
   modeUIBase: {fileID: 5142653862927733373, guid: 927dd4b5848ab7d4582255adfc848aca, type: 3}
   phases:

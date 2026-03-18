@@ -45,7 +45,7 @@ public abstract class Piece : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        modelColorApplier.SetColor(selected ? Color.green : modelColorApplier.DefaultColor);
+        modelColorApplier.SetEmissionColor(selected);
     }
 
     public void SetPressed(bool pressed)

@@ -4,6 +4,7 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private Renderer tileRenderer;
     [SerializeField] private Collider colider;
+    [SerializeField] private SpriteRenderer circle;
     public TileName TileName { get; private set; }
     public Vector2Int Position;
 
@@ -104,8 +105,7 @@ public class Tile : MonoBehaviour
     public void SetIsValid(bool valid)
     {
         IsValid = valid;
-        lastColor = valid ? Color.green : defaultColor;
-        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, lastColor);
+        circle.gameObject.SetActive(valid);
     }
     #endregion
 

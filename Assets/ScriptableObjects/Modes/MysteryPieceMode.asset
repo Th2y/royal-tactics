@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 1
   modeNamePt: "Pe\xE7a misteriosa"
+  modeTranslated:
+    modeName: "Pe\xE7a misteriosa"
+    modeInfo: "Escolha qual a pe\xE7a \xE9 capaz de realizar os movimentos destacados"
+    modeTutorial: []
   modePrefab: {fileID: 8512713445020459092, guid: e53fff233bbdb124f8d3a3cbfaa800c2, type: 3}
   modeUIBase: {fileID: -4672048307551693291, guid: 6871ea7e4f6f2f6408a356954f10af67, type: 3}
   phases:

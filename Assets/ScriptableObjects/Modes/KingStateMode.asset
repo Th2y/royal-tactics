@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 4
   modeNamePt: Estado do Rei
+  modeTranslated:
+    modeName: Estado do Rei
+    modeInfo: Escolha qual o estado atual do Rei destacado
+    modeTutorial: []
   modePrefab: {fileID: -4470590554236911389, guid: e5c0bdd69b1c0214895061ad55cf0bdf, type: 3}
   modeUIBase: {fileID: 8180213386772283667, guid: d104a01ade872bc4996375f5641c5885, type: 3}
   phases:

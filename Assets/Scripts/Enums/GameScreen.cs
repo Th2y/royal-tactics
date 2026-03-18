@@ -5,5 +5,6 @@ public enum GameScreen
     ChooseGamePhase,
     Play,
     Finish,
-    Pause
+    Pause,
+    GameModeInfo
 }

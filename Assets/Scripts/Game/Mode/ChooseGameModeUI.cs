@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
 {
@@ -9,6 +10,8 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     [SerializeField] private GameModeUIBase[] modes;
 
     [Header("Mode")]
+    [SerializeField] private TextMeshProUGUI currentModeNameText;
+    [SerializeField] private TextMeshProUGUI currentModeInfoText;
     [SerializeField] private Transform modeCardParent;
     [SerializeField] private ChooseGameModeCard modeCardPrefab;
 
@@ -80,6 +83,11 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
             {
                 CurrentGameMode = mode.Value;
                 mode.Value.enabled = true;
+                currentModeNameText.text = mode.Value.GameModeSO.modeTranslated.modeName;
+                currentModeInfoText.text = mode.Value.GameModeSO.modeTranslated.modeInfo;
+
+                currentModeInfoText.ForceMeshUpdate();
+                LayoutRebuilder.ForceRebuildLayoutImmediate(currentModeInfoText.gameObject.GetComponentInParent<RectTransform>());
             }
             else
             {
@@ -123,6 +131,17 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
         }
     }
 
+    public void ShowScreenNoHideOthers(GameScreen screen)
+    {
+        foreach (var view in _screenMap.Values)
+        {
+            if (view.GameScreen == screen)
+            {
+                view.SetActive(true);
+            }
+        }
+    }
+
     public void HideScreen(GameScreen screen)
     {
         foreach (var view in _screenMap.Values)
@@ -131,6 +150,31 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
             {
                 view.SetActive(false);
             }
+        }
+    }
+
+    public void SetInteratableScreen(GameScreen screen, bool interactable)
+    {
+        foreach (var view in _screenMap.Values)
+        {
+            if (view.GameScreen == screen)
+            {
+                view.SetInteractable(interactable);
+            }
+        }
+    }
+
+    public void ShowGameModeInfoScreen(bool show)
+    {
+        if (show)
+        {
+            ShowScreenNoHideOthers(GameScreen.GameModeInfo);
+            SetInteratableScreen(GameScreen.Play, false);
+        }
+        else
+        {
+            SetInteratableScreen(GameScreen.Play, true);
+            HideScreen(GameScreen.GameModeInfo);
         }
     }
     #endregion

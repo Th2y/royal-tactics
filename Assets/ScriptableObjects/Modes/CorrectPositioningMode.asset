@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 3
   modeNamePt: Posicionamento correto
+  modeTranslated:
+    modeName: Posicionamento correto
+    modeInfo: "Escolha qual (is) \xE9 a casa inicial da pe\xE7a que est\xE1 no tabuleiro"
+    modeTutorial: []
   modePrefab: {fileID: 2669599771555031701, guid: 8d2622f6f61d03549be767c3b7bc18a1, type: 3}
   modeUIBase: {fileID: -8464584846909720439, guid: 7de9c2c79be040c439804ad0ff2c491f, type: 3}
   phases:

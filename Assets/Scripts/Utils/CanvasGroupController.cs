@@ -28,4 +28,12 @@ public class CanvasGroupController : UnityMethods
         cg.interactable = active;
         cg.blocksRaycasts = active;
     }
+
+    public void SetInteractable(bool interactable)
+    {
+        if (cg == null) cg = GetComponent<CanvasGroup>();
+
+        cg.interactable = interactable;
+        cg.blocksRaycasts = interactable;
+    }
 }
