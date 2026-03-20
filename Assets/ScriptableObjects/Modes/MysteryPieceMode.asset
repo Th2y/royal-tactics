@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: MysteryPieceMode
   m_EditorClassIdentifier: 
   modeName: 1
-  modeNamePt: "Pe\xE7a misteriosa"
   modeTranslated:
     modeName: "Pe\xE7a misteriosa"
     modeInfo: "Escolha qual a pe\xE7a \xE9 capaz de realizar os movimentos destacados"
-    modeTutorial: []
+    modeTutorial:
+    - tutorialDescription: "Uma pe\xE7a misteriosa estar\xE1 posicionada no tabuleiro
+        e com as casas poss\xEDveis circuladas. Voc\xEA precisar\xE1 dizer qual \xE9
+        essa pe\xE7a."
+      tutorialSprite: {fileID: 2800000, guid: ddcd7cd81b6754a42b7f60b48fcf587c, type: 3}
   modePrefab: {fileID: 8512713445020459092, guid: e53fff233bbdb124f8d3a3cbfaa800c2, type: 3}
   modeUIBase: {fileID: -4672048307551693291, guid: 6871ea7e4f6f2f6408a356954f10af67, type: 3}
   phases:

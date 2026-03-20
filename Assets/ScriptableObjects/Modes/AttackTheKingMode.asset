@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: AttackTheKingMode
   m_EditorClassIdentifier: 
   modeName: 5
-  modeNamePt: Ataque o Rei
   modeTranslated:
     modeName: Ataque o Rei
     modeInfo: "Escolha e posicione uma pe\xE7a de modo a dar xeque-mate no rei destacado"
-    modeTutorial: []
+    modeTutorial:
+    - tutorialDescription: "As pe\xE7as estar\xE3o posicionadas em uma posi\xE7\xE3o
+        onde o Rei advers\xE1rio estar\xE1 afogado e com um destaque na casa onde
+        ele est\xE1. Voc\xEA precisar\xE1 escolher uma das pe\xE7as entre as op\xE7\xF5es
+        e depois ir\xE1 posicionar de forma a atacar o Rei dando xeque-mate."
+      tutorialSprite: {fileID: 2800000, guid: ffffdaf567681724b90652a23918d105, type: 3}
   modePrefab: {fileID: 6378013906306730775, guid: a2e0da0015443b1468cabd01df1d68da, type: 3}
   modeUIBase: {fileID: 1793861062551637128, guid: 6ef96239a792745438cd9d23e139d39d, type: 3}
   phases:

@@ -13,12 +13,21 @@ MonoBehaviour:
   m_Name: PointAdvantageMode
   m_EditorClassIdentifier: 
   modeName: 0
-  modeNamePt: Vantagem de Pontos
   modeTranslated:
     modeName: Vantagem de Pontos
     modeInfo: "Capture as pe\xE7as do advers\xE1rio de modo a obter a vantagem de
       pontos necess\xE1ria"
-    modeTutorial: []
+    modeTutorial:
+    - tutorialDescription: "O seu advers\xE1rio ter\xE1 posicionado suas pe\xE7as
+        em posi\xE7\xF5es que ficar\xE3o destacadas."
+      tutorialSprite: {fileID: 2800000, guid: 7b0579abe2a228e459e1b9151762ca45, type: 3}
+    - tutorialDescription: "Voc\xEA ir\xE1 posicionar as suas pe\xE7as de acordo
+        com a quantidade de moedas dispon\xEDvel para a fase e o custo de cada pe\xE7a."
+      tutorialSprite: {fileID: 2800000, guid: 0aeba126c7f76c146b83da1d4e7df1a6, type: 3}
+    - tutorialDescription: "As pe\xE7as do seu advers\xE1rio ser\xE3o reveladas.
+        Voc\xEA e seu advers\xE1rio ir\xE3o capturando as pe\xE7as um do outro at\xE9
+        que um dos dois obtenha a vantagem de pontos necess\xE1ria."
+      tutorialSprite: {fileID: 2800000, guid: b6a2966be6b0b75429d9d28106276106, type: 3}
   modePrefab: {fileID: -4166542156304033033, guid: 6d7f421c28b2bbe4a9d223fef70e5bc2, type: 3}
   modeUIBase: {fileID: 7404029122153514504, guid: 65b4d4c88bbd7bb41ab2e5a0faed911b, type: 3}
   phases:

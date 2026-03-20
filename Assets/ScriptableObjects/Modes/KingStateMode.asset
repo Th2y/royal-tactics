@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: KingStateMode
   m_EditorClassIdentifier: 
   modeName: 4
-  modeNamePt: Estado do Rei
   modeTranslated:
     modeName: Estado do Rei
     modeInfo: Escolha qual o estado atual do Rei destacado
-    modeTutorial: []
+    modeTutorial:
+    - tutorialDescription: "As pe\xE7as estar\xE3o posicionadas e o Rei do oponente
+        estar\xE1 destacado. Voc\xEA precisar\xE1 dizer qual a situa\xE7\xE3o atual
+        dele: xeque, xeque-mate, afogamento ou seguro."
+      tutorialSprite: {fileID: 2800000, guid: 97b6a94dcb415184cb8eaeb309847319, type: 3}
   modePrefab: {fileID: -4470590554236911389, guid: e5c0bdd69b1c0214895061ad55cf0bdf, type: 3}
   modeUIBase: {fileID: 8180213386772283667, guid: d104a01ade872bc4996375f5641c5885, type: 3}
   phases:

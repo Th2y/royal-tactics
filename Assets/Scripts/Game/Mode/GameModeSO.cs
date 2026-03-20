@@ -2,11 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class Tutorial
+{
+    public string tutorialDescription;
+    public Texture tutorialSprite;
+}
+
+[System.Serializable]
 public class Mode
 {
     public string modeName;
     public string modeInfo;
-    public string[] modeTutorial;
+    public Tutorial[] modeTutorial;
 }
 
 [CreateAssetMenu(fileName = "GameModeSO", menuName = "Royal Tactics/Game Mode")]
