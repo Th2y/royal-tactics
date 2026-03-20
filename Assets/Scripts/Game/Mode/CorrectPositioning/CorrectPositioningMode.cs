@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CorrectPositioningMode : GameModeBase
@@ -49,9 +50,18 @@ public class CorrectPositioningMode : GameModeBase
     {
         BoardController.Instance.ClearBoard();
 
-        var defs = PhaseController.Instance.CurrentPhase.availablePiecesAI;
-        var def = defs[Random.Range(0, defs.Count)];
+        var phase = PhaseController.Instance.CurrentPhase;
+        var defs = new List<PieceDefinitionSO>(phase.availablePiecesPromotion);
+        defs.AddRange(phase.availablePiecesAI);
 
+        var rng = new System.Random();
+        for (int i = defs.Count - 1; i > 0; i--)
+        {
+            int j = rng.Next(i + 1);
+            (defs[i], defs[j]) = (defs[j], defs[i]);
+        }
+
+        var def = phase.availablePiecesAI[0];
         correctType = def.type;
 
         Tile tile = BoardController.Instance.GetTile(TileName.D4);

@@ -128,6 +128,7 @@ public class Tile : MonoBehaviour
 
         Piece = null;
         SetIsValid(false);
+        SetOccupiedMarker(false);
     }
     #endregion
 }

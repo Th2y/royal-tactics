@@ -270,9 +270,9 @@ public class AIController : BasePlayerController<AIController>
         bool hasKnight = false;
         bool hasPawn = false;
 
-        foreach (var piece in PlacedPieces)
+        for (int i = 0; i < PlacedPieces.Count; i ++)
         {
-            switch (piece.Definition.type)
+            switch (PlacedPieces[i].Definition.type)
             {
                 case PieceType.Queen: 
                     hasQueen = true; 

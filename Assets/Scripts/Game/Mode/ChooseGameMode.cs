@@ -41,6 +41,7 @@ public class ChooseGameMode : UnityMethodsSingleton<ChooseGameMode>
             }
         }
 
+        BoardController.Instance.ClearBoard();
         ChooseGameModeUI.Instance.SetCurrentGameMode(gameMode);
     }
 
