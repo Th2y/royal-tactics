@@ -16,7 +16,7 @@ public class ChooseGameModeCard : MonoBehaviour
         this.gameModeSO = modeSO;
         this.isTutorial = isTutorial;
         modeId = (int)modeSO.modeName;
-        modeNameTxt.text = modeSO.modeTranslated.modeName;
+        modeNameTxt.text = modeSO.modeTranslated.modeNameL.GetLocalizedString();
         button.onClick.AddListener(OnClick);
     }
 

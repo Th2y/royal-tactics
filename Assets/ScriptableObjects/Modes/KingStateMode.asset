@@ -16,11 +16,46 @@ MonoBehaviour:
   modeTranslated:
     modeName: Estado do Rei
     modeInfo: Escolha qual o estado atual do Rei destacado
+    modeNameL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 1107275960320
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeInfoL:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     modeTutorial:
     - tutorialDescription: "As pe\xE7as estar\xE3o posicionadas e o Rei do oponente
         estar\xE1 destacado. Voc\xEA precisar\xE1 dizer qual a situa\xE7\xE3o atual
         dele: xeque, xeque-mate, afogamento ou seguro."
       tutorialSprite: {fileID: 21300000, guid: 97b6a94dcb415184cb8eaeb309847319, type: 3}
+      tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
   modePrefab: {fileID: -4470590554236911389, guid: e5c0bdd69b1c0214895061ad55cf0bdf, type: 3}
   modeUIBase: {fileID: 8180213386772283667, guid: d104a01ade872bc4996375f5641c5885, type: 3}
   phases:
@@ -34,3 +69,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67b025af4534f2d40ae57bd65a3735a0, type: 2}
   - {fileID: 11400000, guid: 3cfaf88c5bb94f14b97293dc1eac7c3a, type: 2}
   - {fileID: 11400000, guid: 8651d3bd07850ac47bf842900283df12, type: 2}
+  references:
+    version: 2
+    RefIds: []

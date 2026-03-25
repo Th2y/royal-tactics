@@ -102,7 +102,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
             tutorialPreviousBtn.gameObject.SetActive(false);
         }
         
-        currentModeNameText.text = gameMode.modeTranslated.modeName;
+        currentModeNameText.text = gameMode.modeTranslated.modeNameL.GetLocalizedString();
         currentTutorialImage.sprite = modeT[0].tutorialSprite;
         currentTutorialDescText.text = modeT[0].tutorialDescription;
     }

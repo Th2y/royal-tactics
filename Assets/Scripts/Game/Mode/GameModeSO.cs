@@ -1,18 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 
 [System.Serializable]
 public class Tutorial
 {
     public string tutorialDescription;
     public Sprite tutorialSprite;
+    public LocalizedString tutorialDescriptionL;
+    public LocalizedSprite tutorialSpriteL;
 }
 
 [System.Serializable]
 public class Mode
 {
-    public string modeName;
     public string modeInfo;
+    public LocalizedString modeNameL;
+    public LocalizedString modeInfoL;
     public Tutorial[] modeTutorial;
 }
 

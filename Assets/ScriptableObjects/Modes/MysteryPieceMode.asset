@@ -16,11 +16,46 @@ MonoBehaviour:
   modeTranslated:
     modeName: "Pe\xE7a misteriosa"
     modeInfo: "Escolha qual a pe\xE7a \xE9 capaz de realizar os movimentos destacados"
+    modeNameL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 1113097654272
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeInfoL:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     modeTutorial:
     - tutorialDescription: "Uma pe\xE7a misteriosa estar\xE1 posicionada no tabuleiro
         e com as casas poss\xEDveis circuladas. Voc\xEA precisar\xE1 dizer qual \xE9
         essa pe\xE7a."
       tutorialSprite: {fileID: 21300000, guid: ddcd7cd81b6754a42b7f60b48fcf587c, type: 3}
+      tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
   modePrefab: {fileID: 8512713445020459092, guid: e53fff233bbdb124f8d3a3cbfaa800c2, type: 3}
   modeUIBase: {fileID: -4672048307551693291, guid: 6871ea7e4f6f2f6408a356954f10af67, type: 3}
   phases:
@@ -34,3 +69,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a94c4b2133f71644c8d8dee2980dc334, type: 2}
   - {fileID: 11400000, guid: cd17c4bf4a3556e4c8e8d38f1af3c5a6, type: 2}
   - {fileID: 11400000, guid: 7f567c07b89d89d48b6b12247e55a4ca, type: 2}
+  references:
+    version: 2
+    RefIds: []

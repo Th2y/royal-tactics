@@ -16,10 +16,45 @@ MonoBehaviour:
   modeTranslated:
     modeName: Nome das casas
     modeInfo: Escolha o nome correto da casa destacada
+    modeNameL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 3062475935744
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeInfoL:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     modeTutorial:
     - tutorialDescription: "Uma das casas estar\xE1 destacada. Voc\xEA precisar\xE1
         escolher dentre as op\xE7\xF5es qual o nome da casa."
       tutorialSprite: {fileID: 21300000, guid: 2b91528798714f544bb33dde15494896, type: 3}
+      tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
   modePrefab: {fileID: -8350704903619273580, guid: 76b5fa0d80abccf4ea95431f9bc907ff, type: 3}
   modeUIBase: {fileID: 5142653862927733373, guid: 927dd4b5848ab7d4582255adfc848aca, type: 3}
   phases:
@@ -39,3 +74,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 452ddd8bfd37ec74f916a2ae4fa075cd, type: 2}
   - {fileID: 11400000, guid: e0a218d907d3ba34aab26c8b872e2e00, type: 2}
   - {fileID: 11400000, guid: 20682807263ba2e4686a6660c3f9531a, type: 2}
+  references:
+    version: 2
+    RefIds: []
