@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tutorial
 {
     public string tutorialDescription;
-    public Texture tutorialSprite;
+    public Sprite tutorialSprite;
 }
 
 [System.Serializable]

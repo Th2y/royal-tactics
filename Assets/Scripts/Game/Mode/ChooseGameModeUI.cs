@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
 {
@@ -52,7 +51,7 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
             var phaseMode = Instantiate(phaseModePrefab, phaseModeParent);
             PhasesModesParent.Add((int)mode.modeName, phaseMode);
 
-            modeCard.Init(mode);
+            modeCard.Init(mode, false);
 
             Transform modePhases = phaseMode.GetComponentInChildren<GridLayoutGroup>().transform;
 

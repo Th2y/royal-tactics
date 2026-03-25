@@ -8,9 +8,13 @@ public class ChooseGameModeCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI modeNameTxt;
 
     private int modeId;
+    private bool isTutorial;
+    private GameModeSO gameModeSO;
 
-    public void Init(GameModeSO modeSO)
+    public void Init(GameModeSO modeSO, bool isTutorial)
     {
+        this.gameModeSO = modeSO;
+        this.isTutorial = isTutorial;
         modeId = (int)modeSO.modeName;
         modeNameTxt.text = modeSO.modeTranslated.modeName;
         button.onClick.AddListener(OnClick);
@@ -18,11 +22,18 @@ public class ChooseGameModeCard : MonoBehaviour
 
     private void OnClick()
     {
-        foreach(var p in ChooseGameModeUI.Instance.PhasesModesParent)
+        if (isTutorial)
         {
-            p.Value.SetActive(p.Key == modeId);
+            MenuController.Instance.SetTutorialScreens(gameModeSO);
         }
+        else
+        {
+            foreach (var p in ChooseGameModeUI.Instance.PhasesModesParent)
+            {
+                p.Value.SetActive(p.Key == modeId);
+            }
 
-        ChooseGameModeUI.Instance.ShowScreen(GameScreen.ChooseGamePhase);
+            ChooseGameModeUI.Instance.ShowScreen(GameScreen.ChooseGamePhase);
+        }
     }
 }
