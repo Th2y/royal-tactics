@@ -55,6 +55,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
         }
     }
 
+    #region Tutorial
     private void SetTutorialModesButtons()
     {
         foreach(var mode in ChooseGameMode.Instance.GameModesSO)
@@ -108,11 +109,13 @@ public class MenuController : UnityMethodsSingleton<MenuController>
 
     private void ChangeTutorialPage(bool next)
     {
+        var modeT = currentTutorialGameMode.modeTranslated.modeTutorial;
+
         if (next)
         {
             currentTutorialPage++;
             tutorialPreviousBtn.interactable = true;
-            if (currentTutorialGameMode.modeTranslated.modeTutorial.Length <= currentTutorialPage + 1)
+            if (modeT.Length <= currentTutorialPage + 1)
             {
                 tutorialNextBtn.interactable = false;
             }
@@ -127,8 +130,8 @@ public class MenuController : UnityMethodsSingleton<MenuController>
             }
         }
 
-        var modeT = currentTutorialGameMode.modeTranslated.modeTutorial;
         currentTutorialImage.sprite = modeT[currentTutorialPage].tutorialSprite;
         currentTutorialDescText.text = modeT[currentTutorialPage].tutorialDescription;
     }
+    #endregion
 }
