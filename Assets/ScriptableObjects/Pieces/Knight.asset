@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   type: 1
-  namePt: Cavalo
+  nameT:
+    m_TableReference:
+      m_TableCollectionName: GUID:5e0c3cbe606161f468ce575392a80f5b
+    m_TableEntryReference:
+      m_KeyId: 165965090816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   humanInitialTiles: 0800000028000000
   aiInitialTiles: 0f0000002f000000
   cost: 3
   prefab: {fileID: 1952302574386903565, guid: db6d30ca3b003644983d631f66a952d3, type: 3}
+  references:
+    version: 2
+    RefIds: []

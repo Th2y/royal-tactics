@@ -42,6 +42,33 @@ MonoBehaviour:
     m_Localized: Nome das Casas
     m_Metadata:
       m_Items: []
+  - m_Id: 605293235556352
+    m_Localized: "Escolha e posicione uma pe\xE7a de modo a dar xeque-mate no rei
+      destacado"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276608
+    m_Localized: "Escolha qual (is) \xE9 a casa inicial da pe\xE7a que est\xE1 no
+      tabuleiro"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276609
+    m_Localized: Escolha qual o estado atual do Rei destacado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276610
+    m_Localized: "Escolha qual a pe\xE7a \xE9 capaz de realizar os movimentos destacados"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276611
+    m_Localized: "Capture as pe\xE7as do advers\xE1rio de modo a obter a vantagem
+      de pontos necess\xE1ria"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276612
+    m_Localized: Escolha o nome correto da casa destacada
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -104,7 +104,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
         
         currentModeNameText.text = gameMode.modeTranslated.modeNameL.GetLocalizedString();
         currentTutorialImage.sprite = modeT[0].tutorialSprite;
-        currentTutorialDescText.text = modeT[0].tutorialDescription;
+        currentTutorialDescText.text = modeT[0].tutorialDescriptionL.GetLocalizedString();
     }
 
     private void ChangeTutorialPage(bool next)
@@ -131,7 +131,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
         }
 
         currentTutorialImage.sprite = modeT[currentTutorialPage].tutorialSprite;
-        currentTutorialDescText.text = modeT[currentTutorialPage].tutorialDescription;
+        currentTutorialDescText.text = modeT[currentTutorialPage].tutorialDescriptionL.GetLocalizedString();
     }
     #endregion
 }

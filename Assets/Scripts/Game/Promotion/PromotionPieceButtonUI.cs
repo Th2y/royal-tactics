@@ -12,7 +12,7 @@ public class PromotionPieceButtonUI : MonoBehaviour
     public void Setup(PieceDefinitionSO def)
     {
         Definition = def;
-        nameText.text = def.namePt;
+        nameText.text = def.nameT.GetLocalizedString();
         button.interactable = true;
 
         button.onClick.AddListener(OnClick);

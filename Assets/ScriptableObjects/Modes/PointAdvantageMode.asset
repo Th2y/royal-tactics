@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 0
   modeTranslated:
-    modeName: Vantagem de Pontos
     modeInfo: "Capture as pe\xE7as do advers\xE1rio de modo a obter a vantagem de
       pontos necess\xE1ria"
     modeNameL:
@@ -28,9 +27,9 @@ MonoBehaviour:
       m_LocalVariables: []
     modeInfoL:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 605293294276611
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0

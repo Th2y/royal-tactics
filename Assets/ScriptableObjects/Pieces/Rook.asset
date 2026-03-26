@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: Rook
   m_EditorClassIdentifier: 
   type: 3
-  namePt: Torre
+  nameT:
+    m_TableReference:
+      m_TableCollectionName: GUID:5e0c3cbe606161f468ce575392a80f5b
+    m_TableEntryReference:
+      m_KeyId: 64949473280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   humanInitialTiles: 0000000038000000
   aiInitialTiles: 070000003f000000
   cost: 5
   prefab: {fileID: 1660852193973792313, guid: e37b5465365690b4288b00c93f189b3f, type: 3}
+  references:
+    version: 2
+    RefIds: []

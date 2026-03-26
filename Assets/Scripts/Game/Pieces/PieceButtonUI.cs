@@ -15,7 +15,7 @@ public class PieceButtonUI : MonoBehaviour
     public void Setup(PieceDefinitionSO def, bool showCost, bool interactable, UnityAction onClick)
     {
         Definition = def;
-        nameText.text = def.namePt;
+        nameText.text = def.nameT.GetLocalizedString();
 
         if (showCost)
         {

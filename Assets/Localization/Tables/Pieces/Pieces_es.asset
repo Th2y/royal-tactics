@@ -10,36 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: GameModes_es
+  m_Name: Pieces_es
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: es
-  m_SharedData: {fileID: 11400000, guid: 69425f059451cc242a37b4326328574c, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 5e0c3cbe606161f468ce575392a80f5b, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 24751263744
-    m_Localized: Ataca al Rey
+  - m_Id: 7957270528
+    m_Localized: Rey
     m_Metadata:
       m_Items: []
-  - m_Id: 1279829626880
-    m_Localized: Ventaja de Puntos
+  - m_Id: 36163964928
+    m_Localized: Dama
     m_Metadata:
       m_Items: []
-  - m_Id: 1113097654272
-    m_Localized: Pieza Misteriosa
+  - m_Id: 64949473280
+    m_Localized: Torre
     m_Metadata:
       m_Items: []
-  - m_Id: 1107275960320
-    m_Localized: Estado del Rey
+  - m_Id: 145354280960
+    m_Localized: Alfil
     m_Metadata:
       m_Items: []
-  - m_Id: 1089185927168
-    m_Localized: Posicionamiento Correcto
+  - m_Id: 165965090816
+    m_Localized: Caballo
     m_Metadata:
       m_Items: []
-  - m_Id: 3062475935744
-    m_Localized: Nombres de Casas
+  - m_Id: 194805125120
+    m_Localized: "Pe\xF3n"
     m_Metadata:
       m_Items: []
   references:

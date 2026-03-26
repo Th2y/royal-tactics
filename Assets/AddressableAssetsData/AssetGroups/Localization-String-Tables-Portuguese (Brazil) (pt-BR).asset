@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Portuguese (Brazil) (pt-BR)
   m_GUID: 0404f6b6c142e3543b66e3888845d73e
   m_SerializeEntries:
+  - m_GUID: 53340609b5a44d34c9ff5a1bdc5a2e73
+    m_Address: Pieces_pt-BR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-pt-BR
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a68defd9279c259488ac2b2854b92760
     m_Address: GameModes_pt-BR
     m_ReadOnly: 1

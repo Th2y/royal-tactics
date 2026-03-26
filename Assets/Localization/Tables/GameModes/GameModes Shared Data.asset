@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: GameModes Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: GameModes
+  m_TableCollectionNameGuidString: 69425f059451cc242a37b4326328574c
+  m_Entries:
+  - m_Id: 24751263744
+    m_Key: GAME_MODE_NAME_ATTACK_THE_KING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1089185927168
+    m_Key: GAME_MODE_NAME_CORRECT_POSITIONING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1107275960320
+    m_Key: GAME_MODE_NAME_KING_STATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1113097654272
+    m_Key: GAME_MODE_NAME_MYSTERY_PIECE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1279829626880
+    m_Key: GAME_MODE_NAME_POINT_ADVANTAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3062475935744
+    m_Key: GAME_MODE_NAME_HOUSE_NAMES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293235556352
+    m_Key: GAME_MODE_INFO_ATTACK_THE_KING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276608
+    m_Key: GAME_MODE_INFO_CORRECT_POSITIONING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276609
+    m_Key: GAME_MODE_INFO_KING_STATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276610
+    m_Key: GAME_MODE_INFO_MYSTERY_PIECE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276611
+    m_Key: GAME_MODE_INFO_POINT_ADVANTAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276612
+    m_Key: GAME_MODE_INFO_HOUSE_NAMES
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4026922323599687944
+  references:
+    version: 2
+    RefIds:
+    - rid: 4026922323599687944
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1774413331982

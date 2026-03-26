@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 5
   modeTranslated:
-    modeName: Ataque o Rei
     modeInfo: "Escolha e posicione uma pe\xE7a de modo a dar xeque-mate no rei destacado"
     modeNameL:
       m_TableReference:

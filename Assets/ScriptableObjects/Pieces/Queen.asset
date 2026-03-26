@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: Queen
   m_EditorClassIdentifier: 
   type: 4
-  namePt: Dama
+  nameT:
+    m_TableReference:
+      m_TableCollectionName: GUID:5e0c3cbe606161f468ce575392a80f5b
+    m_TableEntryReference:
+      m_KeyId: 36163964928
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   humanInitialTiles: 18000000
   aiInitialTiles: 1f000000
   cost: 9
   prefab: {fileID: 3814399697422126422, guid: 1a98240f70210d64e912f10c6af799af, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorials_pt-BR
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: 5610f14d3a062b2418043ec61248b6c3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1425946595328
+    m_Localized: "As pe\xE7as estar\xE3o posicionadas em uma posi\xE7\xE3o onde o
+      Rei advers\xE1rio estar\xE1 afogado e com um destaque na casa onde ele est\xE1.
+      Voc\xEA precisar\xE1 escolher uma das pe\xE7as entre as op\xE7\xF5es e depois
+      ir\xE1 posicionar de forma a atacar o Rei dando xeque-mate."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315584
+    m_Localized: "Uma pe\xE7a estar\xE1 no centro do tabuleiro. Voc\xEA precisar\xE1
+      escolher qual (quais) a casa inicial correta."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315585
+    m_Localized: "Uma das casas estar\xE1 destacada. Voc\xEA precisar\xE1 escolher
+      dentre as op\xE7\xF5es qual o nome da casa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315586
+    m_Localized: "As pe\xE7as estar\xE3o posicionadas e o Rei do oponente estar\xE1
+      destacado. Voc\xEA precisar\xE1 dizer qual a situa\xE7\xE3o atual dele: xeque,
+      xeque-mate, afogamento ou seguro."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315587
+    m_Localized: "Uma pe\xE7a misteriosa estar\xE1 posicionada no tabuleiro e com
+      as casas poss\xEDveis circuladas. Voc\xEA precisar\xE1 dizer qual \xE9 essa
+      pe\xE7a."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315588
+    m_Localized: "O seu advers\xE1rio ter\xE1 posicionado suas pe\xE7as em posi\xE7\xF5es
+      que ficar\xE3o destacadas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315589
+    m_Localized: "Voc\xEA ir\xE1 posicionar as suas pe\xE7as de acordo com a quantidade
+      de moedas dispon\xEDvel para a fase e o custo de cada pe\xE7a."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315590
+    m_Localized: "As pe\xE7as do seu advers\xE1rio ser\xE3o reveladas. Voc\xEA e
+      seu advers\xE1rio ir\xE3o capturando as pe\xE7as um do outro at\xE9 que um
+      dos dois obtenha a vantagem de pontos necess\xE1ria."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

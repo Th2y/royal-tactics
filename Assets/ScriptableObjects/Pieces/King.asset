@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: King
   m_EditorClassIdentifier: 
   type: 5
-  namePt: Rei
+  nameT:
+    m_TableReference:
+      m_TableCollectionName: GUID:5e0c3cbe606161f468ce575392a80f5b
+    m_TableEntryReference:
+      m_KeyId: 7957270528
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   humanInitialTiles: 20000000
   aiInitialTiles: 27000000
   cost: 0
   prefab: {fileID: 1888405833250821873, guid: bfe9fedf811980348991e83be035a05d, type: 3}
+  references:
+    version: 2
+    RefIds: []

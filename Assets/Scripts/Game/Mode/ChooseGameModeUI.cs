@@ -85,7 +85,7 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
 
                 var modeT = mode.Value.GameModeSO.modeTranslated;
                 currentModeNameText.text = modeT.modeNameL.GetLocalizedString();
-                currentModeInfoText.text = modeT.modeInfo;
+                currentModeInfoText.text = modeT.modeInfoL.GetLocalizedString();
 
                 currentModeInfoText.ForceMeshUpdate();
                 LayoutRebuilder.ForceRebuildLayoutImmediate(currentModeInfoText.gameObject.GetComponentInParent<RectTransform>());

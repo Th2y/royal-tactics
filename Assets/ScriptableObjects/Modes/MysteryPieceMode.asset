@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 1
   modeTranslated:
-    modeName: "Pe\xE7a misteriosa"
     modeInfo: "Escolha qual a pe\xE7a \xE9 capaz de realizar os movimentos destacados"
     modeNameL:
       m_TableReference:
@@ -27,9 +26,9 @@ MonoBehaviour:
       m_LocalVariables: []
     modeInfoL:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 605293294276610
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
