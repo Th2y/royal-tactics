@@ -1,19 +1,19 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class KingStateButtonUI : MonoBehaviour
 {
     [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private LocalizeStringEvent nameLocale;
 
     public KingStateDefinitionSO Definition { get; private set; }
 
     public void Setup(KingStateDefinitionSO def, bool interactable, UnityAction onClick)
     {
         Definition = def;
-        nameText.text = def.namePt;
+        nameLocale.StringReference = def.nameLocale;
 
         SetInteractable(interactable);
         button.onClick.AddListener(onClick);

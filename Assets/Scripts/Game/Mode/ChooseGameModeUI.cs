@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
@@ -9,8 +9,8 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     [SerializeField] private GameModeUIBase[] modes;
 
     [Header("Mode")]
-    [SerializeField] private TextMeshProUGUI currentModeNameText;
-    [SerializeField] private TextMeshProUGUI currentModeInfoText;
+    [SerializeField] private LocalizeStringEvent currentModeNameLocale;
+    [SerializeField] private LocalizeStringEvent currentModeInfoLocale;
     [SerializeField] private Transform modeCardParent;
     [SerializeField] private ChooseGameModeCard modeCardPrefab;
 
@@ -20,8 +20,8 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     [SerializeField] private ChooseGamePhaseCard phasePrefab;
 
     [Header("References for Game Mode UI")]
-    public TextMeshProUGUI GameTurnText;
-    public TextMeshProUGUI GameOverText;
+    public LocalizeStringEvent GameTurnLocale;
+    public LocalizeStringEvent GameOverLocale;
     public CanvasGroupController GameTurnParent;
     public CanvasGroupController AdvantageParent;
     public CanvasGroupController PlacementParent;
@@ -30,7 +30,7 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     public CanvasGroupController KingStateParent;
     public CanvasGroupController PromotionParent;
     public Button FinishBtn;
-    public TextMeshProUGUI FinishBtnTxt;
+    public LocalizeStringEvent FinishBtnLocale;
 
     public Dictionary<int, CanvasGroupController> PhasesModesParent { get; private set; } = new();
     private List<ChooseGamePhaseCard> phases = new();
@@ -84,11 +84,11 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
                 mode.Value.enabled = true;
 
                 var modeT = mode.Value.GameModeSO.modeTranslated;
-                currentModeNameText.text = modeT.modeNameL.GetLocalizedString();
-                currentModeInfoText.text = modeT.modeInfoL.GetLocalizedString();
+                currentModeNameLocale.StringReference = modeT.modeNameL;
+                currentModeInfoLocale.StringReference = modeT.modeInfoL;
 
-                currentModeInfoText.ForceMeshUpdate();
-                LayoutRebuilder.ForceRebuildLayoutImmediate(currentModeInfoText.gameObject.GetComponentInParent<RectTransform>());
+                currentModeInfoLocale.RefreshString();
+                LayoutRebuilder.ForceRebuildLayoutImmediate(currentModeInfoLocale.gameObject.GetComponentInParent<RectTransform>());
             }
             else
             {

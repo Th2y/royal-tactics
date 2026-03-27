@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public abstract class GameModeUIBase : MonoBehaviour
@@ -24,37 +25,37 @@ public abstract class GameModeUIBase : MonoBehaviour
 
     #region Phrase by Game Turn
     [Header("Game Turn")]
-    [SerializeField] private string timeToPlayerPlay = "É a sua vez de jogar";
-    [SerializeField] private string timeToAIPlay = "É a vez do oponente jogar";
-    [SerializeField] private string timeToPlayerPlacement = "É a sua vez de colocar as peças";
-    [SerializeField] private string timeToAIPlacement = "É a vez do oponente colocar as peças";
-    [SerializeField] private string playerWin = "Você venceu!";
-    [SerializeField] private string playerLost = "Você perdeu!";
-    private TextMeshProUGUI gameTurnText;
-    private TextMeshProUGUI gameOverText;
+    [SerializeField] private LocalizedString timeToPlayerPlay;
+    [SerializeField] private LocalizedString timeToOpponentPlay;
+    [SerializeField] private LocalizedString timeToPlayerPlacement;
+    [SerializeField] private LocalizedString timeToOpponentPlacement;
+    [SerializeField] private LocalizedString playerWin;
+    [SerializeField] private LocalizedString playerLost;
+    private LocalizeStringEvent gameTurnText;
+    private LocalizeStringEvent gameOverText;
 
     public void SetGameTurnText(GameTurn newTurn)
     {
         switch (newTurn)
         {
             case GameTurn.OpponentPlacement:
-                gameTurnText.text = timeToAIPlacement;
+                gameTurnText.StringReference = timeToOpponentPlacement;
                 break;
             case GameTurn.PlayerPlacement:
-                gameTurnText.text = timeToPlayerPlacement;
+                gameTurnText.StringReference = timeToPlayerPlacement;
                 break;
             case GameTurn.OpponentTurn:
-                gameTurnText.text = timeToAIPlay;
+                gameTurnText.StringReference = timeToOpponentPlay;
                 break;
             case GameTurn.PlayerTurn:
-                gameTurnText.text = timeToPlayerPlay;
+                gameTurnText.StringReference = timeToPlayerPlay;
                 break;
             case GameTurn.GameOverWin:
-                gameOverText.text = playerWin;
+                gameOverText.StringReference = playerWin;
                 ChooseGameModeUI.Instance.ShowScreen(GameScreen.Finish);
                 break;
             case GameTurn.GameOverLost:
-                gameOverText.text = playerLost;
+                gameOverText.StringReference = playerLost;
                 ChooseGameModeUI.Instance.ShowScreen(GameScreen.Finish);
                 break;
         }
@@ -62,7 +63,7 @@ public abstract class GameModeUIBase : MonoBehaviour
     #endregion  
 
     [Header("Play Parts")]
-    [SerializeField] private string finishBtnMessage = "Finalizar";
+    [SerializeField] private LocalizedString finishBtnMessage;
     protected CanvasGroupController gameTurnParent;
     protected CanvasGroupController advantageParent;
     protected CanvasGroupController placementParent;
@@ -71,14 +72,14 @@ public abstract class GameModeUIBase : MonoBehaviour
     protected CanvasGroupController kingStateParent;
     protected CanvasGroupController promotionParent;
     protected Button finishBtn;
-    private TextMeshProUGUI finishBtnTxt;
+    private LocalizeStringEvent finishBtnTxt;
 
     protected virtual void SetPlayParts()
     {
         var choose = ChooseGameModeUI.Instance;
 
-        gameTurnText = choose.GameTurnText;
-        gameOverText = choose.GameOverText;
+        gameTurnText = choose.GameTurnLocale;
+        gameOverText = choose.GameOverLocale;
 
         gameTurnParent = choose.GameTurnParent;
         advantageParent = choose.AdvantageParent;
@@ -88,9 +89,9 @@ public abstract class GameModeUIBase : MonoBehaviour
         kingStateParent = choose.KingStateParent;
         promotionParent = choose.PromotionParent;
         finishBtn = choose.FinishBtn;
-        finishBtnTxt = choose.FinishBtnTxt;
+        finishBtnTxt = choose.FinishBtnLocale;
 
-        finishBtnTxt.text = finishBtnMessage;
+        finishBtnTxt.StringReference = finishBtnMessage;
     }
 
     public abstract void BuildUI();

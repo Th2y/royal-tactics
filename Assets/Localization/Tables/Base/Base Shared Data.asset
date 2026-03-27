@@ -71,14 +71,6 @@ MonoBehaviour:
     m_Key: BASE_PLAY_OTHER_GAME_MODE
     m_Metadata:
       m_Items: []
-  - m_Id: 39259361290
-    m_Key: BASE_PLAYER_WIN
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361291
-    m_Key: BASE_PLAYER_LOST
-    m_Metadata:
-      m_Items: []
   - m_Id: 39259361292
     m_Key: BASE_PLAY_AGAIN
     m_Metadata:
@@ -89,6 +81,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10809669996544
     m_Key: BASE_CHOOSE_LANGUAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47930703237120
+    m_Key: BASE_CONFIRM
     m_Metadata:
       m_Items: []
   m_Metadata:

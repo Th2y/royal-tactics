@@ -1,30 +1,31 @@
-using System;
-using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
 
 public class PieceButtonUI : MonoBehaviour
 {
     [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private LocalizeStringEvent nameLocale;
+    [SerializeField] private LocalizeStringEvent costLocale;
 
     public PieceDefinitionSO Definition { get; private set; }
 
     public void Setup(PieceDefinitionSO def, bool showCost, bool interactable, UnityAction onClick)
     {
         Definition = def;
-        nameText.text = def.nameT.GetLocalizedString();
+        nameLocale.StringReference = def.nameT;
 
         if (showCost)
         {
-            costText.gameObject.SetActive(true);
-            costText.text = def.cost + " moedas";
+            var coinsCount = costLocale.StringReference["count"] as IntVariable;
+            coinsCount.Value = def.cost;
         }
         else
         {
-            costText.gameObject.SetActive(false);
+            costLocale.gameObject.SetActive(false);
         }
 
         SetInteractable(interactable);

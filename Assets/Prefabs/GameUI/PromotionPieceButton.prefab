@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4723179848672659225}
   nameText: {fileID: 8042549807648231648}
+  nameLocale: {fileID: 8857658286964902269}
 --- !u!114 &7969031537144090213
 MonoBehaviour:
   m_ObjectHideFlags: 0

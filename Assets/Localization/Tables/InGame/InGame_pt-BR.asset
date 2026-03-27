@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: InGame_pt-BR
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: efd8fdfcb501ffb48b8896c03a058d2b, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 4026922367030919264
+  m_TableData:
+  - m_Id: 67206008832
+    m_Localized: "Voc\xEA acertou!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67277312000
+    m_Localized: "Voc\xEA errou!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67277312001
+    m_Localized: "Voc\xEA ganhou!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67277312002
+    m_Localized: "Voc\xEA perdeu!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506304
+    m_Localized: "\xC9 a sua vez de jogar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506305
+    m_Localized: "\xC9 a vez do oponente jogar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506306
+    m_Localized: "\xC9 a sua vez de colocar as pe\xE7as"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506307
+    m_Localized: "\xC9 a vez do oponente colocar as pe\xE7as"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506308
+    m_Localized: Finalizar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506309
+    m_Localized: Finalizar jogada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202344931328
+    m_Localized: '{count} {count:moeda|moedas}'
+    m_Metadata:
+      m_Items:
+      - rid: 4026922367030919264
+  - m_Id: 11202391068672
+    m_Localized: "Vantagem necess\xE1ria: {value}"
+    m_Metadata:
+      m_Items:
+      - rid: 4026922367030919264
+  - m_Id: 11202391068673
+    m_Localized: "Voc\xEA: {value}"
+    m_Metadata:
+      m_Items:
+      - rid: 4026922367030919264
+  - m_Id: 11202391068674
+    m_Localized: 'Oponente: {value}'
+    m_Metadata:
+      m_Items:
+      - rid: 4026922367030919264
+  - m_Id: 11202391068675
+    m_Localized: "Escolha a pe\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068676
+    m_Localized: Escolha a casa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068677
+    m_Localized: Qual o estado atual do rei?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068678
+    m_Localized: 'Promover para:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996662661120
+    m_Localized: Em xeque-mate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996733964288
+    m_Localized: Em xeque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996733964289
+    m_Localized: Seguro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996733964290
+    m_Localized: Afogado
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 4026922367030919264
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 11202391068672
+        - id: 11202391068673
+        - id: 11202391068674
+        - id: 11202344931328

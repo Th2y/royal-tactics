@@ -74,14 +74,6 @@ MonoBehaviour:
     m_Localized: Play another mode
     m_Metadata:
       m_Items: []
-  - m_Id: 39259361290
-    m_Localized: You won!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361291
-    m_Localized: You lost!
-    m_Metadata:
-      m_Items: []
   - m_Id: 39259361292
     m_Localized: Play again
     m_Metadata:
@@ -91,7 +83,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10809669996544
-    m_Localized: Choose the language
+    m_Localized: Choose language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47930703237120
+    m_Localized: Confirm
     m_Metadata:
       m_Items: []
   references:

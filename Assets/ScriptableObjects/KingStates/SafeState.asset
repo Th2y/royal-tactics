@@ -14,3 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KingStateDefinitionSO
   type: 0
   namePt: Seguro
+  nameLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 16996733964289
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

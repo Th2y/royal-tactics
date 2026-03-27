@@ -74,14 +74,6 @@ MonoBehaviour:
     m_Localized: Jogar outro modo
     m_Metadata:
       m_Items: []
-  - m_Id: 39259361290
-    m_Localized: "Voc\xEA ganhou!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361291
-    m_Localized: "Voc\xEA perdeu!"
-    m_Metadata:
-      m_Items: []
   - m_Id: 39259361292
     m_Localized: Jogar novamente
     m_Metadata:
@@ -92,6 +84,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10809669996544
     m_Localized: Escolha o idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47930703237120
+    m_Localized: Confirmar
     m_Metadata:
       m_Items: []
   references:

@@ -45,12 +45,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameModeSO: {fileID: 11400000, guid: ea15e55bab319b24f983665bc441793f, type: 2}
-  timeToPlayerPlay: "\xC9 a sua vez de jogar"
-  timeToAIPlay: "\xC9 a vez do oponente jogar"
-  timeToPlayerPlacement: "\xC9 a sua vez de colocar as pe\xE7as"
-  timeToAIPlacement: "\xC9 a vez do oponente colocar as pe\xE7as"
-  playerWin: "Voc\xEA venceu!"
-  playerLost: "Voc\xEA perdeu!"
-  finishBtnMessage: Finalizar
+  timeToPlayerPlay:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67281506304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  timeToOpponentPlay:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67281506305
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  timeToPlayerPlacement:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67281506306
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  timeToOpponentPlacement:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67281506307
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  playerWin:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67206008832
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  playerLost:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67277312000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  finishBtnMessage:
+    m_TableReference:
+      m_TableCollectionName: GUID:efd8fdfcb501ffb48b8896c03a058d2b
+    m_TableEntryReference:
+      m_KeyId: 67281506308
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   buttonTilePrefab: {fileID: -2965587269589445736, guid: b5722c4638c62cf4d9509870f78987ea, type: 3}
   buttonsTilesParent: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
