@@ -17,8 +17,47 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 33dce1920b431fa4aa863c513b593774, type: 2}
   - {fileID: 11400000, guid: 5ddb214f1280a7a4087811c513074892, type: 2}
   - {fileID: 11400000, guid: 066688b199a4cd14d806cd1ab4ed968c, type: 2}
-  m_Extensions: []
+  m_Extensions:
+  - rid: 4026922383359869000
   m_Group: String Table
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4026922383359869000
+      type: {class: GoogleSheetsExtension, ns: UnityEditor.Localization.Plugins.Google, asm: Unity.Localization.Editor}
+      data:
+        m_Collection: {fileID: 11400000}
+        m_SheetsServiceProvider: {fileID: 11400000, guid: fe5884748ba4ec243943cf1517ba9972, type: 2}
+        m_SpreadsheetId: 11Zdm20lY82R1X4yMNNv34Rn9P1uy8xOi6JmO2fME5qw
+        m_SheetId: 1510512045
+        m_Columns:
+        - rid: 4026922383359869002
+        - rid: 4026922383359869003
+        - rid: 4026922383359869004
+        - rid: 4026922383359869005
+        m_RemoveMissingPulledKeys: 1
+    - rid: 4026922383359869002
+      type: {class: KeyColumn, ns: UnityEditor.Localization.Plugins.Google.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_Column: A
+    - rid: 4026922383359869003
+      type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_Column: B
+        m_LocaleIdentifier:
+          m_Code: en
+        m_IncludeComments: 0
+    - rid: 4026922383359869004
+      type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_Column: C
+        m_LocaleIdentifier:
+          m_Code: pt-BR
+        m_IncludeComments: 0
+    - rid: 4026922383359869005
+      type: {class: LocaleColumn, ns: UnityEditor.Localization.Plugins.Google.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_Column: D
+        m_LocaleIdentifier:
+          m_Code: es
+        m_IncludeComments: 0
