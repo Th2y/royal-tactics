@@ -90,6 +90,10 @@ MonoBehaviour:
     m_Localized: "Jogar pr\xF3xima fase"
     m_Metadata:
       m_Items: []
+  - m_Id: 10809669996544
+    m_Localized: Escolha o idioma
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

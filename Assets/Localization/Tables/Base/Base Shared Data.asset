@@ -87,6 +87,10 @@ MonoBehaviour:
     m_Key: BASE_PLAY_NEXT_PHASE
     m_Metadata:
       m_Items: []
+  - m_Id: 10809669996544
+    m_Key: BASE_CHOOSE_LANGUAGE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

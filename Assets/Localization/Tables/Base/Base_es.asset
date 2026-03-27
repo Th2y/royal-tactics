@@ -90,6 +90,10 @@ MonoBehaviour:
     m_Localized: Jugar el siguiente nivel
     m_Metadata:
       m_Items: []
+  - m_Id: 10809669996544
+    m_Localized: Elige el idioma
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
