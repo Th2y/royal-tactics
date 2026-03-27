@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class MenuController : UnityMethodsSingleton<MenuController>
@@ -10,10 +11,11 @@ public class MenuController : UnityMethodsSingleton<MenuController>
     private Dictionary<MenuScreen, CanvasGroupController> _screenMap;
 
     [Header("Tutorial")]
+    [SerializeField] private LocalizedString tutorialName;
     [SerializeField] private CanvasGroupController modeCardParent;
     [SerializeField] private ChooseGameModeCard modeCardPrefab;
-    [SerializeField] private TextMeshProUGUI currentModeNameText;
-    [SerializeField] private TextMeshProUGUI currentTutorialDescText;
+    [SerializeField] private LocalizeStringEvent currentModeNameLocale;
+    [SerializeField] private LocalizeStringEvent currentTutorialDescLocale;
     [SerializeField] private Image currentTutorialImage;
     [SerializeField] private Button tutorialBackModesBtn;
     [SerializeField] private Button tutorialNextBtn;
@@ -21,6 +23,9 @@ public class MenuController : UnityMethodsSingleton<MenuController>
     [SerializeField] private CanvasGroupController tutorialPagesParent;
     private GameModeSO currentTutorialGameMode;
     private int currentTutorialPage;
+
+    [Header("Version")]
+    public LocalizeStringEvent versionTextEvent;
 
     public override InitPriority Priority => InitPriority.GameModeUI;
 
@@ -31,7 +36,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
 
     public override void OnInitStart()
     {
-
+        GetVersionAndSetText();
     }
 
     private void SetScreens()
@@ -69,7 +74,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
 
     private void BackToTutorialModesScreen()
     {
-        currentModeNameText.text = "Tutorial";
+        currentModeNameLocale.StringReference = tutorialName;
         tutorialBackModesBtn.gameObject.SetActive(false);
         tutorialNextBtn.gameObject.SetActive(false);
         tutorialPreviousBtn.gameObject.SetActive(false);
@@ -102,9 +107,9 @@ public class MenuController : UnityMethodsSingleton<MenuController>
             tutorialPreviousBtn.gameObject.SetActive(false);
         }
         
-        currentModeNameText.text = gameMode.modeTranslated.modeNameL.GetLocalizedString();
+        currentModeNameLocale.StringReference = gameMode.modeTranslated.modeNameL;
+        currentTutorialDescLocale.StringReference = modeT[0].tutorialDescriptionL;
         currentTutorialImage.sprite = modeT[0].tutorialSprite;
-        currentTutorialDescText.text = modeT[0].tutorialDescriptionL.GetLocalizedString();
     }
 
     private void ChangeTutorialPage(bool next)
@@ -131,7 +136,21 @@ public class MenuController : UnityMethodsSingleton<MenuController>
         }
 
         currentTutorialImage.sprite = modeT[currentTutorialPage].tutorialSprite;
-        currentTutorialDescText.text = modeT[currentTutorialPage].tutorialDescriptionL.GetLocalizedString();
+        currentTutorialDescLocale.StringReference = modeT[currentTutorialPage].tutorialDescriptionL;
+    }
+    #endregion
+
+    #region Version
+    private void GetVersionAndSetText()
+    {
+        string unityVersion = Application.version;
+        string formattedVersion = unityVersion.Replace(".", "_");
+        string key = $"VERSION_{formattedVersion}";
+
+        versionTextEvent.StringReference.TableReference = "Versions";
+        versionTextEvent.StringReference.TableEntryReference = key;
+
+        versionTextEvent.RefreshString();
     }
     #endregion
 }

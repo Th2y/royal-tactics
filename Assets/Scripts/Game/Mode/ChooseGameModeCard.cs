@@ -1,11 +1,11 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class ChooseGameModeCard : MonoBehaviour
 {
     [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI modeNameTxt;
+    [SerializeField] private LocalizeStringEvent modeNameLocale;
 
     private int modeId;
     private bool isTutorial;
@@ -16,7 +16,7 @@ public class ChooseGameModeCard : MonoBehaviour
         this.gameModeSO = modeSO;
         this.isTutorial = isTutorial;
         modeId = (int)modeSO.modeName;
-        modeNameTxt.text = modeSO.modeTranslated.modeNameL.GetLocalizedString();
+        modeNameLocale.StringReference = modeSO.modeTranslated.modeNameL;
         button.onClick.AddListener(OnClick);
     }
 

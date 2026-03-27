@@ -780,17 +780,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399607189}
   m_CullTransparentMesh: 1
---- !u!114 &451388210 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2552573761334539533, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
-  m_PrefabInstance: {fileID: 942497754680658921}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &536605529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560486644569891311, guid: 389b4e4c68cbc1546af162824fefc9ad, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4560486644569891311, guid: 389b4e4c68cbc1546af162824fefc9ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1489,15 +1478,39 @@ MonoBehaviour:
   - {fileID: 1694055187}
   - {fileID: 1972620643}
   - {fileID: 2049556847}
+  tutorialName:
+    m_TableReference:
+      m_TableCollectionName: GUID:6acd1d4526769f54fa841e93f06b77cd
+    m_TableEntryReference:
+      m_KeyId: 39255166976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   modeCardParent: {fileID: 942497754680658935}
   modeCardPrefab: {fileID: 7304013129535034310, guid: 138f79bc231ff7b4794599acb132c3dc, type: 3}
-  currentModeNameText: {fileID: 942497754680658922}
-  currentTutorialDescText: {fileID: 451388210}
+  currentModeNameLocale: {fileID: 934401949}
+  currentTutorialDescLocale: {fileID: 942497754680658924}
   currentTutorialImage: {fileID: 679588221}
   tutorialBackModesBtn: {fileID: 1847955084}
   tutorialNextBtn: {fileID: 942497754680658927}
   tutorialPreviousBtn: {fileID: 1742798673}
   tutorialPagesParent: {fileID: 942497754680658923}
+  versionTextEvent: {fileID: 1063611119}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &934401949 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8189648268699596966, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
+  m_PrefabInstance: {fileID: 942497754680658921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
 --- !u!1 &946709986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,6 +2344,7 @@ GameObject:
   - component: {fileID: 1063611116}
   - component: {fileID: 1063611118}
   - component: {fileID: 1063611117}
+  - component: {fileID: 1063611119}
   m_Layer: 5
   m_Name: VersionText
   m_TagString: Untagged
@@ -2457,6 +2471,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063611115}
   m_CullTransparentMesh: 1
+--- !u!114 &1063611119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063611115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1063611117}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1185943088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4541,7 +4595,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 20
+  m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -5140,17 +5194,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
---- !u!114 &942497754680658922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 428225024886676751, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
-  m_PrefabInstance: {fileID: 942497754680658921}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &942497754680658923 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5410943442482682697, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
@@ -5162,6 +5205,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ed84a987bd8f4fbf622ee91f40078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasGroupController
+--- !u!114 &942497754680658924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2644122006285840962, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
+  m_PrefabInstance: {fileID: 942497754680658921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
 --- !u!114 &942497754680658927 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8533662522629642418, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
