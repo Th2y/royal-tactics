@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 3
   modeTranslated:
-    modeInfo: "Escolha qual (is) \xE9 a casa inicial da pe\xE7a que est\xE1 no tabuleiro"
     modeNameL:
       m_TableReference:
         m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
@@ -34,14 +33,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialDescription: "Uma pe\xE7a estar\xE1 no centro do tabuleiro. Voc\xEA
-        precisar\xE1 escolher qual (quais) a casa inicial correta."
-      tutorialSprite: {fileID: 21300000, guid: 1e60c0e66ea5e594e8e66bf559e8cf8c, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: 1e60c0e66ea5e594e8e66bf559e8cf8c, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315584
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 4
   modeTranslated:
-    modeInfo: Escolha qual o estado atual do Rei destacado
     modeNameL:
       m_TableReference:
         m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
@@ -34,15 +33,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialDescription: "As pe\xE7as estar\xE3o posicionadas e o Rei do oponente
-        estar\xE1 destacado. Voc\xEA precisar\xE1 dizer qual a situa\xE7\xE3o atual
-        dele: xeque, xeque-mate, afogamento ou seguro."
-      tutorialSprite: {fileID: 21300000, guid: 97b6a94dcb415184cb8eaeb309847319, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: 97b6a94dcb415184cb8eaeb309847319, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315586
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

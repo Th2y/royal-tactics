@@ -15,6 +15,18 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Spanish (es)
   m_GUID: fe4b702eeb9b39f4c96eb8b4a6c0057e
   m_SerializeEntries:
+  - m_GUID: 066688b199a4cd14d806cd1ab4ed968c
+    m_Address: Base_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fcc1d0aee505784fab2d9e252c8d311
+    m_Address: Tutorials_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6de3355fc38399a488ebf3bbf841200c
     m_Address: GameModes_es
     m_ReadOnly: 1

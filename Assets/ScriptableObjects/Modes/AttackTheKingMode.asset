@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 5
   modeTranslated:
-    modeInfo: "Escolha e posicione uma pe\xE7a de modo a dar xeque-mate no rei destacado"
     modeNameL:
       m_TableReference:
         m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
@@ -34,16 +33,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialDescription: "As pe\xE7as estar\xE3o posicionadas em uma posi\xE7\xE3o
-        onde o Rei advers\xE1rio estar\xE1 afogado e com um destaque na casa onde
-        ele est\xE1. Voc\xEA precisar\xE1 escolher uma das pe\xE7as entre as op\xE7\xF5es
-        e depois ir\xE1 posicionar de forma a atacar o Rei dando xeque-mate."
-      tutorialSprite: {fileID: 21300000, guid: ffffdaf567681724b90652a23918d105, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: ffffdaf567681724b90652a23918d105, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1425946595328
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

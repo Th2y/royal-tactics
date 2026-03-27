@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Base_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 6acd1d4526769f54fa841e93f06b77cd, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 39183863808
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39242584064
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39255166976
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39255166977
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361280
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361281
+    m_Localized: Choose the color of player 1's pieces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361282
+    m_Localized: Choose the color of player 2's pieces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361283
+    m_Localized: Choose game mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361284
+    m_Localized: Back to menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361285
+    m_Localized: Back to mode selection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361286
+    m_Localized: Choose level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361287
+    m_Localized: Game paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361288
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361289
+    m_Localized: Play another mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361290
+    m_Localized: You won!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361291
+    m_Localized: You lost!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361292
+    m_Localized: Play again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361293
+    m_Localized: Play next level
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

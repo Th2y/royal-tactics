@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 0
   modeTranslated:
-    modeInfo: "Capture as pe\xE7as do advers\xE1rio de modo a obter a vantagem de
-      pontos necess\xE1ria"
     modeNameL:
       m_TableReference:
         m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
@@ -35,14 +33,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialDescription: "O seu advers\xE1rio ter\xE1 posicionado suas pe\xE7as
-        em posi\xE7\xF5es que ficar\xE3o destacadas."
-      tutorialSprite: {fileID: 21300000, guid: 7b0579abe2a228e459e1b9151762ca45, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: 7b0579abe2a228e459e1b9151762ca45, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315588
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -55,14 +51,12 @@ MonoBehaviour:
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
-    - tutorialDescription: "Voc\xEA ir\xE1 posicionar as suas pe\xE7as de acordo
-        com a quantidade de moedas dispon\xEDvel para a fase e o custo de cada pe\xE7a."
-      tutorialSprite: {fileID: 21300000, guid: 0aeba126c7f76c146b83da1d4e7df1a6, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: 0aeba126c7f76c146b83da1d4e7df1a6, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315589
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -75,15 +69,12 @@ MonoBehaviour:
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
-    - tutorialDescription: "As pe\xE7as do seu advers\xE1rio ser\xE3o reveladas.
-        Voc\xEA e seu advers\xE1rio ir\xE3o capturando as pe\xE7as um do outro at\xE9
-        que um dos dois obtenha a vantagem de pontos necess\xE1ria."
-      tutorialSprite: {fileID: 21300000, guid: b6a2966be6b0b75429d9d28106276106, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: b6a2966be6b0b75429d9d28106276106, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315590
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

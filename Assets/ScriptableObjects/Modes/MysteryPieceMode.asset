@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 1
   modeTranslated:
-    modeInfo: "Escolha qual a pe\xE7a \xE9 capaz de realizar os movimentos destacados"
     modeNameL:
       m_TableReference:
         m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
@@ -34,15 +33,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialDescription: "Uma pe\xE7a misteriosa estar\xE1 posicionada no tabuleiro
-        e com as casas poss\xEDveis circuladas. Voc\xEA precisar\xE1 dizer qual \xE9
-        essa pe\xE7a."
-      tutorialSprite: {fileID: 21300000, guid: ddcd7cd81b6754a42b7f60b48fcf587c, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: ddcd7cd81b6754a42b7f60b48fcf587c, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315587
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

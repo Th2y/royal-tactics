@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: 2
   modeTranslated:
-    modeInfo: Escolha o nome correto da casa destacada
     modeNameL:
       m_TableReference:
         m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
@@ -34,14 +33,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialDescription: "Uma das casas estar\xE1 destacada. Voc\xEA precisar\xE1
-        escolher dentre as op\xE7\xF5es qual o nome da casa."
-      tutorialSprite: {fileID: 21300000, guid: 2b91528798714f544bb33dde15494896, type: 3}
+    - tutorialSprite: {fileID: 21300000, guid: 2b91528798714f544bb33dde15494896, type: 3}
       tutorialDescriptionL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 1426005315585
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
