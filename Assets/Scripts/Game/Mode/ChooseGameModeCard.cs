@@ -1,28 +1,42 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class ChooseGameModeCard : MonoBehaviour
 {
     [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI modeNameTxt;
+    [SerializeField] private LocalizeStringEvent modeNameLocale;
 
     private int modeId;
+    private bool isTutorial;
+    private GameModeSO gameModeSO;
 
-    public void Init(GameModeSO modeSO)
+    public void Init(GameModeSO modeSO, bool isTutorial)
     {
-        modeId = modeSO.modeId;
-        modeNameTxt.text = modeSO.modeNamePt;
+        this.gameModeSO = modeSO;
+        this.isTutorial = isTutorial;
+        modeId = (int)modeSO.modeName;
+        modeNameLocale.StringReference = modeSO.modeTranslated.modeNameL;
         button.onClick.AddListener(OnClick);
     }
 
     private void OnClick()
     {
-        foreach(var p in ChooseGameModeUI.Instance.PhasesModesParent)
+        if (isTutorial)
         {
-            p.Value.SetActive(p.Key == modeId);
+            MenuController.Instance.SetTutorialScreens(gameModeSO);
         }
+        else
+        {
+            var chooseGameModeUI = ChooseGameModeUI.Instance;
 
-        ChooseGameModeUI.Instance.ShowScreen(GameScreen.ChooseGamePhase);
+            foreach (var p in chooseGameModeUI.PhasesModesParent)
+            {
+                p.Value.SetActive(p.Key == modeId);
+            }
+
+            chooseGameModeUI.SetChoosedGameModeName(gameModeSO);
+            chooseGameModeUI.ShowScreen(GameScreen.ChooseGamePhase);
+        }
     }
 }

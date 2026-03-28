@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MysteryPieceModeUI : GameModeUIBase
@@ -29,6 +30,8 @@ public class MysteryPieceModeUI : GameModeUIBase
         placementParent.SetActive(false);
         promotionParent.SetActive(false);
         pieceParent.SetActive(true);
+        tileParent.SetActive(false);
+        kingStateParent.SetActive(false);
         finishBtn.gameObject.SetActive(false);
     }
 
@@ -42,13 +45,15 @@ public class MysteryPieceModeUI : GameModeUIBase
 
     }
 
-    public override void SetOptions(List<PieceDefinitionSO> options)
+    public override void SetOptions<T>(List<T> optionsT)
     {
+        var options = optionsT.Cast<PieceDefinitionSO>().ToList();
+
         playerGuessed = false;
 
-        foreach (var button in buttons)
+        foreach (Transform child in buttonsPiecesParent)
         {
-            Destroy(button.gameObject);
+            Destroy(child.gameObject);
         }
         buttons.Clear();
 

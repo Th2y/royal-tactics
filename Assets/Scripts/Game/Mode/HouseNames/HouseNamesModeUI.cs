@@ -1,0 +1,78 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class HouseNamesModeUI : GameModeUIBase
+{
+    [SerializeField] private TileButtonUI buttonTilePrefab;
+    [SerializeField] private Transform buttonsTilesParent;
+
+    private readonly List<TileButtonUI> buttons = new();
+
+    private bool playerGuessed = false;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+    protected override void SetPlayParts()
+    {
+        base.SetPlayParts();
+
+        gameTurnParent.SetActive(false);
+        advantageParent.SetActive(false);
+        placementParent.SetActive(false);
+        promotionParent.SetActive(false);
+        pieceParent.SetActive(false);
+        tileParent.SetActive(true);
+        kingStateParent.SetActive(false);
+        finishBtn.gameObject.SetActive(false);
+    }
+
+    public override void BuildUI()
+    {
+        
+    }
+
+    public override void RefreshButtons()
+    {
+        
+    }
+
+    public override void SetOptions<T>(List<T> optionsT)
+    {
+        var options = optionsT.Cast<TileName>().ToList();
+        playerGuessed = false;
+
+        foreach (Transform child in buttonsTilesParent)
+        {
+            Destroy(child.gameObject);
+        }
+        buttons.Clear();
+
+        foreach (TileName tile in options)
+        {
+            var btn = Instantiate(buttonTilePrefab, buttonsTilesParent);
+            btn.Setup(tile, true, () => OnPlayerGuess(tile));
+            buttons.Add(btn);
+        }
+    }
+
+    private void OnPlayerGuess(TileName guessedType)
+    {
+        if (playerGuessed) return;
+
+        playerGuessed = true;
+
+        if (ChooseGameMode.Instance.CurrentGameMode is HouseNamesMode gameMode)
+        {
+            gameMode.OnPlayerGuess(guessedType);
+        }
+    }
+}

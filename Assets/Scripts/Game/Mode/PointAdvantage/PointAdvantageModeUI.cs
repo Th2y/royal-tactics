@@ -1,6 +1,8 @@
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class PointAdvantageModeUI : GameModeUIBase
 {
@@ -38,36 +40,41 @@ public class PointAdvantageModeUI : GameModeUIBase
         advantageParent.SetActive(true);
         placementParent.SetActive(true);
         pieceParent.SetActive(false);
+        tileParent.SetActive(false);
+        kingStateParent.SetActive(false);
         promotionParent.SetActive(false);
         finishBtn.gameObject.SetActive(true);
     }
 
     #region Total Points
     [Header("Total Points")]
-    [SerializeField] private TextMeshProUGUI advantagePointsText;
-    [SerializeField] private TextMeshProUGUI playerTotalPointsText;
-    [SerializeField] private TextMeshProUGUI aiTotalPointsText;
+    [SerializeField] private LocalizeStringEvent advantagePointsLocale;
+    [SerializeField] private LocalizeStringEvent playerTotalPointsLocale;
+    [SerializeField] private LocalizeStringEvent opponentTotalPointsLocale;
 
     [HideInInspector]
     private void SetAdvantagePoints(int points)
     {
-        advantagePointsText.text = "Vantagem necessária: " + points;
+        var coinsCount = advantagePointsLocale.StringReference["value"] as IntVariable;
+        coinsCount.Value = points;
     }
 
     [HideInInspector]
     public void SetPlayerTotalPoints(int totalPoints)
     {
-        playerTotalPointsText.text = "Você: " + totalPoints;
+        var coinsCount = playerTotalPointsLocale.StringReference["value"] as IntVariable;
+        coinsCount.Value = totalPoints;
     }
 
     [HideInInspector]
     public void SetAITotalPoints(int totalPoints)
     {
-        aiTotalPointsText.text = "Oponente: " + totalPoints;
+        var coinsCount = opponentTotalPointsLocale.StringReference["value"] as IntVariable;
+        coinsCount.Value = totalPoints;
     }
     #endregion
 
-    [SerializeField] private TextMeshProUGUI coinsLeftText;
+    [SerializeField] private LocalizeStringEvent coinsLeftLocale;
     [SerializeField] private PieceButtonUI buttonPlacementPrefab;
     [SerializeField] private Transform buttonsPlacementParent;
 
@@ -78,11 +85,13 @@ public class PointAdvantageModeUI : GameModeUIBase
         SetOptions(PhaseController.Instance.CurrentPhase.availablePiecesHuman);
     }
 
-    public override void SetOptions(List<PieceDefinitionSO> options)
+    public override void SetOptions<T>(List<T> optionsT)
     {
-        foreach (var button in buttons)
+        var options = optionsT.Cast<PieceDefinitionSO>().ToList();
+
+        foreach (Transform child in buttonsPlacementParent)
         {
-            Destroy(button.gameObject);
+            Destroy(child.gameObject);
         }
         buttons.Clear();
 
@@ -112,8 +121,9 @@ public class PointAdvantageModeUI : GameModeUIBase
         HumanPlayerUI.Instance.RefreshFinishBtn();
     }
 
-    private void ChangeCoinsLeftText(int coins)
+    private void ChangeCoinsLeftText(int count)
     {
-        coinsLeftText.text = coins + " moedas";
+        var coinsCount = coinsLeftLocale.StringReference["count"] as IntVariable;
+        coinsCount.Value = count;
     }
 }

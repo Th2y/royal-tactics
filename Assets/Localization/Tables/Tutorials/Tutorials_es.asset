@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorials_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 5610f14d3a062b2418043ec61248b6c3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1425946595328
+    m_Localized: "Las piezas se colocar\xE1n de forma que el rey del oponente quede
+      en tablas, y la casilla donde se encuentre estar\xE1 resaltada. Deber\xE1s
+      elegir una de las piezas disponibles y colocarla para atacar al rey y darle
+      jaque mate."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315584
+    m_Localized: "Una pieza estar\xE1 en el centro del tablero. Deber\xE1s elegir
+      la(s) casilla(s) inicial(es) correcta(s)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315585
+    m_Localized: "Una de las casillas estar\xE1 resaltada. Deber\xE1s elegir el nombre
+      de la casilla entre las opciones."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315586
+    m_Localized: "Las piezas se colocar\xE1n y el rey del oponente estar\xE1 resaltado.
+      Deber\xE1s indicar su situaci\xF3n actual: jaque, jaque mate, tablas o seguro."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315587
+    m_Localized: "Una pieza misteriosa se colocar\xE1 en el tablero, con las casillas
+      posibles marcadas con un c\xEDrculo. Deber\xE1s identificar esta pieza."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315588
+    m_Localized: "Tu oponente habr\xE1 colocado sus piezas en las posiciones resaltadas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315589
+    m_Localized: "Colocar\xE1s tus piezas seg\xFAn la cantidad de monedas disponibles
+      para la fase y el coste de cada pieza."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315590
+    m_Localized: "Las piezas de tu oponente se revelar\xE1n. T\xFA y tu oponente
+      capturar\xE9is las piezas del otro hasta que uno de vosotros consiga la ventaja
+      de puntos necesaria."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

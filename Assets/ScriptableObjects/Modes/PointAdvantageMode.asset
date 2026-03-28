@@ -13,9 +13,90 @@ MonoBehaviour:
   m_Name: PointAdvantageMode
   m_EditorClassIdentifier: 
   modeName: 0
-  modeNamePt: Vantagem de Pontos
+  modeTranslated:
+    modeNameL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 1279829626880
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeInfoL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 605293294276611
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeTutorial:
+    - tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
+        m_TableEntryReference:
+          m_KeyId: 1426005315588
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: GUID:c842d3fc9f4eb964196565369c95710a
+        m_TableEntryReference:
+          m_KeyId: 2555741097984
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+    - tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
+        m_TableEntryReference:
+          m_KeyId: 1426005315589
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: GUID:c842d3fc9f4eb964196565369c95710a
+        m_TableEntryReference:
+          m_KeyId: 2572161798144
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+    - tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
+        m_TableEntryReference:
+          m_KeyId: 1426005315590
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: GUID:c842d3fc9f4eb964196565369c95710a
+        m_TableEntryReference:
+          m_KeyId: 2588834156544
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
   modePrefab: {fileID: -4166542156304033033, guid: 6d7f421c28b2bbe4a9d223fef70e5bc2, type: 3}
+  modeUIBase: {fileID: 7404029122153514504, guid: 65b4d4c88bbd7bb41ab2e5a0faed911b, type: 3}
   phases:
   - {fileID: 11400000, guid: 7d08740dbc54ea04d829dceca98b83ac, type: 2}
+  - {fileID: 11400000, guid: 5dc0abd803ce205458127e0b9c7367d8, type: 2}
+  - {fileID: 11400000, guid: b4b0e33b881bcdf4895e27259ea2e227, type: 2}
   - {fileID: 11400000, guid: a394f47fae0638648aa6b52eb3213648, type: 2}
+  - {fileID: 11400000, guid: b0ebf00efd033f141a5b854bc9e30031, type: 2}
+  - {fileID: 11400000, guid: 2b7da289f8269d841b133d963c04d247, type: 2}
   - {fileID: 11400000, guid: 44c77a5be6d4ee64795fc05878a7ef2a, type: 2}
+  - {fileID: 11400000, guid: 5615660e09e5f4946abbc382c67e04e3, type: 2}
+  - {fileID: 11400000, guid: 97f5a64c04b005b46b149ce80bd0fc0c, type: 2}
+  - {fileID: 11400000, guid: 938c2c336389dbc4ca6ee8aac7279f2e, type: 2}
+  references:
+    version: 2
+    RefIds: []

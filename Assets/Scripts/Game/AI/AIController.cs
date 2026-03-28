@@ -67,16 +67,11 @@ public class AIController : BasePlayerController<AIController>
 
     protected override bool CheckCanPlaceAnyPiece()
     {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
         PieceDefinitionSO pieceDef = ChoosePiece();
         if (pieceDef == null)
             return false;
 
-        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
+        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(pieceDef, false);
         if (tile == null)
             return false;
 
@@ -183,16 +178,11 @@ public class AIController : BasePlayerController<AIController>
 
     private bool TryPlacementDuringTurn()
     {
-        List<Tile> freeTiles = BoardController.Instance.GetAllFreeTiles();
-
-        if (freeTiles.Count == 0)
-            return false;
-
         PieceDefinitionSO pieceDef = ChoosePiece();
         if (pieceDef == null)
             return false;
 
-        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
+        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(pieceDef, false);
         if (tile == null)
             return false;
 
@@ -256,7 +246,7 @@ public class AIController : BasePlayerController<AIController>
             PieceDefinitionSO pieceDef = ChoosePiece();
             if (pieceDef == null) break;
 
-            Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(freeTiles, pieceDef, false);
+            Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(pieceDef, false, freeTiles);
             if (tile == null) break;
 
             Piece piece = PlacePiece(tile, pieceDef, false);
@@ -273,6 +263,69 @@ public class AIController : BasePlayerController<AIController>
 
         if (possible.Count == 0)
             return null;
+
+        bool hasQueen = false;
+        bool hasRook = false;
+        bool hasBishop = false;
+        bool hasKnight = false;
+        bool hasPawn = false;
+
+        for (int i = 0; i < PlacedPieces.Count; i ++)
+        {
+            switch (PlacedPieces[i].Definition.type)
+            {
+                case PieceType.Queen: 
+                    hasQueen = true; 
+                    break;
+                case PieceType.Rook: 
+                    hasRook = true; 
+                    break;
+                case PieceType.Bishop: 
+                    hasBishop = true; 
+                    break;
+                case PieceType.Knight: 
+                    hasKnight = true; 
+                    break;
+                case PieceType.Pawn: 
+                    hasPawn = true; 
+                    break;
+            }
+
+            if (hasQueen && hasRook && hasBishop && hasKnight && hasPawn)
+                break;
+        }
+
+        foreach (PieceDefinitionSO piece in possible)
+        {
+            if (!hasQueen)
+            {
+                var pool = possible.FindAll(p => p.type == PieceType.Queen);
+                if (pool.Count > 0)
+                    return pool[Random.Range(0, pool.Count)];
+            }
+
+            if (!hasRook)
+            {
+                var pool = possible.FindAll(p =>
+                    p.type == PieceType.Queen ||
+                    p.type == PieceType.Rook);
+
+                if (pool.Count > 0)
+                    return pool[Random.Range(0, pool.Count)];
+            }
+
+            if (!hasBishop || !hasKnight)
+            {
+                var pool = possible.FindAll(p =>
+                    p.type == PieceType.Queen ||
+                    p.type == PieceType.Rook ||
+                    p.type == PieceType.Bishop ||
+                    p.type == PieceType.Knight);
+
+                if (pool.Count > 0)
+                    return pool[Random.Range(0, pool.Count)];
+            }
+        }
 
         return possible[Random.Range(0, possible.Count)];
     }

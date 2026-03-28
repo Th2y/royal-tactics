@@ -5,6 +5,8 @@ public class ModelColorApplier : UnityMethods
     [SerializeField] private ColorsOptions colorsOptions;
     [SerializeField] private Renderer[] renderers;
     [SerializeField] private string colorProperty = "_BaseColor";
+    [SerializeField] private string emisionColorProperty = "_EmissionColor";
+    [SerializeField] private float emissionValue = .5f;
 
     public bool isPlayer = false;
 
@@ -18,6 +20,11 @@ public class ModelColorApplier : UnityMethods
     public override void OnInitAwake()
     {
         block = new MaterialPropertyBlock();
+
+        foreach (var r in renderers)
+        {
+            r.material.EnableKeyword("_EMISSION");
+        }
 
         if (isPlayer)
             DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.colors[0], true);
@@ -40,6 +47,16 @@ public class ModelColorApplier : UnityMethods
         {
             r.GetPropertyBlock(block);
             block.SetColor(colorProperty, color);
+            r.SetPropertyBlock(block);
+        }
+    }
+
+    public void SetEmissionColor(bool active)
+    {
+        foreach (var r in renderers)
+        {
+            r.GetPropertyBlock(block);
+            block.SetColor(emisionColorProperty, active ? Color.white * emissionValue : Color.black);
             r.SetPropertyBlock(block);
         }
     }

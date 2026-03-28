@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MysteryPieceMode : GameModeBase
@@ -47,23 +48,37 @@ public class MysteryPieceMode : GameModeBase
 
     private void SetPiece()
     {
-        BoardController.Instance.ClearBoard();
+        var board = BoardController.Instance;
 
-        var defs = PhaseController.Instance.CurrentPhase.availablePiecesAI;
-        var def = defs[Random.Range(0, defs.Count)];
+        board.ClearBoard();
+        List<Tile> freeTiles = board.GetAllFreeTiles();
+
+        var defsAI = PhaseController.Instance.CurrentPhase.availablePiecesAI;
+        var defsHuman = PhaseController.Instance.CurrentPhase.availablePiecesHuman;
+        var def = defsAI[0];
 
         correctType = def.type;
 
-        Tile tile = BoardController.Instance.ChooseTileToInstantiateNewPiece(BoardController.Instance.GetAllFreeTiles(), def, true);
+        Tile tile = board.ChooseTileToInstantiateNewPiece(def, true, freeTiles);
         tile.SetOccupiedMarker(true);
+        freeTiles.Remove(tile);
 
         mysteryPiece = Instantiate(def.prefab);
         mysteryPiece.Initialize(def, true);
         mysteryPiece.SetVisible(false);
         tile.SetPiece(mysteryPiece);
 
+        for (int i = 0; i < defsHuman.Count; i++)
+        {
+            Tile tileP = board.ChooseTileToInstantiateNewPiece(def, true, freeTiles);
+            var piece = Instantiate(defsHuman[i].prefab);
+            piece.Initialize(def, false);
+            tileP.SetPiece(piece);
+            freeTiles.Remove(tileP);
+        }
+
         HumanPlayerController.Instance.HighlightValidTiles(mysteryPiece);
-        ChooseGameModeUI.Instance.CurrentGameMode.SetOptions(defs);
+        ChooseGameModeUI.Instance.CurrentGameMode.SetOptions(defsAI);
     }
 
     public void OnPlayerGuess(PieceType guessedType)

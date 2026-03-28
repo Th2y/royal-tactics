@@ -15,15 +15,26 @@ public abstract class UnityMethodsSingleton<T> : MonoBehaviour, IUnityMethods
 
     public abstract InitPriority Priority { get; }
 
+    protected virtual bool DontDestroy => false;
+
+    private bool wasInitialized = false;
+
     public void InitAwake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
+        if (wasInitialized) return;
+
         Instance = this as T;
+        wasInitialized = true;
+
+        if (DontDestroy) 
+            DontDestroyOnLoad(gameObject);
+
         OnInitAwake();
     }
 

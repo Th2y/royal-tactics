@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: Bishop
   m_EditorClassIdentifier: 
   type: 2
-  namePt: Bispo
+  nameT:
+    m_TableReference:
+      m_TableCollectionName: GUID:5e0c3cbe606161f468ce575392a80f5b
+    m_TableEntryReference:
+      m_KeyId: 145354280960
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  humanInitialTiles: 1000000028000000
+  aiInitialTiles: 170000002f000000
   cost: 3
   prefab: {fileID: 3049317918011779178, guid: fdf20d76d37051c4c9e9e8d2d0d85137, type: 3}
-  unlockedByDefault: 1
-  winsRequiredToUnlock: 0
+  references:
+    version: 2
+    RefIds: []

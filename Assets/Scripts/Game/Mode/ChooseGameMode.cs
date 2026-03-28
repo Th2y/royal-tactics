@@ -12,6 +12,8 @@ public class ChooseGameMode : UnityMethodsSingleton<ChooseGameMode>
 
     public override InitPriority Priority => InitPriority.ChooseGameMode;
 
+    protected override bool DontDestroy => true;
+
     public override void OnInitAwake()
     {
         foreach (var gameMode in gameModesSO)
@@ -41,6 +43,7 @@ public class ChooseGameMode : UnityMethodsSingleton<ChooseGameMode>
             }
         }
 
+        BoardController.Instance.ClearBoard();
         ChooseGameModeUI.Instance.SetCurrentGameMode(gameMode);
     }
 

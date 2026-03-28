@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: Pawn
   m_EditorClassIdentifier: 
   type: 0
-  namePt: "Pe\xE3o"
+  nameT:
+    m_TableReference:
+      m_TableCollectionName: GUID:5e0c3cbe606161f468ce575392a80f5b
+    m_TableEntryReference:
+      m_KeyId: 194805125120
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  humanInitialTiles: 0100000009000000110000001900000021000000290000003100000039000000
+  aiInitialTiles: 060000000e000000160000001e000000260000002e000000360000003e000000
   cost: 1
   prefab: {fileID: 6289162916602366714, guid: 32e31b54ba155c847a2d9474bf736e50, type: 3}
-  unlockedByDefault: 1
-  winsRequiredToUnlock: 0
+  references:
+    version: 2
+    RefIds: []

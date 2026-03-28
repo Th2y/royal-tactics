@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorials_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 5610f14d3a062b2418043ec61248b6c3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1425946595328
+    m_Localized: The pieces will be positioned in a way that the opponent's King
+      is stalemate, with a highlight on the square where it is located. You will
+      need to choose one of the pieces from the options and then position it to attack
+      the King, delivering checkmate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315584
+    m_Localized: One piece will be in the center of the board. You will need to choose
+      the correct starting square(s).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315585
+    m_Localized: One of the squares will be highlighted. You will need to choose
+      the name of the square from the options.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315586
+    m_Localized: 'The pieces will be positioned, and the opponent''s King will be
+      highlighted. You will need to state its current situation: check, checkmate,
+      stalemate, or safe.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315587
+    m_Localized: A mystery piece will be positioned on the board, with the possible
+      squares circled. You will need to identify this piece.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315588
+    m_Localized: Your opponent will have positioned their pieces in highlighted positions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315589
+    m_Localized: You will position your pieces according to the number of coins available
+      for the phase and the cost of each piece.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1426005315590
+    m_Localized: Your opponent's pieces will be revealed. You and your opponent will
+      capture each other's pieces until one of you gains the necessary point advantage.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

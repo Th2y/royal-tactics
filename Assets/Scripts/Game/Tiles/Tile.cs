@@ -4,10 +4,11 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private Renderer tileRenderer;
     [SerializeField] private Collider colider;
-    public string TileName;
+    [SerializeField] private SpriteRenderer circle;
+    public TileName TileName { get; private set; }
     public Vector2Int Position;
 
-    public Piece Piece { get; private set; }
+    public Piece Piece;
     public bool IsOccupied => Piece != null;
 
     private Color defaultColor;
@@ -18,6 +19,8 @@ public class Tile : MonoBehaviour
 
     private void Awake()
     {
+        TileName = (TileName)(Position.x * 8 + Position.y);
+
         HandleCollider(false);
     }
 
@@ -102,8 +105,7 @@ public class Tile : MonoBehaviour
     public void SetIsValid(bool valid)
     {
         IsValid = valid;
-        lastColor = valid ? Color.green : defaultColor;
-        BoardColorApplier.Instance.ApplyColorToSlot(tileRenderer, lastColor);
+        circle.gameObject.SetActive(valid);
     }
     #endregion
 
@@ -126,6 +128,7 @@ public class Tile : MonoBehaviour
 
         Piece = null;
         SetIsValid(false);
+        SetOccupiedMarker(false);
     }
     #endregion
 }

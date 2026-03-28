@@ -8,9 +8,9 @@ public enum InitPriority
     ModelColorApplier = 5,
 
     // ========= CORE GAME INFRA =========
-    GameModeUI = 10,
-    Services = 11,
-    ChooseGameMode = 12,
+    ChooseGameMode = 10,
+    GameModeUI = 11,
+    Services = 12,
     ChooseGameModeUI = 13,
     PhaseController = 14,
     BoardController = 15,

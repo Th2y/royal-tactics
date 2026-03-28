@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameModes_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 69425f059451cc242a37b4326328574c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 24751263744
+    m_Localized: Ataca al Rey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1279829626880
+    m_Localized: Ventaja de Puntos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1113097654272
+    m_Localized: Pieza Misteriosa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1107275960320
+    m_Localized: Estado del Rey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1089185927168
+    m_Localized: Posicionamiento Correcto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3062475935744
+    m_Localized: Nombres de Casas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293235556352
+    m_Localized: Elige y coloca una pieza para dar jaque mate al rey resaltado.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276608
+    m_Localized: Elige la casilla de inicio de la pieza en el tablero.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276609
+    m_Localized: "Elige la posici\xF3n actual del rey resaltado."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276610
+    m_Localized: "Elige qu\xE9 pieza puede realizar los movimientos resaltados."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276611
+    m_Localized: Captura las piezas del oponente para obtener la ventaja de puntos
+      necesaria.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 605293294276612
+    m_Localized: Elige el nombre correcto de la casilla resaltada.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

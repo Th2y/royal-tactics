@@ -76,6 +76,21 @@ public class Pawn : Piece
         return captures;
     }
 
+    public override List<Tile> GetAttackTiles(BoardController board)
+    {
+        List<Tile> attacks = new();
+
+        int dir = IsFromPlayer ? 1 : -1;
+
+        Tile left = board.GetTile(CurrentTile.Position.x - 1, CurrentTile.Position.y + dir);
+        Tile right = board.GetTile(CurrentTile.Position.x + 1, CurrentTile.Position.y + dir);
+
+        if (left != null) attacks.Add(left);
+        if (right != null) attacks.Add(right);
+
+        return attacks;
+    }
+
     private void TryAddCapture(BoardController board, int x, int y, List<Tile> captures)
     {
         Tile tile = board.GetTile(x, y);

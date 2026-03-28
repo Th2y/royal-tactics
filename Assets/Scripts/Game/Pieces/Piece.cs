@@ -5,10 +5,16 @@ using DG.Tweening;
 public abstract class Piece : MonoBehaviour
 {
     [SerializeField] private ModelColorApplier modelColorApplier;
-    public PieceDefinitionSO Definition { get; private set; }
     protected Renderer[] renderers;
-    public Tile CurrentTile {  get; private set; }
+    public Tile CurrentTile;
+
+#if UNITY_EDITOR
+    public bool IsFromPlayer;
+    public PieceDefinitionSO Definition;
+#else
     public bool IsFromPlayer {  get; private set; }
+    public PieceDefinitionSO Definition { get; private set; }
+#endif
 
     public virtual bool CanPromote
     {
@@ -39,7 +45,7 @@ public abstract class Piece : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        modelColorApplier.SetColor(selected ? Color.green : modelColorApplier.DefaultColor);
+        modelColorApplier.SetEmissionColor(selected);
     }
 
     public void SetPressed(bool pressed)
@@ -99,4 +105,14 @@ public abstract class Piece : MonoBehaviour
 
     public abstract List<Tile> GetValidMoves(BoardController board);
     public abstract List<Tile> GetValidCaptures(BoardController board);
+
+    public virtual List<Tile> GetAttackTiles(BoardController board)
+    {
+        List<Tile> attacks = new();
+
+        attacks.AddRange(GetValidMoves(board));
+        attacks.AddRange(GetValidCaptures(board));
+
+        return attacks;
+    }
 }

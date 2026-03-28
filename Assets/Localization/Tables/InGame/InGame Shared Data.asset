@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: InGame Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: InGame
+  m_TableCollectionNameGuidString: efd8fdfcb501ffb48b8896c03a058d2b
+  m_Entries:
+  - m_Id: 67206008832
+    m_Key: IN_GAME_PLAYER_RIGHT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67277312000
+    m_Key: IN_GAME_PLAYER_WRONG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67277312001
+    m_Key: IN_GAME_PLAYER_WIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67277312002
+    m_Key: IN_GAME_PLAYER_LOST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506304
+    m_Key: IN_GAME_TIME_TO_PLAYER_PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506305
+    m_Key: IN_GAME_TIME_TO_OPPONENT_PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506306
+    m_Key: IN_GAME_TIME_TO_PLAYER_PLACEMENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506307
+    m_Key: IN_GAME_TIME_TO_OPPONENT_PLACEMENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506308
+    m_Key: IN_GAME_FINISH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67281506309
+    m_Key: IN_GAME_FINISH_THE_PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202344931328
+    m_Key: IN_GAME_VALUE_COINS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068672
+    m_Key: IN_GAME_REQUIRED_ADVANTAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068673
+    m_Key: IN_GAME_YOU_WITH_VALUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068674
+    m_Key: IN_GAME_OPPONENT_WITH_VALUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068675
+    m_Key: IN_GAME_CHOOSE_THE_PIECE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068676
+    m_Key: IN_GAME_CHOOSE_THE_HOUSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068677
+    m_Key: IN_GAME_WHAT_KING_CURRENT_STATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11202391068678
+    m_Key: IN_GAME_PROMOTE_TO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996662661120
+    m_Key: IN_GAME_KING_STATE_CHECKMATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996733964288
+    m_Key: IN_GAME_KING_STATE_CHECK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996733964289
+    m_Key: IN_GAME_KING_STATE_SAFE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16996733964290
+    m_Key: IN_GAME_KING_STATE_STALEMATE
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4026922367030919254
+  references:
+    version: 2
+    RefIds:
+    - rid: 4026922367030919254
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1774584735261

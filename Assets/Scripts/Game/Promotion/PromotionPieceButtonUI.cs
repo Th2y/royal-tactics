@@ -1,18 +1,18 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class PromotionPieceButtonUI : MonoBehaviour
 {
     [SerializeField] private Button button;
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private LocalizeStringEvent nameLocale;
 
     public PieceDefinitionSO Definition { get; private set; }
 
     public void Setup(PieceDefinitionSO def)
     {
         Definition = def;
-        nameText.text = def.namePt;
+        nameLocale.StringReference = def.nameT;
         button.interactable = true;
 
         button.onClick.AddListener(OnClick);

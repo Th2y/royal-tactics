@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: TutorialsImages Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: TutorialsImages
+  m_TableCollectionNameGuidString: c842d3fc9f4eb964196565369c95710a
+  m_Entries:
+  - m_Id: 2290694639616
+    m_Key: TUTORIAL_MODE_ATTACK_THE_KING_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2469673979904
+    m_Key: TUTORIAL_MODE_CORRECT_POSITIONING_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2491442417664
+    m_Key: TUTORIAL_MODE_HOUSE_NAMES_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2510031572992
+    m_Key: TUTORIAL_MODE_KING_STATE_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2538347319296
+    m_Key: TUTORIAL_MODE_MYSTERY_PIECE_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2555741097984
+    m_Key: TUTORIAL_MODE_POINT_ADVANTAGE_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2572161798144
+    m_Key: TUTORIAL_MODE_POINT_ADVANTAGE_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2588834156544
+    m_Key: TUTORIAL_MODE_POINT_ADVANTAGE_3
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 4026922383359869037
+  m_KeyGenerator:
+    rid: 4026922383359869036
+  references:
+    version: 2
+    RefIds:
+    - rid: 4026922383359869036
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1774644938263
+    - rid: 4026922383359869037
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 2290694639616
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2469673979904
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2491442417664
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2510031572992
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2538347319296
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2555741097984
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2572161798144
+          m_TableCodes:
+          - pt-BR
+        - m_KeyId: 2588834156544
+          m_TableCodes:
+          - pt-BR
+        m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

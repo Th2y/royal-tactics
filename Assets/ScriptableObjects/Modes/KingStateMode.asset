@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5f5403e0b1a1c43a9fb0e1c4e1ed0a, type: 3}
+  m_Name: KingStateMode
+  m_EditorClassIdentifier: 
+  modeName: 4
+  modeTranslated:
+    modeNameL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 1107275960320
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeInfoL:
+      m_TableReference:
+        m_TableCollectionName: GUID:69425f059451cc242a37b4326328574c
+      m_TableEntryReference:
+        m_KeyId: 605293294276609
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    modeTutorial:
+    - tutorialDescriptionL:
+        m_TableReference:
+          m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
+        m_TableEntryReference:
+          m_KeyId: 1426005315586
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      tutorialSpriteL:
+        m_TableReference:
+          m_TableCollectionName: GUID:c842d3fc9f4eb964196565369c95710a
+        m_TableEntryReference:
+          m_KeyId: 2510031572992
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+  modePrefab: {fileID: -4470590554236911389, guid: e5c0bdd69b1c0214895061ad55cf0bdf, type: 3}
+  modeUIBase: {fileID: 8180213386772283667, guid: d104a01ade872bc4996375f5641c5885, type: 3}
+  phases:
+  - {fileID: 11400000, guid: 28af9f21ea1460a4e8f9730ec54035cd, type: 2}
+  - {fileID: 11400000, guid: b4430ce44ded7bd4e9c576a68ba6a4db, type: 2}
+  - {fileID: 11400000, guid: d4c723fe01241654cb141157c8151389, type: 2}
+  - {fileID: 11400000, guid: 8f4f76e7271286948b90f67a9fe37487, type: 2}
+  - {fileID: 11400000, guid: 76b08a8929d74e44eb31dced6df6282b, type: 2}
+  - {fileID: 11400000, guid: 98fd0143cdb90aa4892457f5d939ddee, type: 2}
+  - {fileID: 11400000, guid: 65e621081489b354ca6074551e129e0c, type: 2}
+  - {fileID: 11400000, guid: 67b025af4534f2d40ae57bd65a3735a0, type: 2}
+  - {fileID: 11400000, guid: 3cfaf88c5bb94f14b97293dc1eac7c3a, type: 2}
+  - {fileID: 11400000, guid: 8651d3bd07850ac47bf842900283df12, type: 2}
+  references:
+    version: 2
+    RefIds: []
