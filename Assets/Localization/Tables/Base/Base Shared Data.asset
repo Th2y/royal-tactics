@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 39259361285
-    m_Key: BASE_BACK_TO_CHOOSE_GAME_MODE
+    m_Key: BASE_CHOOSE_ANOTHER_GAME_MODE
     m_Metadata:
       m_Items: []
   - m_Id: 39259361286

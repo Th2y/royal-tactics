@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
 {
+    [SerializeField] private Button pauseModeBackToGameButton;
+
     [Header("Mode Scripts")]
     [SerializeField] private GameModeUIBase[] modes;
 
     [Header("Mode")]
-    [SerializeField] private LocalizeStringEvent currentModeNameLocale;
+    [SerializeField] private LocalizeStringEvent[] currentModeNameLocales;
     [SerializeField] private LocalizeStringEvent currentModeInfoLocale;
     [SerializeField] private Transform modeCardParent;
     [SerializeField] private ChooseGameModeCard modeCardPrefab;
@@ -44,34 +46,42 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
     {
         SetScreens();
 
-        var choose = ChooseGameMode.Instance;
-        foreach(var mode in choose.GameModesSO)
+        foreach(var mode in modes)
         {
+            gameModesDic.Add(mode.GameModeSO.modeName, mode);
+
+            var modeSO = mode.GameModeSO;
+
             var modeCard = Instantiate(modeCardPrefab, modeCardParent);
             var phaseMode = Instantiate(phaseModePrefab, phaseModeParent);
-            PhasesModesParent.Add((int)mode.modeName, phaseMode);
+            PhasesModesParent.Add((int)modeSO.modeName, phaseMode);
 
-            modeCard.Init(mode, false);
+            modeCard.Init(modeSO, false);
 
             Transform modePhases = phaseMode.GetComponentInChildren<GridLayoutGroup>().transform;
 
-            foreach (var phase in mode.phases)
+            foreach (var phase in modeSO.phases)
             {
                 var phaseO = Instantiate(phasePrefab, modePhases);
-                phaseO.Init(mode, phase);
+                phaseO.Init(modeSO, phase);
                 phases.Add(phaseO);
             }
         }
 
-        foreach(var mode in modes)
-        {
-            gameModesDic.Add(mode.GameModeSO.modeName, mode);
-        }
+        SetGamePaused(false);
     }
 
     public override void OnInitStart()
     {
         
+    }
+
+    public void SetChoosedGameModeName(GameModeSO gameModeSO)
+    {
+        foreach (var current in currentModeNameLocales)
+        {
+            current.StringReference = gameModeSO.modeTranslated.modeNameL;
+        }
     }
 
     public void SetCurrentGameMode(GameModes gameMode)
@@ -83,9 +93,7 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
                 CurrentGameMode = mode.Value;
                 mode.Value.enabled = true;
 
-                var modeT = mode.Value.GameModeSO.modeTranslated;
-                currentModeNameLocale.StringReference = modeT.modeNameL;
-                currentModeInfoLocale.StringReference = modeT.modeInfoL;
+                currentModeInfoLocale.StringReference = mode.Value.GameModeSO.modeTranslated.modeInfoL;
 
                 currentModeInfoLocale.RefreshString();
                 LayoutRebuilder.ForceRebuildLayoutImmediate(currentModeInfoLocale.gameObject.GetComponentInParent<RectTransform>());
@@ -103,6 +111,16 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
         {
             phase.CheckUnlocked();
         }
+    }
+
+    private void SetGamePaused(bool paused)
+    {
+        if (BoardController.Instance != null)
+        {
+            BoardController.Instance.IsGamePaused = paused;
+        }
+        
+        pauseModeBackToGameButton.gameObject.SetActive(paused);
     }
 
     #region Game Screen
@@ -129,6 +147,15 @@ public class ChooseGameModeUI : UnityMethodsSingleton<ChooseGameModeUI>
         foreach (var view in _screenMap.Values)
         {
             view.SetActive(view.GameScreen == screen);
+        }
+
+        if (screen == GameScreen.Pause)
+        {
+            SetGamePaused(true);
+        }
+        else if (screen == GameScreen.Finish || screen == GameScreen.Play)
+        {
+            SetGamePaused(false);
         }
     }
 

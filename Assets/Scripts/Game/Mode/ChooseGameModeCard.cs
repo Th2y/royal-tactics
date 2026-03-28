@@ -28,12 +28,15 @@ public class ChooseGameModeCard : MonoBehaviour
         }
         else
         {
-            foreach (var p in ChooseGameModeUI.Instance.PhasesModesParent)
+            var chooseGameModeUI = ChooseGameModeUI.Instance;
+
+            foreach (var p in chooseGameModeUI.PhasesModesParent)
             {
                 p.Value.SetActive(p.Key == modeId);
             }
 
-            ChooseGameModeUI.Instance.ShowScreen(GameScreen.ChooseGamePhase);
+            chooseGameModeUI.SetChoosedGameModeName(gameModeSO);
+            chooseGameModeUI.ShowScreen(GameScreen.ChooseGamePhase);
         }
     }
 }

@@ -5,6 +5,8 @@ public class BoardController : UnityMethodsSingleton<BoardController>
 {
     private Tile[,] tiles = new Tile[8, 8];
 
+    public bool IsGamePaused = false;
+
     public override InitPriority Priority => InitPriority.BoardController;
 
     public override void OnInitAwake()
