@@ -5,7 +5,6 @@ using UnityEngine.Localization;
 [System.Serializable]
 public class Tutorial
 {
-    public Sprite tutorialSprite;
     public LocalizedString tutorialDescriptionL;
     public LocalizedSprite tutorialSpriteL;
 }

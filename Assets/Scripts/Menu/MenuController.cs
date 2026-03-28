@@ -16,7 +16,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
     [SerializeField] private ChooseGameModeCard modeCardPrefab;
     [SerializeField] private LocalizeStringEvent currentModeNameLocale;
     [SerializeField] private LocalizeStringEvent currentTutorialDescLocale;
-    [SerializeField] private Image currentTutorialImage;
+    [SerializeField] private LocalizeSpriteEvent currentTutorialImage;
     [SerializeField] private Button tutorialBackModesBtn;
     [SerializeField] private Button tutorialNextBtn;
     [SerializeField] private Button tutorialPreviousBtn;
@@ -109,7 +109,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
         
         currentModeNameLocale.StringReference = gameMode.modeTranslated.modeNameL;
         currentTutorialDescLocale.StringReference = modeT[0].tutorialDescriptionL;
-        currentTutorialImage.sprite = modeT[0].tutorialSprite;
+        currentTutorialImage.AssetReference = modeT[0].tutorialSpriteL;
     }
 
     private void ChangeTutorialPage(bool next)
@@ -135,7 +135,7 @@ public class MenuController : UnityMethodsSingleton<MenuController>
             }
         }
 
-        currentTutorialImage.sprite = modeT[currentTutorialPage].tutorialSprite;
+        currentTutorialImage.AssetReference = modeT[currentTutorialPage].tutorialSpriteL;
         currentTutorialDescLocale.StringReference = modeT[currentTutorialPage].tutorialDescriptionL;
     }
     #endregion

@@ -33,8 +33,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     modeTutorial:
-    - tutorialSprite: {fileID: 21300000, guid: 97b6a94dcb415184cb8eaeb309847319, type: 3}
-      tutorialDescriptionL:
+    - tutorialDescriptionL:
         m_TableReference:
           m_TableCollectionName: GUID:5610f14d3a062b2418043ec61248b6c3
         m_TableEntryReference:
@@ -45,9 +44,9 @@ MonoBehaviour:
         m_LocalVariables: []
       tutorialSpriteL:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:c842d3fc9f4eb964196565369c95710a
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 2510031572992
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

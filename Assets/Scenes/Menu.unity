@@ -1098,17 +1098,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &679588221 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3953492788040079462, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
-  m_PrefabInstance: {fileID: 942497754680658921}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &682462634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1491,7 +1480,7 @@ MonoBehaviour:
   modeCardPrefab: {fileID: 7304013129535034310, guid: 138f79bc231ff7b4794599acb132c3dc, type: 3}
   currentModeNameLocale: {fileID: 934401949}
   currentTutorialDescLocale: {fileID: 942497754680658924}
-  currentTutorialImage: {fileID: 679588221}
+  currentTutorialImage: {fileID: 942497754680658922}
   tutorialBackModesBtn: {fileID: 1847955084}
   tutorialNextBtn: {fileID: 942497754680658927}
   tutorialPreviousBtn: {fileID: 1742798673}
@@ -5194,6 +5183,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
+--- !u!114 &942497754680658922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5932867326769338855, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
+  m_PrefabInstance: {fileID: 942497754680658921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f55fcc3768689a4f9cf863b8c11c618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeSpriteEvent
 --- !u!114 &942497754680658923 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5410943442482682697, guid: f2ec98607be1e2449b3d12ed349f3f81, type: 3}
