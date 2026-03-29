@@ -19,11 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 5558128640
-    m_Localized: v0.0.1 - Core do jogo
+    m_Localized: v0.0.2 - Core do jogo
     m_Metadata:
       m_Items: []
   - m_Id: 31088857088
-    m_Localized: "v0.0.2 - Todos os diferentes modos de jogo e tradu\xE7\xE3o"
+    m_Localized: "v0.0.3 - Todos os diferentes modos de jogo e tradu\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 661986229243904
+    m_Localized: "v0.0.4 - Persist\xEAncia de dados virtualmente"
     m_Metadata:
       m_Items: []
   references:

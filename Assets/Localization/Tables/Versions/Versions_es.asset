@@ -19,11 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 5558128640
-    m_Localized: "v0.0.1 - N\xFAcleo del juego"
+    m_Localized: "v0.0.2 - N\xFAcleo del juego"
     m_Metadata:
       m_Items: []
   - m_Id: 31088857088
-    m_Localized: "v0.0.2 - Todos los modos de juego diferentes y traducci\xF3n"
+    m_Localized: "v0.0.3 - Todos los modos de juego diferentes y traducci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 661986229243904
+    m_Localized: v0.0.4 - Datos virtualmente persistentes
     m_Metadata:
       m_Items: []
   references:

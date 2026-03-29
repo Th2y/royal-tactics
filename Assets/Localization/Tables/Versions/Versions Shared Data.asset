@@ -16,11 +16,15 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 729deedbd8b67ca41b3fb81df851c485
   m_Entries:
   - m_Id: 5558128640
-    m_Key: VERSION_0_0_1
+    m_Key: VERSION_0_0_2
     m_Metadata:
       m_Items: []
   - m_Id: 31088857088
-    m_Key: VERSION_0_0_2
+    m_Key: VERSION_0_0_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 661986229243904
+    m_Key: VERSION_0_0_4
     m_Metadata:
       m_Items: []
   m_Metadata:
