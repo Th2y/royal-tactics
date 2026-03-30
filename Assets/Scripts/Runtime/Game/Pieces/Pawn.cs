@@ -61,19 +61,19 @@ public class Pawn : Piece
         return moves;
     }
 
-    public override List<Tile> GetValidCaptures(BoardController board)
+    public override List<Tile> GetValidCaptures(BoardController board, bool fromSamePlayer = false)
     {
-        List<Tile> captures = new();
+        List<Tile> tiles = new();
 
         int x = (int)CurrentTile.Position.x;
         int y = (int)CurrentTile.Position.y;
 
         int targetY = y + forwardDirection;
 
-        TryAddCapture(board, x - 1, targetY, captures);
-        TryAddCapture(board, x + 1, targetY, captures);
+        TryAddCapture(board, x - 1, targetY, tiles, fromSamePlayer);
+        TryAddCapture(board, x + 1, targetY, tiles, fromSamePlayer);
 
-        return captures;
+        return tiles;
     }
 
     public override List<Tile> GetAttackTiles(BoardController board)
@@ -91,15 +91,25 @@ public class Pawn : Piece
         return attacks;
     }
 
-    private void TryAddCapture(BoardController board, int x, int y, List<Tile> captures)
+    private void TryAddCapture(BoardController board, int x, int y, List<Tile> tiles, bool fromSamePlayer)
     {
         Tile tile = board.GetTile(x, y);
 
         if (tile == null || !tile.IsOccupied) return;
 
-        if (tile.Piece.IsFromPlayer != IsFromPlayer)
+        if (fromSamePlayer)
         {
-            captures.Add(tile);
+            if (tile.Piece.IsFromPlayer == IsFromPlayer)
+            {
+                tiles.Add(tile);
+            }
+        }
+        else
+        {
+            if (tile.Piece.IsFromPlayer != IsFromPlayer)
+            {
+                tiles.Add(tile);
+            }
         }
     }
 }

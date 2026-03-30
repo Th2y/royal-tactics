@@ -38,29 +38,39 @@ public class Knight : Piece
         return moves;
     }
 
-    public override List<Tile> GetValidCaptures(BoardController board)
+    public override List<Tile> GetValidCaptures(BoardController board, bool fromSamePlayer = false)
     {
-        List<Tile> captures = new();
+        List<Tile> tiles = new();
 
         int x = (int)CurrentTile.Position.x;
         int y = (int)CurrentTile.Position.y;
 
         foreach (var dir in directions)
         {
-            Tile target = board.GetTile(x + dir.x, y + dir.y);
+            Tile tile = board.GetTile(x + dir.x, y + dir.y);
 
-            if (target == null)
+            if (tile == null)
                 continue;
 
-            if (!target.IsOccupied)
+            if (!tile.IsOccupied)
                 continue;
 
-            if (target.Piece.IsFromPlayer != IsFromPlayer)
+            if (fromSamePlayer)
             {
-                captures.Add(target);
+                if (tile.Piece.IsFromPlayer == IsFromPlayer)
+                {
+                    tiles.Add(tile);
+                }
+            }
+            else
+            {
+                if (tile.Piece.IsFromPlayer != IsFromPlayer)
+                {
+                    tiles.Add(tile);
+                }
             }
         }
 
-        return captures;
+        return tiles;
     }
 }

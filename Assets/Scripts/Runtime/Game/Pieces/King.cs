@@ -35,9 +35,11 @@ public class King : Piece
         return moves;
     }
 
-    public override List<Tile> GetValidCaptures(BoardController board)
+    public override List<Tile> GetValidCaptures(BoardController board, bool fromSamePlayer = false)
     {
-        List<Tile> captures = new();
+        List<Tile> tiles = new();
+
+        if (fromSamePlayer) return tiles;
 
         foreach (var tile in GetAdjacentTiles(board))
         {
@@ -47,24 +49,26 @@ public class King : Piece
             if (tile.Piece.IsFromPlayer == IsFromPlayer)
                 continue;
 
-            if (IsTileUnderAttack(board, tile))
+            if (tile.Piece.GetPiecesDefending(board).Count > 0)
                 continue;
 
-            captures.Add(tile);
+            tiles.Add(tile);
         }
 
-        return captures;
+        return tiles;
     }
     #endregion
 
     #region King State
     public KingState EvaluateKingState()
     {
-        if (IsCheckmate(BoardController.Instance)) return KingState.Checkmate;
+        if (IsInCheck(BoardController.Instance))
+        {
+            if (IsCheckmate(BoardController.Instance, true)) return KingState.Checkmate;
 
-        if (IsStalemate(BoardController.Instance)) return KingState.Stalemate;
-
-        if (IsInCheck(BoardController.Instance)) return KingState.Check;
+            return KingState.Check;
+        }
+        else if (IsStalemate(BoardController.Instance, true)) return KingState.Stalemate;
 
         return KingState.Safe;
     }
@@ -74,10 +78,13 @@ public class King : Piece
         return IsTileUnderAttack(board, CurrentTile);
     }
 
-    public bool IsCheckmate(BoardController board)
+    public bool IsCheckmate(BoardController board, bool checkedTheCheck)
     {
-        if (!IsInCheck(board))
-            return false;
+        if (!checkedTheCheck)
+        {
+            if (!IsInCheck(board))
+                return false;
+        }
 
         if (GetValidMoves(board).Count > 0)
             return false;
@@ -100,10 +107,13 @@ public class King : Piece
         return true;
     }
 
-    public bool IsStalemate(BoardController board)
+    public bool IsStalemate(BoardController board, bool checkedTheCheck)
     {
-        if (IsInCheck(board))
-            return false;
+        if (!checkedTheCheck)
+        {
+            if (IsInCheck(board))
+                return false;
+        }
 
         foreach (var piece in board.GetAllPieces())
         {
@@ -122,8 +132,10 @@ public class King : Piece
     #endregion
 
     #region Helpers
-    private IEnumerable<Tile> GetAdjacentTiles(BoardController board)
+    private List<Tile> GetAdjacentTiles(BoardController board)
     {
+        var tiles = new List<Tile>();
+
         int startX = CurrentTile.Position.x;
         int startY = CurrentTile.Position.y;
 
@@ -131,9 +143,10 @@ public class King : Piece
         {
             Tile tile = board.GetTile(startX + dir.x, startY + dir.y);
 
-            if (tile != null)
-                yield return tile;
+            if (tile != null) tiles.Add(tile);
         }
+
+        return tiles;
     }
 
     private bool IsTileUnderAttack(BoardController board, Tile targetTile)
@@ -151,7 +164,7 @@ public class King : Piece
                 continue;
             }
 
-            var attacks = piece.GetAttackTiles(board);
+            var attacks = piece.GetAttackVisionTiles(board);
 
             if (attacks.Contains(targetTile))
                 return true;
