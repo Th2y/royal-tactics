@@ -87,7 +87,7 @@ public class King : Piece
         }
 
         if (GetValidMoves(board).Count > 0)
-            return false;
+            return true;
 
         if (GetValidCaptures(board).Count > 0)
             return false;
@@ -132,8 +132,10 @@ public class King : Piece
     #endregion
 
     #region Helpers
-    private IEnumerable<Tile> GetAdjacentTiles(BoardController board)
+    private List<Tile> GetAdjacentTiles(BoardController board)
     {
+        var tiles = new List<Tile>();
+
         int startX = CurrentTile.Position.x;
         int startY = CurrentTile.Position.y;
 
@@ -141,9 +143,10 @@ public class King : Piece
         {
             Tile tile = board.GetTile(startX + dir.x, startY + dir.y);
 
-            if (tile != null)
-                yield return tile;
+            if (tile != null) tiles.Add(tile);
         }
+
+        return tiles;
     }
 
     private bool IsTileUnderAttack(BoardController board, Tile targetTile)
