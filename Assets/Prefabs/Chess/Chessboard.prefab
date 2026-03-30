@@ -112,39 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorsOptions: {fileID: 11400000, guid: 14b115af19748a1418482065682e1dac, type: 2}
   renderersColor1:
-  - {fileID: 4252889692852016929}
-  - {fileID: 1482647491791444423}
-  - {fileID: 1701990458532818201}
-  - {fileID: 4917464965014401606}
-  - {fileID: 3591012097144645434}
-  - {fileID: 7584547584865977046}
-  - {fileID: 6530372962884648379}
-  - {fileID: 7525392304249401981}
-  - {fileID: 3073288884852239813}
-  - {fileID: 3020109561495011756}
-  - {fileID: 2767632691810978148}
-  - {fileID: 2566846539102740068}
-  - {fileID: 9009680939572694369}
-  - {fileID: 475145997732734979}
-  - {fileID: 2895844445729728214}
-  - {fileID: 1983900373889209387}
-  - {fileID: 2525197266683649764}
-  - {fileID: 9196807611796626490}
-  - {fileID: 4068710370736474188}
-  - {fileID: 7804810422602865207}
-  - {fileID: 7799593089293532403}
-  - {fileID: 5186860608281404496}
-  - {fileID: 6575576682087808039}
-  - {fileID: 5944926240963827088}
-  - {fileID: 9070744464669957047}
-  - {fileID: 1986497278931165822}
-  - {fileID: 7351121679115465808}
-  - {fileID: 6505728687168599565}
-  - {fileID: 8887798600996441517}
-  - {fileID: 1238870694971328773}
-  - {fileID: 8758026721244105507}
-  - {fileID: 5834970133759448817}
-  renderersColor2:
   - {fileID: 6860203305489755415}
   - {fileID: 3876307621504532357}
   - {fileID: 8500662354825295620}
@@ -177,6 +144,39 @@ MonoBehaviour:
   - {fileID: 4587203470254074514}
   - {fileID: 8329246752337913884}
   - {fileID: 8200893362308092324}
+  renderersColor2:
+  - {fileID: 4252889692852016929}
+  - {fileID: 1482647491791444423}
+  - {fileID: 1701990458532818201}
+  - {fileID: 4917464965014401606}
+  - {fileID: 3591012097144645434}
+  - {fileID: 7584547584865977046}
+  - {fileID: 6530372962884648379}
+  - {fileID: 7525392304249401981}
+  - {fileID: 3073288884852239813}
+  - {fileID: 3020109561495011756}
+  - {fileID: 2767632691810978148}
+  - {fileID: 2566846539102740068}
+  - {fileID: 9009680939572694369}
+  - {fileID: 475145997732734979}
+  - {fileID: 2895844445729728214}
+  - {fileID: 1983900373889209387}
+  - {fileID: 2525197266683649764}
+  - {fileID: 9196807611796626490}
+  - {fileID: 4068710370736474188}
+  - {fileID: 7804810422602865207}
+  - {fileID: 7799593089293532403}
+  - {fileID: 5186860608281404496}
+  - {fileID: 6575576682087808039}
+  - {fileID: 5944926240963827088}
+  - {fileID: 9070744464669957047}
+  - {fileID: 1986497278931165822}
+  - {fileID: 7351121679115465808}
+  - {fileID: 6505728687168599565}
+  - {fileID: 8887798600996441517}
+  - {fileID: 1238870694971328773}
+  - {fileID: 8758026721244105507}
+  - {fileID: 5834970133759448817}
   colorProperty: _BaseColor
 --- !u!114 &7584361031800064015
 MonoBehaviour:
@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432153cdd8692de4c841f4cc6496d155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsGamePaused: 0
 --- !u!1 &5033736369418082234
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +252,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -272,9 +275,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &148555395475134149
 PrefabInstance:
