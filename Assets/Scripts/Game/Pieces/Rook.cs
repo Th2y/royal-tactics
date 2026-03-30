@@ -43,9 +43,9 @@ public class Rook : Piece
         return moves;
     }
 
-    public override List<Tile> GetValidCaptures(BoardController board)
+    public override List<Tile> GetValidCaptures(BoardController board, bool fromSamePlayer = false)
     {
-        List<Tile> captures = new();
+        List<Tile> tiles = new();
 
         int startX = (int)CurrentTile.Position.x;
         int startY = (int)CurrentTile.Position.y;
@@ -69,15 +69,25 @@ public class Rook : Piece
                     continue;
                 }
 
-                if (tile.Piece.IsFromPlayer != IsFromPlayer)
+                if (fromSamePlayer)
                 {
-                    captures.Add(tile);
+                    if (tile.Piece.IsFromPlayer == IsFromPlayer)
+                    {
+                        tiles.Add(tile);
+                    }
+                }
+                else
+                {
+                    if (tile.Piece.IsFromPlayer != IsFromPlayer)
+                    {
+                        tiles.Add(tile);
+                    }
                 }
 
                 break;
             }
         }
 
-        return captures;
+        return tiles;
     }
 }

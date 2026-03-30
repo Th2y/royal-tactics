@@ -68,15 +68,15 @@ public class BoardController : UnityMethodsSingleton<BoardController>
 
     public List<Tile> GetAllFreeTiles()
     {
-        List<Tile> free = new();
+        List<Tile> tiles = new();
 
-        foreach (Tile tile in tiles)
+        foreach (Tile tile in this.tiles)
         {
             if (!tile.IsOccupied)
-                free.Add(tile);
+                tiles.Add(tile);
         }
 
-        return free;
+        return tiles;
     }
 
     public List<Piece> GetAllPieces()
@@ -149,58 +149,6 @@ public class BoardController : UnityMethodsSingleton<BoardController>
         if (validTiles == null || validTiles.Count == 0) return null;
 
         return validTiles[Random.Range(0, validTiles.Count)];
-    }
-
-    public List<Tile> GetTilesAttackingTile(Tile targetTile, PieceDefinitionSO pieceDef, bool isFromPlayer)
-    {
-        List<Tile> result = new();
-
-        List<Tile> freeTiles = GetAllFreeTiles();
-
-        foreach (Tile tile in freeTiles)
-        {
-            if (WouldPieceAttackTile(tile, targetTile, pieceDef, isFromPlayer))
-                result.Add(tile);
-        }
-
-        return result;
-    }
-
-    private bool WouldPieceAttackTile(Tile originTile, Tile targetTile, PieceDefinitionSO pieceDef, bool isFromPlayer)
-    {
-        Piece piece = Instantiate(pieceDef.prefab);
-        piece.Initialize(pieceDef, isFromPlayer);
-
-        originTile.SetPiece(piece);
-
-        List<Tile> captures = piece.GetValidCaptures(Instance);
-
-        bool attacks = captures.Contains(targetTile);
-
-        originTile.ClearAndDestroyPiece();
-
-        return attacks;
-    }
-
-    public List<Tile> GetAdjacentTiles(Tile tile)
-    {
-        List<Tile> result = new();
-
-        for (int dx = -1; dx <= 1; dx++)
-        {
-            for (int dy = -1; dy <= 1; dy++)
-            {
-                if (dx == 0 && dy == 0)
-                    continue;
-
-                Tile t = GetTile((int)tile.Position.x + dx, (int)tile.Position.y + dy);
-
-                if (t != null)
-                    result.Add(t);
-            }
-        }
-
-        return result;
     }
 
     public Tile FindTileForConstraint(PositionConstraint constraint, King playerKing)
