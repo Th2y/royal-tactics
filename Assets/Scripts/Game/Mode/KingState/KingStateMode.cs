@@ -71,7 +71,36 @@ public class KingStateMode : GameModeBase
 
         bool spawnInversedColors = Random.Range(0, 2) == 1;
 
+        var playerKingGroup = new List<PuzzlePiece>();
+        var enemyKingGroup = new List<PuzzlePiece>();
+        var playerPiecesGroup = new List<PuzzlePiece>();
+        var enemyPiecesGroup = new List<PuzzlePiece>();
+
         foreach (var p in template.pieces)
+        {
+            bool isKing = p.pieceOptions.Any(def => def.type == PieceType.King);
+
+            if (isKing)
+            {
+                if (p.isPlayer) playerKingGroup.Add(p);
+                else enemyKingGroup.Add(p);
+            }
+            else
+            {
+                if (p.isPlayer) playerPiecesGroup.Add(p);
+                else enemyPiecesGroup.Add(p);
+            }
+        }
+
+        SpawnGroup(playerKingGroup, transform, spawnInversedColors);
+        SpawnGroup(enemyKingGroup, transform, spawnInversedColors);
+        SpawnGroup(playerPiecesGroup, transform, spawnInversedColors);
+        SpawnGroup(enemyPiecesGroup, transform, spawnInversedColors);
+    }
+
+    private void SpawnGroup(List<PuzzlePiece> group, int transform, bool spawnInversedColors)
+    {
+        foreach (var p in group)
         {
             if (Random.Range(0, 100) > p.spawnChance)
                 continue;

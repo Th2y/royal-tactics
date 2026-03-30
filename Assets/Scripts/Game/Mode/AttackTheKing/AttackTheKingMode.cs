@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -76,7 +77,36 @@ public class AttackTheKingMode : GameModeBase
         bool hasPawn = template.pieces.Any(p => p.pieceOptions.Any(def => def.type == PieceType.Pawn));
         int transform = hasPawn ? Random.Range(0, 2) : Random.Range(0, 8);
 
+        var playerKing = new List<PuzzlePiece>();
+        var enemyKing = new List<PuzzlePiece>();
+        var playerPieces = new List<PuzzlePiece>();
+        var enemyPieces = new List<PuzzlePiece>();
+
         foreach (var p in template.pieces)
+        {
+            bool isKing = p.pieceOptions.Any(def => def.type == PieceType.King);
+
+            if (isKing)
+            {
+                if (p.isPlayer) playerKing.Add(p);
+                else enemyKing.Add(p);
+            }
+            else
+            {
+                if (p.isPlayer) playerPieces.Add(p);
+                else enemyPieces.Add(p);
+            }
+        }
+
+        SpawnGroup(playerKing, transform, template);
+        SpawnGroup(enemyKing, transform, template);
+        SpawnGroup(playerPieces, transform, template);
+        SpawnGroup(enemyPieces, transform, template);
+    }
+
+    private void SpawnGroup(List<PuzzlePiece> group, int transform, PuzzleTemplateSO template)
+    {
+        foreach (var p in group)
         {
             if (Random.Range(0, 100) > p.spawnChance)
                 continue;
