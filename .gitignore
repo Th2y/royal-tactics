@@ -73,3 +73,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Scripts/Core/SO/FirebaseConfig.asset
+Assets/Scripts/Core/SO/FirebaseConfig.asset.meta
+Assets/Localization/Google Sheets Service Values.asset
+Assets/Localization/Google Sheets Service Values.asset.meta
