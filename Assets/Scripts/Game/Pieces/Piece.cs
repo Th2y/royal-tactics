@@ -127,4 +127,9 @@ public abstract class Piece : MonoBehaviour
 
         return attacks;
     }
+
+    public virtual List<Tile> GetAttackVisionTiles(BoardController board)
+    {
+        return GetAttackTiles(board);
+    }
 }

@@ -87,7 +87,7 @@ public class King : Piece
         }
 
         if (GetValidMoves(board).Count > 0)
-            return true;
+            return false;
 
         if (GetValidCaptures(board).Count > 0)
             return false;
@@ -164,7 +164,7 @@ public class King : Piece
                 continue;
             }
 
-            var attacks = piece.GetAttackTiles(board);
+            var attacks = piece.GetAttackVisionTiles(board);
 
             if (attacks.Contains(targetTile))
                 return true;

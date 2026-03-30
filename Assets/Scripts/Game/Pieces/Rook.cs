@@ -90,4 +90,45 @@ public class Rook : Piece
 
         return tiles;
     }
+
+    public override List<Tile> GetAttackVisionTiles(BoardController board)
+    {
+        List<Tile> tiles = new();
+
+        int startX = (int)CurrentTile.Position.x;
+        int startY = (int)CurrentTile.Position.y;
+
+        foreach (var dir in directions)
+        {
+            int x = startX + dir.x;
+            int y = startY + dir.y;
+
+            while (true)
+            {
+                Tile tile = board.GetTile(x, y);
+
+                if (tile == null)
+                    break;
+
+                tiles.Add(tile);
+
+                if (tile.IsOccupied)
+                {
+                    if (tile.Piece.IsFromPlayer == IsFromPlayer)
+                    {
+                        break;
+                    }
+                    else if (tile.Piece.Definition.type != PieceType.King)
+                    {
+                        break;
+                    }
+                }
+
+                x += dir.x;
+                y += dir.y;
+            }
+        }
+
+        return tiles;
+    }
 }
