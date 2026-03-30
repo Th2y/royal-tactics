@@ -21,11 +21,21 @@ public class PhaseSO : ScriptableObject
 
     public PuzzleTemplateSO GetRandomTemplate(KingState state)
     {
-        var candidates = templates.FindAll(t => t.state == state);
+        var candidates = GetTemplatesInKingState(state);
 
-        if (candidates.Count == 0)
-            return null;
+        if (candidates.Count == 0) return null;
 
         return candidates[Random.Range(0, candidates.Count)];
+    }
+
+    public bool HasTemplateInSelectedKingState(KingState state)
+    {
+        var list = GetTemplatesInKingState(state);
+        return list != null && list.Count > 0;
+    }
+
+    private List<PuzzleTemplateSO> GetTemplatesInKingState(KingState state)
+    {
+        return templates.FindAll(t => t.state == state);
     }
 }

@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e10e8c288c6a384d823cd9fa10b32e7, type: 2}
   startingPoints: 1000
   pointsAdvantageToWin: 0
-  safeChance: 15
-  checkChance: 40
-  checkmateChance: 30
-  stalemateChance: 15
+  safeChance: 0
+  checkChance: 0
+  checkmateChance: 0
+  stalemateChance: 100

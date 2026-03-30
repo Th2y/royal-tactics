@@ -225,36 +225,57 @@ public class BoardController : UnityMethodsSingleton<BoardController>
     {
         ClearBoard();
 
-        if (desired == KingState.None) desired = PickDesiredState(phase);
+        if (desired == KingState.None) desired = PickDesiredStateFiltered(phase);
 
-        PuzzleTemplateSO template = phase.GetRandomTemplate(desired);
+        var template = phase.GetRandomTemplate(desired);
 
         if (template == null)
         {
-            Debug.LogError($"No template for state {desired} in phase {phase.phase}");
+            Debug.LogError($"State {desired} had no template despite filtering.");
             return null;
         }
 
         return template;
     }
 
-    private KingState PickDesiredState(PhaseSO phase)
+    private KingState PickDesiredStateFiltered(PhaseSO phase)
     {
-        int roll = Random.Range(0, 100);
+        var validStates = new List<(KingState state, int weight)>();
 
-        if (roll < phase.safeChance)
+        void TryAdd(KingState state, int weight)
+        {
+            if (weight <= 0)
+                return;
+
+            if (phase.HasTemplateInSelectedKingState(state)) validStates.Add((state, weight));
+        }
+
+        TryAdd(KingState.Safe, phase.safeChance);
+        TryAdd(KingState.Check, phase.checkChance);
+        TryAdd(KingState.Checkmate, phase.checkmateChance);
+        TryAdd(KingState.Stalemate, phase.stalemateChance);
+
+        if (validStates.Count == 0)
+        {
+            Debug.LogError($"No templates available in phase {phase.phase}");
             return KingState.Safe;
+        }
+        else if (validStates.Count == 1) return validStates[0].state;
 
-        roll -= phase.safeChance;
+        int totalWeight = 0;
+        foreach (var (state, weight) in validStates)
+            totalWeight += weight;
 
-        if (roll < phase.checkChance)
-            return KingState.Check;
+        int roll = Random.Range(0, totalWeight);
 
-        roll -= phase.checkChance;
+        foreach (var (state, weight) in validStates)
+        {
+            if (roll < weight)
+                return state;
 
-        if (roll < phase.checkmateChance)
-            return KingState.Checkmate;
+            roll -= weight;
+        }
 
-        return KingState.Stalemate;
+        return validStates[0].state;
     }
 }
