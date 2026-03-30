@@ -1,4 +1,4 @@
-enum PuzzleDifficulty
+public enum PuzzleDifficulty
 {
     Easy,
     Medium,

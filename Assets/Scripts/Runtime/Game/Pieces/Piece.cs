@@ -102,9 +102,21 @@ public abstract class Piece : MonoBehaviour
         return true;
     }
 
-
     public abstract List<Tile> GetValidMoves(BoardController board);
-    public abstract List<Tile> GetValidCaptures(BoardController board);
+    public abstract List<Tile> GetValidCaptures(BoardController board, bool fromSamePlayer = false);
+    public virtual List<Tile> GetPiecesDefending(BoardController board)
+    {
+        List<Tile> tiles = new();
+
+        foreach (var piece in board.GetAllPieces())
+        {
+            if (piece.IsFromPlayer != IsFromPlayer) continue;
+
+            if (piece.GetValidCaptures(board, true).Contains(CurrentTile)) tiles.Add(piece.CurrentTile);
+        }
+
+        return tiles;
+    }
 
     public virtual List<Tile> GetAttackTiles(BoardController board)
     {
@@ -114,5 +126,10 @@ public abstract class Piece : MonoBehaviour
         attacks.AddRange(GetValidCaptures(board));
 
         return attacks;
+    }
+
+    public virtual List<Tile> GetAttackVisionTiles(BoardController board)
+    {
+        return GetAttackTiles(board);
     }
 }

@@ -43,9 +43,9 @@ public class Bishop : Piece
         return moves;
     }
 
-    public override List<Tile> GetValidCaptures(BoardController board)
+    public override List<Tile> GetValidCaptures(BoardController board, bool fromSamePlayer = false)
     {
-        List<Tile> captures = new();
+        List<Tile> tiles = new();
 
         int startX = (int)CurrentTile.Position.x;
         int startY = (int)CurrentTile.Position.y;
@@ -69,15 +69,66 @@ public class Bishop : Piece
                     continue;
                 }
 
-                if (tile.Piece.IsFromPlayer != IsFromPlayer)
+                if (fromSamePlayer)
                 {
-                    captures.Add(tile);
+                    if (tile.Piece.IsFromPlayer == IsFromPlayer)
+                    {
+                        tiles.Add(tile);
+                    }
+                }
+                else
+                {
+                    if (tile.Piece.IsFromPlayer != IsFromPlayer)
+                    {
+                        tiles.Add(tile);
+                    }
                 }
 
                 break;
             }
         }
 
-        return captures;
+        return tiles;
+    }
+
+    public override List<Tile> GetAttackVisionTiles(BoardController board)
+    {
+        List<Tile> tiles = new();
+
+        int startX = (int)CurrentTile.Position.x;
+        int startY = (int)CurrentTile.Position.y;
+
+        foreach (var dir in directions)
+        {
+            int x = startX + dir.x;
+            int y = startY + dir.y;
+
+            while (true)
+            {
+                Tile tile = board.GetTile(x, y);
+
+                if (tile == null)
+                    break;
+
+                tiles.Add(tile);
+
+                if (tile.IsOccupied)
+                {
+                    if (tile.Piece.IsFromPlayer == IsFromPlayer)
+                    {
+                        break;
+                    }
+                    else if (tile.Piece.Definition.type != PieceType.King)
+                    {
+                        break;
+                    }
+                }
+
+                x += dir.x;
+                y += dir.y;
+            }
+        }
+
+        return tiles;
     }
 }
