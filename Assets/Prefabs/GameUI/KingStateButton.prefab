@@ -135,8 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KingStateButtonUI
   button: {fileID: 4723179848672659225}
-  nameText: {fileID: 8042549807648231648}
-  nameLocale: {fileID: 0}
+  nameLocale: {fileID: 420336160919647142}
 --- !u!1 &4843156382447311969
 GameObject:
   m_ObjectHideFlags: 0
