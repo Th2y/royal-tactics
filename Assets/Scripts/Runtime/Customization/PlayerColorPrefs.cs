@@ -2,12 +2,24 @@ using UnityEngine;
 
 public static class PlayerColorPrefs
 {
-    private const string PlayerColorKey = "PLAYER_COLOR";
-    private const string OponentColorKey = "OPONENT_COLOR";
+    private const string Player1ColorKey = "PLAYER1_COLOR";
+    private const string Player2ColorKey = "PLAYER2_COLOR";
+    private const string BoardBorderColorKey = "BOARDBORDER_COLOR";
 
-    public static void SaveColor(Color color, bool isPlayer)
+    private static string GetKeyByColorType(ColorType colorType)
     {
-        string colorKey = isPlayer ? PlayerColorKey : OponentColorKey;
+        return colorType switch
+        {
+            ColorType.Player1 => Player1ColorKey,
+            ColorType.Player2 => Player2ColorKey,
+            ColorType.BoardBorder => BoardBorderColorKey,
+            _ => BoardBorderColorKey,
+        };
+    }
+
+    public static void SaveColor(Color color, ColorType colorType)
+    {
+        string colorKey = GetKeyByColorType(colorType);
 
         PlayerPrefs.SetFloat(colorKey + "_R", color.r);
         PlayerPrefs.SetFloat(colorKey + "_G", color.g);
@@ -16,9 +28,9 @@ public static class PlayerColorPrefs
         PlayerPrefs.Save();
     }
 
-    public static Color LoadColor(Color fallback, bool isPlayer)
+    public static Color LoadColor(Color fallback, ColorType colorType)
     {
-        string colorKey = isPlayer ? PlayerColorKey : OponentColorKey;
+        string colorKey = GetKeyByColorType(colorType);
 
         if (!PlayerPrefs.HasKey(colorKey + "_R")) return fallback;
 

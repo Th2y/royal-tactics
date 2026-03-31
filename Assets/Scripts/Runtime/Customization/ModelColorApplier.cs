@@ -27,9 +27,9 @@ public class ModelColorApplier : UnityMethods
         }
 
         if (isPlayer)
-            DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.colors[0], true);
+            DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.piecesColors[0], ColorType.Player1);
         else
-            DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.colors[1], false);
+            DefaultColor = PlayerColorPrefs.LoadColor(colorsOptions.piecesColors[1], ColorType.Player2);
 
         SetColor(DefaultColor);
     }

@@ -39,8 +39,12 @@ MonoBehaviour:
     m_Key: BASE_OPTION_CHOOSE_PLAYER_1_PIECE_COLOR
     m_Metadata:
       m_Items: []
-  - m_Id: 39259361282
+  - m_Id: 1515075794522112
     m_Key: BASE_OPTION_CHOOSE_PLAYER_2_PIECE_COLOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361282
+    m_Key: BASE_OPTION_CHOOSE_BOARD_BORDER_COLOR
     m_Metadata:
       m_Items: []
   - m_Id: 39259361283

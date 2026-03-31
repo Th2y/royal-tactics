@@ -18,76 +18,80 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 39183863808
-    m_Localized: Jogar
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39242584064
-    m_Localized: "Op\xE7\xF5es"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39255166976
-    m_Localized: Tutorial
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39255166977
-    m_Localized: Sair
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361280
-    m_Localized: Voltar
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361281
-    m_Localized: "Escolher a cor das pe\xE7as do jogador 1"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361282
-    m_Localized: "Escolher a cor das pe\xE7as do jogador 2"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361283
-    m_Localized: Escolher modo de jogo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361284
-    m_Localized: Voltar para o menu
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361285
-    m_Localized: Escolher outro modo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361286
-    m_Localized: Escolher fase
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361287
-    m_Localized: Jogo pausado
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361288
-    m_Localized: Continuar
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361289
-    m_Localized: Jogar outro modo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361292
-    m_Localized: Jogar novamente
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361293
-    m_Localized: "Jogar pr\xF3xima fase"
+  - m_Id: 47930703237120
+    m_Localized: Confirmar
     m_Metadata:
       m_Items: []
   - m_Id: 10809669996544
     m_Localized: Escolha o idioma
     m_Metadata:
       m_Items: []
-  - m_Id: 47930703237120
-    m_Localized: Confirmar
+  - m_Id: 39259361293
+    m_Localized: "Jogar pr\xF3xima fase"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361292
+    m_Localized: Jogar novamente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361289
+    m_Localized: Jogar outro modo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361288
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361287
+    m_Localized: Jogo pausado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361286
+    m_Localized: Escolher fase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361285
+    m_Localized: Escolher outro modo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361284
+    m_Localized: Voltar para o menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361283
+    m_Localized: Escolher modo de jogo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361282
+    m_Localized: Escolher a cor da borda do tabuleiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361281
+    m_Localized: "Escolher a cor das pe\xE7as do jogador 1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361280
+    m_Localized: Voltar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39255166977
+    m_Localized: Sair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39255166976
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39242584064
+    m_Localized: "Op\xE7\xF5es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39183863808
+    m_Localized: Jogar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1515075794522112
+    m_Localized: "Escolher a cor das pe\xE7as do jogador 2"
     m_Metadata:
       m_Items: []
   references:

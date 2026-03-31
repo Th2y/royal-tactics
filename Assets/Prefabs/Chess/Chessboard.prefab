@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 1238870694971328773}
   - {fileID: 8758026721244105507}
   - {fileID: 5834970133759448817}
+  rendererBoardBorderColor: {fileID: 1426274743790652387}
   colorProperty: _BaseColor
 --- !u!114 &7584361031800064015
 MonoBehaviour:
@@ -203,7 +204,7 @@ GameObject:
   - component: {fileID: 2403298927558036112}
   - component: {fileID: 1426274743790652387}
   m_Layer: 7
-  m_Name: Tabuleiro
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,76 +18,80 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 39183863808
-    m_Localized: Jugar
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39242584064
-    m_Localized: Opciones
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39255166976
-    m_Localized: Tutorial
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39255166977
-    m_Localized: Salir
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361280
-    m_Localized: "Atr\xE1s"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361281
-    m_Localized: Elige el color de las piezas del jugador 1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361282
-    m_Localized: Elige el color de las piezas del jugador 2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361283
-    m_Localized: Elige el modo de juego
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361284
-    m_Localized: "Volver al men\xFA"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361285
-    m_Localized: Elige otro modo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361286
-    m_Localized: Elige el nivel
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361287
-    m_Localized: Juego en pausa
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361288
-    m_Localized: Continuar
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361289
-    m_Localized: Jugar otro modo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361292
-    m_Localized: Jugar de nuevo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39259361293
-    m_Localized: Jugar el siguiente nivel
+  - m_Id: 47930703237120
+    m_Localized: Confirmar
     m_Metadata:
       m_Items: []
   - m_Id: 10809669996544
     m_Localized: Elige el idioma
     m_Metadata:
       m_Items: []
-  - m_Id: 47930703237120
-    m_Localized: Confirmar
+  - m_Id: 39259361293
+    m_Localized: Jugar el siguiente nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361292
+    m_Localized: Jugar de nuevo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361289
+    m_Localized: Jugar otro modo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361288
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361287
+    m_Localized: Juego en pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361286
+    m_Localized: Elige el nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361285
+    m_Localized: Elige otro modo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361284
+    m_Localized: "Volver al men\xFA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361283
+    m_Localized: Elige el modo de juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361282
+    m_Localized: Elige el color del borde del tablero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361281
+    m_Localized: Elige el color de las piezas del jugador 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39259361280
+    m_Localized: "Atr\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39255166977
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39255166976
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39242584064
+    m_Localized: Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39183863808
+    m_Localized: Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1515075794522112
+    m_Localized: Elige el color de las piezas del jugador 2
     m_Metadata:
       m_Items: []
   references:
